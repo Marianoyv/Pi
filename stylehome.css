@@ -17,6 +17,7 @@ header
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 header .logo
 {
@@ -71,6 +72,9 @@ header .logo
   height: 100%;
   object-fit: cover;
   opacity: 0.8;
+  -webkit-mask-image: linear-gradient(black, transparent);
+  mask-image: linear-gradient(black, transparent);
+
 }
 .overlay
 {
@@ -204,6 +208,8 @@ header .logo
 {
   color: #03a9f4; 
 }
+
+
 
 @media (max-width: 991px)
 {
