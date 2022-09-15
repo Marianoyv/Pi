@@ -17,7 +17,7 @@
         <video src="/vid/home.webm" muted autoplay loop></video>
         <div class="overlay"></div>
         <div class="text">
-          <h2>Mariano Tami</h2> 
+          <h2>Mariano Tami</h2>
           <h3>Web Developer</h3>
           
           <a href="about.html">About Me</a>
@@ -47,6 +47,17 @@
           showcase.classList.toggle('active');
         })
         </script>
+
+<script type="text/javascript" src="vanilla-tilt.js"></script>
+<script type="text/javascript">
+	VanillaTilt.init(document.querySelector(".text"), {
+		max: 25,
+		speed: 1000,
+	});
+	
+	//It also supports NodeList
+	VanillaTilt.init(document.querySelectorAll(".text"));
+</script>
 
 
 

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
 *
 {
   margin: 0;
@@ -76,8 +77,7 @@ header .logo
   mask-image: linear-gradient(black, transparent);
 
 }
-.overlay
-{
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -88,12 +88,23 @@ header .logo
 }
 .text
 {
+  transform-style: preserve-3d;
+transform: perspective(1000px);
+transform: translateZ(20px);
   position: relative;
   z-index: 10;
 }
 
+.container {
+  display: inline;
+}
 .text h2
 {
+  transform-style: preserve-3d;
+transform: perspective(1000px);
+transform: translateZ(20px);
+  display: inline;
+  font-family: 'Nabla';
   font-size: 5em;
   font-weight: 800;
   color: #fff;
@@ -101,11 +112,10 @@ header .logo
   text-transform: uppercase;
   margin: 20px auto;
 }
-.text h2:hover {
-    color: rgb(255, 0, 0);
-    letter-spacing: 3px;
-    transition: 0.2s;
+.data-tilt {
+  display: inline;
 }
+
 .text h3
 {
   font-size: 4em;
