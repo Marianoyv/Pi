@@ -10,8 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    overflow: hidden;
-       
+    overflow: hidden;       
 }
 
 .navbar {
@@ -23,10 +22,11 @@ body {
     justify-content: space-between;
     background-color: #000000;
     box-shadow: 4px 4px 4px 4px #000000;
-    z-index: 3;
+    z-index: 5;
     
 }
-nav {   
+nav {
+    max-width: 100%;
     justify-content: space-between;
     display: inline;
 
@@ -59,26 +59,26 @@ h2.logo {
     
     overflow: hidden;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     
 
 }
 
 
-.grid-2 {
-    
+.grid {
+    display: grid;
     position: absolute;
-    padding: 50px;
+    padding: 50px 50px 0 50px;
     z-index: 3;
     top: 80px;
     left: 0;
-    display: grid;
     width: 100%;
     grid-template-columns: 50% 50%;
     z-index: 4;
     
+    
 }
-.resumen video {
+.resumen video#xl {
     
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,13 +89,16 @@ h2.logo {
     z-index: -1;
      
 }
+.resumen video#sm {
+    display: none;
+}
 
 .card {    
     
     background: radial-gradient(circle at 100px 100px, #4d4d4d2d, rgba(0, 0, 0, 0));
     color: #fff;
     margin: auto;    
-    height: 480px;
+    height: 450px;
     width: 450px;
     border-radius: 500px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5),
@@ -117,15 +120,16 @@ h2.logo {
 .progress {
     width: 200px;
     height: 25px;
-    
+    border: 1px solid black;
     margin: 0 auto 20px;
-    box-shadow: 1px 2px 2px rgba(17, 17, 17, 0.377);
+    box-shadow: 1px 2px 2px rgba(17, 17, 17, 0.685);
     border-radius: 6px;
     
 }
 .progress-bar {
     box-shadow: inset 3px 2px 2px rgba(255, 255, 255, 0.281);
-    background-color: yellowgreen;
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
     border-radius: 6px 0 0 6px;
 }
 
@@ -140,6 +144,9 @@ h4, i {
     margin-top: 20px;
     font-size: 20px;
     text-shadow: 1px 1px 3px rgba(17, 17, 17, 0.5);
+}
+h3 {
+    font-size: 26px;
 }
 
 .cv {
@@ -157,4 +164,36 @@ h4, i {
 ::-webkit-scrollbar-thumb {
     background: rgba(236, 7, 7, 0.76);
     border-radius: 6px;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    body {
+        overflow: visible;
+    }
+     .card {
+        grid-column: 1 / span 2;
+        margin: 20px;
+        
+        
+     }
+
+     .grid {
+        justify-items: center;
+     }
+     .resumen video#xl {
+        display: none;
+    }
+
+     .resumen video#sm {
+        position: fixed;
+        display: block;
+        background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    min-width: 100%;
+    min-height: min-content;
+    z-index: -1;
+     }
+     
 }
