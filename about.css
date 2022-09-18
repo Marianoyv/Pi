@@ -169,6 +169,8 @@ h3 {
 @media only screen and (max-width: 1024px) {
 
     body {
+        background: url(/vid/sm.gif);
+        
         overflow: visible;
     }
      .card {
@@ -185,7 +187,9 @@ h3 {
         display: none;
     }
 
-     .resumen video#sm {
+
+
+    /*  .resumen video#sm {
         position: fixed;
         display: block;
         background-repeat: no-repeat;
@@ -195,5 +199,5 @@ h3 {
     min-height: min-content;
     z-index: -1;
      }
-     
+ */    
 }
