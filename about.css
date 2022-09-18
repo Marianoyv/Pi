@@ -84,7 +84,7 @@ h2.logo {
     background-size: cover;
     display: block;
     margin: auto;
-    min-width: 100%;
+    width: 100%;
     min-height: 100vh;
     z-index: -1;
      
