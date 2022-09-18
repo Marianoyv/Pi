@@ -7,7 +7,8 @@
     font-family: 'Playfair Display', serif;
 }
 body {
-    background-color: #3B7080;
+    background: rgb(59,112,128);
+    background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgba(227,181,5,1) 50%, rgba(149,25,12,1) 100%);
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -69,7 +70,7 @@ h2.logo {
 }
 .resumen h2 {
     display: inline-block;
-    background-color: #3B7080;
+    background-color: rgba(0, 0, 0, 0);
     padding: 15px;    
     margin: 40px ;
     font-size: 55px;
@@ -98,16 +99,17 @@ h2.logo {
     
     background: radial-gradient(circle at 100px 100px, #4d4d4d2d, rgba(0, 0, 0, 0));
     color: #fff;
-    margin: auto;    
-    height: 500px;
-    width: 500px;
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 20px;    
+    height: 80%;
+    width: 90%;
     border-radius: 6px;
     box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5),
      inset 2px 4px 4px #fff;
     text-align: center;
     backdrop-filter: blur(5px);
     overflow: hidden;
-    z-index: 1;
     display: flex;
     
     
@@ -170,30 +172,4 @@ h3 {
 
 @media only screen and (max-width: 1024px) {
 
-    body {
-        background-image: url(/vid/sm.gif);
-        
-        background-repeat: no-repeat;
-        background-size: cover;
-        overflow: visible;
-        width: 100vh;
-        min-height: min-content;
-        padding:0;
-    margin:0;   
-    }
-    
-     .card {
-        grid-column: 1 / span 2;
-        margin: 20px;
-     }
-
-     .grid {
-        justify-items: center;
-     }
-     .resumen video#xl {
-        display: none;
-    }
-
-
- 
 }
