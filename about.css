@@ -1,76 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    line-height: 1.6;
     box-sizing: border-box;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Poppins', sans-serif;
 }
 body {
-    background: rgb(59,112,128);
     background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgba(227,181,5,1) 50%, rgba(149,25,12,1) 100%);
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    line-height: 1.6;
-          
-}
-
-.navbar {
-    position: relative;
-    width: 100%;
-    min-height: min-content;
-    background-color: #000000;
-    box-shadow: 4px 4px 4px 4px #000000;
-    z-index: 5;
+    background-size: cover;
+    background-repeat: no-repeat;
     
 }
 
-.navbar .container {
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
+
+.navbar i {
+    font-size: 35px;
+    margin: auto 20px;
 }
-
-nav {
-    
-    justify-content: space-between;
-    display: inline;
-
+.navbar .container-fluid {
+    margin: 20px 25px;
 }
-
-ul {
-    list-style-type: none;
-    
-    
-}
-li {
-    float: left;
-}
-
-
-a {
-    
-    display: block;
-    padding: 8px;
-    text-decoration: none;
+.navbar a {
     color: #fff;
-    margin: 10px 20px;
+    text-shadow: 3px 4px 6px black;
 }
 
-h2.logo {
-    color: #fff;
-    font-size: 32px;
-    text-align: center;
-}
 
 .resumen {
     max-width: 1200px;
     margin: auto;
 }
 .resumen h2 {
-    display: inline-block;
-    background-color: rgba(0, 0, 0, 0);
+
     padding: 15px;    
     margin: 40px ;
     font-size: 55px;
@@ -78,87 +41,77 @@ h2.logo {
     font-style: italic;
 }
 .resumen hr {
-    z-index: -1;
     position: relative;
-    top: 105px;
+    top: 127px;
     max-width: 100%;
 }
-
-
-
-.grid {
-    display: grid;
-    
-    padding: 50px;
-    width: 100%;
-    grid-template-columns: 50% 50%;    
-    
-}
-
-.card {    
-    
-    background: radial-gradient(circle at 100px 100px, #4d4d4d2d, rgba(0, 0, 0, 0));
-    color: #fff;
-    margin: auto;
-    margin-bottom: 50px;
-    padding: 20px;    
-    height: 80%;
-    width: 90%;
-    border-radius: 6px;
-    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5),
-     inset 2px 4px 4px #fff;
+.resumen h3 {
+    position: relative;
     text-align: center;
-    backdrop-filter: blur(5px);
-    overflow: hidden;
-    display: flex;
-    
-    
+    font-size: 36px;
 }
-.container {
-    margin: auto;
-}
-
-
-
-.progress {
-    width: 200px;
-    height: 25px;
-    border: 1px solid black;
-    margin: 0 auto 20px;
-    box-shadow: 1px 2px 2px rgba(17, 17, 17, 0.685);
+.vl {
+    position: absolute;
+    border-left: 6px ridge #2125299c;
     border-radius: 6px;
+    height: 550px;
+    margin-top: 180px;
+    left: 50%;
+  }
+  .vl:nth-child(even) {
+    height: 400px;
+    margin-top: 180px;
+  }
+
+  .col.odd {
+    position: relative;
+    top: 150px;
+  }
+
+div.card {
+    margin: 50px;
+    padding: 30px;
+    background-color: #21252915;
+    border: 2px solid #21252983;
+    box-shadow: 2px 4px 8px black;
     
 }
-.progress-bar {
-    box-shadow: inset 3px 2px 2px rgba(255, 255, 255, 0.281);
-    background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-    border-radius: 6px 0 0 6px;
+
+.container.text-center:nth-child(even) {
+    position: relative;
+    top: 150px;
 }
-
-
-h4 i {
-    margin: 0 10px;
-    font-weight: 100;
+.card div {
+    margin: 15px;
+    padding: 10px;
     
 }
-
-h4, i {
-    margin-top: 20px;
-    font-size: 20px;
-    text-shadow: 1px 1px 3px rgba(17, 17, 17, 0.5);
+.card i {
+    font-size: 24px;
+    margin: auto 7px;
 }
+
+div.card h4 {
+    display: inline;
+    font-weight: 600;
+}
+
+
+
+
+
 h3 {
     font-size: 32px;
     font-weight: 500;
 }
 
 .cv {
+    position: relative;
+    margin: 150px auto 80px ;
     color: #fff;
-    z-index: 1;
     text-align: center;
-    margin: 30px;
-    grid-column: 1 / span 2;
+   
+    
 }
 
 ::-webkit-scrollbar {
@@ -169,3 +122,24 @@ h3 {
     background: rgba(236, 7, 7, 0.76);
     border-radius: 6px;
 }
+
+@media (max-width: 768px) { 
+    .vl {
+        display: none;
+    }
+    .col.odd {
+        position:static;
+      }
+      .container.text-center:nth-child(even) {
+        position: static;
+        margin-top: 35px;
+    }
+    .span {
+        display: none;
+    }
+    .cv {
+        position: static;
+        margin: 30px;
+        
+    }
+ }
