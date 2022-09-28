@@ -6,35 +6,45 @@
     line-height: 1.6;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    color: #fff;
 }
 body {
-    background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgba(227,181,5,1) 50%, rgba(149,25,12,1) 100%);
+    background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgb(0, 0, 0) 100%, rgba(149,25,12,1) 100%);
     background-size: cover;
     background-repeat: no-repeat;
+    
     
 }
 
 
 p {
-    animation-duration: 3s;
-    animation-name: slidein;
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
   }
   
-  @keyframes slidein {
-    from {
-      margin-left: 100%;
-      width: 300%
+  @-webkit-keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
     }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
     }
-    50% {
-        font-size: 150%;
-        margin-left: 25%;
-        width: 150%;
-      }
+  }
+  @keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
   }
 
 
@@ -57,7 +67,7 @@ p {
     margin: auto;
 }
 .resumen h2 {
-padding: 15px;    
+    padding: 15px;    
     margin: 40px ;
     font-size: 55px;
     font-weight: 600;
@@ -104,11 +114,14 @@ div.card {
     padding: 30px;
     background-color: #21252915;
     border: 2px solid #21252983;
-    box-shadow: 2px 4px 8px black;
-    
-    
+    box-shadow: 2px 4px 8px black;  
 }
 
+.card:hover {
+    border: 2px solid #61616183;
+    box-shadow: 2px 4px 16px rgb(255, 255, 255);
+    transition: all 1s;
+}
 
 .container.text-center:nth-child(even) {
     position: relative;
