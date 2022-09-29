@@ -13,14 +13,14 @@ div.tresd {
     position: fixed;
     top: 5%;
     left: 5%;
-    background-color: rgb(72, 118, 104);
-    position: absolute;
+    background-color: rgba(124, 124, 124, 0.753);
     width: 25%;
     height: 30%;
     min-height: 230px;
     border-radius: 7px;
     z-index: 3;
-
+    box-shadow: 2px 4px 16px #000,
+    inset 1px 2px 4px rgb(53, 53, 53);
 
     
 }
@@ -77,7 +77,7 @@ ul {
 
         .mySlides {display: none;}
         img {
-          width: 100%;
+          background-size: cover;
           height: 700px;
           vertical-align: middle;
           z-index: 1;
@@ -98,7 +98,7 @@ ul {
           padding: 8px 12px;
           position: absolute;
           z-index: 2;
-          bottom: 8px;
+          bottom: 30px;
           width: 100%;
           text-align: center;
         }
@@ -109,11 +109,13 @@ ul {
           font-size: 12px;
           padding: 8px 12px;
           position: absolute;
-          top: 0;
+          bottom: 0;
         }
         
         /* The dots/bullets/indicators */
         .dot {
+          position: relative;
+          top: 650px;
           height: 15px;
           width: 15px;
           margin: 0 2px;
@@ -121,7 +123,6 @@ ul {
           border-radius: 50%;
           display: inline-block;
           transition: background-color 0.6s ease;
-          z-index: 2;
         }
         
         .active {
@@ -143,4 +144,95 @@ ul {
         @media only screen and (max-width: 300px) {
           .text {font-size: 11px}
         }
+
+  .brand {
+    position: absolute;
+    max-width: 1200px;
+    width: 100%;
+    height: auto;
+    top: 700px;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    
+	-webkit-animation: color-change-4x 6s linear infinite alternate both;
+  animation: color-change-4x 6s linear infinite alternate both;
+
+  }
+  @-webkit-keyframes color-change-4x {
+    0% {
+      background: #2d5558;
+    }
+    33.3333% {
+      background: #40125b;
+    }
+    66.666% {
+      background: #561111;
+    }
+    100% {
+      background: #4f3e07;
+    }
+  }
+  @keyframes color-change-4x {
+    0% {
+      background: #2d5558;
+    }
+    33.3333% {
+      background: #40125b;
+    }
+    66.666% {
+      background: #561111;
+    }
+    100% {
+      background: #4f3e07;
+    }
+  }
+  
+
+  .container-grid {
+    display: grid;
+    margin: 40px;
+    text-align: center;
+    gap: 25px;
+    grid-template-columns: auto auto;
+  }
+
+  .container-grid h2 {
+    text-align: center;
+  grid-column: 1 / span 2;
+}
+ .brand .card { 
+  margin: auto;
+  min-width: 250px;
+  height: 300px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  box-shadow: 2px 4px 16px #000,
+  inset 1px 2px 4px rgb(53, 53, 53);
+  
+  filter: grayscale(50%);
+  transition: 1s;
+ }
+
+ .card img {
+  border-radius: 6px;
+  margin: 20px;
+  width: 200px;  
+ }
+
+ .card:hover {
+  filter: grayscale(0%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  box-shadow: 2px 4px 16px rgb(201, 201, 201);
+ }
+ .card i {
+  display: inline-block;
+  color: red;
+  font-size: 20px;
+  margin: 10px 5px 10px 10px;
+ }
+ .card p {
+  display: inline-block;
+ }
         

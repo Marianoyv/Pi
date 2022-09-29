@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleport.css">
+    <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
     <title>Portfolio</title>
 
 </head>
@@ -27,29 +28,24 @@
 	});
 	VanillaTilt.init(document.querySelectorAll(".3d"));
 </script>
-
-
-
-        <h2>Automatic Slideshow</h2>
-        <p>Change image every 2 seconds:</p>
         
         <div class="slideshow-container">
         
         <div class="mySlides fade">
           <div class="numbertext">1 / 3</div>
-          <img src="/img/1.png" height="700" style="width:100%">
+          <img src="/img/1.png" style="width:100%">
           <div class="text">Caption Text</div>
         </div>
         
         <div class="mySlides fade">
           <div class="numbertext">2 / 3</div>
-          <img src="/img/2.png" height="700" style="width:100%">
+          <img src="/img/2.png" style="width:100%">
           <div class="text">Caption Two</div>
         </div>
         
         <div class="mySlides fade">
           <div class="numbertext">3 / 3</div>
-          <img src="/img/3.png" height="700" style="width:100%">
+          <img src="/img/3.png" style="width:100%">
           <div class="text">Caption Three</div>
         </div>
         
@@ -80,9 +76,38 @@
           }
           slides[slideIndex-1].style.display = "block";  
           dots[slideIndex-1].className += " active";
-          setTimeout(showSlides, 4000); // Change image every 4 seconds
+          setTimeout(showSlides, 5000); // Change image every 4 seconds
         }
         </script>
+
+        <section class="brand">
+          <div class="container-grid">
+            <h2>Proyectos</h2>
+            <div class="card">
+              <img src="/img/jm.png" style="height: 125px;" alt="logo jm">
+              <div class="desc">
+              <i class="fa-brands fa-html5"></i><p>Html</p>
+              <i class="fa-brands fa-css3-alt"></i><p>Css</p>
+              <i class="fa-brands fa-js"></i><p>Js</p>
+            </div>
+              
+            </div>
+            <div class="card">
+              <img src="/img/systemv.png" style="height: 100px;" alt="logo systemvesta">
+              <div class="desc">
+              <i class="fa-brands fa-wordpress"></i><p>Wordpress</p>
+            </div>
+            </div>
+            <div class="card">
+              <img src="/img/receta.webp" style="height: 200px;" alt="logo receta">
+              <div class="desc">
+                <i class="fa-brands fa-html5"></i><p>Html</p>
+                <i class="fa-brands fa-css3-alt"></i><p>Css</p>
+              </div>
+            </div>
+          </div>
+
+        </section>
 
 
 
