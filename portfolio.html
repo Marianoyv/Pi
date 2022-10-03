@@ -11,75 +11,34 @@
 </head>
 <body>
 
-    <div class="tresd data-tilt-glare data-tilt-max-glare="0.8" data-tilt>
-        
-    <ul>
+  <!--Navbar-->
+
+  <div class="tresd">
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i id="bars" class="fa fa-bars"></i>
+  </a>
+    <ul id="menu">
         <li><a class="active" href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="portfolio.html">Contact</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#">About</a></li>
       </ul>
-    </div>
-    <script type="text/javascript" src="vanilla-tilt.js"></script>
-<script type="text/javascript">
-	VanillaTilt.init(document.querySelector(".3d"), {
-		max: 25,
-		speed: 400,
-	});
-	VanillaTilt.init(document.querySelectorAll(".3d"));
-</script>
-        
-        <div class="slideshow-container">
-        
-        <div class="mySlides fade">
-          <div class="numbertext">1 / 3</div>
-          <img src="/img/1.png" style="width:100%">
-          <div class="text">Caption Text</div>
-        </div>
-        
-        <div class="mySlides fade">
-          <div class="numbertext">2 / 3</div>
-          <img src="/img/2.png" style="width:100%">
-          <div class="text">Caption Two</div>
-        </div>
-        
-        <div class="mySlides fade">
-          <div class="numbertext">3 / 3</div>
-          <img src="/img/3.png" style="width:100%">
-          <div class="text">Caption Three</div>
-        </div>
-        
-        </div>
-        <br>
-        
-        <div style="text-align:center">
-          <span class="dot"></span> 
-          <span class="dot"></span> 
-          <span class="dot"></span> 
-        </div>
-        
-        <script>
-        let slideIndex = 0;
-        showSlides();
-        
-        function showSlides() {
-          let i;
-          let slides = document.getElementsByClassName("mySlides");
-          let dots = document.getElementsByClassName("dot");
-          for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-          }
-          slideIndex++;
-          if (slideIndex > slides.length) {slideIndex = 1}    
-          for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-          }
-          slides[slideIndex-1].style.display = "block";  
-          dots[slideIndex-1].className += " active";
-          setTimeout(showSlides, 5000); // Change image every 4 seconds
-        }
-        </script>
+    </div> 
 
+    <script>
+      function myFunction() {
+        var x = document.getElementById("menu");
+        let y = document.getElementById("bars");
+        if (x.style.display === "block") {
+          x.style.display = "none";
+        } else {
+          x.style.display = "block";
+          y.style.display = "none";
+        }
+      }
+      </script>
+
+       <!-- header-->
         <section class="brand">
           <div class="container-grid">
             <h2>Proyectos</h2>
@@ -112,7 +71,7 @@
 
 
 
-<script src="vanilla-tilt.js"></script>
+<script type="text/javascript" src="vanilla-tilt.js"></script>
 </body>
 </html>
 
