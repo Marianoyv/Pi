@@ -12,66 +12,63 @@
 <body>
 
   <!--Navbar-->
+  <section class="showcase">
+    <header>
+      <div class="toggle"></div>
+    </header>
+    <div class="text">
+      <h2>Portfolio</h2>
 
-  <div class="tresd">
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i id="bars" class="fa fa-bars"></i>
-  </a>
-    <ul id="menu">
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Contact</a></li>
-        <li><a href="#">About</a></li>
-      </ul>
-    </div> 
+      <div class="card">
+        <img src="/img/jm.png" style="height: 125px;" alt="logo jm">
+        <div class="desc">
+        <i class="fa-brands fa-html5"></i><p>Html</p>
+        <i class="fa-brands fa-css3-alt"></i><p>Css</p>
+        <i class="fa-brands fa-js"></i><p>Js</p>
+      </div>
+      </div>
 
-    <script>
-      function myFunction() {
-        var x = document.getElementById("menu");
-        let y = document.getElementById("bars");
-        if (x.style.display === "block") {
-          x.style.display = "none";
-        } else {
-          x.style.display = "block";
-          y.style.display = "none";
-        }
-      }
-      </script>
+      <div class="card">
+        <img src="/img/systemv.png" style="height: 100px;" alt="logo systemvesta">
+        <div class="desc">
+        <i class="fa-brands fa-wordpress"></i><p>Wordpress</p>
+      </div>
+      </div>
 
-       <!-- header-->
-        <section class="brand">
-          <div class="container-grid">
-            <h2>Proyectos</h2>
-            <div class="card">
-              <img src="/img/jm.png" style="height: 125px;" alt="logo jm">
-              <div class="desc">
-              <i class="fa-brands fa-html5"></i><p>Html</p>
-              <i class="fa-brands fa-css3-alt"></i><p>Css</p>
-              <i class="fa-brands fa-js"></i><p>Js</p>
-            </div>
-              
-            </div>
-            <div class="card">
-              <img src="/img/systemv.png" style="height: 100px;" alt="logo systemvesta">
-              <div class="desc">
-              <i class="fa-brands fa-wordpress"></i><p>Wordpress</p>
-            </div>
-            </div>
-            <div class="card">
-              <img src="/img/receta.webp" style="height: 200px;" alt="logo receta">
-              <div class="desc">
-                <i class="fa-brands fa-html5"></i><p>Html</p>
-                <i class="fa-brands fa-css3-alt"></i><p>Css</p>
-              </div>
-            </div>
-          </div>
+      <div class="card">
+        <img src="/img/receta.webp" style="height: 200px;" alt="logo receta">
+        <div class="desc">
+          <i class="fa-brands fa-html5"></i><p>Html</p>
+          <i class="fa-brands fa-css3-alt"></i><p>Css</p>
+        </div>
+      </div>
+      
+      <a href="about.html">About Me</a>
+    </div>
+    <ul class="social">
+      <li><a href="https://github.com/Marianoyv" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+    </ul>
+  </section>
+  <div class="menu">
+  
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
 
-        </section>
+  <script>
+    const menuToggle = document.querySelector('.toggle');
+    const showcase = document.querySelector('.showcase');
 
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      showcase.classList.toggle('active');
+    })
+    </script>
 
-
-
-<script type="text/javascript" src="vanilla-tilt.js"></script>
 </body>
 </html>
 

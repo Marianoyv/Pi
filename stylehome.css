@@ -88,9 +88,6 @@ header .logo
 }
 .text
 {
-  transform-style: preserve-3d;
-transform: perspective(1000px);
-transform: translateZ(20px);
   position: relative;
   z-index: 10;
 }
@@ -98,11 +95,8 @@ transform: translateZ(20px);
 .container {
   display: inline;
 }
-.text h2
-{
-  transform-style: preserve-3d;
-transform: perspective(1000px);
-transform: translateZ(20px);
+
+.text h2 {
   display: inline;
   font-family: 'Nabla';
   font-size: 5em;
@@ -111,9 +105,6 @@ transform: translateZ(20px);
   line-height: 1em;
   text-transform: uppercase;
   margin: 20px auto;
-}
-.data-tilt {
-  display: inline;
 }
 
 .text h3
