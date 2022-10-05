@@ -25,26 +25,31 @@ header
 .toggle
 {
   box-shadow: 2px 4px 16px black;
+  text-align: center;
   position: relative;
-  width: 60px;
-  height: 60px;
-  background: url(https://i.ibb.co/HrfVRcx/menu.png);
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
   cursor: pointer;
 }
-.toggle.active
-{
-  background: url(https://i.ibb.co/rt3HybH/close.png);
-  background-repeat: no-repeat;
-  background-size: 25px;
-  background-position: center;
-  cursor: pointer;
+.toggle i {
+  position: absolute;
+  font-size: 40px;
 }
+.toggle .fa-x {
+  display: none;
+  transition: 0.5;
+}
+.toggle.active .fa-x {
+  display: block;
+  transition: 0.5;
+
+}
+
+.toggle.active .fa-bars {
+  display: none;
+  transition: 0.5;
+}
+
 .showcase
 {
-
   position: absolute;
   top: 0px;
   width: 100%;
@@ -56,35 +61,45 @@ header
   transition: 0.5s;
   z-index: 2;
 }
-.showcase.active
-{
+.showcase.active {
     top: 300px;
 }
 
 
+h2 {
+  width: 100%;
+  margin: 40px;
+  font-family: 'Nabla';
+  font-size: 5em;
+  line-height: 1em;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  
+}
 
 .text {
-  max-width: 1200px;
+    margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;  
   margin: 20px;
   gap: 40px;
   text-align: center;
-  text-shadow: 2px 4px 16px black;;  
-  z-index: 10;
+  text-shadow: 2px 4px 16px black; 
 }
 .card { 
-  margin: auto;
-  min-width: 250px;
-  width: 40%;
-  height: 300px;
-  border: 1px solid #000;
+
+  margin: 40px;
+  width: 300px;
+  height: 320px;
+  background-color: #212529;
+  border: 1px solid #21252983;
+  box-shadow: 2px 4px 16px black;   
   border-radius: 6px;
-  box-shadow: 2px 4px 16px #000,
-  inset 1px 2px 4px rgb(53, 53, 53);
+  inset: 1px 2px 4px rgb(53, 53, 53);
   filter: grayscale(50%);
-  transition: 1s ease-in;
+  z-index: 3;
+  
 }
 
 .card img {
@@ -94,16 +109,47 @@ width: 200px;
 }
 
 .card:hover {
+transition: 1s ease-in;
 filter: grayscale(0%);
 background-color: rgba(0, 0, 0, 0.5);
 color: #fff;
 box-shadow: 2px 4px 16px rgb(201, 201, 201);
+border-radius: 16px 6px 140px 6px;
+}
+
+.card.b:hover {
+  border-radius: 16px 6px 16px 6px;
 }
 .card i {
 display: inline-block;
 color: red;
 font-size: 20px;
-margin: 10px 5px 10px 10px;
+margin: 10px;
+}
+.card .fa-github {
+  color: rgba(0, 0, 0, 0);
+}
+.card:hover .fa-github {
+  transition: 1s;
+  transition-delay: 0.7s;
+  color: rgb(255, 0, 0);
+  text-shadow: 2px 4px 16px #212529;
+}
+
+
+.card .out {
+  transition: 1.5s ease-in;
+  z-index: 1;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  transition-delay: 1s;
+  
+}
+.out i {
+  font-size: 36px;
+  color: #212529;
+  text-shadow: none;
 }
 .card p {
 display: inline-block;
@@ -111,81 +157,23 @@ display: inline-block;
 .container {
   display: inline;
 }
-.text h2 {
-  display: block;
-  
-  font-family: 'Nabla';
-  font-size: 5em;
-  line-height: 1em;
-  text-transform: uppercase;
-  margin: 150px auto auto auto;
-}
 
 
 
-.text p
-{
-  font-size: 1.1em;
+.text p {
+  font-size: 1.3em;
   color: #fff;
-  margin: 20px 0;
   font-weight: 400;
   max-width: 700px;
 }
-.text a
-{
-  display: inline-block;
-  font-size: 1em;
-  background: #fff;
-  padding: 10px 30px;
-  text-transform: uppercase;
+.text a {
   text-decoration: none;
-  font-weight: 500;
-  margin: 20px;
-  color: #111;
-  letter-spacing: 2px;
-  transition: 0.2s;
-}
-.text a:hover
-{
-  letter-spacing: 6px;
-}
-.social
-{
-  position: absolute;
-  z-index: 10;
-  bottom: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-}
-.social li
-{
-  list-style: none;
-  
-}
-.social li a
-{
-  display: inline-block;
-  filter: invert(1);
-  transform: scale(0.5);
-  transition: 0.5s;
-  
-}
-.fa-brands {
-
-    font-size: 60px;
-    color: #111; 
+  color: rgb(255, 255, 255);
 }
 
-.social li a:hover
-{
-  transform: scale(0.5) translateY(-15px);
-}
 .menu
 {
   position: absolute;
- background: linear-gradient(180deg,  rgb(120, 179, 197) 0%, rgb(195, 236, 248) 50%, rgb(255, 255, 255) 100%);
   top: 0;
   right: 0;
   width: 100%;
@@ -212,7 +200,21 @@ display: inline-block;
 {
   color: #03a9f4; 
 }
-
+.btn {
+  position: relative;
+  justify-self: end;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0px;
+  width: 100%;
+  height: 0px;
+  margin: 15px;
+  padding: 20px;
+  transition: 1s ease;
+}
+.btn:hover {
+  letter-spacing: 3px;
+}
 
 
 
