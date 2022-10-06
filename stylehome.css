@@ -77,6 +77,9 @@ header .logo
   mask-image: linear-gradient(black, transparent);
 
 }
+.showcase img {
+  display: none;
+}
 .overlay {
   position: absolute;
   top: 0;
@@ -98,7 +101,7 @@ header .logo
 
 .text h2 {
   display: inline;
-  font-family: 'Nabla';
+  font-family: 'Poppins', sans-serif;
   font-size: 5em;
   font-weight: 800;
   color: #fff;
@@ -214,19 +217,57 @@ header .logo
 
 
 
-@media (max-width: 991px)
-{
+@media (max-width: 768px)
+{ 
+  .showcase video, #sm {
+  display: none;
+}
+  .showcase img#md {
+    display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  -webkit-mask-image: linear-gradient(black, transparent);
+  mask-image: linear-gradient(black, transparent);
+  }
   .showcase,
-  .showcase header
-  {
+  .showcase header {
     padding: 40px;
   }
-  .text h2
-  {
-    font-size: 3em;
+  .text h2 {
+    font-size: 2.5em;
   }
-  .text h3
-  {
-    font-size: 2em;
+  .text h3 {
+    font-size: 1.5em;
+  }
+  .logo {
+    font-size: 20px;
   }
 }
+
+@media (max-width: 330px) {
+ 
+  .showcase img#md {
+  display: none;
+}
+
+  .showcase img#sm {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  -webkit-mask-image: linear-gradient(black, transparent);
+  mask-image: linear-gradient(black, transparent);
+
+  
+}
+}
+
