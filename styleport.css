@@ -123,7 +123,7 @@ h2 {
 }
 
 .text {
-    margin: auto;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;  
@@ -133,7 +133,6 @@ h2 {
   text-shadow: 2px 4px 16px black; 
 }
 .card { 
-
   margin: 40px;
   width: 300px;
   height: 320px;
@@ -142,16 +141,17 @@ h2 {
   box-shadow: 2px 4px 16px black;   
   border-radius: 6px;
   inset: 1px 2px 4px rgb(53, 53, 53);
-  filter: grayscale(50%);
+  filter: grayscale(40%);
   z-index: 3;
   transition: 1s ease-in-out;
+  border-top: none;
 
   
 }
 
 .card img {
-border-radius: 6px;
-margin: 20px;
+position: relative;
+border-radius: 3px;
 width: 200px;  
 }
 
@@ -202,6 +202,7 @@ text-shadow: 1px 2px 4px rgb(255, 0, 0);
 }
 .card p {
 display: inline-block;
+font-weight: 300;
 }
 
 
@@ -242,9 +243,33 @@ display: inline-block;
   {
     font-size: 2em;
   }
-  .card {
-    margin: 20px;
+  
+
+
+  .card { 
+    background-color: #212529;
+    filter: none;
   }
+  
+  .card img {
+  position: relative;
+  border-radius: 3px;
+  width: 200px;  
+  }
+  
+  .card:hover {
+  filter: none;
+  border-radius: 6px;
+  }
+  
+  .card.b:hover {
+    border-radius: 6px;
+  }
+ 
+  .card .fa-github {
+    display: none;
+  }
+
 }
 
 
