@@ -12,8 +12,6 @@ body {
     background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgb(0, 0, 0) 100%, rgba(149,25,12,1) 100%);
     background-size: cover;
     background-repeat: no-repeat;
-    
-    
 }
 
 
@@ -48,8 +46,15 @@ p {
   }
 
 
+.navbar {
+    background-color: rgba(0, 0, 0, 0.116);
+    box-shadow: 2px 4px 16px ;
+    align-items: center;
+    text-align: center;
+}
 .navbar i {
-    font-size: 35px;
+    
+    font-size: 25px;
     margin: auto 20px;
 }
 .navbar .container-fluid {
@@ -58,7 +63,11 @@ p {
 }
 .navbar a {
     color: #fff;
-    text-shadow: 3px 4px 6px black;
+    text-shadow: 3px 4px 6px #2125299c;
+}
+.navbar .toggler-icon {
+    color: #2125299c;
+    background-color: rgba(255, 255, 255, 0.281);
 }
 
 
@@ -160,14 +169,6 @@ h3 {
     
 }
 
-::-webkit-scrollbar {
-    width: 12px;
-    border-radius: 6px;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(236, 7, 7, 0.76);
-    border-radius: 6px;
-}
 @media (max-width: 768px) { 
     .vl {
         display: none;
