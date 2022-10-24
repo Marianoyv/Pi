@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contacto.css">
+    <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
+    <title>Contact</title>
+</head>
+<body>
+    <video loop muted autoplay="autoplay" playsinline>
+      <source src="/vid/cont.mp4" type="video/mp4">
+    </video>
+    
+    <div class="menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+      </ul>
+    </div>
+    
+    <h2>Contact</h2>
+
+    <div class="container">
+      <div class="left">
+
+      </div>
+      <div class="right">
+        
+        <div class="contact">
+          <h3>Get in Touch</h3>
+          <div class="alert">Your message has been sent</div>
+          <form id="contactForm">
+            <p>
+              <label>Name</label>
+              <input type="text" name="name" id="name" required>
+            </p>
+            <p>
+              <label>Company</label>
+              <input type="text" name="company" id="company">
+            </p>
+            <p>
+              <label>Email Address</label>
+              <input type="email" name="email" id="email" required>
+            </p>
+            <p>
+              <label>Message</label>
+              <textarea name="message" rows="5" id="message"></textarea>
+            </p>
+            <p>
+              <button type="submit">Submit</button>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

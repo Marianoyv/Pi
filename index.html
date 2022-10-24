@@ -53,7 +53,17 @@
           showcase.classList.toggle('active');
         })
         </script>
+         <script>
+          function onSubmit(token) {
+            document.getElementById("demo-form").submit();
+          }
+        </script>
+        <button class="g-recaptcha" 
+        data-sitekey="reCAPTCHA_site_key" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
 
-
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 </html>
