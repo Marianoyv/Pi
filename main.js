@@ -1,13 +1,15 @@
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
+// const menuToggle = document.querySelector('.toggle');
+// const showcase = document.querySelector('.showcase');
+// menuToggle.addEventListener('click', () => {
+//   menuToggle.classList.toggle('active');
+//   showcase.classList.toggle('active');// })
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
+
+  const app = initializeApp(firebaseConfig);
+  import { initializeApp } from 'firebase/app';
+  const firebaseConfig = {
   apiKey: "AIzaSyBzH4z4eTW0JKavCw_ZcAYzX1n0RGcx2xE",
   authDomain: "pidevelopment.firebaseapp.com",
   databaseURL: "https://pidevelopment-default-rtdb.asia-southeast1.firebasedatabase.app",
