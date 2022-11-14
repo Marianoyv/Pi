@@ -283,7 +283,7 @@ width: 200px;
 @media (max-width: 768px)
 { 
   .showcase video, #sm {
-  display: none;
+  display: hidden;
 }
   .showcase img#md {
     display: block;
