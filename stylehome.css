@@ -7,6 +7,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,7 +25,7 @@ a, ul, li {
 
 header {
   max-width: 100%;
-  height: auto;
+  height: 50px;
   position: fixed;
   display: flex;
   justify-content: space-between;
@@ -32,25 +33,25 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  margin: 20px;
-  padding: 30px;
+  padding: 20px;
+  
 }
 
 header .logo {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.548);
   text-transform: uppercase;
 }
 nav ul {
   display: flex;
   flex-wrap: nowrap;
   float: right;
+
 }
 
 li {
   margin: 0 25px;
 }
 .showcase {
-  position: relative;
   right: 0;
   top: 0;
   max-width: 100%;
@@ -60,6 +61,7 @@ li {
   text-align: center;
   transition: 0.5s;
   justify-content: center;
+  
 }
 
 .showcase video {
@@ -153,14 +155,26 @@ li {
 
 @keyframes bounce-top{0%{transform:translateY(-45px);animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{transform:translateY(-24px);animation-timing-function:ease-in}65%{transform:translateY(-12px);animation-timing-function:ease-in}82%{transform:translateY(-6px);animation-timing-function:ease-in}93%{transform:translateY(-4px);animation-timing-function:ease-in}25%,55%,75%,87%{transform:translateY(0);animation-timing-function:ease-out}100%{transform:translateY(0);animation-timing-function:ease-out;opacity:1}}
 
-
-.resumen {
-  min-height: max-content;
-  width: 100%;
-  background: linear-gradient(180deg, rgba(59,112,128,1) 0%, rgb(149, 112, 12) 50%, rgba(149,25,12,1) 100%);
-  margin: auto;
+.btn-up {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  z-index: 10;
+  transition: 0.5s;
 }
+.btn-up a i{
+  color: #111;
+  font-size: 1.4em;
+}
+.btn-up:hover {
+  transform: scale(1.5);
+  transition: 0.5s;
+}
+
 .me {
+  position: relative;
   min-height: 75vh;
   max-width: 100%;
   padding: 30px;
@@ -198,17 +212,21 @@ li {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, rgb(255, 255, 255) 0%, rgb(59,112,128) 50%, rgb(1, 100, 130) 100%);
+  background-color: #f1f1f1;
+background-image:  linear-gradient(30deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(30deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077), linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077);
+background-size: 28px 49px;
+background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   transition: 0.5s;
 }
+
 
 .portfolio h2 {
   margin: 40px;
   padding: 30px;
   font-family: 'Dancing Script', cursive;
-  font-size: 5em;
+  font-size: 4em;
   box-shadow: 1px 2px 3px white,
-  inset 2px 4px 20px;
+  inset 2px 4px 20px black;
   border-radius: 12px;
   
 }
@@ -227,46 +245,94 @@ li {
   flex-direction: column;
   width: 400px;
   height: 400px;
-  justify-content: center;
+  justify-content: space-between;
   text-align: center;
   margin: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 3px 6px 15px rgba(0, 0, 0, 0.868);   
+  box-shadow: 1px 2px 3px white,
+  inset 2px 4px 20px black;
   border-radius: 6px;
-  transition: 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
   color: #fff;
+  background-color: #e4e4e4;
+}
+.card .screen {
+  width: 100%;
+  height: 170px;
 }
 
-.portfolio .card img {
-width: 200px;
-height: auto;
-margin: 0 auto;
+.portfolio .card iframe {
+  position: relative;
+  overflow-x: hidden;
+  border-radius: 25px 25px 0 0;
+  width: 286%;
+  height: 350%;
+  box-sizing: border-box;
+  border: 0;
+    -ms-transform: scale(0.35);
+    -moz-transform: scale(0.35);
+    -o-transform: scale(0.35);
+    -webkit-transform: scale(0.35);
+    transform: scale(0.35);
 
+    -ms-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    transition: opacity 1s, transform 1s 1s;
+  
 }
-
+.portfolio .card:hover iframe {
+  opacity: 0.5;
+  transition: opacity 1s ease-in-out;
+  transition-delay: 3s;
+}
+.card h4 {
+ margin: 60px auto 10px auto;
+  
+}
 .tbox {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  gap: 10px;
+  gap: 15px;
+  margin: 0 auto;
+}
+.card:hover .tbox {
+  transform: scale(1.1) translateY(30px);
+  transition: transform 1s ease-in-out;
+  transition-delay: 3s;
 }
 
 .tbox p {
+  display: block;
   width: auto;
-  padding: 0 5px;
-  border: 1px solid rgb(20, 0, 67);
+  height: auto;
+  color: #111;
+  padding: 3px 6px;
+  box-shadow: 1px 2px 3px white,
+  inset 1px 2px 10px black;
   border-radius: 3px;
 }
+
 .desc {
   display: flex;
   justify-content: space-around;
+  margin: auto;
+}
+.portfolio .card:hover .desc {
+  transform: scale(1.1) translateY(-165px);
+  transition: transform 1s ease-in-out;
+  transition-delay: 3s;
 }
 .green {
   width: auto;
   height: auto;
-  padding: 10px;
+  margin: 0 15px;
+  padding: 7px;
   border-radius: 6px;
   background: green;
+  box-shadow: 1px 2px 3px white,
+  inset 2px 4px 20px black;
 }
 .orange {
   width: auto;
@@ -274,20 +340,30 @@ margin: 0 auto;
   padding: 10px;
   border-radius: 6px;
   background: rgb(214, 66, 8);
+  box-shadow: 1px 2px 3px white,
+  inset 2px 4px 20px black;
 }
 
-.contact {
+.contact-form {
+  position: relative;
   display: flex;
   width: 100%;
   min-height: 80vh;
-  justify-content: center;
-  align-items: center;
-
+  padding: 30px;
 }
+svg {
+	width: 100%;
+	height: 101vh;
+  z-index: -1;
+  position: absolute;
+}
+
+
 .contact-form .content{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin: auto;
 }
 .contact-form .content .left-side{
   width: 50%;
@@ -298,17 +374,9 @@ margin: 0 auto;
   justify-content: center;
   margin: 15px 50px;
   position: relative;
+  background-color: rgba(17, 17, 17, 0.384);
 }
-.content .left-side::before{
-  content: '';
-  position: absolute;
-  height: 70%;
-  width: 2px;
-  right: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #afafb6;
-}
+
 .content .left-side .details{
   margin: 14px;
   text-align: center;
@@ -330,7 +398,9 @@ margin: 0 auto;
 }
 .contact-form .content .right-side{
   width: 75%;
+  padding: 20px;
   margin-left: 75px;
+  background-color: rgba(17, 17, 17, 0.384);
 }
 .content .right-side .topic-text{
   font-family: 'Dancing Script', cursive;
@@ -343,12 +413,12 @@ margin: 0 auto;
   height: 50px;
   min-width: 100%;
   width: 500px;
-  margin: 12px 0;
+  margin: 25px 0;
 }
 .right-side .input-box input,
 .right-side .input-box textarea{
   height: 100%;
-  width: 100%;
+  width: 90%;
   border: none;
   outline: none;
   font-size: 16px;
@@ -380,10 +450,45 @@ margin: 0 auto;
   transition: all 0.3s ease;
 }
 .button input[type="submit"]:hover{
-  background: #5029bc;
+  background: #108d21;
+  transition: 0.5s;
+}
+/*
+.fold {
+  width: 100%;
+  min-height: max-content;
+  box-shadow: inset 5px 15px 40px rgba(0, 0, 0, 0.562);
+  text-align: center;
+  
+}
+.fold h2 {
+  padding: 20px;
+  font-size: 2em;
 }
 
+.fold .cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 70vh;
+}
+.fold .card {
+  width: 400px;
+  height: 300px;
+  border: 1px solid black;
+}
+.fold .desing {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 500px;
+  background-color: red;
 
+}
+*/
 
 
 @media (max-width: 768px) {
@@ -423,9 +528,9 @@ flex-direction: column;
 }
 
 .contact-form{
-  width: 100%;
-  margin: auto;
-  padding: 30px 40px 40px 35px ;
+  max-width: 80%;
+  margin: 0;
+  padding: 40px;
 }
 .contact-form .content .right-side{
  width: 75%;

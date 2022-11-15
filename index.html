@@ -22,19 +22,19 @@
 
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
-
-      <section class="showcase">
-        <header>
+        
+  <header>
           <h2 class="logo">Pi Development</h2>
           <nav>
             <ul>
               <li><a href="#about">About</a></li>
               <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>
           </ul>
           </nav>
         </header>
 
+      <section class="showcase" id="up">
         <!-- Backgrounds -->
         <img id="sm" src="/img/dubai.jpg" alt="dubainight">
         <img id="md" src="/img/md.jpg" alt="astract">
@@ -68,7 +68,7 @@
             setInterval(textLoad, 12000);
         </script>
 
-        </div>
+        
         <div class="btn">
           <a href="#about">About Me<i class="fa-solid fa-chevron-down"></i></a>
         </div>
@@ -78,8 +78,8 @@
           <li><a href="https://www.instagram.com/marianoyv/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
         </ul>
       </section>
-
-          <div class="me" id="about">
+<div class="btn-up"><a href="#up"><i class="fa-solid fa-angle-up"></i></a></div>
+          <section class="me" id="about">
           <img src="/img/yo.png" alt="me">
           <div class="pres">
             <h2>Hello! glad to have you here</h2>
@@ -87,9 +87,9 @@
             from learning the core languages to 3 years of experience in HTML, CSS, and JavaScript to creating business sites, repairing and optimizing them. 
             I am also a very proactive and out-of-the-box thinker. I enjoy solving complex problems and continuous personal training. 
             My personality is <a href="https://www.16personalities.com/entp-personality" target="_blank" rel="noopener noreferrer">ENTP-A</a>, 
-            and if you want yo know more about me feel free to <a href="contact.html">contact me</a> or <a href="MarianoTamiCV.pdf" target="_blank">donwload my CV.</a></p>
+            and if you want yo know more about me feel free to <a href="#contact">contact me</a> or <a href="MarianoTamiCV.pdf" target="_blank">donwload my CV.</a></p>
              </div>
-          </div>
+            </section>
 
 <section class="portfolio" id="portfolio">
 
@@ -98,8 +98,9 @@
     <div class="flex">
 
       <div class="card">
-        
-        <img src="/img/jm.png" alt="logo jm">
+        <div class="screen">
+          <iframe src="https://junometales.com/"></iframe>
+        </div>
         <h4>Business Website</h4>
         
           <div class="tbox">
@@ -112,10 +113,13 @@
       </div>
   
       <div class="card">
-        <img src="/img/systemv.png" alt="logo systemvesta">
-        <h4>Business Website</h4>
+        <div class="screen">
+                  <iframe src="https://systemvesta.com/"></iframe>
+        </div>
         
+        <h4>Business Website</h4>
         <div class="tbox">
+          
           <p>WordPress</p>
         </div>
         <div class="desc">
@@ -125,9 +129,12 @@
       </div>
 
       <div class="card">
-        <img src="/img/receta.webp"  alt="logo receta">
+        <div class="screen">
+                 <iframe src="https://recetasdelsapi.web.app/"></iframe> 
+        </div>
         <h4>Personal Website</h4>
         <div class="tbox">
+          
           <p>HTML</p><p>CSS</p>
         </div>
         <div class="desc">
@@ -138,7 +145,9 @@
   
   
       <div class="card">
-        <img src="/img/blogie.png"  alt="logo receta">
+        <div class="screen">
+                  <iframe src="https://blogintemocional.web.app/"></iframe>
+        </div>
         <h4>Blog - Informational</h4>
         <div class="tbox">
           <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
@@ -149,44 +158,82 @@
       </div>
 
       <div class="card">
-        <img src="/img/arcade.png" alt="logo receta">
+        <div class="screen">
+          <iframe src="https://arcade-world.web.app/"></iframe>
+        </div>
         <h4>Personal Project</h4>
         <div class="tbox">
-          <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
+          <p>HTML</p><p>CSS</p><p>JavaScript</p>
         </div>
         <div class="desc">
         <a class="green" target="_blank" href="https://arcade-world.web.app/">Go to site</a>
         <a class="orange" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
       </div>
       </div>
-
     </div>
+  </section>
       
-    <section class="contact" id="contact">
+    <section id="contact">
+      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice" viewBox="24 105 156 95" >
+        <defs>
+            <style type="text/css">
+            @keyframes rotate {
+               100% {
+                  transform: rotate(360deg)
+               }
+            }
+    
+            .top-outer {
+               transform-origin: 73px 69px;
+               animation: rotate 30s linear infinite;
+            }
+    
+            .top-inner {
+               transform-origin: 73px 69px;
+               animation: rotate 20s linear infinite;
+            }
+    
+            .bottom-outer {
+               transform-origin: 134px 222px;
+               animation: rotate 30s linear infinite;
+            }
+    
+            .bottom-inner {
+                    transform-origin: 134px  222px;
+                    animation: rotate 20s linear infinite;
+            }
+            </style>
+        </defs>
+        <rect x="0" y="0" width="300" height="300" fill="#E22227"/>
+        <path class="top-outer" fill="#EF8716" stroke="#371300" stroke-width="1" d="M68 1c23,0 67,17 69,39 4,38 5,52 -5,69 -20,36 -68,46 -120,-9 -27,-28 -7,-101 56,-99z"/>
+        <path class="top-inner" fill="#537571" stroke="#DCB467" stroke-width="1" d="M69 22c33,-7 52,21 54,37 3,26 -1,28 -8,40 -15,25 -48,25 -85,-14 -19,-20 -4,-53 39,-63z"/>
+        <path class="bottom-outer" fill="#DCB467" stroke="#371300" stroke-width="1" d="M158 158c30,13 56,50 44,75 -9,18 -22,46 -42,55 -20,10 -48,2 -73,-19 -29,-25 -27,-55 -9,-79 17,-22 43,-48 80,-32z"/>
+        <path class="bottom-inner" fill="#263D56" stroke="#537571" stroke-width="1" d="M136 180c32,-9 45,13 46,29 3,27 8,29 0,42 -14,25 -52,24 -79,0 -21,-18 -2,-61 33,-71z"/>
+    </svg>
       <div class="contact-form">
         <div class="content">
           <div class="left-side">
             <div class="address details">
-              <i class="fas fa-map-marker-alt"></i>
-              <div class="topic">Address</div>
-              <div class="text-one">Argentina</div>
+              <i class="fa-solid fa-map-location-dot"></i>
+              <div class="topic"><h4>Location</h4></div>
+              <div class="text-one"><h5>Argentina - Buenos Aires</h5></div>
               <div class="text-two">CABA</div>
             </div>
             <div class="phone details">
               <i class="fas fa-phone-alt"></i>
-              <div class="topic">Phone</div>
-              <div class="text-one">+66 93-779-012</div>
-              <div class="text-two">+54 911 5527 9578</div>
+              <div class="topic"><h4>Phone</h4></div>
+              <div class="text-one"><h5>+66 93-779-012</h5></div>
+              <div class="text-two"><h5>+54 911 5527 9578</h5></div>
             </div>
             <div class="email details">
               <i class="fas fa-envelope"></i>
-              <div class="topic">Email</div>
-              <div class="text-one">mariano13age@gmail.com</div>
+              <div class="topic"><h4>Email</h4></div>
+              <div class="text-one"><h5>mariano13age@gmail.com</h5></div>
             </div>
           </div>
           <div class="right-side">
-            <div class="topic-text">Send me a message</div>
-            <p>Leave me a message.</p>
+            <div class="topic-text"><h3>Contact me</h3></div>
+            <p>Let's create something amazing, get in touch </p>
           <form action="https://formspree.io/f/xnqrwvly" method="POST">
             <div class="input-box">
               <input type="text" placeholder="Enter your name">
@@ -194,6 +241,8 @@
             <div class="input-box">
               <input type="email" placeholder="Enter your email" required>
             </div>
+            <input type="checkbox" id="type" name="HHRR" value="YES">
+  <label for="HHRR">Are you a HR Recruiter?</label><br>
             <div class="input-box message-box">
               <textarea name="message" placeholder="Leave a message"></textarea>
             </div>
@@ -205,13 +254,18 @@
         </div>
       </div>
     </section>
-       
-  
-    
-    
-</section>
-    
-
+<!--
+    <section class="fold">
+      <h2>Im into</h2>
+      <div class="cont">
+        <div class="desing">
+                  <div class="card"></div>
+        </div>
+        <div class="card"></div>
+        <div class="card"></div>
+      </div>
+    </section> 
+-->
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
 </body>
