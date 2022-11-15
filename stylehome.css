@@ -278,7 +278,7 @@ margin: 0 auto;
 
 .contact {
   display: flex;
-  max-width: 100%;
+  width: 100%;
   min-height: 80vh;
   justify-content: center;
   align-items: center;
@@ -287,16 +287,16 @@ margin: 0 auto;
 .contact-form .content{
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .contact-form .content .left-side{
-  width: 30%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 15px;
+  margin: 15px 50px;
   position: relative;
 }
 .content .left-side::before{
@@ -341,7 +341,8 @@ margin: 0 auto;
 }
 .right-side .input-box{
   height: 50px;
-  width: 100%;
+  min-width: 100%;
+  width: 500px;
   margin: 12px 0;
 }
 .right-side .input-box input,
