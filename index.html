@@ -28,8 +28,8 @@
           <h2 class="logo">Pi Development</h2>
           <nav>
             <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="portfolio.html">Portfolio</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
               <li><a href="contact.html">Contact</a></li>
           </ul>
           </nav>
@@ -41,13 +41,36 @@
         <video loop muted autoplay="autoplay" playsinline>
         <source src="/vid/neon.mp4" type="video/mp4"></video>
         <!-- Backgrounds -->
-        
-        <div class="text">
-          <h2>Mariano Tami</h2>
-          <h3>Web Developer</h3>
+          <div class="text">
+            <span class="tfirst">Mariano Tami</span>
+            <span class="tsecond"></span>
+        </div>
+    
+        <script>
+            const text = document.querySelector(".tsecond");
+    
+            const textLoad = () => {
+                setTimeout(() => {
+                    text.textContent = "Web Developer";
+                }, 0);
+                setTimeout(() => {
+                    text.textContent = "Web Designer";
+                }, 3000);
+                setTimeout(() => {
+                    text.textContent = "Marketing Analyst";
+                }, 6000);
+                setTimeout(() => {
+                    text.textContent = "Search Engine Optimization";
+                }, 9000); //1s = 1000 milliseconds
+            }
+    
+            textLoad();
+            setInterval(textLoad, 12000);
+        </script>
+
         </div>
         <div class="btn">
-          <a href="about.html">About Me<i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#about">About Me<i class="fa-solid fa-chevron-down"></i></a>
         </div>
         <ul class="social">
           <li><a href="https://www.facebook.com/mariano.tami.73" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
@@ -56,7 +79,7 @@
         </ul>
       </section>
 
-          <div class="me">
+          <div class="me" id="about">
           <img src="/img/yo.png" alt="me">
           <div class="pres">
             <h2>Hello! glad to have you here</h2>
@@ -68,14 +91,17 @@
              </div>
           </div>
 
-<section class="portfolio">
+<section class="portfolio" id="portfolio">
 
     <h2>Portfolio</h2>
 
     <div class="flex">
 
       <div class="card">
-        <img src="/img/jm.png" style="height: 125" alt="logo jm">
+        
+        <img src="/img/jm.png" alt="logo jm">
+        <h4>Business Website</h4>
+        
           <div class="tbox">
             <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
           </div>
@@ -86,7 +112,9 @@
       </div>
   
       <div class="card">
-        <img src="/img/systemv.png" style="height: 100" alt="logo systemvesta">
+        <img src="/img/systemv.png" alt="logo systemvesta">
+        <h4>Business Website</h4>
+        
         <div class="tbox">
           <p>WordPress</p>
         </div>
@@ -97,7 +125,8 @@
       </div>
 
       <div class="card">
-        <img src="/img/receta.webp" style="height: 200" alt="logo receta">
+        <img src="/img/receta.webp"  alt="logo receta">
+        <h4>Personal Website</h4>
         <div class="tbox">
           <p>HTML</p><p>CSS</p>
         </div>
@@ -110,6 +139,7 @@
   
       <div class="card">
         <img src="/img/blogie.png"  alt="logo receta">
+        <h4>Blog - Informational</h4>
         <div class="tbox">
           <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
         </div>
@@ -118,8 +148,63 @@
       </div>
       </div>
 
+      <div class="card">
+        <img src="/img/arcade.png" alt="logo receta">
+        <h4>Personal Project</h4>
+        <div class="tbox">
+          <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
+        </div>
+        <div class="desc">
+        <a class="green" target="_blank" href="https://arcade-world.web.app/">Go to site</a>
+        <a class="orange" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
+      </div>
+      </div>
+
     </div>
       
+    <section class="contact" id="contact">
+      <div class="contact-form">
+        <div class="content">
+          <div class="left-side">
+            <div class="address details">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="topic">Address</div>
+              <div class="text-one">Argentina</div>
+              <div class="text-two">CABA</div>
+            </div>
+            <div class="phone details">
+              <i class="fas fa-phone-alt"></i>
+              <div class="topic">Phone</div>
+              <div class="text-one">+66 93-779-012</div>
+              <div class="text-two">+54 911 5527 9578</div>
+            </div>
+            <div class="email details">
+              <i class="fas fa-envelope"></i>
+              <div class="topic">Email</div>
+              <div class="text-one">mariano13age@gmail.com</div>
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="topic-text">Send us a message</div>
+            <p>If you have any kind of queries, please leave me a message.</p>
+          <form action="https://formspree.io/f/xnqrwvly" method="POST">
+            <div class="input-box">
+              <input type="text" placeholder="Enter your name">
+            </div>
+            <div class="input-box">
+              <input type="email" placeholder="Enter your email">
+            </div>
+            <div class="input-box message-box">
+              <textarea name="message" placeholder="Leave a message"></textarea>
+            </div>
+            <div class="button">
+              <input type="submit" value="Send">
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </section>
        
   
     
