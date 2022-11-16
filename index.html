@@ -12,10 +12,6 @@
     <link rel="stylesheet" href="stylehome.css">
     <title>Pi Development</title>
     <meta name="description" content="Web Development & Digital Marketing"/>
-    <meta property="og:title" content="Web Development & Digital Marketing"/>
-    <meta property="og:url" content="https://pidevelopment.web.app/"/>
-    <meta property="og:description" content="My personal portfolio"/>
-    <meta property="og:image" content="https://www.canva.com/design/DAFMoWFm5io/b2dXOtMgw1WEVHpQ34Fv3A/view?utm_content=DAFMoWFm5io&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"/>
     <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,16 +19,32 @@
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
         
-  <header>
-          <h2 class="logo">Pi Development</h2>
-          <nav>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#portfolio">Portfolio</a></li>
-              <li><a href="#contact">Contact</a></li>
-          </ul>
-          </nav>
-        </header>
+  <div class="fixnav">
+    <div class="logo">
+      <h2>Pi Development</h2>
+    </div>
+    <div class="nav">
+      <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+    </div>
+    <div onclick="myFuntion(toggle)" class="toggle">
+    <i class="fa-solid fa-bars"></i>
+    <i class="fa-solid fa-bars-staggered"></i>
+    </div>
+
+  </div>
+
+  <script>
+    function myFunction(toggle) {
+      var x = document.getElementsByClassName(".fixnav");
+      if (x.className === "fixnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "fixnav";
+      }
+    }
+    </script>
 
       <section class="showcase" id="up">
         <!-- Backgrounds -->

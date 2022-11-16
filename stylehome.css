@@ -7,7 +7,6 @@
 }
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -24,37 +23,66 @@ a, ul, li {
 
 
 
-header {
-  max-width: 100%;
-  height: 50px;
+.fixnav {
   position: fixed;
+  width: 100%;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  
+  z-index: 10;
 }
 
-header .logo {
+
+.logo h2 {
   color: rgba(255, 255, 255, 0.548);
   text-transform: uppercase;
+  font-size: 1.2em;
+  margin-left: 45px;
 }
-nav ul {
-  display: flex;
-  flex-wrap: nowrap;
-  float: right;
-
+.nav {
+  margin: 20px;
 }
-
-li {
+.nav a {
+  font-size: 18px;
   margin: 0 25px;
+  padding: 0 10px;
+  border-bottom: none;
+  border-radius: 0;
+  transition: 0.5s ease-in-out;
 }
+.nav a:hover {
+  font-size: 25px;
+  margin: 0 20px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.726);
+  border-radius: 6px;
+  transition: 0.4s ease-in-out;
+}
+
+
+.toggle {
+  display: none;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.fa-bars, .fa-bars-staggered {
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 4px 5px 5px #111;
+  position: absolute;
+}
+
+
+
 .showcase {
+  position: relative;
   right: 0;
-  top: 0;
+  top: -90px;
   max-width: 100%;
   height: 100vh;
   display: flex;
@@ -62,6 +90,7 @@ li {
   text-align: center;
   transition: 0.5s;
   justify-content: center;
+  
   
 }
 
@@ -73,7 +102,7 @@ li {
   height: 100vh;
   mix-blend-mode: overlay;
   object-fit: cover;
-  opacity: 0.8;
+  opacity: 0.85;
   z-index: -1;
 }
 
@@ -91,11 +120,11 @@ li {
 .text {
   width: 100%;
   height: auto;
+  display: flex;
   justify-content: flex-start;
   padding: 50px 30px;
   color: #fff;
   text-transform: uppercase;
-  display: flex;
   text-shadow: 3px 3px 8px #111;
 }
 .tfirst {
@@ -170,15 +199,14 @@ li {
   font-size: 1.4em;
 }
 .btn-up:hover {
-  transform: scale(1.5);
+  font-size: 30px;
   transition: 0.5s;
 }
 
 .me {
   position: relative;
-  min-height: 75vh;
+  min-height: max-content;
   max-width: 100%;
-  padding: 30px;
   display: grid;
   grid-template-columns: 50% 50%;
   justify-content: center;
@@ -187,8 +215,8 @@ li {
 }
 .me img {
   grid-column: 1;
-  width: 50%;
-  margin: 60px auto;
+  width: 60%;
+  margin: 20px auto;
   height: auto;
   border-radius: 320px;
 }
@@ -198,7 +226,7 @@ li {
   padding: 30px;
 }
 .me h2 {
-  margin: auto auto 25px auto;
+  margin-bottom: 25px;
 }
 .me p a {
   color: #111;
@@ -209,17 +237,19 @@ li {
 .portfolio {
   position: relative;
   padding: 50px;
-  min-height: 100vh;
+  margin: auto;
+  min-height: max-content;
   text-align: center;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: #f1f1f1;
-background-image:  linear-gradient(30deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, rgb(220,180,103)), 
-linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), 
-linear-gradient(30deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, rgb(220,180,103)), 
-linear-gradient(150deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, #b0b0b0), 
-linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077), 
-linear-gradient(60deg, rgb(226,34,39) 25%, transparent 25.5%, transparent 75%, rgb(226,34,39) 75%, rgb(226,34,39));
+background-image:  linear-gradient(30deg, rgb(220,180,103, 0.6) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103, 0.6) 87.5%, rgb(220,180,103, 0.6)), 
+linear-gradient(150deg, #b0b0b0cc 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), 
+linear-gradient(30deg, rgba(220, 179, 103, 0.6) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103, 0.6) 87.5%, rgb(220,180,103, 0.6)), 
+linear-gradient(150deg, rgb(220,180,103, 0.6) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103, 0.6) 87.5%, #b0b0b0), 
+linear-gradient(60deg, #b0b0b098 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077), 
+linear-gradient(60deg, rgb(226,34,39, 0.6) 25%, transparent 25.5%, transparent 75%, rgb(226,34,39, 0.6) 75%, rgb(226,34,39, 0.6));
 background-size: 28px 49px;
 background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   transition: 0.5s;
@@ -227,14 +257,16 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
 
 
 .portfolio h2 {
-  margin: 40px;
+  position: relative;
+  margin: 40px auto;
   padding: 30px;
   font-family: 'Dancing Script', cursive;
   font-size: 4em;
   box-shadow: 30px 40px 80px rgb(9, 9, 9),
-  inset 2px 4px 20px rgb(251, 251, 251);
+  inset 2px 4px 20px rgb(0, 0, 0);
   border-radius: 12px;
-  width: auto;
+  max-width: 100%;
+  min-width: 260px;
   height: auto;
   background: rgb(220, 179, 103, 0.7);
   text-shadow: 4px 4px 8px 8px rgb(220, 179, 150, 0.5);
@@ -253,20 +285,21 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
 }
 
 .portfolio .card { 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  height: 400px;
+  width: 40%;
+  height: 50vh;
   justify-content: space-between;
   text-align: center;
-  margin: 30px;
+  margin: 15px;
   box-shadow: 30px 40px 80px rgb(9, 9, 9),
-  inset 2px 4px 20px rgba(255, 255, 255, 0.619);
+  inset 2px 4px 20px rgba(77, 77, 77, 0.619);
   border-radius: 6px;
   transition: opacity 1s ease-in-out;
-  color: #111;
+  color: rgb(0, 0, 0);
   font-weight: 600;
-  background-color: rgba(250, 236, 211, 0.899);
+  background-color: rgba(255, 251, 231, 0.95);
 }
 .card .screen {
   width: 100%;
@@ -275,7 +308,6 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
 
 .portfolio .card iframe {
   position: relative;
-  overflow-x: hidden;
   border-radius: 25px 25px 0 0;
   width: 286%;
   height: 350%;
@@ -572,26 +604,40 @@ svg {
   .logo {
     font-size: 20px;
   }
+  .portfolio h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .portfolio .card {
+    width: 90%;
+  }
   .me {
-display: flex;
-flex-direction: column;
-}
-#contact {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  }
+  .me .pres {
+    margin: 0;
+    padding: 0;
+  }
+  #contact {
   max-width: 100%;
   min-height: max-content;
   margin: auto;
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-.contact-form{
+  }
+  .contact-form{
   width: 100%;
   margin: 0;
   padding: 0;
-}
-.contact-form .content .right-side{
- width: 100%;
- margin: auto;
+  }
+  .contact-form .content .right-side{
+  width: 100%;
+   margin: auto;
 }
 .contact-form .content {
   flex-direction: column;
