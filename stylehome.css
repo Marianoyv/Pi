@@ -13,6 +13,7 @@ html {
 body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
 }
 
 a, ul, li {
@@ -213,7 +214,12 @@ li {
   justify-content: center;
   align-items: center;
   background-color: #f1f1f1;
-background-image:  linear-gradient(30deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(30deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077), linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077);
+background-image:  linear-gradient(30deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, rgb(220,180,103)), 
+linear-gradient(150deg, #b0b0b0 12%, transparent 12.5%, transparent 87%, #b0b0b0 87.5%, #b0b0b0), 
+linear-gradient(30deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, rgb(220,180,103)), 
+linear-gradient(150deg, rgb(220,180,103) 12%, transparent 12.5%, transparent 87%, rgb(220,180,103) 87.5%, #b0b0b0), 
+linear-gradient(60deg, #b0b0b077 25%, transparent 25.5%, transparent 75%, #b0b0b077 75%, #b0b0b077), 
+linear-gradient(60deg, rgb(226,34,39) 25%, transparent 25.5%, transparent 75%, rgb(226,34,39) 75%, rgb(226,34,39));
 background-size: 28px 49px;
 background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   transition: 0.5s;
@@ -225,9 +231,15 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   padding: 30px;
   font-family: 'Dancing Script', cursive;
   font-size: 4em;
-  box-shadow: 1px 2px 3px white,
-  inset 2px 4px 20px black;
+  box-shadow: 30px 40px 80px rgb(9, 9, 9),
+  inset 2px 4px 20px rgb(251, 251, 251);
   border-radius: 12px;
+  width: auto;
+  height: auto;
+  background: rgb(220, 179, 103, 0.7);
+  text-shadow: 4px 4px 8px 8px rgb(220, 179, 150, 0.5);
+  color: rgb(25, 21, 12);
+  
   
 }
 .portfolio .flex {
@@ -248,12 +260,13 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   justify-content: space-between;
   text-align: center;
   margin: 30px;
-  box-shadow: 1px 2px 3px white,
-  inset 2px 4px 20px black;
+  box-shadow: 30px 40px 80px rgb(9, 9, 9),
+  inset 2px 4px 20px rgba(255, 255, 255, 0.619);
   border-radius: 6px;
   transition: opacity 1s ease-in-out;
-  color: #fff;
-  background-color: #e4e4e4;
+  color: #111;
+  font-weight: 600;
+  background-color: rgba(250, 236, 211, 0.899);
 }
 .card .screen {
   width: 100%;
@@ -284,8 +297,8 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
 }
 .portfolio .card:hover iframe {
   opacity: 0.5;
-  transition: opacity 1s ease-in-out;
-  transition-delay: 3s;
+  transition: opacity 0.5s ease-in-out;
+  transition-delay: 5s;
 }
 .card h4 {
  margin: 60px auto 10px auto;
@@ -300,7 +313,7 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
 .card:hover .tbox {
   transform: scale(1.1) translateY(30px);
   transition: transform 1s ease-in-out;
-  transition-delay: 3s;
+  transition-delay: 5s;
 }
 
 .tbox p {
@@ -350,6 +363,7 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   width: 100%;
   min-height: 80vh;
   padding: 30px;
+  color: #fff;
 }
 svg {
 	width: 100%;
@@ -357,9 +371,43 @@ svg {
   z-index: -1;
   position: absolute;
 }
+@keyframes rotate {
+  100% {
+     transform: rotate(360deg)
+  }
+}
 
+.top-outer {
+  transform-origin: 73px 69px;
+  animation: rotate 30s linear infinite;
+}
+
+.top-inner {
+  transform-origin: 73px 69px;
+  animation: rotate 20s linear infinite;
+}
+
+.bottom-outer {
+  transform-origin: 134px 222px;
+  animation: rotate 30s linear infinite;
+}
+
+.bottom-inner {
+       transform-origin: 134px  222px;
+       animation: rotate 20s linear infinite;
+}
+
+#contact {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 
 .contact-form .content{
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -372,13 +420,15 @@ svg {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 15px 50px;
+  margin: 15px auto;
+  padding: 20px;
   position: relative;
-  background-color: rgba(17, 17, 17, 0.384);
+  background-color: rgba(17, 17, 17, 0.4);
+  border-radius: 6px;
 }
 
 .content .left-side .details{
-  margin: 14px;
+  margin: 14px auto;
   text-align: center;
 }
 .content .left-side .details i{
@@ -400,19 +450,20 @@ svg {
   width: 75%;
   padding: 20px;
   margin-left: 75px;
-  background-color: rgba(17, 17, 17, 0.384);
+  background-color: rgba(17, 17, 17, 0.4);
+  border-radius: 6px;
 }
 .content .right-side .topic-text{
   font-family: 'Dancing Script', cursive;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: 600;
-  color: #111;
-  margin: 25px;
+  color: rgb(255, 255, 255);
+  margin: 25px auto;
 }
 .right-side .input-box{
   height: 50px;
   min-width: 100%;
-  width: 500px;
+  
   margin: 25px 0;
 }
 .right-side .input-box input,
@@ -425,7 +476,6 @@ svg {
   background: #F0F1F8;
   border-radius: 6px;
   padding: 0 15px;
-  resize: none;
 }
 .right-side .message-box{
   min-height: 110px;
@@ -526,31 +576,60 @@ svg {
 display: flex;
 flex-direction: column;
 }
-
+#contact {
+  max-width: 100%;
+  min-height: max-content;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .contact-form{
-  max-width: 80%;
+  width: 100%;
   margin: 0;
-  padding: 40px;
+  padding: 0;
 }
 .contact-form .content .right-side{
- width: 75%;
- margin-left: 55px;
+ width: 100%;
+ margin: auto;
 }
 .contact-form .content {
   flex-direction: column;
+  margin: auto;
+  max-width: 100%;
 }
 .contact-form .content .left-side {
   width: 100%;
+  padding: 0;
   flex-direction: row;
   justify-content: center;
-  margin: auto;
+  margin: 0;
 }
-.contact-form .content .left-side::before {
-  display: none;
-}
+
 .contact-form .content .right-side{
   width: 100%;
-  margin: auto;
+  margin: 0 auto;
+  padding: 0;
+}
+svg {
+	min-width: 100%;
+	min-height: 100vh;
+  z-index: -1;
+  position: absolute;
+}
+.right-side .input-box{
+  margin: 10px 0;
+}
+.right-side .input-box input,
+.right-side .input-box textarea{
+  height: 100%;
+  width: 90%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: #f0f1f8d1;
+  border-radius: 6px;
+  padding: 0 15px;
 }
 
 }
