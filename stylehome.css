@@ -27,10 +27,12 @@ a, ul, li {
   position: fixed;
   width: 100%;
   height: 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+.fixnav .resposive {
+  
 }
 
 
@@ -38,10 +40,17 @@ a, ul, li {
   color: rgba(255, 255, 255, 0.548);
   text-transform: uppercase;
   font-size: 1.2em;
-  margin-left: 45px;
+  display: block;
+  float: left;
+  margin: 20px;
+  padding: 10px;
+
 }
 .nav {
+  display: block;
+  float: right;
   margin: 20px;
+  padding: 10px;
 }
 .nav a {
   font-size: 18px;
@@ -72,7 +81,7 @@ a, ul, li {
 
 .fa-bars, .fa-bars-staggered {
   font-size: 30px;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   text-shadow: 2px 4px 5px 5px #111;
   position: absolute;
 }
@@ -82,7 +91,7 @@ a, ul, li {
 .showcase {
   position: relative;
   right: 0;
-  top: -90px;
+  top: 0;
   max-width: 100%;
   height: 100vh;
   display: flex;
@@ -90,6 +99,7 @@ a, ul, li {
   text-align: center;
   transition: 0.5s;
   justify-content: center;
+  z-index: 1;
   
   
 }
@@ -274,6 +284,13 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   
   
 }
+
+.portfolio h2:hover {
+  box-shadow: 20px 30px 80px rgb(0, 0, 0),
+  inset 2px 4px 20px rgb(255, 255, 255);
+  text-shadow: 4px 4px 8px 8px rgba(255, 255, 255, 0.685);
+  transition: 0.5s;
+}
 .portfolio .flex {
   display: flex;
   justify-content: center;
@@ -299,7 +316,7 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   transition: opacity 1s ease-in-out;
   color: rgb(0, 0, 0);
   font-weight: 600;
-  background-color: rgba(255, 251, 231, 0.95);
+  background-color: rgba(31, 31, 31, 0.418);
 }
 .card .screen {
   width: 100%;
@@ -397,6 +414,8 @@ background-position: 0 0, 0 0, 14px 25px, 14px 25px, 0 0, 14px 25px;
   padding: 30px;
   color: #fff;
 }
+
+
 svg {
 	width: 100%;
 	height: 101vh;
@@ -573,7 +592,44 @@ svg {
 */
 
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
+
+  .fixnav {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .nav {
+    display: none;
+  }
+  .toggle {
+    float: right;
+    display: block;
+
+  }
+  
+  
+  .logo h2 {
+    color: rgba(255, 255, 255, 0.548);
+    text-transform: uppercase;
+    font-size: 1.2em;
+    display: block;
+    float: left;
+    margin-left: 45px;
+    padding: 10px;
+  
+  }
+
+  .nav a {
+    font-size: 18px;
+    margin: 0 25px;
+    padding: 0 10px;
+    border-bottom: none;
+    border-radius: 0;
+    transition: 0.5s ease-in-out;
+  }
    
   .showcase video, #sm {
     display: none;

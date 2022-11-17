@@ -19,7 +19,7 @@
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
         
-  <div class="fixnav">
+  <div class="fixnav" id="fixnav">
     <div class="logo">
       <h2>Pi Development</h2>
     </div>
@@ -28,16 +28,15 @@
     <a href="#portfolio">Portfolio</a>
     <a href="#contact">Contact</a>
     </div>
-    <div onclick="myFuntion(toggle)" class="toggle">
+    <a href="javascript:void(0);" onclick="myFuntion()" class="toggle">
     <i class="fa-solid fa-bars"></i>
-    <i class="fa-solid fa-bars-staggered"></i>
-    </div>
+    </a>
 
   </div>
 
   <script>
-    function myFunction(toggle) {
-      var x = document.getElementsByClassName(".fixnav");
+    function myFunction() {
+      var x = document.getElementsByClassName("fixnav");
       if (x.className === "fixnav") {
         x.className += " responsive";
       } else {
@@ -99,7 +98,7 @@
             from learning the core languages to 3 years of experience in HTML, CSS, and JavaScript to creating business sites, repairing and optimizing them. 
             I am also a very proactive and out-of-the-box thinker. I enjoy solving complex problems and continuous personal training. 
             My personality is <a href="https://www.16personalities.com/entp-personality" target="_blank" rel="noopener noreferrer">ENTP-A</a>, 
-            and if you want yo know more about me feel free to <a href="#contact">contact me</a> or <a href="MarianoTamiCV.pdf" target="_blank">donwload my CV.</a></p>
+            and if you want to know more about me feel free to <a href="#contact">contact me</a> or <a href="MarianoTamiCV.pdf" target="_blank">donwload my CV.</a></p>
              </div>
             </section>
 
