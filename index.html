@@ -19,39 +19,35 @@
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
         
-  <div class="fixnav" id="fixnav">
-    <div class="logo">
-      <h2>Pi Development</h2>
-    </div>
-    <div class="nav">
-      <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
+  <div class="topnav" id="Topnav">
+    <a href="#" class="active">Pi Development</a>
     <a href="#contact">Contact</a>
-    </div>
-    <a href="javascript:void(0);" onclick="myFuntion()" class="toggle">
-    <i class="fa-solid fa-bars"></i>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>   
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
     </a>
-
   </div>
-
+  
   <script>
-    function myFunction() {
-      var x = document.getElementsByClassName("fixnav");
-      if (x.className === "fixnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "fixnav";
-      }
+  function myFunction() {
+    var x = document.getElementById("Topnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
     }
-    </script>
+  }
+  </script>
 
       <section class="showcase" id="up">
-        <!-- Backgrounds -->
-        <img id="sm" src="/img/dubai.jpg" alt="dubainight">
-        <img id="md" src="/img/md.jpg" alt="astract">
-        <video loop muted autoplay="autoplay" playsinline>
-        <source src="/vid/neon.mp4" type="video/mp4"></video>
-        <!-- Backgrounds -->
+        <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice" viewBox="24 105 156 95" >
+          <rect x="0" y="0" width="300" height="300" fill="#E22227"/>
+          <path class="top-outer" fill="#EF8716" stroke="#371300" stroke-width="1" d="M68 1c23,0 67,17 69,39 4,38 5,52 -5,69 -20,36 -68,46 -120,-9 -27,-28 -7,-101 56,-99z"/>
+          <path class="top-inner" fill="#537571" stroke="#DCB467" stroke-width="1" d="M69 22c33,-7 52,21 54,37 3,26 -1,28 -8,40 -15,25 -48,25 -85,-14 -19,-20 -4,-53 39,-63z"/>
+          <path class="bottom-outer" fill="#DCB467" stroke="#371300" stroke-width="1" d="M158 158c30,13 56,50 44,75 -9,18 -22,46 -42,55 -20,10 -48,2 -73,-19 -29,-25 -27,-55 -9,-79 17,-22 43,-48 80,-32z"/>
+          <path class="bottom-inner" fill="#263D56" stroke="#537571" stroke-width="1" d="M136 180c32,-9 45,13 46,29 3,27 8,29 0,42 -14,25 -52,24 -79,0 -21,-18 -2,-61 33,-71z"/>
+      </svg>
           <div class="text">
             <span class="tfirst">Mariano Tami</span>
             <span class="tsecond"></span>
@@ -81,8 +77,9 @@
 
         
         <div class="btn">
-          <a href="#about">About Me<i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#about"><i class="fa-solid fa-chevron-down"></i></a>
         </div>
+
         <ul class="social">
           <li><a href="https://www.facebook.com/mariano.tami.73" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
           <li><a href="https://github.com/Marianoyv" target="_blank"><i class="fa-brands fa-github"></i></a></li>
@@ -103,6 +100,18 @@
             </section>
 
 <section class="portfolio" id="portfolio">
+  
+    <div class="ground">
+      <div class="ground-shadow"></div>
+    </div>
+    <div class="ball">
+      <div class="isolate">
+        <div class="ball-shadow"></div>
+        <div class="ball-light"></div>
+      </div>
+    </div>
+
+  
 
     <h2>Portfolio</h2>
 
@@ -185,13 +194,7 @@
   </section>
       
     <section id="contact">
-      <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin slice" viewBox="24 105 156 95" >
-        <rect x="0" y="0" width="300" height="300" fill="#E22227"/>
-        <path class="top-outer" fill="#EF8716" stroke="#371300" stroke-width="1" d="M68 1c23,0 67,17 69,39 4,38 5,52 -5,69 -20,36 -68,46 -120,-9 -27,-28 -7,-101 56,-99z"/>
-        <path class="top-inner" fill="#537571" stroke="#DCB467" stroke-width="1" d="M69 22c33,-7 52,21 54,37 3,26 -1,28 -8,40 -15,25 -48,25 -85,-14 -19,-20 -4,-53 39,-63z"/>
-        <path class="bottom-outer" fill="#DCB467" stroke="#371300" stroke-width="1" d="M158 158c30,13 56,50 44,75 -9,18 -22,46 -42,55 -20,10 -48,2 -73,-19 -29,-25 -27,-55 -9,-79 17,-22 43,-48 80,-32z"/>
-        <path class="bottom-inner" fill="#263D56" stroke="#537571" stroke-width="1" d="M136 180c32,-9 45,13 46,29 3,27 8,29 0,42 -14,25 -52,24 -79,0 -21,-18 -2,-61 33,-71z"/>
-    </svg>
+      
       <div class="contact-form">
         <div class="content">
           <div class="left-side">
@@ -236,18 +239,8 @@
         </div>
       </div>
     </section>
-<!--
-    <section class="fold">
-      <h2>Im into</h2>
-      <div class="cont">
-        <div class="desing">
-                  <div class="card"></div>
-        </div>
-        <div class="card"></div>
-        <div class="card"></div>
-      </div>
-    </section> 
--->
+    
+    <script src="main.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 
 </body>

@@ -1,4 +1,5 @@
 
+
 // const menuToggle = document.querySelector('.toggle');
 // const showcase = document.querySelector('.showcase');
 // menuToggle.addEventListener('click', () => {
@@ -19,6 +20,35 @@
   appId: "1:794676722903:web:ba49378fbced6c77c8c492",
   measurementId: "G-ZD7XRCLYLB"
 };
+
+function myFunction() {
+  var x = document.getElementById("Topnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+
+const text = document.querySelector(".tsecond");
+    
+const textLoad = () => {
+    setTimeout(() => {
+        text.textContent = "Web Developer";
+    }, 0);
+    setTimeout(() => {
+        text.textContent = "Web Designer";
+    }, 3000);
+    setTimeout(() => {
+        text.textContent = "Marketing Analyst";
+    }, 6000);
+    setTimeout(() => {
+        text.textContent = "Search Engine Optimization";
+    }, 9000); //1s = 1000 milliseconds
+}
+
+textLoad();
+setInterval(textLoad, 12000);
 
 
 // Reference messages collection
