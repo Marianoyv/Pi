@@ -81,30 +81,39 @@ svg {
   z-index: -1;
   position: absolute;
 }
-@keyframes rotate {
+@-webkit-keyframes rotate {
   100% {
      transform: rotate(360deg)
   }
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg)
+ }
 }
 
 .top-outer {
   transform-origin: 73px 69px;
   animation: rotate 30s linear infinite;
+  -webkit-animation: rotate 30s linear infinite;;
 }
 
 .top-inner {
   transform-origin: 73px 69px;
   animation: rotate 20s linear infinite;
+  -webkit-animation: rotate 20s linear infinite;
 }
 
 .bottom-outer {
   transform-origin: 134px 222px;
   animation: rotate 30s linear infinite;
+  -webkit-animation: rotate 30s linear infinite;
 }
 
 .bottom-inner {
        transform-origin: 134px  222px;
        animation: rotate 20s linear infinite;
+       -webkit-animation: rotate 20s linear infinite;
 }
 
 
@@ -697,4 +706,21 @@ svg {
  margin-left: 0;
 }
 }
+::-webkit-scrollbar-track
+{
+	border: 5px solid rgb(0, 0, 0);
+  border-color: transparent;
+	background-color: #263d56;
+}
 
+::-webkit-scrollbar
+{
+	width: 15px;
+	background-color: #dfe6e9;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #74b9ff;
+	border-radius: 10px;
+}
