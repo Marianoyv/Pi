@@ -207,20 +207,6 @@ svg {
   animation: color-change 10s ease-in-out infinite alternate both;
 
 }
-
-@keyframes color-change {
-  0% {
-    background: #2a5863;
-  }
-  50% {
-    background: #537571;
-  }
-  100% {
-    background: #263d56;
-  }
-}
-
-
 .me img {
   grid-column: 1;
   width: 60%;
@@ -263,7 +249,8 @@ svg {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: linear-gradient(#2a5863, #263d56);     
+  background-color: #fff;
+  animation: color-change 10s ease-in-out infinite alternate both;    
   box-shadow: 3px 3px 15px #111;
 
 }
@@ -272,12 +259,12 @@ svg {
   position: relative;
   margin: 40px auto;
   padding: 30px auto;
-  font-family: 'Dancing Script', cursive;
-  font-size: 4em;
-  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(0,0,0,0.389983504398827) 50%, rgba(0,0,0,0) 100%);
+  font-size: 3.5em;
+  font-weight: 600;
   width: 100%;
   height: auto;
-  text-shadow: 4px 4px 8px 8px rgb(220, 179, 150, 0.5);
+  text-shadow: rgba(206,31,35, 0.5) -2px 2px, rgba(206,31,35, 0.4) -8px 8px, rgba(206,31,35, 0.3) -16px 16px, rgba(255, 67, 73, 0.2) -24px 24px, rgba(255, 67, 73, 0.1) -32px 32px;
+
   color: rgb(255, 255, 255);
   
 }
@@ -289,7 +276,7 @@ svg {
   flex-wrap: wrap;
   width: 100%;
   min-height: max-content;
-  gap: 10px;
+  gap: 25px;
 }
 
 .portfolio .card { 
@@ -297,31 +284,29 @@ svg {
   display: flex;
   flex-direction: column;
   width: 40%;
-  height: 55vh;
-  min-width: 250px;
-  min-height: 350px;
-  justify-content: space-between;
+  min-height: max-content;
+  min-width: 330px;
+  justify-content: space-around;
   text-align: center;
   margin: 15px;
-  box-shadow: 30px 40px 80px rgb(9, 9, 9),
-  inset 2px 4px 20px rgba(77, 77, 77, 0.619);
-  border-radius: 6px;
-  transition: 1s opacity ease-in-out;
-  color: rgb(0, 0, 0);
-  font-weight: 600;
-  background: radial-gradient(circle, rgb(199, 68, 72) 0%, rgba(148,187,233,1) 100%);
+  padding: 10px;
+  gap: 5px;
+  box-shadow: rgba(206,31,35, 0.4) -5px 5px, rgba(206,31,35, 0.3) -10px 10px, rgba(206,31,35, 0.2) -15px 15px, rgba(255, 67, 73, 0.1) -20px 20px, rgba(255, 67, 73, 0.05) -25px 25px;
+  border-radius: 14px;
+  transition: 1s ease-in-out;
+  background: radial-gradient(circle, rgb(206,31,35) 0%, rgba(148,187,233,1) 100%);
 }
 .card .screen {
   width: 100%;
-  height: 170px;
-  opacity: 0.1;
+  height: 200px;
+  opacity: 0.15;
 }
 
 .portfolio .card iframe {
   position: relative;
   border-radius: 25px 25px 0 0;
   width: 286%;
-  height: 350%;
+  height: 286%;
   box-sizing: border-box;
   border: 0;
     -ms-transform: scale(0.35);
@@ -329,40 +314,43 @@ svg {
     -o-transform: scale(0.35);
     -webkit-transform: scale(0.35);
     transform: scale(0.35);
-
     -ms-transform-origin: 0 0;
     -moz-transform-origin: 0 0;
     -o-transform-origin: 0 0;
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-    transition: opacity 1s, transform 1s 1s;
-  
 }
 .portfolio .card:hover .screen {
   opacity: 1;
-  transition: opacity 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
   
 }
 .card h4 {
   position: relative;
- margin: 60px auto 10px auto;
-  
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 1px 1px 1px #111;
 }
 .tbox {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin: 0 auto;
+  gap: 10px;
+  margin: 10px auto;
 }
 
 .tbox p {
-  display: block;
-  width: auto;
-  height: auto;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 1.1em;
   color: #111;
+  text-shadow: rgba(148,187,233, 0.6) -2px 2px, rgba(148,187,233, 0.5) -4px 4px, rgba(148,187,233, 0.4) -6px 6px, rgba(148,187,233, 0.3) -8px 8px, rgba(148,187,233, 0.2) -10px 10px;
   padding: 3px 6px;
-  border-radius: 3px;
-  border-bottom: 1px solid #111;
+  transition: 0.5s ease-in-out;
+}
+.portfolio .card:hover .tbox p {
+  text-shadow: rgba(148,187,233, 0.6) -3px 3px, rgba(148,187,233, 0.5) -6px 6px, rgba(148,187,233, 0.4) -9px 9px, rgba(148,187,233, 0.3) -12px 12px, rgba(148,187,233, 0.2) -15px 15px;
+  transform: translateY(-3px);
+  transition: 0.5s ease-in-out;
 }
 
 .desc {
@@ -371,31 +359,20 @@ svg {
   margin: auto;
 }
 
-.green {
+.btnn {
   width: auto;
   height: auto;
   margin: 0 15px;
   padding: 10px;
   border-radius: 6px;
-  background: green;
-  box-shadow: 2px 4px 20px black,
-  inset 1px 2px 3px white;
-}
-.orange {
-  width: auto;
-  height: auto;
-  margin: 0 15px;
-  padding: 10px;
-  border-radius: 6px;
-  background: rgb(214, 66, 8);
-  box-shadow: 2px 4px 20px black,
-  inset 1px 2px 3px white;
+  box-shadow: rgba(0, 0, 0, 0.708) 0px -50px 36px -28px inset;
+  transition: 0.5s ease-in-out;
 }
 
-.green:hover, .orange:hover {
-  filter: invert(0.9);
-  transform: scale(1.2);
-  transition: 0.5s;
+.btnn:hover {
+  box-shadow: rgb(0, 0, 0) 0px 50px 36px 28px inset;
+  transform: scale(1.05);
+  transition: 0.5s ease-in-out;
 }
 
 
@@ -702,4 +679,16 @@ svg {
 {
 	background-color: #74b9ff;
 	border-radius: 10px;
+}
+
+@keyframes color-change {
+  0% {
+    background: #2a5863;
+  }
+  50% {
+    background: #537571;
+  }
+  100% {
+    background: #263d56;
+  }
 }
