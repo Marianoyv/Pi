@@ -132,7 +132,6 @@ svg {
   position: absolute;
   bottom: 10px;
   margin: 20px auto;
-  animation: bounce-top 1s both;
 }
 .showcase .btn a {
   font-size: 20px;
@@ -155,35 +154,34 @@ svg {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 .social li a {
   display: inline-block;
   margin-right: 20px;
-  filter: invert(1);
   transform: scale(0.5);
   transition: 0.5s;
 }
 
 .fa-brands {
     font-size: 60px;
-    color: #111; 
+    color: #ffffff;
+    text-shadow: 0px 0px 4px #000;
+ 
 }
 
 .social li a:hover {
   transform: scale(1.0) translateY(-15px);
 }
 
-@keyframes bounce-top{0%{transform:translateY(-45px);animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{transform:translateY(-24px);animation-timing-function:ease-in}65%{transform:translateY(-12px);animation-timing-function:ease-in}82%{transform:translateY(-6px);animation-timing-function:ease-in}93%{transform:translateY(-4px);animation-timing-function:ease-in}25%,55%,75%,87%{transform:translateY(0);animation-timing-function:ease-out}100%{transform:translateY(0);animation-timing-function:ease-out;opacity:1}}
-
 .btn-up {
   position: fixed;
   bottom: 10px;
-  right: 30px;
+  left: 30px;
   width: 25px;
   height: 25px;
   z-index: 10;
   transition: 0.5s;
+  text-shadow: 2px 2px 3px #000;
 }
 .btn-up a i{
   color: rgb(255, 255, 255);
@@ -205,11 +203,12 @@ svg {
   text-align: center;
   background-color: #fff;
   animation: color-change 10s ease-in-out infinite alternate both;
+  box-shadow: 4px 4px 10px #000;
 
 }
 .me img {
   grid-column: 1;
-  width: 60%;
+  width: 50%;
   margin: 20px auto;
   height: auto;
   border-radius: 320px;
@@ -235,10 +234,142 @@ svg {
 }
 .me p a {
   color: #111;
-
   font-weight: 600;
 }
+.skills { 
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.skills video {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(8px);
+  z-index: -1;
+
+}
+.containercards {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+.containercards h2 {
+  position: relative;
+  color: #fff;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  font-size: 2em;
+  font-weight: 800;
+
+}
+.cardh {
+  position: relative;
+  display: flex;
+  height: 280px;
+  width: 200px;
+  background-color: #17141d;
+  border-radius: 10px;
+  box-shadow: -1rem 0 3rem #000;
+  transition: 0.4s ease-out;
+  position: relative;
+  left: 0px;
+}
+
+.cardh:not(:first-child) {
+    margin-left: -50px;
+}
+
+.cardh:hover {
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+}
+
+.cardh:hover ~ .cardh {
+  position: relative;
+  left: 50px;
+  transition: 0.4s ease-out;
+}
+
+.cardh .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  color: white;
+  font-size: 1.2em;
+  position: absolute;
+  left: 20px;
+  top: 15px;
+}
+.cardh .title i {
+  font-size: 1.5em;
+  color: #fff;
+}
+.bar {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  height: 6px;
+  width: 150px;
+}
+
+.emptybar {
+  background-color: #2e3033;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+
+}
+
+.filledbar {
+  position: absolute;
+  top: 0px;
+  z-index: 3;
+  border-radius: 5px;
+  width: 0px;
+  height: 100%;
+  background: rgb(0,154,217);
+  background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
+  transition: 0.6s ease-out;
+}
+
+.cardh:hover .filledbar {
+  transition: 0.4s ease-out;
+}
+.cardh.html:hover .filledbar {
+  width: 100%;
+}
+.cardh.css:hover .filledbar {
+  width: 100%;
+}
+.cardh.js:hover .filledbar {
+  width: 70%;
+}
+.cardh.vue:hover .filledbar {
+  width: 50%;
+}
+.cardh.sql:hover .filledbar {
+  width: 50%;
+}
+.cardh.python:hover .filledbar {
+  width: 40%;
+}
 
 .portfolio {
   position: relative;
@@ -389,9 +520,11 @@ background: radial-gradient(circle, transparent 20%, #e5e5f7 20%, #e5e5f7 80%, t
 background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
 }
 
-.contact-form {
+.contact {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   min-height: 80vh;
   padding: 30px;
@@ -399,14 +532,14 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
 }
 
 
-.contact-form .content{
+.contact .content{
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-around;
   margin: auto;
 }
-.contact-form .content .left-side{
+.contact .content .left-side{
   width: 50%;
   height: 100%;
   display: flex;
@@ -439,7 +572,7 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
   font-size: 14px;
   color: #afafb6;
 }
-.contact-form .content .right-side{
+.contact .content .right-side{
   width: 75%;
   padding: 20px;
   margin-left: 75px;
@@ -584,31 +717,31 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
   align-items: center;
   text-align: center;
   }
-  .contact-form{
+  .contact{
   width: 100%;
   margin: 0;
   padding: 0;
   }
-  .contact-form .content .right-side{
+  .contact .content .right-side{
   width: 100%;
-   margin: auto;
+   margin: 0;
 }
-.contact-form .content {
+.contact .content {
   flex-direction: column;
-  margin: auto;
+  margin: 0;
   max-width: 100%;
 }
-.contact-form .content .left-side {
+.contact .content .left-side {
   width: 100%;
-  padding: 0;
+  padding: 25px;
+  gap: 10px;
   flex-direction: row;
   justify-content: center;
   margin: 0;
 }
-
-.contact-form .content .right-side{
+.contact .content .right-side{
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 }
 svg {
@@ -644,20 +777,20 @@ svg {
   .showcase img#sm {
   display: block;
 }
-.contact-form .content{
+.contact .content{
   flex-direction: column-reverse;
 }
-.contact-form .content .left-side{
+.contact .content .left-side{
  width: 100%;
  flex-direction: row;
  margin-top: 40px;
  justify-content: center;
  flex-wrap: wrap;
 }
-.contact-form .content .left-side::before{
+.contact .content .left-side::before{
  display: none;
 }
-.contact-form .content .right-side{
+.contact .content .right-side{
  width: 100%;
  margin-left: 0;
 }

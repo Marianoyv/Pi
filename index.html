@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylehome.css">
+    <link rel="stylesheet" href="style.css">
     <title>Pi Development</title>
     <meta name="description" content="Front-End Developer, Web Designer, and digital marketing analyst. I'm Mariano, and this is my developer portfolio that you can check out"/>
     <link rel="icon" type="image/x-icon" href="/img/pi.ico">
@@ -18,6 +18,7 @@
         
   <div class="topnav" id="Topnav">
     <a href="#" class="active">Pi Development</a>
+    <a href="CV.Mariano.Tami.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-import"></i> My CV</a>    
     <a href="#contact">Contact</a>
     <a href="#portfolio">Portfolio</a>
     <a href="#about">About</a>   
@@ -79,12 +80,15 @@
 
         <ul class="social">
           <li><a href="https://www.facebook.com/mariano.tami.73" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href="https://github.com/Marianoyv" target="_blank"><i class="fa-brands fa-github"></i></a></li>
           <li><a href="https://www.instagram.com/marianoyv/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://github.com/Marianoyv" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+          <li><a href="https://www.linkedin.com/in/marianoyv/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a></li>          
         </ul>
       </section>
+
 <div class="btn-up"><a href="#up"><i class="fa-solid fa-angle-up"></i></a></div>
-          <section class="me" id="about">
+          
+<section class="me" id="about">
           <img src="/img/yo.png" alt="me">
           <div class="pres">
             <h2>Hello! glad to have you here</h2>
@@ -92,10 +96,65 @@
             from learning the core languages to 3 years of experience in HTML, CSS, and JavaScript to creating business sites, repairing and optimizing them. 
             I am also a very proactive and out-of-the-box thinker. I enjoy solving complex problems and continuous personal training. 
             My personality is <a href="https://www.16personalities.com/entp-personality" target="_blank" rel="noopener noreferrer">ENTP-A</a>, 
-            and if you want to know more about me feel free to <a href="#contact">contact me</a> or <a href="MarianoTamiCV.pdf" target="_blank">donwload my CV.</a></p>
+            and if you want to know more about me feel free to <a href="#contact">contact me</a> or <a href="CV.Mariano.Tami.pdf" target="_blank">donwload my CV.</a></p>
              </div>
             </section>
+<!-- 
+<section class="skills">
+  <video src="/img/infiny.mp4" autoplay loop muted></video>
+  <div class="containercards">
+    <div class="cardh html">
+      <h3 class="title"><i class="fa-brands fa-html5"></i> HTML</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
 
+    </div>
+    <div class="cardh css">
+      <h3 class="title"><i class="fa-brands fa-css3-alt"></i> CSS</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+
+    </div>
+    <div class="cardh js">
+      <h3 class="title"><i class="fa-brands fa-square-js"></i> JavaScript</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+
+    </div>
+    <div class="cardh vue">
+      <h3 class="title"><i class="fa-brands fa-vuejs"></i> Vue.js</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+
+    </div>
+    <div class="cardh sql">
+      <h3 class="title"><i class="fa-solid fa-database"></i> SQL</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+      
+    </div>
+    <div class="cardh python">
+      <h3 class="title"><i class="fa-brands fa-python"></i> Python</h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+-->
 <section class="portfolio" id="portfolio">
     <div class="ground">
       <div class="ground-shadow"></div>
@@ -183,7 +242,7 @@
       
     <section id="contact">
       
-      <div class="contact-form">
+      <div class="contact">
         <div class="content">
           <div class="left-side">
             <div class="address details">
@@ -195,13 +254,12 @@
             <div class="phone details">
               <i class="fas fa-phone-alt"></i>
               <div class="topic"><h4>Phone</h4></div>
-              <div class="text-one"><h5>+66 93-779-012</h5></div>
-              <div class="text-two"><h5>+54 911 5527 9578</h5></div>
+              <div class="text-two"><h5><a href="//api.whatsapp.com/send?phone=5491127295714">+54 911 2729 5714</a></h5></div>
             </div>
             <div class="email details">
               <i class="fas fa-envelope"></i>
               <div class="topic"><h4>Email</h4></div>
-              <div class="text-one"><h5>mariano13age@gmail.com</h5></div>
+              <div class="text-one"><h5><a href="mailto:mariano13age@gmail.com">mariano13age@gmail.com</a></h5></div>
             </div>
           </div>
           <div class="right-side">
@@ -214,8 +272,6 @@
             <div class="input-box">
               <input type="email" placeholder="Enter your email" required>
             </div>
-            <input type="checkbox" id="que" name="HHRR" value="YES">
-              <label for="que">Are you a HR Recruiter?</label><br>
             <div class="input-box message-box">
               <textarea name="message" placeholder="Leave a message"></textarea>
             </div>
