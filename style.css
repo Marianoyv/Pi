@@ -27,12 +27,14 @@ a, ul, li {
 .topnav {
   position: fixed;
   width: 100%;
-  box-shadow: 2px 2px 10px #000;
+  box-shadow: 2px 2px 10px #0000004c;
   overflow: hidden;
   z-index: 10;
   font-weight: 600;
   transition: all 0.5s ease-in-out;
   text-shadow: 2px 2px 12px #000;
+  background: linear-gradient(45deg, rgba(34, 34, 34, 0.717) 0%, rgba(83, 83, 83, 0.578) 100%);
+
 }
 .topnav a {
   float: right;
@@ -68,8 +70,9 @@ a, ul, li {
   text-align: center;
   transition: 0.5s;
   justify-content: center;
-  box-shadow: 4px 4px 15px #111;
-  z-index: 1; overflow: hidden;
+  box-shadow: 3px 3px 20px #111111bd;
+  z-index: 1; 
+  overflow: hidden;
 }
 video.port {
 	width: auto;
@@ -126,7 +129,6 @@ video.port {
   right: 0;
   bottom: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -138,9 +140,9 @@ video.port {
 }
 
 .fa-brands {
-    font-size: 60px;
+    font-size: 3em;
     color: #ffffff;
-    text-shadow: 0px 0px 4px #000;
+    text-shadow: 1px 1px 20px #000000a2;
  
 }
 
@@ -156,50 +158,49 @@ video.port {
   height: 25px;
   z-index: 10;
   transition: 0.5s;
-  text-shadow: 2px 2px 3px #000;
+  text-shadow: 2px 2px 20px #000;
 }
 .btn-up a i{
   color: rgb(255, 255, 255);
   font-size: 1.4em;
 }
 .btn-up:hover {
-  font-size: 30px;
+  font-size: 1.5em;
   transition: 0.5s;
 }
 
 .me {
   position: relative;
-  min-height: 100vh;
+  display: flex;
+  min-height: 60vh;
   max-width: 100%;
-  display: grid;
-  grid-template-columns: 50% 50%;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #d0e1ef;
-  box-shadow: 4px 4px 10px #000;
-
+  background-color: #ffffff;
+  padding: 30px auto;
 }
-.me img {
-  grid-column: 1;
-  width: 50%;
-  margin: 20px auto;
+
+.me .pres {
+  position: relative;
+  max-width: 80%;
+  margin: 30px auto;
+  padding: 30px auto;
+  background-color: rgba(255, 255, 255, 0.651);
+  box-shadow: inset 1px 1px 20px #0000008b;
+  border-radius: 7px;
+}
+.me .pres img {
+  position: absolute;
+  top: -50px;
+  left: -20px;
+  width: 15vh;
   height: auto;
   border-radius: 320px;
-  box-shadow: 5px 5px 20px #afafb6;
 }
-.me .pres {
-  grid-column: 2;
-  margin: 30px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.651);
-  box-shadow: 5px 5px 10px #242424;
-  border-radius: 2px 7px 7px 7px;
-}
-
 .me h2 {
   margin: 10px;
-  padding: 10px;
+  padding: 15px;
 }
 .me p {
   margin: 10px;
@@ -208,7 +209,7 @@ video.port {
 }
 .me p a {
   color: #111;
-  font-weight: 600;
+  font-weight: 800;
 }
 .skills { 
   overflow: hidden;
@@ -347,15 +348,13 @@ video.port {
 
 .portfolio {
   position: relative;
-  padding: 60px 20px;
-  margin: auto;
   min-height: max-content;
+  padding: 40px 0;
   text-align: center;
   justify-content: center;
   align-items: center;
-  text-align: center;
   background-color: #fff;
-  box-shadow: 3px 3px 15px #111;
+  box-shadow: 2px 2px 20px #11111175;
 
 }
 
@@ -372,9 +371,9 @@ video.port {
   
 }
 
-.portfolio .flex {
+.portfolio .cardscont {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
@@ -391,10 +390,8 @@ video.port {
   min-width: 330px;
   justify-content: space-around;
   text-align: center;
-  margin: 15px;
-  padding: 10px;
   gap: 5px;
-  box-shadow: 2px 2px 30px #0000008d;
+  box-shadow: 2px 2px 30px #00000041;
   border-radius: 12px;
   transition: 1s ease-in-out;
   background: radial-gradient(circle, rgba(0, 0, 0, 0.687) 0%, rgb(255, 255, 255) 100%);
@@ -407,7 +404,7 @@ video.port {
 
 .portfolio .card iframe {
   position: relative;
-  border-radius: 25px 25px 0 0;
+  border-radius: 10px 30px 0 0;
   width: 286%;
   height: 286%;
   box-sizing: border-box;
@@ -432,13 +429,14 @@ video.port {
   position: relative;
   font-size: 1.2em;
   color: #fff;
-  text-shadow: 1px 1px 20px #111;
+  text-shadow: 1px 1px 20px #11111191;
+  padding: 15px;
 }
 .tbox {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 10px auto;
+  padding: 10px auto;
 }
 
 .tbox p {
@@ -454,6 +452,7 @@ video.port {
   display: flex;
   justify-content: space-around;
   margin: auto;
+  padding: 20px;
 }
 
 .btnn {
@@ -473,26 +472,16 @@ video.port {
 }
 
 
-#contact {
-  position: relative;
-  display: flex;
-  min-height: 100vh;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  background-color: #e5e5f7;
-  opacity: 0.8;
-}
-
 .contact {
   position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
-  min-height: 80vh;
-  padding: 30px;
-  color: #fff;
+  align-items: center;
+  min-height: max-content;
+  padding: 20px;
+  color: #292929;
+  overflow: hidden;
 }
 
 
@@ -500,54 +489,21 @@ video.port {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin: auto;
-}
-.contact .content .left-side{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 15px auto;
+  margin: auto;
   padding: 20px;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 6px;
 }
 
-.content .left-side .details{
-  margin: 14px auto;
-  text-align: center;
-}
-.content .left-side .details i{
-  font-size: 30px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-  color: #ffffff;
-  margin-bottom: 10px;
-}
-.content .left-side .details .topic{
-  font-size: 18px;
-  font-weight: 500;
-}
-.content .left-side .details .text-one,
-.content .left-side .details .text-two{
-  font-size: 14px;
-  color: #afafb6;
-}
 .contact .content .right-side{
-  width: 75%;
-  padding: 20px;
-  margin-left: 75px;
-  background-color: rgb(0, 0, 0, 0.8);
+  width: 80%;
+  padding: auto;
   border-radius: 6px;
 }
 .content .right-side .topic-text{
   font-family: 'Dancing Script', cursive;
   font-size: 2.5em;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   margin: 25px auto;
 }
 .right-side .input-box{
@@ -563,7 +519,7 @@ video.port {
   border: none;
   outline: none;
   font-size: 16px;
-  background: #F0F1F8;
+  background: #000000;
   border-radius: 6px;
   padding: 0 15px;
 }
@@ -586,7 +542,7 @@ video.port {
   border: none;
   padding: 8px 16px;
   border-radius: 6px;
-  background: #8d8c8f74;
+  background: #2f2f2f74;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -596,7 +552,37 @@ video.port {
 }
 
 
-@media screen and (max-width: 768px) {
+.footer{
+  max-width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgba(96, 96, 96, 0.8);
+  padding: 20px 10px;
+}
+
+.footer .details{
+  text-align: center;
+  padding: 10px 0;
+}
+.footer .details i{
+  font-size: 1.5em;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+.footer .details .topic{
+  font-size: 18px;
+  font-weight: 500;
+}
+.footer .details .text-one,
+.footer .details .text-two{
+  font-size: 14px;
+  color: #afafb6;
+}
+
+@media screen and (max-width: 769px) {
 
   .topnav a:not(:first-child) {
     display: none;
@@ -604,6 +590,7 @@ video.port {
   .topnav a.icon {
     float: right;
     display: block;
+    padding: auto 10px;
   }
 
   .topnav.responsive {
@@ -618,7 +605,6 @@ video.port {
     float: none;
     display: block;
     text-align: center;
-    background-color: #2a5863db;
   }
 
   .text {
@@ -628,11 +614,12 @@ video.port {
  
   }
   .tfirst {
+    font-size: 2.2em;
     margin: 0;
   }
   .tsecond {
-    font-size: 2.5em;
-    padding: 7px 20px;
+    font-size: 2.1em;
+    padding: 10px;
   }
 
   .text h2 {
@@ -656,23 +643,28 @@ video.port {
     opacity: 1;
   }
   .me {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  padding: 30px 0;
+    min-height: 80vh;
+  }
+  .me .pres {
+    position: relative;
+    max-width: 90%;
+    margin: 30px 0;
+    padding: 0;
 
   }
-
-  .me img {
-    margin: 20px;
+  .me .pres img {
+    position: absolute;
+    top: -90px;
+    margin: 0 45%;
   }
-  #contact {
-  max-width: 100%;
-  min-height: max-content;
-  padding: 25px 0;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  .me .pres h2 {
+    line-height: normal;
+    margin: 20px 0;
+  }
+
+  .me .pres p {
+    line-height: normal;
+    margin: 20px 0;
   }
   .contact{
   width: 100%;
@@ -688,25 +680,13 @@ video.port {
   margin: 0;
   max-width: 100%;
 }
-.contact .content .left-side {
-  width: 100%;
-  padding: 25px;
-  gap: 10px;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0;
-}
+
 .contact .content .right-side{
   width: 100%;
   margin: 0;
   padding: 0;
 }
-svg {
-	min-width: 100%;
-	min-height: 100vh;
-  z-index: -1;
-  position: absolute;
-}
+
 .right-side .input-box{
   margin: 10px 0;
 }
@@ -733,20 +713,23 @@ svg {
 
   .showcase img#sm {
   display: block;
+}   
+
+.portfolio .card {
+min-width: 0;
 }
 .contact .content{
   flex-direction: column-reverse;
 }
-.contact .content .left-side{
- width: 100%;
+.contact .content {
+ width: 90%;
  flex-direction: row;
- margin-top: 40px;
+ margin: 40px 0;
  justify-content: center;
  flex-wrap: wrap;
+ 
 }
-.contact .content .left-side::before{
- display: none;
-}
+
 .contact .content .right-side{
  width: 100%;
  margin-left: 0;
@@ -769,16 +752,4 @@ svg {
 {
 	background-color: #d2d2d2;
 	border-radius: 10px;
-}
-
-@keyframes color-change {
-  0% {
-    background: #2a5863;
-  }
-  50% {
-    background: #537571;
-  }
-  100% {
-    background: #263d56;
-  }
 }
