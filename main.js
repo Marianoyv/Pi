@@ -30,6 +30,10 @@ function myFunction() {
   }
 }
 
+
+document.querySelectorAll("[data-img-to-show]").forEach(section => {
+  observer.observe(section)
+})
 const text = document.querySelector(".tsecond");
     
 const textLoad = () => {

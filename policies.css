@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* Universal marks */
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-timeline: --page-scroll block;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-wrap: balance;
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+a, ul, li {
+  list-style: none;
+  text-decoration: none;
+  color: #fff;
+}
+@keyframes grow-progress {
+	from { transform: scaleX(0); }
+	to { transform: scaleX(1); }
+}
+
+#progress {
+  z-index: 10;
+	position: fixed;
+	left: 0; top: 0;
+	width: 100%;
+  height: 3px;
+	background: rgb(113, 113, 113);
+	transform-origin: 0 50%;
+	animation: grow-progress auto linear ;
+	animation-timeline: --page-scroll;
+
+}
+/*Navbar*/
+
+.overlay {
+  background-color: rgba(46, 46, 46, 0.5);
+}
+
+.pidev {
+  position: fixed;
+  font-family: "Cinzel";
+  top: 25px;
+  left: 30px;
+  cursor: pointer;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.2em;
+  background: #00000000;
+  color: rgb(0, 0, 0);
+  border: none;
+  height: auto;
+  padding: 20px;
+  border-radius: 5px;
+  font-weight: 600;
+  transform: scale(0.9);
+  text-transform: uppercase;
+  transition: 0.5s ease-in-out;
+  border: 1px solid #11111100;
+  text-shadow: 0 0 20px #ffff;
+
+}
+
+.pidev:hover {
+  transform: translatex(25px);
+  transition: 0.5s ease-in-out;
+  background: #ffffff75;
+  text-shadow: 0 0 12px #ffffffc5;
+  border: 1px solid #11111127;
+  top: 35px;
+
+}
+.pidev:not(:hover) .hide,
+.pidev:not(:hover) .icono::before,
+.pidev:not(:hover) .icono::after {
+  opacity: 0;
+  visibility: hidden;
+}
+.hide {
+  transition: all 0.3s ease-in-out;
+}
+.pidev:active {
+  background-image: linear-gradient(#ffffff, #ffffff);
+  border-color: #000000c7;
+}
+.icono {
+  position: relative;
+}
+.icono::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  background-color: #000000c7;
+  border-radius: 100%;
+}
+.icono::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(-19%, -60%);
+  width: 100px;
+  height: 38px;
+  background-color: transparent;
+  border-radius: 12px 22px 2px 2px;
+  border-right: solid 2px #000000c7;
+  border-top: solid 1.5px transparent;
+}
+.icono .logo-icono {
+  color: #000000c7;
+  position: absolute;
+  font-size: 12px;
+  left: -37px;
+  top: -50px;
+}
+.icono img {
+  width: 20px;
+  height: 20px;
+  border: solid 1px transparent;
+  display: flex;
+  filter: invert(1);
+}
+.button:hover .icono img {
+  border: solid 1.5px #ffffff;
+}
+
+.background {
+  position: absolute;
+}
+
+
+
+
+.topnav {
+  
+  position: fixed;
+  z-index: 13;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px 0;
+  max-width: 100%;
+  max-width: 1240px;
+  height: 100px;
+  transition: 0.5s ease-in-out;
+}
+.topnav a {
+  color: #000000c7;
+  text-align: center;
+  padding: 8px 25px;
+  font-size: 1.1em;
+  transition: all 0.5s ease-in-out;
+  border-radius: 5px;
+}
+
+.topnav a:hover {
+  background-color: #000000c7;
+  color: rgb(255, 255, 255);
+  transition: 0.5s ease-in-out;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    min-height: max-content;
+    padding: 150px 20px;
+    line-height: 1.6;
+    
+
+
+}
+.contenido h2 {
+    padding: 20px 0;
+}
+.contenido ul li {
+    color: #111;
+}

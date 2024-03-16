@@ -5,276 +5,177 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Pi Development</title>
-    <meta name="description" content="Front-End Developer, Web Designer, and digital marketing analyst. I'm Mariano, and this is my developer portfolio that you can check out"/>
+    <link rel="stylesheet" href="index.css">
+    <title>Pi Development - Soluciones Digitales</title>
+    <meta name="description" content="Convertimos tu potencial online en realidad. A través de análisis, creamos estrategias digitales que impactan, atraen y convierten."/>
     <link rel="icon" type="image/x-icon" href="/img/pi.ico">
     <link rel="canonical" href="https://pidevelopment.web.app/"/>
     <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/9b7863877e7b1572545a6deb3/9fc65f4503e80b0f5f89ce76d.js");</script>
 </head>
 <body>
-
+  
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
-        
+<div id="progress"></div>
   <div class="topnav" id="Topnav">
-    <a href="#" class="active">Pi <i>Development</i></a>
-    <a href="MarianoTami.pdf" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-import"></i> CV</a>    
-    <a href="#contact">Contact</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>   
+    <a href="#">Marketing</a>
+    <a href="#">Desarrollo Web</a>
+    <a href="#">Nosotros</a>   
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">
       <i class="fa fa-bars"></i>
     </a>
   </div>
   
-  <script>
-  function myFunction() {
+    <script>
+function myFunction() {
     var x = document.getElementById("Topnav");
+    var body = document.body;
+
     if (x.className === "topnav") {
-      x.className += " responsive";
+        x.className += " responsive";
+        body.className += " overlay";
     } else {
-      x.className = "topnav";
+        x.className = "topnav";
+        body.className = "";
     }
-  }
-  </script>
+}
+</script>
+
+  <button class="pidev">
+    <div class="icono">
+      <span class="logo-icono hide">Icon</span>
+      <img src="/img/piw.png" alt="">
+    </div>
+    <span class="logo">Development</span>
+    <div class="padding-right hide">
+      <div class="padding-right-line">
+        <span class="padding-right-logo">Right Padding</span>
+      </div>
+    </div>
+    <div class="background hide">
+      <span class="background-logo">Background</span>
+    </div>
+    <div class="border hide">
+      <span class="border-logo">Border Radius</span>
+    </div>
+  </button>
+
 
       <section class="showcase" id="up">
-        <video class="port" src="/img/Deep.mp4" muted autoplay loop></video>
+        <div class="mock"></div>
+        <video class="port" src="/img/deep2.mp4" playsinline muted autoplay loop></video>
           <div class="text">
-            <span class="tfirst">Mariano Tami</span>
-            <span class="tsecond"></span>
+            <h1 ><span class="title"></span></h1>
+            <h2>Creamos soluciones digitales personalizadas que mejoran tu presencia en línea</h2>
         </div>
-    
         <script>
-            const text = document.querySelector(".tsecond");
-    
-            const textLoad = () => {
-                setTimeout(() => {
-                    text.textContent = "Web Developer";
-                }, 0);
-                setTimeout(() => {
-                    text.textContent = "Web Designer";
-                }, 3000);
-                setTimeout(() => {
-                    text.textContent = "Marketing Analyst";
-                }, 6000);
-                setTimeout(() => {
-                    text.textContent = "Search Engine Optimization";
-                }, 9000); //1s = 1000 milliseconds
-            }
-    
-            textLoad();
-            setInterval(textLoad, 12000);
+const text = document.querySelector(".title");
+const phrases = ["Desarrollo Web","Diseño Web","Marketing Analitico"];
+let index = 0;
+
+const textLoad = () => {
+    text.classList.add("fade-out");
+    setTimeout(() => {
+        text.textContent = phrases[index];
+        text.classList.remove("fade-out"); 
+        index = (index + 1) % phrases.length;
+    }, 500);
+}
+textLoad();
+setInterval(textLoad, 3000);
         </script>
-
-        
-        <div class="btn">
-          <a href="#about"><i class="fa-solid fa-chevron-down"></i></a>
-        </div>
-
         <ul class="social">
-          <li><a href="https://www.facebook.com/mariano.tami.73" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-          <li><a href="https://www.instagram.com/marianoyv/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
           <li><a href="https://github.com/Marianoyv" target="_blank"><i class="fa-brands fa-github"></i></a></li>
-          <li><a href="https://www.linkedin.com/in/marianoyv/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a></li>          
+          <li><a href="https://www.linkedin.com/company/pi-d" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a></li>
+          <li><a href="https://www.instagram.com/pi.development/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a></li>
         </ul>
       </section>
 
-<div class="btn-up"><a href="#up"><i class="fa-solid fa-angle-up"></i></a></div>
-          
-<section class="portfolio" id="portfolio">
-
-  <h2>Portfolio</h2>
-  <div class="cardscont">
-
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://junometales.com/"></iframe>
-      </div>
-      <h4>Business Website</h4>
-        <div class="tbox">
-          <p>html</p><p>css</p><p>bootstrap</p>
+      <section class="serv">
+        <h2>Ofrecemos una amplia gama de servicios para ayudarte a alcanzar tus objetivos</h2>
+        <div class="card m">
+          <h3>Marketing</h3>
+          <p>Te ayudamos a llegar a tu público objetivo y aumentar tus ventas</p>
         </div>
-        <div class="desc">
-        <a class="btnn" target="_blank" href="https://junometales.com/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
-        <a class="btnn" target="_blank" href="https://github.com/Marianoyv/Juno">Browse Git</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://arcade-world.web.app/"></iframe>
-      </div>
-      <h4>Personal Project</h4>
-      <div class="tbox">
-        <p>HTML</p><p>CSS</p><p>JavaScript</p>
-      </div>
-      <div class="desc">
-      <a class="btnn" target="_blank" href="https://arcade-world.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
-      <a class="btnn" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
-    </div>
-    </div>
-
-    <div class="card">
-      <div class="screen">
-                <iframe src="https://systemvesta.com/"></iframe>
-      </div>
-      <h4>Business Website</h4>
-      <div class="tbox">
-        <p>WordPress</p>
-      </div>
-      <div class="desc">
-      <a class="btnn" target="_blank" href="https://systemvesta.com/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
-    </div>
-    </div>
-
-    <div class="card">
-      <div class="screen">
-               <iframe src="https://recetasdelsapi.web.app/"></iframe> 
-      </div>
-      <h4>Personal Website</h4>
-      <div class="tbox">
-        <p>HTML</p><p>CSS</p>
-      </div>
-      <div class="desc">
-      <a class="btnn" target="_blank" href="https://recetasdelsapi.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
-      <a class="btnn" target="_blank" href="https://github.com/Marianoyv/Recetas_de_cocina">Browse Git</a>
-    </div>
-    </div>
-
-    <div class="card">
-      <div class="screen">
-                <iframe src="https://blogintemocional.web.app/"></iframe>
-      </div>
-      <h4>Blog - Informational</h4>
-      <div class="tbox">
-        <p>HTML</p><p>CSS</p><p>BOOTSTRAP</p>
-      </div>
-      <div class="desc">
-      <a class="btnn" target="_blank" href="https://blogintemocional.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
-    </div>
-    </div>
-
-  </div>
-</section>
+        <div class="card s">
+          <h3>SEO</h3>
+          <p>Optimizamos tu sitio web para que aparezca en las primeras posiciones de los resultados de búsqueda</p>
+        </div>
+        <div class="card d">
+          <h3>Diseño Web</h3>
+          <p>Creamos sitios web personalizados que son atractivos, fáciles de usar y optimizados para los motores de búsqueda</p>
+        </div>
+      </section>
 
 
-<section class="me" id="about">
-          
-          <div class="pres">
-            <img src="/img/yo.png" alt="me">
-            <h2>Hello! glad to have you here</h2>
-            <p>I am a self-taught, passionate web developer focused on design and performance, neat and easy-to-read robust code, 
-            from learning the core languages to 3 years of experience in HTML, CSS, and JavaScript to creating business sites, repairing and optimizing them. 
-            I am also a very proactive and out-of-the-box thinker. I enjoy solving complex problems and continuous personal training. 
-            My personality is <a href="https://www.16personalities.com/entp-personality" target="_blank" rel="noopener noreferrer">ENTP-A</a>, 
-            and if you want to know more about me feel free to <a href="#contact">contact me</a> or <a href="CV.Mariano.Tami.pdf" target="_blank">donwload my CV.</a></p>
-             </div>
-            </section>
-<!-- 
-<section class="skills">
-  <video src="/img/infiny.mp4" autoplay loop muted></video>
-  <div class="containercards">
-    <div class="cardh html">
-      <h3 class="title"><i class="fa-brands fa-html5"></i> HTML</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
+      <section class="intro">
+        <div class="chan">
+        <h1>Desbloqueando tu potencial online</h1>
+        <p><b>Convertimos tu potencial online en una realidad tangible.</b>  
+          A través de un <b>meticuloso análisis de tu público objetivo, </b> 
+          creamos estrategias digitales que <b>impactan, atraen y convierten.</b></p>
+          <p><b>Más que un simple sitio web, te brindamos una experiencia digital personalizada.</b> 
+            Nuestro equipo de expertos combina <b>creatividad, tecnología y experiencia</b> para dar 
+            vida a soluciones web que no solo se ven bien, sino que <b>generan resultados tangibles 
+              y emociones positivas en tu audiencia.</b></p>
+            </div>
+              <div class="form-container">
+                <form action="#" class="form">
+                  <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre">
+                    <label for="correo_electronico">Correo electrónico:</label>
+                    <input type="email" id="correo_electronico" name="correo_electronico" placeholder="Introduce tu correo electrónico">
+                  </div>
+                  <button type="submit" class="form-submit-btn">Enviar</button>
+                </form>
+              </div>
+      </section>
 
-    </div>
-    <div class="cardh css">
-      <h3 class="title"><i class="fa-brands fa-css3-alt"></i> CSS</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
+      <section class="prod">
+          <div class="card">
+            <div class="screen">
+              <iframe src="https://junometales.com/"></iframe>
+            </div>
+            <h4>Juno Metales</h4>
+              
+              <div class="desc">
+              <a class="btnn" target="_blank" href="https://junometales.com/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
+              <a class="btnn" target="_blank" href="https://github.com/Marianoyv/Juno">Browse Git</a>
+            </div>
+          </div>
+          <div class="card">
+                <div class="screen">
+                          <iframe src="https://systemvesta.com/"></iframe>
+                </div>
+                <h4>SystemVesta</h4>
+                <div class="desc">
+                <a class="btnn" target="_blank" href="https://systemvesta.com/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              </div>
+              <div class="card">
+                <div class="screen">
+                  <iframe src="https://arcade-world.web.app/"></iframe>
+                </div>
+                <h4>Pi Development</h4>
+                <div class="desc">
+                <a class="btnn" target="_blank" href="https://arcade-world.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
+                <a class="btnn" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
+              </div>
+              </div>
+              <p>Explora nuestro portafolio y déjate inspirar por los casos de éxito de nuestros clientes.</p>
+              <button class="port">Portafolio</button>
+      </section>
 
-    </div>
-    <div class="cardh js">
-      <h3 class="title"><i class="fa-brands fa-square-js"></i> JavaScript</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
-
-    </div>
-    <div class="cardh vue">
-      <h3 class="title"><i class="fa-brands fa-vuejs"></i> Vue.js</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
-
-    </div>
-    <div class="cardh sql">
-      <h3 class="title"><i class="fa-solid fa-database"></i> SQL</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
-      
-    </div>
-    <div class="cardh python">
-      <h3 class="title"><i class="fa-brands fa-python"></i> Python</h3>
-      <div class="bar">
-        <div class="emptybar"></div>
-        <div class="filledbar"></div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
--->
-
-      
-      
       <section class="contact">
-        <div class="content">
-          
-          <div class="right-side">
-            <div class="topic-text"><h3>Contact me</h3></div>
-            <p>Let's create something amazing, let's get in touch! </p>
-          <form action="https://formspree.io/f/xnqrwvly" method="POST">
-            <div class="input-box">
-              <input type="text" placeholder="Enter your name">
-            </div>
-            <div class="input-box">
-              <input type="email" placeholder="Enter your email" required>
-            </div>
-            <div class="input-box message-box">
-              <textarea name="message" placeholder="Leave a message"></textarea>
-            </div>
-            <div class="button">
-              <input type="submit" value="Send">
-            </div>
-          </form>
+
+       <button><a class="policies" href="policies.html">Política de Privacidad</a></button> <a class="policies" href="policies.html">Política de Privacidad</a>
+
         </div>
-        </div>
+
       </section>
 
-      <section class="footer">
-            <div class="address details">
-              <i class="fa-solid fa-map-location-dot"></i>
-              <div class="topic"><h4>Location</h4></div>
-              <div class="text-one"><h5>Argentina - Buenos Aires</h5></div>
-              <div class="text-two">CABA</div>
-            </div>
-            <div class="phone details">
-              <i class="fas fa-phone-alt"></i>
-              <div class="topic"><h4>Phone</h4></div>
-              <div class="text-two"><h5><a href="//api.whatsapp.com/send?phone=5491127295714">+54 911 2729 5714</a></h5></div>
-            </div>
-            <div class="email details">
-              <i class="fas fa-envelope"></i>
-              <div class="topic"><h4>Email</h4></div>
-              <div class="text-one"><h5><a href="mailto:mariano13age@gmail.com">mariano13age@gmail.com</a></h5></div>
-            </div>
-      </section>
-    
-    <script src="main.js"></script>
+<script src="main.js"></script>      
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-
 </body>
 </html>
