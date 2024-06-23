@@ -1,78 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5RCQCP3');</script><!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creamos estrategias digitales que impactan, atraen y convierten.">
+    <link rel="canonical" href="https://pidevelopment.web.app">
+    <meta name="author" content="PIDev Founder: Mariano Tami">
+    <meta name="keywords" content="estrategias digitales, marketing digital, soluciones digitales, PI Development">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Soluciones digitales personalizadas para tu empresa">
+    <meta property="og:description" content="Creamos estrategias digitales que impactan, atraen y convierten.">
+    <meta property="og:image" content="/img/pi.ico">
+    <meta property="og:url" content="https://pidevelopment.web.app">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="PI Development">
+    <meta property="og:locale" content="es_AR">
     <link rel="stylesheet" href="index.css">
-    <title>Pi Development - Soluciones Digitales</title>
-    <meta name="description" content="Convertimos tu potencial online en realidad. A través de análisis, creamos estrategias digitales que impactan, atraen y convierten."/>
     <link rel="icon" type="image/x-icon" href="/img/pi.ico">
-    <link rel="canonical" href="https://pidevelopment.web.app/"/>
     <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8341459305954792" crossorigin="anonymous"></script>
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/9b7863877e7b1572545a6deb3/9fc65f4503e80b0f5f89ce76d.js");</script>
+    <title>Soluciones digitales personalizadas para tu empresa</title>
 </head>
 <body>
-  
 <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RCQCP3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
 <div id="progress"></div>
   <div class="topnav" id="Topnav">
-    <a href="#">Marketing</a>
-    <a href="#">Desarrollo Web</a>
-    <a href="#">Nosotros</a>   
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
+    <ul>
+      <li class="logo"><a href="#"><img src="/img/piw.png" alt=""> Development</a></li>
+      <li><a href="#">Marketing</a></li>
+      <li><a href="#">Desarrollo Web</a></li>
+      <li><a href="#">Nosotros</a></li>
+      <li class="icon"><a href="javascript:void(0);"  onclick="myFunction()">
+        <i class="fa fa-bars"></i></a></li>
+    </ul>
   </div>
-  
     <script>
 function myFunction() {
-    var x = document.getElementById("Topnav");
-    var body = document.body;
-
-    if (x.className === "topnav") {
-        x.className += " responsive";
-        body.className += " overlay";
-    } else {
-        x.className = "topnav";
-        body.className = "";
-    }
+  var x = document.getElementById("Topnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
 }
+const navbar = document.getElementById('Topnav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 100) {
+    navbar.classList.add('dark');
+  } else {
+    navbar.classList.remove('dark');
+  }
+});
 </script>
-
-  <button class="pidev">
-    <div class="icono">
-      <span class="logo-icono hide">Icon</span>
-      <img src="/img/piw.png" alt="">
-    </div>
-    <span class="logo">Development</span>
-    <div class="padding-right hide">
-      <div class="padding-right-line">
-        <span class="padding-right-logo">Right Padding</span>
-      </div>
-    </div>
-    <div class="background hide">
-      <span class="background-logo">Background</span>
-    </div>
-    <div class="border hide">
-      <span class="border-logo">Border Radius</span>
-    </div>
-  </button>
-
-
       <section class="showcase" id="up">
-        <div class="mock"></div>
         <video class="port" src="/img/deep2.mp4" playsinline muted autoplay loop></video>
           <div class="text">
-            <h1 ><span class="title"></span></h1>
+            <h1><span class="title"></span></h1>
             <h2>Creamos soluciones digitales personalizadas que mejoran tu presencia en línea</h2>
         </div>
         <script>
 const text = document.querySelector(".title");
 const phrases = ["Desarrollo Web","Diseño Web","Marketing Analitico"];
 let index = 0;
-
 const textLoad = () => {
     text.classList.add("fade-out");
     setTimeout(() => {
@@ -90,9 +82,9 @@ setInterval(textLoad, 3000);
           <li><a href="https://www.instagram.com/pi.development/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a></li>
         </ul>
       </section>
-
       <section class="serv">
-        <h2>Ofrecemos una amplia gama de servicios para ayudarte a alcanzar tus objetivos</h2>
+        <h2>Productos digitales innovadores para impulsar tu negocio</h2>
+        <h3>Creamos estrategias que impactan, atraen y convierten.</h3>
         <div class="card m">
           <h3>Marketing</h3>
           <p>Te ayudamos a llegar a tu público objetivo y aumentar tus ventas</p>
@@ -106,18 +98,13 @@ setInterval(textLoad, 3000);
           <p>Creamos sitios web personalizados que son atractivos, fáciles de usar y optimizados para los motores de búsqueda</p>
         </div>
       </section>
-
-
       <section class="intro">
         <div class="chan">
         <h1>Desbloqueando tu potencial online</h1>
-        <p><b>Convertimos tu potencial online en una realidad tangible.</b>  
-          A través de un <b>meticuloso análisis de tu público objetivo, </b> 
-          creamos estrategias digitales que <b>impactan, atraen y convierten.</b></p>
-          <p><b>Más que un simple sitio web, te brindamos una experiencia digital personalizada.</b> 
-            Nuestro equipo de expertos combina <b>creatividad, tecnología y experiencia</b> para dar 
-            vida a soluciones web que no solo se ven bien, sino que <b>generan resultados tangibles 
-              y emociones positivas en tu audiencia.</b></p>
+        <p>Optimiza tu presencia online con soluciones web accesibles y amigables para los motores de búsqueda. 
+          Nuestro enfoque estratégico transforma tu potencial digital en resultados tangibles y conexiones emocionales 
+          con tu audiencia. Ofrecemos experiencias web personalizadas que combinan creatividad, tecnología y experiencia 
+          para generar impacto, mejorar tu posicionamiento SEO y aumentar las conversiones significativas.</p>
             </div>
               <div class="form-container">
                 <form action="#" class="form">
@@ -131,7 +118,59 @@ setInterval(textLoad, 3000);
                 </form>
               </div>
       </section>
-
+      <section class="serv2">
+        <h2>Nuestros Servicios</h2>
+            <div class="cards">
+            <div class="cardi">
+            <p class="tip">Desarrollo web</p>
+            <p class="second-text">Sitios web personalizados que impulsan tu negocio</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Reparaciones y actualizaciones de sitios web</p>
+            <p class="second-text">Mantenemos tu sitio web actualizado y seguro</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">SEO (Search Engine Optimization):</p>
+            <p class="second-text">Posiciona tu sitio web en los primeros lugares</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Contenido para redes sociales</p>
+            <p class="second-text">Atrae y fideliza a tu audiencia con contenido relevante</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Creación de redes sociales</p>
+            <p class="second-text">Establece una presencia sólida en las redes sociales</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Estrategias de marketing</p>
+            <p class="second-text">Alcanza tus objetivos con estrategias efectivas</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Análisis de marketing digital</p>
+            <p class="second-text">Mide el rendimiento de tus campañas y optimiza</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Creación de videos</p>
+            <p class="second-text">Atrae a tu audiencia con videos de alta calidad</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Diseño gráfico</p>
+            <p class="second-text">Diseños personalizados que impactan</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Email Marketing</p>
+            <p class="second-text">Comunícate con tus clientes de manera efectiva</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Publicidad pagada en línea</p>
+            <p class="second-text">Llega a más personas y aumenta tus conversiones</p>
+            </div>
+            <div class="cardi">
+            <p class="tip">Diseño gráfico</p>
+            <p class="second-text">Diseños personalizados que impactan</p>
+            </div>
+      </div>
+      </section>
       <section class="prod">
           <div class="card">
             <div class="screen">
@@ -146,7 +185,7 @@ setInterval(textLoad, 3000);
           </div>
           <div class="card">
                 <div class="screen">
-                          <iframe src="https://systemvesta.com/"></iframe>
+                  <iframe src="https://systemvesta.com/"></iframe>
                 </div>
                 <h4>SystemVesta</h4>
                 <div class="desc">
@@ -163,18 +202,59 @@ setInterval(textLoad, 3000);
                 <a class="btnn" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
               </div>
               </div>
-              <p>Explora nuestro portafolio y déjate inspirar por los casos de éxito de nuestros clientes.</p>
-              <button class="port">Portafolio</button>
-      </section>
-
-      <section class="contact">
-
-       <button><a class="policies" href="policies.html">Política de Privacidad</a></button> <a class="policies" href="policies.html">Política de Privacidad</a>
-
+              <div class="card">
+                <div class="screen">
+                  <iframe src="https://blogintemocional.web.app/"></iframe>
+                </div>
+                <h4>Blog IE</h4>
+                <div class="desc">
+                <a class="btnn" target="_blank" href="https://blogintemocional.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              </div>
+              <div class="card">
+                <div class="screen">
+                  <iframe src="https://recetasdelsapi.web.app/"></iframe>
+                </div>
+                <h4>Pi Development</h4>
+                <div class="desc">
+                <a class="btnn" target="_blank" href="https://recetasdelsapi.web.app/">Go to site <i class="fa-solid fa-up-right-from-square"></i></a>
+              </div>
+              </div>
+             </section>
+      <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>Explora</h3>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Marketing</a></li>
+                    <li><a href="#">Desarrollo Web</a></li>
+                    <li><a href="#">Redes Sociales</a></li>
+                    <li><a href="#">Páginas Legales</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#">Diseño Web</a></li>
+                    <li><a href="#">SEO</a></li>
+                    <li><a href="#">Gestión de Redes Sociales</a></li>
+                    <li><a href="#">Marketing de Contenidos</a></li>
+                    <li><a href="#">Desarrollo de Aplicaciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p>Dirección: Buenos Aires, Argentina.</p>
+                <a href="mailto:">Pidev.founder@gmail.com</a>
+            </div>
         </div>
-
-      </section>
-
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
 <script src="main.js"></script>      
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 </body>
