@@ -83,28 +83,22 @@ setInterval(textLoad, 3000);
         </ul>
       </section>
       <section class="serv">
-        <h2>Productos digitales innovadores para impulsar tu negocio</h2>
-        <h3>Creamos estrategias que impactan, atraen y convierten.</h3>
+        <h2>Impulsa tu negocio</h2>
+        <h3>Creamos estrategias que atraen y convierten.</h3>
         <div class="card m">
           <h3>Marketing</h3>
           <p>Te ayudamos a llegar a tu público objetivo y aumentar tus ventas</p>
         </div>
-        <div class="card s">
-          <h3>SEO</h3>
-          <p>Optimizamos tu sitio web para que aparezca en las primeras posiciones de los resultados de búsqueda</p>
-        </div>
         <div class="card d">
-          <h3>Diseño Web</h3>
-          <p>Creamos sitios web personalizados que son atractivos, fáciles de usar y optimizados para los motores de búsqueda</p>
+          <h3>Desarrollo Web</h3>
+          <p>Creamos sitios web personalizados, atractivos, fáciles de usar</p>
         </div>
       </section>
       <section class="intro">
         <div class="chan">
-        <h1>Desbloqueando tu potencial online</h1>
-        <p>Optimiza tu presencia online con soluciones web accesibles y amigables para los motores de búsqueda. 
-          Nuestro enfoque estratégico transforma tu potencial digital en resultados tangibles y conexiones emocionales 
-          con tu audiencia. Ofrecemos experiencias web personalizadas que combinan creatividad, tecnología y experiencia 
-          para generar impacto, mejorar tu posicionamiento SEO y aumentar las conversiones significativas.</p>
+        <h1>Impulsa tu potencial online</h1>
+        <p>Transforma tu potencial digital en resultados tangibles y conexiones con tu audiencia. 
+          Ofrecemos experiencias web personalizadas que combinan creatividad, tecnología y experiencia.</p>
             </div>
               <div class="form-container">
                 <form action="#" class="form">
@@ -123,19 +117,19 @@ setInterval(textLoad, 3000);
             <div class="cards">
             <div class="cardi">
             <p class="tip">Desarrollo web</p>
-            <p class="second-text">Sitios web personalizados que impulsan tu negocio</p>
+            <p class="second-text">Sitios web personalizados</p>
             </div>
             <div class="cardi">
             <p class="tip">Reparaciones y actualizaciones de sitios web</p>
-            <p class="second-text">Mantenemos tu sitio web actualizado y seguro</p>
+            <p class="second-text">Tu sitio web actualizado y seguro</p>
             </div>
             <div class="cardi">
-            <p class="tip">SEO (Search Engine Optimization):</p>
+            <p class="tip">Search Engine Optimization</p>
             <p class="second-text">Posiciona tu sitio web en los primeros lugares</p>
             </div>
             <div class="cardi">
             <p class="tip">Contenido para redes sociales</p>
-            <p class="second-text">Atrae y fideliza a tu audiencia con contenido relevante</p>
+            <p class="second-text">Atrae y fideliza a tu audiencia</p>
             </div>
             <div class="cardi">
             <p class="tip">Creación de redes sociales</p>
@@ -143,11 +137,7 @@ setInterval(textLoad, 3000);
             </div>
             <div class="cardi">
             <p class="tip">Estrategias de marketing</p>
-            <p class="second-text">Alcanza tus objetivos con estrategias efectivas</p>
-            </div>
-            <div class="cardi">
-            <p class="tip">Análisis de marketing digital</p>
-            <p class="second-text">Mide el rendimiento de tus campañas y optimiza</p>
+            <p class="second-text">Alcanza tus objetivos</p>
             </div>
             <div class="cardi">
             <p class="tip">Creación de videos</p>
@@ -155,22 +145,20 @@ setInterval(textLoad, 3000);
             </div>
             <div class="cardi">
             <p class="tip">Diseño gráfico</p>
-            <p class="second-text">Diseños personalizados que impactan</p>
+            <p class="second-text">Diseños personalizados</p>
             </div>
             <div class="cardi">
             <p class="tip">Email Marketing</p>
             <p class="second-text">Comunícate con tus clientes de manera efectiva</p>
             </div>
             <div class="cardi">
-            <p class="tip">Publicidad pagada en línea</p>
-            <p class="second-text">Llega a más personas y aumenta tus conversiones</p>
-            </div>
-            <div class="cardi">
-            <p class="tip">Diseño gráfico</p>
-            <p class="second-text">Diseños personalizados que impactan</p>
+            <p class="tip">Publicidad en línea</p>
+            <p class="second-text">Llega a más personas</p>
             </div>
       </div>
       </section>
+
+     
       <section class="prod">
           <div class="card">
             <div class="screen">
@@ -221,6 +209,52 @@ setInterval(textLoad, 3000);
               </div>
               </div>
              </section>
+
+             <section class="tools">
+              <h1>Powered by</h1>
+              <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/img/1.jpg" alt="Imagen 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/img/2.jpg" alt="Imagen 2">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/img/3.jpg" alt="Imagen 3">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/img/2.jpg" alt="Imagen 2">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/img/3.jpg" alt="Imagen 3">
+                    </div>
+                </div>
+            </div>
+            <script>
+let currentIndex = 0;
+
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
+    currentIndex = (index + slides.length) % slides.length;
+    const offset = -currentIndex * 100;
+    document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+}
+
+function nextSlide() {
+    showSlide(currentIndex + 1);
+}
+
+setInterval(nextSlide, 3000);
+            </script>
+      
+            </section>
+      
+
+
+
+
+
       <footer class="footer">
         <div class="footer-columns">
             <div class="footer-column">
@@ -239,8 +273,7 @@ setInterval(textLoad, 3000);
                     <li><a href="#">Diseño Web</a></li>
                     <li><a href="#">SEO</a></li>
                     <li><a href="#">Gestión de Redes Sociales</a></li>
-                    <li><a href="#">Marketing de Contenidos</a></li>
-                    <li><a href="#">Desarrollo de Aplicaciones</a></li>
+                    <li><a href="#">Marketing</a></li>
                 </ul>
             </div>
             <div class="footer-column">
