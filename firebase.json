@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "./",
+    "public": "./pi_development/web/templates/index.html",
     "ignore": [
       "firebase.json",
       "**/.*",
