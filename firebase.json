@@ -1,11 +1,11 @@
 {
   "hosting": {
-    "public": "./pi_development/web/templates/index.html",
+    "public": "static",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ]
   }
-  
+
 }
