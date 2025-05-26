@@ -64,3 +64,34 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django stuff:
+db.sqlite3
+*.sqlite3
+
+# If you're using migrations
+*.pyc
+
+# ENV
+.venv/
+venv/
+env/
+ENV/
+
+# Node
+node_modules/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
