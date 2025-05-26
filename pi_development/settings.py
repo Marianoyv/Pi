@@ -1,11 +1,13 @@
 import os
 from pathlib import Path
+from decouple import config
+
 
 # Rutas base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
-SECRET_KEY = 'django-insecure-xa7bs+bm3c^m^q_5c_k&xj*5@6j94q+s__&qa9gid*wt)$1zo&'
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
@@ -78,10 +80,10 @@ USE_I18N = True
 USE_TZ = True
 
 # Ruta a credenciales de Google
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(BASE_DIR / "credentials" / "pidevelopment-d43bb26fcbc3.json")
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(BASE_DIR / config('GOOGLE_APPLICATION_CREDENTIALS'))
 
 # Configuración de Google Cloud Storage
-GS_BUCKET_NAME = 'pidevelopment_static'
+GS_BUCKET_NAME = config('GS_BUCKET_NAME')
 GS_DEFAULT_ACL = 'publicRead'
 STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
@@ -97,3 +99,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Campo por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+

@@ -1,10 +1,14 @@
 {
   "hosting": {
-    "public": "./pi_development/",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "**",
+        "run": {
+          "serviceId": "pi-development",
+          "region": "us-central1"
+        }
+      }
     ]
   }
 }
