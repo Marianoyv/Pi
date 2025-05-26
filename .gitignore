@@ -92,6 +92,8 @@ node_modules/
 # OS junk
 .DS_Store
 Thumbs.db
-
+credentials/*.json
 # Logs
 *.log
+.env
+credentials/*.json
