@@ -1,0 +1,20 @@
+[2025-06-16 14:42:56] Interfaz admin iniciada.
+[2025-06-16 14:47:31] Interfaz admin iniciada.
+[2025-06-16 14:50:01] Interfaz admin iniciada.
+[2025-06-16 14:51:01] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-16 14:51:01] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-16 14:51:01] Iniciando Django en modo dev...
+[2025-06-16 14:53:00] Interfaz admin iniciada.
+[2025-06-16 14:53:04] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-16 14:53:04] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-16 14:53:04] Iniciando Django en modo dev...
+[2025-06-16 14:55:14] Interfaz admin iniciada.
+[2025-06-16 14:55:17] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-16 14:55:17] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-16 14:55:17] Iniciando Django en modo dev...
+[2025-06-16 14:59:10] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-16 14:59:10] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-16 14:59:10] Iniciando Django en modo dev...
+[2025-06-16 15:02:15] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-16 15:02:15] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-16 15:02:15] Iniciando Django en modo dev...

@@ -15,7 +15,8 @@ body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     text-wrap: balance;
-    color: #000000c7;
+    color: #c06464c7;
+    background-color: #02020226;
 }
 a, ul, li {
   list-style: none;
