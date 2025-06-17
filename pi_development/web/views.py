@@ -1,24 +1,25 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'pi_development/web/index.html')
+    """Render the home page."""
+    return render(request, 'web/index.html')
 
 def about(request):
-    return render(request, 'about.html')
+    """Render the About page."""
+    return render(request, 'web/about.html')
 
 def contact(request):
-    return render(request, 'contact.html')
+    """Render the Contact page."""
+    return render(request, 'web/contact.html')
 
 def policies(request):
-    return render(request, 'policies.html')
+    """Render the policies page."""
+    return render(request, 'web/policies.html')
 
-def projects(request):
-    return render(request, 'projects.html')
+def portfolio(request):
+    return render(request, 'web/portfolio.html')
 
 
-
-from django.shortcuts import render
-
-def index(request):
-    # Asegúrate de usar 'web/index.html' si tu archivo está en 'web/templates/web/index.html'
-    return render(request, 'web/index.html')
+# The project/portfolio section is currently unused. Enable it once a template is available.
+# def projects(request):
+#     return render(request, 'web/projects.html')

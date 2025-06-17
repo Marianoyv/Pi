@@ -18,3 +18,11 @@
 [2025-06-16 15:02:15] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
 [2025-06-16 15:02:15] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
 [2025-06-16 15:02:15] Iniciando Django en modo dev...
+[2025-06-17 13:06:19] Interfaz admin iniciada.
+[2025-06-17 13:06:34] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\.env.bak
+[2025-06-17 13:06:34] Backup actualizado: C:\Users\maria\OneDrive\Documentos\pidev_backups\settings.py.bak
+[2025-06-17 13:06:34] Subiendo estáticos...
+[2025-06-17 13:12:28] Interfaz admin iniciada.
+[2025-06-17 13:13:11] Interfaz admin iniciada.
+[2025-06-17 13:16:29] Interfaz admin iniciada.
+[2025-06-17 13:16:59] Git push: Deploy interface test
