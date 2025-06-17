@@ -5,10 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Pi Development{% endblock %}</title>
-    {% block head %}{% endblock %}
+    {% block head %}
+    <link rel="stylesheet" href="{% static 'web/css/base.css' %}">
+    {% endblock %}
 </head>
 <body>
-    {% block content %}{% endblock %}
+    {% block content %}
+    <div id="progress"></div>
+
+<div class="topnav" id="Topnav">
+  <ul>
+    <li class="logo"><a href="#"><img src="{% static 'web/img/piw.png' %}" alt="Logo"> Development</a></li>
+    <li><a href="#">Marketing</a></li>
+    <li><a href="#">Desarrollo</a></li>
+    <li><a href="#">Nosotros</a></li>
+    <li class="icon"><a href="javascript:void(0);" onclick="myFunction()"><i class="fa fa-bars"></i></a></li>
+  </ul>
+</div>
+    {% endblock %}
     {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -90,9 +90,7 @@ STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 # Ruta local de archivos estáticos
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [BASE_DIR / 'static',]
 
 # Requerido por Django
 STATIC_ROOT = BASE_DIR / 'staticfiles'

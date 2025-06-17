@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\base.py", line 416, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 69, in execute
+    super().execute(*args, **options)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\base.py", line 460, in execute
+    output = self.handle(*args, **options)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\commands\runserver.py", line 80, in handle
+    if not settings.DEBUG and not settings.ALLOWED_HOSTS:
+           ^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1142, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pi_development.settings_local'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\manage.py", line 22, in <module>
+    main()
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\manage.py", line 18, in main
+    execute_from_command_line(sys.argv)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\__init__.py", line 442, in execute_from_command_line
+    utility.execute()
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\__init__.py", line 436, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\base.py", line 429, in run_from_argv
+    connections.close_all()
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\connection.py", line 84, in close_all
+    for conn in self.all(initialized_only=True):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\connection.py", line 76, in all
+    return [
+           ^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\connection.py", line 73, in __iter__
+    return iter(self.settings)
+                ^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\connection.py", line 45, in settings
+    self._settings = self.configure_settings(self._settings)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\db\utils.py", line 148, in configure_settings
+    databases = super().configure_settings(databases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\connection.py", line 50, in configure_settings
+    settings = getattr(django_settings, self.settings_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 81, in __getattr__
+    self._setup(name)
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 68, in _setup
+    self._wrapped = Settings(settings_module)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 166, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1206, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1142, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pi_development.settings_local'
+C:\Users\maria\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\maria\\OneDrive\\Documentos\\Pi-1\\manage.py': [Errno 2] No such file or directory
