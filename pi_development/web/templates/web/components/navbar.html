@@ -1,0 +1,32 @@
+{% load static %}
+<div id="progress"></div>
+<div class="topnav" id="Topnav">
+  <ul>
+    <li class="logo"><a href="#"><img src="{% static 'web/img/piw.png' %}" alt="Logo"></a></li>
+    <li><a href="#">Marketing</a></li>
+    <li><a href="#">Desarrollo</a></li>
+    <li><a href="#">Nosotros</a></li>
+    <li class="icon"><a href="javascript:void(0);" onclick="myFunction()"><i class="fa fa-bars"></i></a></li>
+  </ul>
+</div>
+<script>
+  function myFunction() {
+    var x = document.getElementById("Topnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('Topnav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('dark');
+      } else {
+        navbar.classList.remove('dark');
+      }
+    });
+  });
+</script>

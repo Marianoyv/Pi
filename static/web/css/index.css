@@ -1,55 +1,43 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-
-
-/* Universal marks */
-* {
-  margin: 0;
-  padding: 0;
-}
-html {
-  scroll-behavior: smooth;
-  scroll-timeline: --page-scroll block;
-}
-
-body {
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    text-wrap: balance;
-}
-a, ul, li {
-  list-style: none;
-  text-decoration: none;
-  color: #fff;
-}
 
 /*Showcase*/
 
 .showcase {
-  position: relative;
   height: 100vh;
   max-width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   display: flex;
   transition: 0.5s;
-  z-index: 1; 
   overflow-x: hidden;
   align-items: center;
   justify-content: center;
+  z-index: 2;
+
+
+  
 }
 
 .showcase video {
-  width: 90%;
-	height: 86vh;
+  width: 100%;
+	height: 100vh;
   border-radius: 12px;
   object-fit: cover;
   position: absolute;
+  top: 0;
   border: none;
-  filter: grayscale(70%);
+  filter: blur(5px);
+  background-color: #ffffff96;
+  box-shadow: inset 0 0 340px #ffffff;
+
   
 }
 
 
+
 .text {
-  color: #000000c6;
+  color: #000000e2;
   position: absolute;
   width:100%;
   min-height: 50vh;
@@ -59,30 +47,35 @@ a, ul, li {
   justify-content: space-around;
   align-items: center;
   text-align: center;
+  text-shadow: 11px 11px 20px #00000054;
 }
-
-.title {
-  text-transform: uppercase;
-  font-family: 'poppins';
-  font-size: 3em;
+.showcase .text h1 {
+  padding: 20px;
   font-weight: 700;
-  gap: 30px;
-  max-width: 100%;
-  min-height: none;
-  transition: all 0.5s ease-in-out;
+  font-size: 3em;
+  letter-spacing: 0px;
 }
 
-.title.fade-out {
-  color: transparent;
-  filter: blur(10px);
-  transition: all 0.5s ease-in-out;
-} 
-
-
-.text h2 {
+.showcase .text h2 {
   font-size: 2.1em;
   max-width: 80%;
   font-weight: 300;
+}
+
+.showcase .text button {
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  height: auto;
+  padding: 12px 28px;
+  border-radius: 6px;
+  color: #000000c5;
+  border: none;
+  box-shadow: rgba(135, 135, 135, 0.565) 0px -50px 36px -28px inset;
+  transition: 0.5s ease-in-out;
+  background-color: #eeeeee46;
 }
 
 
@@ -95,9 +88,13 @@ ul.social {
   justify-content: space-between;
   z-index: 6;
   font-size: 0.8em;
-  border-radius: 5px;
-  background: #ffffff;
+  padding: 5px 20px;
+  border-radius: 6px;
+  color: #000000c5;
+  border: none;
+  box-shadow: rgba(135, 135, 135, 0.565) 0px -50px 36px -28px inset;
   transition: 0.5s ease-in-out;
+  background-color: #eeeeee46;
 
 }
 ul.social:hover {
@@ -120,33 +117,33 @@ ul.social:hover {
   transform: scale(1.1) translateY(-5px);
   transition: 0.5s ease-in-out;
 }
-
+#fade-text {
+  transition: opacity 0.5s ease-in-out;
+}
 
 .serv {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: max-content;
+  min-height: 100vh;
   width: 100%;
-  gap: 30px;
-  padding: 100px 0;
+  gap: 40px;
+  padding: 50px;
   overflow: hidden;
+  margin: auto;
+  background-color: #ffffff;
 }
 
-.serv h2 {
-  min-height: auto;
+.serv h3, .serv h4, .serv p {
   width: 100%;
-  font-weight: 700;
-  font-size: 1.8em;
-  padding: 30px 0;
+  margin: auto;
   text-align: center;
-  color: #000000c7;
+  padding: 20px;
 }
-.serv h3 {
-  width: 100%;
-}
+
 
 .serv .card {
   display: flex;
@@ -155,10 +152,9 @@ ul.social:hover {
   align-items: center;
   text-align: center;
   gap: 15px;
-  width: 25%;
-  min-height: 35dvh;
+  width: 300px;
+  height: 35dvh;
   padding: 15px;
-  line-height: 0.9;
   cursor: pointer;
   color: #000000c7;
   transition: all 0.7s ease-in-out;
@@ -209,6 +205,8 @@ ul.social:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
+  background-color: #ffffff;
  }
 
  .chan {
@@ -219,6 +217,7 @@ ul.social:hover {
   justify-content: space-evenly;
   align-items: center;
   padding: 40px;
+  
  }
 
  .intro h1 {
@@ -359,7 +358,8 @@ ul.social:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  z-index: 2;
+  background-color: #ffffff;
 }
 .serv2 h2 {
   text-align: center;
@@ -431,6 +431,7 @@ ul.social:hover {
     justify-content: center;
     align-items: center;
     display: flex;
+    
 }
 
 .carousel-inner {
@@ -461,6 +462,8 @@ ul.social:hover {
   align-items: center;
   gap: 30px;
   padding: 35px 0;
+  background-color: #ffffff;
+  z-index: 10;
 
 }
 .prod .card {
@@ -631,103 +634,11 @@ font-size: 2.1em;
 }
 
 
-.slide img {
-  width: 100px;
-  height: 100px;
-  animation: scroll 25s linear infinite;
-  border-radius: 6px;
-}
 
-@keyframes scroll {
-0% {transform: translateX(0);}
-100% {transform: translatex(-1000%)}
-}
 
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 10px;
-  max-width: 100%;
-}
 
-.footer-columns {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.footer-column {
-  flex: 1;
-
-}
-
-.footer-column h3 {
-  margin-bottom: 20px;
-}
-
-.footer-column ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.footer-column ul li {
-  margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-column ul li a:hover {
-  color: #ccc;
-}
-
-.social-icons {
-  margin-top: 20px;
-}
-
-.social-icon {
-  display: inline-block;
-  margin: 0 10px;
-  color: #fff;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-.social-icon:hover {
-  color: #ccc;
-}
 
 @media screen and (max-width: 769px) {
-
-
-  .topnav.responsive ul {
-    display: flex;
-    background-color: #000000c0;
-    flex-direction: column;
-    align-items: flex-end;
-    transition: all 1s ease-in-out;
-  }
-  .topnav ul li:not(:first-child) {
-    display: none; 
-  }
-  .topnav.responsive ul li {
-    display: flex;
-  }
-  .topnav.responsive ul li a {
-    color: #ffffff;
-  }
-  .topnav.responsive .logo img {
-
-    filter: invert(0);
-  }
-
-  .topnav ul li.icon {
-    display: block;
-    float: right;
-  }
 
   .text {
     text-align: center;
