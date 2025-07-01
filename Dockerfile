@@ -1,29 +1,32 @@
-# Imagen base actualizada
+# Imagen base
 FROM python:3.11-slim-bullseye
 
-# Actualiza los paquetes del sistema operativo para mitigar vulnerabilidades
-RUN apt-get update && apt-get upgrade -y && apt-get clean;
-
+# Actualiza sistema base
+RUN apt-get update && apt-get upgrade -y && apt-get clean
 
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos del proyecto
+# Copia el contenido del proyecto
 COPY . /app
 
-# Actualiza pip y las dependencias
+# Copia archivo .env.prod
+COPY .env.prod /app/.env
+
+# Crea carpeta de credenciales y copia el archivo .json
+RUN mkdir -p /app/credentials
+COPY credentials/pidevelopment-d43bb26fcbc3.json /app/credentials/
+
+# Instala dependencias
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Recolecta los archivos estáticos
+# Recolecta archivos estáticos
 RUN python manage.py collectstatic --noinput
 
-# Expone el puerto que Google Cloud Run usará
+# Expone el puerto que usará Cloud Run
 EXPOSE 8080
-
-# Define la variable de entorno para el puerto
 ENV PORT 8080
 
-# Comando para iniciar el servidor de producción con Gunicorn
+# Comando para iniciar el servidor con Gunicorn
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "pi_development.wsgi:application"]
-

@@ -10433,3 +10433,169 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 [01/Jul/2025 17:53:39] "GET /static/web/css/index.css HTTP/1.1" 200 17497
 [01/Jul/2025 17:53:41] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
 [01/Jul/2025 17:53:58] "GET /static/web/img/deep2.mp4 HTTP/1.1" 200 13521921
+[01/Jul/2025 18:08:46] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:08:46] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:08:46] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:08:46] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:08:46] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:08:46] "GET /static/web/css/index.css HTTP/1.1" 200 17498
+[01/Jul/2025 18:08:46] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:08:46] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:08:48] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:08:56] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:08:56,039] - Broken pipe from ('127.0.0.1', 50748)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:08:56] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:08:56] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:08:56] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:08:56] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:08:56] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:08:56] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:08:56] "GET /static/web/css/index.css HTTP/1.1" 200 17508
+[01/Jul/2025 18:08:56] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:09:06] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:09:06,762] - Broken pipe from ('127.0.0.1', 50744)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:09:06] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:09:06] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:09:06] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:09:06] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:09:06] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:09:06] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:09:06] "GET /static/web/css/index.css HTTP/1.1" 200 17492
+[01/Jul/2025 18:09:07] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:09:12] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:09:12,867] - Broken pipe from ('127.0.0.1', 50747)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:09:12] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:09:12] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:09:12] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:09:12] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:09:12] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:09:12] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:09:12] "GET /static/web/css/index.css HTTP/1.1" 200 17486
+[01/Jul/2025 18:09:13] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:09:28,178] - Broken pipe from ('127.0.0.1', 50745)
+[01/Jul/2025 18:09:56] "GET / HTTP/1.1" 200 11196
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:09:56] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:09:56] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:09:56] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:09:56] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:09:56] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:09:56] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:09:56] "GET /static/web/css/index.css HTTP/1.1" 200 17492
+[01/Jul/2025 18:09:57] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:10:11,928] - Broken pipe from ('127.0.0.1', 50839)
+[01/Jul/2025 18:10:24] "GET / HTTP/1.1" 200 11196
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:10:24] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:10:24] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:10:24] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:10:24] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:10:24] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:10:24] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:10:24] "GET /static/web/css/index.css HTTP/1.1" 200 17467
+[01/Jul/2025 18:10:24] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:10:36] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:10:36,301] - Broken pipe from ('127.0.0.1', 50743)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:10:36] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:10:36] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:10:36] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:10:36] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:10:36] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:10:36] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:10:36] "GET /static/web/css/index.css HTTP/1.1" 200 17467
+[01/Jul/2025 18:10:36] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:10:51,578] - Broken pipe from ('127.0.0.1', 50855)
+[01/Jul/2025 18:13:34] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:13:34,902] - Broken pipe from ('127.0.0.1', 51056)
+[01/Jul/2025 18:13:34] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:13:34] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:13:34] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:13:34] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:13:34] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:13:34] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:13:34] "GET /static/web/css/index.css HTTP/1.1" 200 17443
+[01/Jul/2025 18:13:36] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:14:20] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:14:20,279] - Broken pipe from ('127.0.0.1', 51445)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:14:20] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:14:20] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:14:20] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:14:20] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:14:20] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:14:20] "GET /static/web/css/index.css HTTP/1.1" 200 17443
+[01/Jul/2025 18:14:20] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:15:16] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:15:16,003] - Broken pipe from ('127.0.0.1', 50746)
+[01/Jul/2025 18:15:16] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:15:16] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:15:16] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:15:16] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:15:16] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:15:16] "GET /static/web/css/index.css HTTP/1.1" 200 17442
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:15:16] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:15:17] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:15:24] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:15:24,905] - Broken pipe from ('127.0.0.1', 51447)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:15:24] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:15:24] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:15:24] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:15:24] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:15:24] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:15:24] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:15:24] "GET /static/web/css/index.css HTTP/1.1" 200 17444
+[01/Jul/2025 18:15:25] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[01/Jul/2025 18:15:40,204] - Broken pipe from ('127.0.0.1', 51446)
+[01/Jul/2025 18:15:53] "GET / HTTP/1.1" 200 11196
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:15:53] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:15:53] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:15:53] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:15:53] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:15:53] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:15:53] "GET /static/web/css/index.css HTTP/1.1" 200 17444
+[01/Jul/2025 18:15:53] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:15:54] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:15:54,182] - Broken pipe from ('127.0.0.1', 51612)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[01/Jul/2025 18:15:54] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3604
+[01/Jul/2025 18:15:54] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[01/Jul/2025 18:15:54] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[01/Jul/2025 18:15:54] "GET /static/web/css/base.css HTTP/1.1" 200 557
+[01/Jul/2025 18:15:54] "GET /static/web/css/footer.css HTTP/1.1" 200 773
+[01/Jul/2025 18:15:54] "GET /static/web/css/index.css HTTP/1.1" 200 17444
+[01/Jul/2025 18:15:54] "GET /static/web/js/main.js HTTP/1.1" 200 1892
+[01/Jul/2025 18:17:50] "GET / HTTP/1.1" 200 11196
+[01/Jul/2025 18:17:50,162] - Broken pipe from ('127.0.0.1', 51476)
+[01/Jul/2025 18:17:50] "GET /static/web/css/index.css HTTP/1.1" 304 0
+[01/Jul/2025 18:30:56] "GET /static/web/img/deep2.mp4 HTTP/1.1" 200 13521921
+[01/Jul/2025 18:31:23] "GET / HTTP/1.1" 200 11195
+[01/Jul/2025 18:31:23] "GET /static/web/css/index.css HTTP/1.1" 304 0
+[01/Jul/2025 18:31:23] "GET /static/web/js/main.js HTTP/1.1" 304 0
+[01/Jul/2025 18:31:23] "GET /static/web/img/deep.mp4 HTTP/1.1" 200 7083711
+[01/Jul/2025 18:31:27] "GET / HTTP/1.1" 200 11195
+C:\Users\maria\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\maria\\OneDrive\\Documentos\\Pi-1\\upload_static_to_gcs.py': [Errno 2] No such file or directory
+
+[1m[37m===[39m Deploying to 'pidevelopment'...[22m
+
+[36m[1mi [22m[39m deploying [1mhosting[22m
+[36m[1mi  hosting[pidevelopment]:[22m[39m no "public" directory to upload, continuing with release
+[36m[1mi  hosting[pidevelopment]:[22m[39m finalizing version...
+[32m[1m+  hosting[pidevelopment]:[22m[39m version finalized
+[36m[1mi  hosting[pidevelopment]:[22m[39m releasing new version...
+[32m[1m+  hosting[pidevelopment]:[22m[39m release complete
+
+[32m[1m+ [22m[39m [1m[4mDeploy complete![24m[22m
+
+[1mProject Console:[22m https://console.firebase.google.com/project/pidevelopment/overview
+[1mHosting URL:[22m https://pidevelopment.web.app
+"bash" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.

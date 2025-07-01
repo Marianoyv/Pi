@@ -9,16 +9,12 @@ if [[ "$VIRTUAL_ENV" == "" ]]; then
   exit 1
 fi
 
-# Paso 1: Subir archivos estáticos
-echo "📦 1. Subiendo archivos estáticos a GCS..."
-python upload_static_to_gcs.py || { echo "❌ Falló al subir archivos estáticos"; exit 1; }
-
-# Paso 2: Build con Cloud Build
-echo "🐳 2. Construyendo imagen Docker..."
+# Paso 1: Build con Cloud Build
+echo "🐳 1. Construyendo imagen Docker..."
 gcloud builds submit --tag gcr.io/pidevelopment/pi-development || { echo "❌ Falló el build"; exit 1; }
 
-# Paso 3: Deploy a Cloud Run
-echo "🚢 3. Desplegando en Cloud Run..."
+# Paso 2: Deploy a Cloud Run
+echo "🚢 2. Desplegando en Cloud Run..."
 gcloud run deploy pi-development \
   --image gcr.io/pidevelopment/pi-development \
   --platform managed \
