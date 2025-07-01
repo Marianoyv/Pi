@@ -14,9 +14,6 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
-
-
-  
 }
 
 .showcase video {
@@ -29,14 +26,9 @@
   border: none;
   filter: blur(5px);
   background-color: #ffffff96;
-  box-shadow: inset 0 0 340px #ffffff;
-
-  
+  box-shadow: inset 0 0 340px #ffffff; 
 }
-
-
-
-.text {
+.showcase .text {
   color: #000000e2;
   position: absolute;
   width:100%;
@@ -55,18 +47,12 @@
   font-size: 3em;
   letter-spacing: 0px;
 }
-
 .showcase .text h2 {
   font-size: 2.1em;
   max-width: 80%;
   font-weight: 300;
 }
-
 .showcase .text button {
-  position: absolute;
-  bottom: -30%;
-  left: 50%;
-  transform: translateX(-50%);
   width: auto;
   height: auto;
   padding: 12px 28px;
@@ -77,8 +63,6 @@
   transition: 0.5s ease-in-out;
   background-color: #eeeeee46;
 }
-
-
 ul.social {
   position: absolute;
   right: 25px;
@@ -88,14 +72,12 @@ ul.social {
   justify-content: space-between;
   z-index: 6;
   font-size: 0.8em;
-  padding: 5px 20px;
   border-radius: 6px;
   color: #000000c5;
   border: none;
   box-shadow: rgba(135, 135, 135, 0.565) 0px -50px 36px -28px inset;
   transition: 0.5s ease-in-out;
   background-color: #eeeeee46;
-
 }
 ul.social:hover {
   transition: 1s ease-in-out;
@@ -105,22 +87,18 @@ ul.social:hover {
   margin: 10px;
   transition: 0.5s;
 }
-
 .fa-brands {
     font-size: 2.2em;
     color: #000000da;
     text-shadow: 0 0 20px #00000026;
- 
 }
-
 .social li a:hover, .fa-brands:hover {
-  transform: scale(1.1) translateY(-5px);
+  color: #ffffff;
   transition: 0.5s ease-in-out;
 }
 #fade-text {
   transition: opacity 0.5s ease-in-out;
 }
-
 .serv {
   position: relative;
   display: flex;
@@ -134,68 +112,250 @@ ul.social:hover {
   padding: 50px;
   overflow: hidden;
   margin: auto;
-  background-color: #ffffff;
+  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 50%, rgba(24, 24, 26, 1) 100%);
 }
-
-.serv h3, .serv h4, .serv p {
+.serv h3 {
   width: 100%;
-  margin: auto;
+  padding: 20px;
+  font-size: 2.5em;
+  font-weight: 500; 
+}
+.serv p {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #000000c7;
+}
+.serv .card h4 {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #000000c7;
+}
+.serv .card {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   text-align: center;
   padding: 20px;
+  margin: auto;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 12px;
 }
-
-
-.serv .card {
+.serv .card p {
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 10px;
+}
+.serv button, button {
+  width: auto;
+  height: auto;
+  margin: 40px 0;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #ffffffc7;
+  background-color: #ffffff00;
+  border: 1px solid #878787;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.serv button:hover, button:hover {
+  box-shadow: inset #e9e9e9 0px 0px 0px 100px;
+  border-color: #fff;
+  color: #000000;
+  transition: all 0.5s ease-in-out;
+}
+.portfolio-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.portfolio-text {
+  z-index: 2;
+  color: rgb(42, 42, 42);
+  text-align: center;
+  max-width: 600px;
+  text-shadow: 0px 0px 40px rgb(0, 0, 0);
+  padding: 2rem;
+}
+.portfolio-text h6 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.portfolio-text p {
+  font-size: 1rem;
+}
+.proceso-section {
+  position: relative;
+  width: 100%;
+  min-height: max-content;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 15px;
-  width: 300px;
-  height: 35dvh;
-  padding: 15px;
-  cursor: pointer;
-  color: #000000c7;
-  transition: all 0.7s ease-in-out;
-
-
+  padding: 50px;
+  background-color: #18181A;
+  color: #ffffff;
 }
-
-.serv .card:hover {
-  min-height: 36dvh;
-  width: 27%;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.178) 0px 30px 90px, inset 0 0 40px #ffffff47;
-  transition: all 0.7s ease-in-out;
-
-}
-
-.serv .card h3 {
+.proceso-section h5 {
   width: 100%;
-  font-size: 2.8em;
-  font-weight: 900;
-  height: auto;
+  padding: 20px;
+  font-size: 2.5em;
+  font-weight: 500; 
+}
+
+.proceso-section p {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+.proceso-section p a  {
+  text-decoration: none;
+  font-weight: 600;
+}
+.proceso-container {
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
+  margin-top: 100px;
+  align-items: center;
+  gap: 20px;
+}
+.proceso-step{
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: 20px;
-  transition: all 0.7s ease-in-out;
+  border-radius: 10px;
+  background-color: #000000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-
-.serv .card:hover h3 {
-  transition: all 0.7s ease-in-out;
+.proceso-step.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-
-
-.serv .card p {
-  font-family: 'Poppins';
+.proceso-step h6 {
+  font-size: 1.5em;
   font-weight: 600;
-  font-size: 1.1em;
-  text-shadow: none;
+}
+.proceso-step p {
+  font-size: 1em;
+  line-height: 1.5;
   padding: 10px;
-  line-height: 1.3;
-  transition: all 0.7s ease-in-out;
-
+}
+.explora {
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+section.explora div.container {
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+}
+.explora h2 {
+  width: 100%;
+  padding: 20px;
+  font-size: 2.5em;
+  font-weight: 500;
+}
+.explora p:not(.card p) {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+.explora a.card-link {
+  text-decoration: none;
+  color: #000000c7;
+  font-weight: 400;
+}
+.explora button {
+  width: auto;
+  height: auto;
+  margin: 40px auto;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #262626c7;
+  background-color: #ffffff00;
+  border: 1px solid #878787;
+  font-weight: 600;
+  transition: all 0.5s ease-in-out;
+}
+.explora button a {
+  color: #393939;
+}
+.nosotros {
+ min-height: max-content;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+justify-content: center;
+ align-items: center;
+ text-align: center;
+ padding: 50px;
+}
+.nosotros .values {
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.nosotros .values .value {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.nosotros button {
+  text-decoration: none;
+  color: #000000c7;
+  font-weight: 400;
 }
 
  .intro {
@@ -633,25 +793,43 @@ font-size: 2.1em;
   gap: 11em;
 }
 
-
-
-
-
-
 @media screen and (max-width: 769px) {
 
-  .text {
-    text-align: center;
-  max-width: 95%;
-  font-size: 1em;
+.showcase .text {
+  min-height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  text-align: left;
+  text-shadow: 11px 11px 20px #00000054;
 }
-
-  .text h2 {
-    font-size: 1.5em;
-    width: 100%;
-    right: 0;
+.showcase .text h1 {
+  padding: 20px;
+  font-weight: 700;
+  font-size: 2em;
+  letter-spacing: 0px;
+}
+.showcase .text h2 {
+  padding: 20px;
+  margin: 0;
+  font-size: 1.4em;
   font-weight: 300;
-  line-height: 1.8;
+}
+.showcase .text button {
+  width: auto;
+  height: auto;
+  margin: 20px auto;
+  padding: 12px 28px;
+  border-radius: 6px;
+  color: #000000c5;
+  border: none;
+  box-shadow: rgba(135, 135, 135, 0.565) 0px -50px 36px -28px inset;
+  transition: 0.5s ease-in-out;
+  background-color: #eeeeee46;
+}
+ul.social {
+  box-shadow: none;
 }
 
 .serv h2 {
@@ -659,14 +837,6 @@ font-size: 2.1em;
   font-weight: 400;
 }
 
-.serv .card {
-  width: 78%;
-  height: 40vh;
-}
-.serv .card:hover {
-  width: 85%;
-  height: 45vh;
-}
 .serv .card h3 {
   padding: 20px;
 }
@@ -705,9 +875,9 @@ font-size: 2.1em;
   line-height: 1.6;
 }
 .form-container {
-  width: 100%;
+  width: 80%;
   min-height: max-content;
-  border-radius: 0;
+  border-radius: 6px;
   padding: 20px;
   margin: 40px 0;
 }

@@ -22,3 +22,9 @@ a, ul, li {
   text-decoration: none;
   color: #fff;
 }
+button {
+  cursor: pointer;
+  background-color: none;
+  border: none;
+  outline: none;
+}
