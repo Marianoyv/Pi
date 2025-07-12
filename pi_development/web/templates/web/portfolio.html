@@ -1,49 +1,11 @@
 {% extends 'web/base.html' %}
-{% load static %}
-
-{% block title %}Portfolio - Pi Development{% endblock %}
-
+{% block title %}Proyectos y portfolio | Pi Development{% endblock %}
 {% block head %}
-<!-- Google Tag Manager -->
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];
-w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5RCQCP3');
-</script>
-<!-- End Google Tag Manager -->
-
-<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}">
-<link rel="icon" type="image/x-icon" href="{% static 'img/pi.ico' %}">
-<link rel="canonical" href="https://pidevelopment.web.app/" />
-<script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous"></script>
+<meta name="description" content="Mirá nuestros trabajos: proyectos digitales que combinan estrategia, diseño y tecnología.">
+<link rel="canonical" href="https://pidevelopment.web.app/portfolio/">
 {% endblock %}
 
 {% block content %}
-<div class="topnav" id="Topnav">
-    <a href="{% url 'index' %}" class="active">Pi <i>Development</i></a>
-    <a href="{% url 'contact' %}">Contact</a>
-    <a href="{% url 'portfolio' %}">Portfolio</a>
-    <a href="{% url 'about' %}">About</a>   
-    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-      <i class="fa fa-bars"></i>
-    </a>
-</div>
-
-<script>
-function myFunction() {
-  var x = document.getElementById("Topnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-</script>
-
 <section class="portfolio" id="portfolio">
   <div class="cardscont">
     <h2>Projects</h2>

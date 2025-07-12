@@ -10,3 +10,15 @@ urlpatterns = [
 
     # path('projects/', views.projects, name='projects'),  # Enable when template is ready
 ]
+
+from django.contrib.sitemaps.views import sitemap
+from pi_development.web.sitemaps import StaticViewSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
+urlpatterns += [
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
+]
+path('robots.txt', views.robots_txt, name='robots_txt'),

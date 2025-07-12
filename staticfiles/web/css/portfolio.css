@@ -127,8 +127,6 @@ p {
 
 .cardscont .card {
   vertical-align: top;
-
-
   overflow: hidden;
   display: flex;
   flex-direction: column;

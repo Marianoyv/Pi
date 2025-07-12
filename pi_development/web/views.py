@@ -19,7 +19,16 @@ def policies(request):
 def portfolio(request):
     return render(request, 'web/portfolio.html')
 
-
 # The project/portfolio section is currently unused. Enable it once a template is available.
 # def projects(request):
 #     return render(request, 'web/projects.html')
+
+from django.http import HttpResponse
+
+def robots_txt(request):
+    content = [
+        "User-Agent: *",
+        "Allow: /",
+        "Sitemap: https://pidevelopment.web.app/sitemap.xml"
+    ]
+    return HttpResponse("\n".join(content), content_type="text/plain")

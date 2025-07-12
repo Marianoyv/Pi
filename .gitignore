@@ -99,3 +99,4 @@ credentials/*.json
 credentials/*.json
 
 interface.py
+staticfiles/
