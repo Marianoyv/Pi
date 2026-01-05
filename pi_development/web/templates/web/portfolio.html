@@ -1,101 +1,20 @@
-{% extends 'web/base.html' %}
-{% block title %}Proyectos y portfolio | Pi Development{% endblock %}
-{% block head %}
-<meta name="description" content="Mirá nuestros trabajos: proyectos digitales que combinan estrategia, diseño y tecnología.">
-<link rel="canonical" href="https://pidevelopment.web.app/portfolio/">
-{% endblock %}
-
-{% block content %}
-<section class="portfolio" id="portfolio">
-  <div class="cardscont">
-    <h2>Projects</h2>
-
-    <!-- Card 1 -->
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://junometales.com/"></iframe>
-      </div>
-      <h4>Business Website</h4>
-      <div class="tbox"><p>html</p><p>css</p><p>bootstrap</p></div>
-      <div class="desc">
-        <a class="btnn" target="_blank" href="https://junometales.com/">Go to site</a>
-        <a class="btnn" target="_blank" href="https://github.com/Marianoyv/Juno">Browse Git</a>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://systemvesta.com/"></iframe>
-      </div>
-      <h4>Business Website</h4>
-      <div class="tbox"><p>WordPress</p></div>
-      <div class="desc">
-        <a class="btnn" target="_blank" href="https://systemvesta.com/">Go to site</a>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://arcade-world.web.app/"></iframe>
-      </div>
-      <h4>Personal Project</h4>
-      <div class="tbox"><p>HTML</p><p>CSS</p><p>JavaScript</p></div>
-      <div class="desc">
-        <a class="btnn" target="_blank" href="https://arcade-world.web.app/">Go to site</a>
-        <a class="btnn" target="_blank" href="https://github.com/Sebastian-E-SP/22511">Browse Git</a>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://recetasdelsapi.web.app/"></iframe> 
-      </div>
-      <h4>Personal Website</h4>
-      <div class="tbox"><p>HTML</p><p>CSS</p></div>
-      <div class="desc">
-        <a class="btnn" target="_blank" href="https://recetasdelsapi.web.app/">Go to site</a>
-        <a class="btnn" target="_blank" href="https://github.com/Marianoyv/Recetas_de_cocina">Browse Git</a>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="card">
-      <div class="screen">
-        <iframe src="https://blogintemocional.web.app/"></iframe>
-      </div>
-      <h4>Blog - Informational</h4>
-      <div class="tbox"><p>HTML</p><p>CSS</p><p>BOOTSTRAP</p></div>
-      <div class="desc">
-        <a class="btnn" target="_blank" href="https://blogintemocional.web.app/">Go to site</a>
-      </div>
-    </div>
+ {% load static %}
+ <section class="rellax-section" id="portfolio">
+  <h5 class="central-text">Proyectos que combinan estrategia, diseño y resultados</h5>
+  <div class="layer"></div>
+  <div class="rellax card-proyecto" data-rellax-speed="-3" style="top: 25%; left: 5%;">
+    <img src="{% static 'web/img/1.png' %}" alt="Sitio web de Arcade World">
   </div>
-</section>
-
-<section class="footer">
-  <div class="address details">
-    <i class="fa-solid fa-map-location-dot"></i>
-    <div class="topic"><h4>Location</h4></div>
-    <div class="text-one"><h5>Argentina - Buenos Aires</h5></div>
-    <div class="text-two">CABA</div>
+  <div class="rellax card-proyecto" data-rellax-speed="1" style="top: 25%; left: 40%;">
+    <img src="{% static 'web/img/2.png' %}" alt="Sitio web de Blog de Inteligencia Emocional">
   </div>
-  <div class="phone details">
-    <i class="fas fa-phone-alt"></i>
-    <div class="topic"><h4>Phone</h4></div>
-    <div class="text-two"><h5><a href="//api.whatsapp.com/send?phone=5491127295714">+54 911 2729 5714</a></h5></div>
+  <div class="rellax card-proyecto" data-rellax-speed="-3" style="top: 50%; left: 20%;">
+    <img src="{% static 'web/img/3.png' %}" alt="Sitio web de Blog de Inteligencia Emocional">
   </div>
-  <div class="email details">
-    <i class="fas fa-envelope"></i>
-    <div class="topic"><h4>Email</h4></div>
-    <div class="text-one"><h5><a href="mailto:mariano13age@gmail.com">@gmail.com</a></h5></div>
+  <div class="rellax card-proyecto" data-rellax-speed="-4" style="top: 55%; left: 60%;">
+    <img src="{% static 'web/img/4.png' %}" alt="Sitio web de Sistem Vesta – Seguridad informática">
   </div>
-</section>
-{% endblock %}
-
-{% block scripts %}
-<script src="{% static 'main.js' %}"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-{% endblock %}
+    <div class="rellax card-proyecto" data-rellax-speed="-2" style="top: 25%; left: 75%;">
+    <img src="{% static 'web/img/5.png' %}" alt="Sitio web de Juno metales">
+  </div>
+  </section>

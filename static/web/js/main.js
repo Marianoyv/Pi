@@ -1,3 +1,38 @@
+function initRellax() {
+  if (typeof Rellax !== 'function') return;
+  if (!document.querySelector('.rellax')) return;
+  new Rellax('.rellax', { center: true });
+}
+
+function initVanta() {
+  if (!window.VANTA || typeof window.VANTA.GLOBE !== 'function') return;
+  const el = document.getElementById('vanta-hero');
+  if (!el) return;
+
+  if (el.__vanta) {
+    el.__vanta.destroy();
+    el.__vanta = null;
+  }
+
+  el.__vanta = window.VANTA.GLOBE({
+    el,
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: true,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0xffb703,
+    backgroundColor: 0x000000
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initRellax();
+  initVanta();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   // ========== Toggle menú responsive ==========
   const nav = document.getElementById("Topnav");
@@ -57,3 +92,29 @@ function revealSteps() {
 
 window.addEventListener('scroll', revealSteps);
 window.addEventListener('load', revealSteps);
+
+window.handleContact = function (e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById('nombre')?.value?.trim();
+  const email = document.getElementById('correo_electronico')?.value?.trim();
+
+  if (!nombre || !email) {
+    alert('Completa nombre y correo.');
+    return;
+  }
+
+  const phone = '5491170619703'; // tu número con código país
+  const message = `Hola! Soy ${nombre}. Mi correo es ${email}. Vengo desde pidevelopment.web.app`;
+
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank');
+
+  if (typeof gtag === 'function') {
+    gtag('event', 'contact_submit', {
+      method: 'whatsapp'
+    });
+  }
+};
+

@@ -14006,3 +14006,40 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 [05/Jul/2025 14:38:55] "GET /static/web/css/navbar.css HTTP/1.1" 200 1728
 [05/Jul/2025 14:38:55] "GET /static/web/css/footer.css HTTP/1.1" 200 773
 [05/Jul/2025 14:39:06] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[Main b2dda7a] google
+ 20 files changed, 802 insertions(+), 516 deletions(-)
+ create mode 100644 pi_development/web/sitemaps.py
+ create mode 100644 robots.txt
+ delete mode 100644 static/web/img/deep.mp4
+branch 'Main' set up to track 'origin/Main'.
+remote: error: GH013: Repository rule violations found for refs/heads/Main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.        
+remote:      Visit the repository settings page, https://github.com/Marianoyv/Pi/settings/security_analysis        
+remote:             
+remote:             
+remote:       —— Google Cloud Service Account Credentials ——————————        
+remote:        locations:        
+remote:          - commit: 4f2a4b8eb0461bab1d2c40eaefd71ce654b70487        
+remote:            path: pidevelopment-26f464065269.json:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/Marianoyv/Pi/security/secret-scanning/unblock-secret/2zmFVzd7hRtrpz38aeJ9w5ve4rI        
+remote:             
+remote: 
+remote: 
+To https://github.com/Marianoyv/Pi.git
+ ! [remote rejected] Main -> Main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/Marianoyv/Pi.git'
+"bash" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.

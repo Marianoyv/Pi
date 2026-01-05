@@ -1,0 +1,97 @@
+.proceso-section {
+  position: relative;
+  width: 100%;
+  min-height: max-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 50px;
+  margin: 0;
+  background-color: #18181a;
+  color: #ffffff;
+}
+.proceso-section h5 {
+  width: 100%;
+  padding: 20px;
+  font-size: 2.5em;
+  font-weight: 500; 
+}
+
+.proceso-section p {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+.proceso-section p a  {
+  text-decoration: none;
+  font-weight: 600;
+}
+.proceso-container {
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 100px;
+  align-items: center;
+  gap: 20px;
+}
+.proceso-step{
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000000;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.proceso-step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.proceso-step h6 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+.proceso-step p {
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 10px;
+}
+
+@media screen and (max-width: 769px) {
+
+.proceso-section{
+  z-index: 10;
+  margin: 0;
+  min-height: max-content;
+  height: auto;
+  padding: 30px 10px;
+}
+.proceso-section h5 {
+  padding: 20px;
+  font-size: 1.5em;
+}
+.proceso-section p {
+  padding: 10px;
+  font-size: 1em;
+  line-height: 1.6;
+}
+.proceso-container {
+  margin-top: 20px;
+  min-height: auto;
+}
+}

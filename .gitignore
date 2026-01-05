@@ -96,7 +96,8 @@ credentials/*.json
 # Logs
 *.log
 .env
-credentials/*.json
-
 interface.py
 staticfiles/
+credentials/
+*.json
+pidevelopment-26f464065269.json

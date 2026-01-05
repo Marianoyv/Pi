@@ -1,0 +1,70 @@
+.nosotros {
+ min-height: max-content;
+ width: 100%;
+ display: flex;
+ flex-direction: column;
+justify-content: center;
+ align-items: center;
+ text-align: center;
+ padding: 50px;
+}
+.nosotros h1 {
+  width: 100%;
+  padding: 20px;
+  font-size: 2.5em;
+  font-weight: 500; 
+}
+.nosotros h2 {
+  width: 100%;
+  padding: 20px;
+  font-size: 1.5em;
+  font-weight: 400; 
+}
+.nosotros p {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+}
+.nosotros .values {
+  width: 100%;
+  min-height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+.nosotros .values .value {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.nosotros .values .value h3 {
+  font-size: 1.5em;
+  padding: 0 20px;
+  font-weight: 600;
+  color: #000000c7;
+}
+.nosotros button {
+  text-decoration: none;
+  color: #000000c7;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 769px) {
+.nosotros {
+  padding: 10px;
+}
+.nosotros p{
+  padding: 10px;
+  margin: 0;
+}
+}
