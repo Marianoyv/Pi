@@ -2,6 +2,10 @@
 *.pyc
 __pycache__/
 staticfiles/
+.venv/
+.git/
+db.sqlite3
+.pytest_cache/
 .vscode/
 .idea/
 .DS_Store

@@ -1,0 +1,246 @@
+Watching for file changes with StatReloader
+[05/Jan/2026 20:04:15] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:04:15] "GET /static/web/css/footer.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/navbar.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/hero.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/servicios.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/herramientas.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/nosotros.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/proceso.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/contacto.css HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/img/piw.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/img/1.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/img/2.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/img/3.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/base.css HTTP/1.1" 200 760
+[05/Jan/2026 20:04:15] "GET /static/web/img/4.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/js/main.js HTTP/1.1" 304 0
+[05/Jan/2026 20:04:15] "GET /static/web/css/portfolio.css HTTP/1.1" 200 1514
+[05/Jan/2026 20:04:15] "GET /static/web/img/5.png HTTP/1.1" 304 0
+[05/Jan/2026 20:04:16] "GET /static/web/img/pi.ico HTTP/1.1" 304 0
+[05/Jan/2026 20:13:48] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:13:48] "GET /static/web/css/base.css HTTP/1.1" 304 0
+[05/Jan/2026 20:13:48] "GET /static/web/css/portfolio.css HTTP/1.1" 304 0
+[05/Jan/2026 20:13:50] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:13:50] "GET /static/web/css/base.css HTTP/1.1" 200 760
+[05/Jan/2026 20:13:50] "GET /static/web/css/proceso.css HTTP/1.1" 200 1815
+[05/Jan/2026 20:13:50] "GET /static/web/css/footer.css HTTP/1.1" 200 850
+[05/Jan/2026 20:13:50] "GET /static/web/css/servicios.css HTTP/1.1" 200 2289
+[05/Jan/2026 20:13:50] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[05/Jan/2026 20:13:50] "GET /static/web/css/hero.css HTTP/1.1" 200 3125
+[05/Jan/2026 20:13:50] "GET /static/web/css/portfolio.css HTTP/1.1" 200 1514
+[05/Jan/2026 20:13:50] "GET /static/web/css/herramientas.css HTTP/1.1" 200 1267
+[05/Jan/2026 20:13:50] "GET /static/web/css/nosotros.css HTTP/1.1" 200 1255
+[05/Jan/2026 20:13:50] "GET /static/web/css/contacto.css HTTP/1.1" 200 3489
+[05/Jan/2026 20:13:50] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[05/Jan/2026 20:13:50] "GET /static/web/img/1.png HTTP/1.1" 200 539739
+[05/Jan/2026 20:13:50] "GET /static/web/img/2.png HTTP/1.1" 200 830524
+[05/Jan/2026 20:13:50] "GET /static/web/img/3.png HTTP/1.1" 200 759019
+[05/Jan/2026 20:13:50] "GET /static/web/js/main.js HTTP/1.1" 200 3388
+[05/Jan/2026 20:13:50] "GET /static/web/img/4.png HTTP/1.1" 200 940032
+[05/Jan/2026 20:13:50] "GET /static/web/img/5.png HTTP/1.1" 200 459414
+[05/Jan/2026 20:13:51] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[05/Jan/2026 20:13:54] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:14:01] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:16:47] "GET / HTTP/1.1" 200 12342
+[05/Jan/2026 20:16:47] "GET /static/web/css/base.css HTTP/1.1" 304 0
+[05/Jan/2026 20:16:47] "GET /static/web/css/portfolio.css HTTP/1.1" 304 0
+[05/Jan/2026 20:17:20] "GET / HTTP/1.1" 200 13114
+[05/Jan/2026 20:17:21] "GET / HTTP/1.1" 200 13114
+[05/Jan/2026 20:17:21] "GET /static/web/css/base.css HTTP/1.1" 200 760
+[05/Jan/2026 20:17:21] "GET /static/web/css/footer.css HTTP/1.1" 200 850
+[05/Jan/2026 20:17:21] "GET /static/web/css/navbar.css HTTP/1.1" 200 1803
+[05/Jan/2026 20:17:21] "GET /static/web/css/servicios.css HTTP/1.1" 200 2289
+[05/Jan/2026 20:17:21] "GET /static/web/css/hero.css HTTP/1.1" 200 3125
+[05/Jan/2026 20:17:21] "GET /static/web/css/portfolio.css HTTP/1.1" 200 1514
+[05/Jan/2026 20:17:21] "GET /static/web/css/proceso.css HTTP/1.1" 200 1815
+[05/Jan/2026 20:17:21] "GET /static/web/css/contacto.css HTTP/1.1" 200 3489
+[05/Jan/2026 20:17:21] "GET /static/web/css/nosotros.css HTTP/1.1" 200 1255
+[05/Jan/2026 20:17:21] "GET /static/web/css/herramientas.css HTTP/1.1" 200 1267
+[05/Jan/2026 20:17:21] "GET /static/web/img/piw.png HTTP/1.1" 200 8188
+[05/Jan/2026 20:17:21] "GET /static/web/img/1.png HTTP/1.1" 200 539739
+[05/Jan/2026 20:17:21] "GET /static/web/img/3.png HTTP/1.1" 200 759019
+[05/Jan/2026 20:17:21] "GET /static/web/img/2.png HTTP/1.1" 200 830524
+[05/Jan/2026 20:17:21] "GET /static/web/img/4.png HTTP/1.1" 200 940032
+[05/Jan/2026 20:17:21] "GET /static/web/js/main.js HTTP/1.1" 200 2602
+[05/Jan/2026 20:17:21] "GET /static/web/img/5.png HTTP/1.1" 200 459414
+[05/Jan/2026 20:17:22] "GET /static/web/img/pi.ico HTTP/1.1" 200 6953
+[05/Jan/2026 20:18:24] "GET / HTTP/1.1" 200 12570
+[05/Jan/2026 20:18:24] "GET /static/web/js/main.js HTTP/1.1" 200 3388
+[05/Jan/2026 20:20:59] "GET / HTTP/1.1" 200 13232
+[05/Jan/2026 20:20:59] "GET /static/web/css/base.css HTTP/1.1" 304 0
+[05/Jan/2026 20:20:59] "GET /static/web/css/portfolio.css HTTP/1.1" 304 0
+[05/Jan/2026 20:20:59] "GET /static/web/js/main.js HTTP/1.1" 304 0
+[05/Jan/2026 20:21:05] "GET / HTTP/1.1" 200 13232
+[05/Jan/2026 20:21:05] "HEAD / HTTP/1.1" 200 0
+[05/Jan/2026 20:22:45] "GET / HTTP/1.1" 200 14228
+[05/Jan/2026 20:22:45] "GET /static/web/js/main.js HTTP/1.1" 304 0
+[05/Jan/2026 20:23:46] "GET /static/web/css/base.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[05/Jan/2026 20:23:46] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 4126
+[05/Jan/2026 20:23:47] "GET / HTTP/1.1" 200 14228
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[05/Jan/2026 20:23:47] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 4126
+[05/Jan/2026 20:23:47] "GET /static/web/js/main.js HTTP/1.1" 304 0
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 05, 2026 - 20:04:13
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[05/Jan/2026 20:28:01] "GET / HTTP/1.1" 200 14228
+[05/Jan/2026 20:28:01] "GET /static/web/css/base.css HTTP/1.1" 304 0
+[05/Jan/2026 20:28:01] "GET /static/web/css/portfolio.css HTTP/1.1" 304 0
+[05/Jan/2026 20:28:01] "GET /static/web/js/main.js HTTP/1.1" 304 0
+^C\Users\maria\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\maria\\OneDrive\\Documentos\\Pi-1\\upload_static_to_gcs.py': [Errno 2] No such file or directory
+Traceback (most recent call last):
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\manage.py", line 22, in <module>
+    main()
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\core\management\__init__.py", line 17, in <module>
+    from django.conf import settings
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\conf\__init__.py", line 19, in <module>
+    from django.utils.deprecation import RemovedInDjango60Warning
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\django\utils\deprecation.py", line 4, in <module>
+    from asgiref.sync import iscoroutinefunction, markcoroutinefunction, sync_to_async
+  File "C:\Users\maria\OneDrive\Documentos\Pi-1\.venv\Lib\site-packages\asgiref\sync.py", line 1, in <module>
+    import asyncio
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\asyncio\__init__.py", line 42, in <module>
+    from .windows_events import *
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 25, in <module>
+    from . import windows_utils
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_utils.py", line 13, in <module>
+    import tempfile
+  File "C:\Users\maria\AppData\Local\Programs\Python\Python311\Lib\tempfile.py", line 45, in <module>
+    from random import Random as _Random
+  File "<frozen importlib._bootstrap>", line 1178, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1149, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1032, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1130, in get_data
+KeyboardInterrupt
+"bash" no se reconoce como un comando interno o externo,
+programa o archivo por lotes ejecutable.
+
+[1m[37m===[39m Deploying to 'pidevelopment'...[22m
+
+[36m[1mi [22m[39m deploying [1mhosting[22m
+[36m[1mi  hosting[pidevelopment]:[22m[39m no "public" directory to upload, continuing with release
+[36m[1mi  hosting[pidevelopment]:[22m[39m finalizing version...
+^C
+[1m[37m===[39m Deploying to 'pidevelopment'...[22m
+
+[36m[1mi [22m[39m deploying [1mhosting[22m
+[36m[1mi  hosting[pidevelopment]:[22m[39m no "public" directory to upload, continuing with release
+[36m[1mi  hosting[pidevelopment]:[22m[39m finalizing version...
+[32m[1m+  hosting[pidevelopment]:[22m[39m version finalized
+[36m[1mi  hosting[pidevelopment]:[22m[39m releasing new version...
+[32m[1m+  hosting[pidevelopment]:[22m[39m release complete
+
+[32m[1m+ [22m[39m [1m[4mDeploy complete![24m[22m
+
+[1mProject Console:[22m https://console.firebase.google.com/project/pidevelopment/overview
+[1mHosting URL:[22m https://pidevelopment.web.app
+Watching for file changes with StatReloader
+[06/Jan/2026 11:32:33] "GET / HTTP/1.1" 200 14012
+[06/Jan/2026 12:26:10] "GET / HTTP/1.1" 200 14012
+[06/Jan/2026 12:26:10] "GET /static/web/css/base.css HTTP/1.1" 304 0
+[06/Jan/2026 12:26:10] "GET /static/web/css/navbar.css HTTP/1.1" 304 0
+[06/Jan/2026 12:26:10] "GET /static/web/css/hero.css HTTP/1.1" 304 0
+[06/Jan/2026 12:26:10] "GET /static/web/css/servicios.css HTTP/1.1" 304 0
+[06/Jan/2026 12:26:10] "GET /static/web/css/portfolio.css HTTP/1.1" 304 0
+[06/Jan/2026 12:26:10] "GET /static/web/js/main.js HTTP/1.1" 304 0
+[06/Jan/2026 12:37:45] "GET / HTTP/1.1" 200 14012
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 11:32:31
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings_dev.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 13:13:10
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings_local.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 13:14:22
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+[06/Jan/2026 13:22:49] "GET / HTTP/1.1" 200 14012
+[06/Jan/2026 13:22:49] "GET /static/web/css/footer.css HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/css/proceso.css HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/css/herramientas.css HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/css/nosotros.css HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/css/contacto.css HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/1.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/piw.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/2.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/3.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/4.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:49] "GET /static/web/img/5.png HTTP/1.1" 304 0
+[06/Jan/2026 13:22:50] "GET /static/web/img/pi.ico HTTP/1.1" 304 0
+[06/Jan/2026 13:22:57] "GET / HTTP/1.1" 200 14012
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 13:16:08
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 13:39:42
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader
+C:\Users\maria\OneDrive\Documentos\Pi-1\pi_development\settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 06, 2026 - 14:11:14
+Django version 5.2, using settings 'pi_development.settings_local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+Watching for file changes with StatReloader

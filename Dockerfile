@@ -1,6 +1,10 @@
 # Imagen base
 FROM python:3.11-slim-bullseye
 
+# Evita .pyc y buffer de logs
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
 # Actualiza sistema base
 RUN apt-get update && apt-get upgrade -y && apt-get clean
 
@@ -13,18 +17,14 @@ COPY . /app
 # Copia archivo .env.prod
 COPY .env.prod /app/.env
 
-# Crea carpeta de credenciales y copia el archivo .json
-RUN mkdir -p /app/credentials
-COPY credentials/pidevelopment-d43bb26fcbc3.json /app/credentials/
-
 # Instala dependencias
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Recolecta archivos estáticos
+# Recolecta archivos estaticos
 RUN python manage.py collectstatic --noinput
 
-# Expone el puerto que usará Cloud Run
+# Expone el puerto que usara Cloud Run
 EXPOSE 8080
 ENV PORT 8080
 

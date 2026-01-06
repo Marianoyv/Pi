@@ -49,6 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pi_development.context_processors.site_settings',
             ],
         },
     },
@@ -79,21 +80,35 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+SITE_URL = config('SITE_URL', default='https://pidevelopment.web.app')
+
 # Ruta a credenciales de Google
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(BASE_DIR / config('GOOGLE_APPLICATION_CREDENTIALS'))
+credentials_path = Path(config('GOOGLE_APPLICATION_CREDENTIALS'))
+if not credentials_path.is_absolute():
+    credentials_path = BASE_DIR / credentials_path
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
 
 # Configuración de Google Cloud Storage
 GS_BUCKET_NAME = config('GS_BUCKET_NAME')
-GS_DEFAULT_ACL = 'publicRead'
-STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_DEFAULT_ACL = None  # Requerido si el bucket tiene Uniform bucket-level access
+STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+STATICFILES_STORAGE = 'pi_development.storage.StaticRootGoogleCloudStorage'
+DEFAULT_FILE_STORAGE = 'pi_development.storage.MediaRootGoogleCloudStorage'
 
 # Ruta local de archivos estáticos
-STATICFILES_DIRS = [BASE_DIR / 'static',]
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Requerido por Django
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+CSRF_TRUSTED_ORIGINS = [
+    'https://pidevelopment.web.app',
+    'https://*.run.app',
+]
 
 # Campo por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -6,14 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <meta name="description" content="Pi Development: estrategia digital, desarrollo web, UX/UI y marketing para marcas que buscan crecer.">
-<link rel="canonical" href="{{ request.build_absolute_uri|default:'' }}">
+<link rel="canonical" href="{{ site_url }}{{ request.path|default:'/' }}">
 <meta property="og:site_name" content="Pi Development">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{% block og_title %}Pi Development{% endblock %}">
 <meta property="og:description" content="{% block og_description %}Soluciones digitales personalizadas para tu empresa.{% endblock %}">
 <meta property="og:image" content="{% static 'web/img/pi.png' %}">
 <link rel="stylesheet" href="{% static 'web/css/base.css' %}">
-<meta property="og:url" content="{{ request.build_absolute_uri|default:'' }}">
+<meta property="og:url" content="{{ site_url }}{{ request.path|default:'/' }}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
