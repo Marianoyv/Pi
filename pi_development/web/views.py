@@ -5,19 +5,19 @@ def index(request):
     return render(request, 'web/index.html')
 
 def about(request):
-    """Render the About page."""
-    return render(request, 'web/about.html')
+    """Render the About page (nosotros)."""
+    return render(request, 'web/about_page.html')
 
 def contact(request):
-    """Render the Contact page."""
-    return render(request, 'web/contact.html')
+    """Render the Contact page (contacto)."""
+    return render(request, 'web/contact_page.html')
 
 def policies(request):
     """Render the policies page."""
     return render(request, 'web/policies.html')
 
 def portfolio(request):
-    return render(request, 'web/portfolio.html')
+    return render(request, 'web/portfolio_page.html')
 
 # The project/portfolio section is currently unused. Enable it once a template is available.
 # def projects(request):

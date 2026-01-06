@@ -28,70 +28,61 @@ function initVanta() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initRellax();
-  initVanta();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  // ========== Toggle menú responsive ==========
-  const nav = document.getElementById("Topnav");
-  const menuBtn = document.querySelector(".menu-icon");
+function initNavbar() {
+  const nav = document.getElementById('Topnav');
+  const navLinks = document.getElementById('navLinks');
+  const menuBtn = document.querySelector('.menu-icon');
+  const progressBar = document.getElementById('progress-bar');
+  const fadeText = document.getElementById('fade-text');
 
   function toggleMenu() {
-    if (nav && nav.className === "topnav") {
-      nav.className += " responsive";
-    } else if (nav) {
-      nav.className = "topnav";
+    if (navLinks) {
+      navLinks.classList.toggle('active');
     }
   }
 
   if (menuBtn) {
-    menuBtn.addEventListener("click", toggleMenu);
+    menuBtn.addEventListener('click', toggleMenu);
   }
 
-  // ========== Navbar oscuro al hacer scroll ==========
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     if (nav) {
-      nav.classList.toggle("dark", window.scrollY > 100);
+      nav.classList.toggle('dark', window.scrollY > 80);
     }
 
-    // ========== Fade del texto con scroll ==========
-    const fadeText = document.getElementById("fade-text");
-    const viewportHeight = window.innerHeight;
     if (fadeText) {
-      fadeText.style.opacity = window.scrollY > viewportHeight * 0.3 ? "0" : "1";
+      const viewportHeight = window.innerHeight;
+      fadeText.style.opacity = window.scrollY > viewportHeight * 0.3 ? '0' : '1';
     }
 
-    // ========== Barra de progreso  ==========
-    const progressBar = document.getElementById("progress-bar");
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
     if (progressBar) {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       progressBar.style.width = `${progress}%`;
-    }
-  });
-});
-// ========== Animación de pasos del proceso ==========
-// Selecciona todos los pasos del proceso
-  const procesoSteps = document.querySelectorAll('.proceso-step');
-
-function revealSteps() {
-  const trigger = window.innerHeight * 0.85;
-
-  procesoSteps.forEach((step, i) => {
-    const top = step.getBoundingClientRect().top;
-    if (top < trigger) {
-      setTimeout(() => {
-        step.classList.add('visible');
-      }, i * 200); // delay progresivo
     }
   });
 }
 
-window.addEventListener('scroll', revealSteps);
-window.addEventListener('load', revealSteps);
+function initProcesoAnimation() {
+  const procesoSteps = document.querySelectorAll('.proceso-step');
+  if (!procesoSteps.length) return;
+
+  function revealSteps() {
+    const trigger = window.innerHeight * 0.85;
+    procesoSteps.forEach((step, i) => {
+      const top = step.getBoundingClientRect().top;
+      if (top < trigger) {
+        setTimeout(() => {
+          step.classList.add('visible');
+        }, i * 200);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealSteps);
+  window.addEventListener('load', revealSteps);
+}
 
 window.handleContact = function (e) {
   e.preventDefault();
@@ -100,13 +91,12 @@ window.handleContact = function (e) {
   const email = document.getElementById('correo_electronico')?.value?.trim();
 
   if (!nombre || !email) {
-    alert('Completa nombre y correo.');
+    alert('Completá nombre y correo.');
     return;
   }
 
   const phone = '5491170619703'; // tu número con código país
   const message = `Hola! Soy ${nombre}. Mi correo es ${email}. Vengo desde pidevelopment.web.app`;
-
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
   window.open(url, '_blank');
@@ -118,3 +108,9 @@ window.handleContact = function (e) {
   }
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+  initRellax();
+  initVanta();
+  initNavbar();
+  initProcesoAnimation();
+});

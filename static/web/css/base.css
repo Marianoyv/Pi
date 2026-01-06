@@ -5,24 +5,20 @@
   padding: 0;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior:smooth;
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 50%, rgba(0,0,0,1) 100%);
 }
+
 body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    text-wrap: balance;
     line-height: 1.6;
 }
 a, ul, li {
+  list-style-type: none;
   list-style: none;
   text-decoration: none;
   color: #fff;
-}
-button {
-  cursor: pointer;
-  background-color: none;
-  border: none;
-  outline: none;
 }
 ::-webkit-scrollbar-track{
   border-color: transparent;

@@ -13,6 +13,7 @@
   width: 100%;
   z-index: 999;
   padding: 1rem 2rem;
+  color: #000;
   background: transparent;
   display: flex;
   justify-content: center;
@@ -46,33 +47,27 @@
   width: 20px;
   height: 20px;
   margin-right: 8px;
-  filter: invert(1);
 }
 
 .nav-links a {
   margin-left: 1.5rem;
   text-decoration: none;
-  color: #2b2b2b;
+  color: #eaeaea;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 .dark .nav-links a {
-  color: #ffffff;
-}
-.dark img {
-  filter: invert(0);
+  color: #636363;
 }
 
-.nav-links a:hover {
-  color: #000000;
-}
+
  .dark .nav-links  a:hover {
   color: #ffffff;
 }
 
 .menu-icon {
   display: none;
-  color: #2b2b2b;
+  color: #d1d1d1;
   font-size: 1.4rem;
   cursor: pointer;
 }

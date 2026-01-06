@@ -1,17 +1,17 @@
 <section class="intro" id="contacto">
   <div class="chan">
-    <h1>Empezamos?</h1>
+    <h1>¿Empezamos?</h1>
     <p>Transforma tu potencial digital en resultados tangibles y conexiones con tu audiencia.</p>
   </div>
   <div class="form-container">
     <form class="form" onsubmit="handleContact(event)">
       <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre">
+        <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre" required>
         <label for="correo_electronico">Correo electrónico:</label>
         <input type="email" id="correo_electronico" name="correo_electronico" placeholder="Introduce tu correo electrónico" required>
       </div>
-      <button type="submit" class="form-submit-btn" onclick="handleContact(event)">Enviar</button>
+      <button type="submit" class="form-submit-btn">Enviar</button>
     </form>
   </div>
 </section>

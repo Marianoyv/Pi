@@ -1,6 +1,5 @@
 {% load static %}
 <div id="progress-bar"></div>
-
 <nav class="topnav" id="Topnav">
   <div class="nav-container">
     <a class="logo" href="/"><img src="{% static 'web/img/piw.png' %}" alt="Logo"></a>
@@ -11,24 +10,8 @@
       <a href="#explora">Explora</a>
       <a href="#contacto">Contacto</a>
     </div>
-    <div class="menu-icon" onclick="toggleMenu()">
+    <div class="menu-icon">
       <i class="fa fa-bars"></i>
     </div>
   </div>
 </nav>
-<script>
-
-  function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('active');
-  }
-
-  document.addEventListener('scroll', () => {
-    const navbar = document.getElementById('Topnav');
-    navbar.classList.toggle('dark', window.scrollY > 80);
-
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    document.getElementById('progress-bar').style.width = `${progress}%`;
-  });
-</script>

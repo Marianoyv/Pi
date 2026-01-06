@@ -6,6 +6,7 @@ class StaticViewSitemap(Sitemap):
     changefreq = 'monthly'
 
     def items(self):
+        # Routes that exist in templates
         return ['index', 'about', 'contact', 'policies', 'portfolio']
 
     def location(self, item):
