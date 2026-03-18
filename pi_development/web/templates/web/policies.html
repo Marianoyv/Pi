@@ -1,64 +1,66 @@
-{% extends 'web/base.html' %}
+﻿{% extends 'web/base.html' %}
+{% load static %}
 {% block title %}Políticas de privacidad | Pi Development{% endblock %}
+{% block og_title %}Políticas de privacidad | Pi Development{% endblock %}
+{% block og_description %}Información legal, privacidad, cookies y condiciones de uso de Pi Development.{% endblock %}
 {% block head %}
 <meta name="description" content="Conocé nuestras políticas de privacidad y el uso responsable de tus datos personales.">
 <link rel="canonical" href="https://pidevelopment.web.app/policies/">
+<link rel="stylesheet" href="{% static 'web/css/policies.css' %}">
 {% endblock %}
-
 {% block content %}
-<div class="contenido">
-  <h1>Política de Privacidad</h1>
-
-  <h2>1. Información que recopilamos</h2>
-  <p>Recopilamos información personal que nos proporcionás voluntariamente, como tu nombre, correo electrónico, dirección postal, número de teléfono y otros datos de contacto. También recopilamos datos sobre tu dispositivo y actividad en el sitio (IP, navegador, sistema operativo, páginas visitadas, fecha/hora y cookies).</p>
-
-  <h2>2. Uso de la información</h2>
-  <p>Usamos la información para: brindarte servicios, mejorar tu experiencia, enviarte comunicaciones relevantes (boletines, ofertas, anuncios), realizar análisis y estadísticas, y proteger el sitio de fraude y abuso.</p>
-
-  <h2>3. Compartir la información</h2>
-  <p>Compartimos datos con terceros que nos ayudan a operar (hosting, marketing, analítica). También podemos compartir si lo requiere la ley, para proteger nuestros derechos o en caso de fusión/adquisición.</p>
-
-  <h2>4. Tus derechos</h2>
-  <p>Podés acceder, rectificar, eliminar u oponerte al tratamiento de tus datos. También podés ejercer portabilidad o limitar el tratamiento. Escribinos a los datos de contacto para ejercerlos.</p>
-
-  <h2>5. Seguridad</h2>
-  <p>Aplicamos medidas razonables de seguridad, aunque ninguna es 100% infalible.</p>
-
-  <h2>6. Menores de edad</h2>
-  <p>No recopilamos intencionalmente datos de menores de 18 años. Si sos menor, no envíes información sin consentimiento de tus tutores.</p>
-
-  <h2>7. Cambios en la política</h2>
-  <p>Podemos actualizar esta política; publicaremos los cambios y, si son relevantes, te notificaremos.</p>
-
-  <h2>8. Contacto</h2>
-  <ul>
-    <li>PI Development</li>
-    <li>Buenos Aires, Argentina</li>
-    <li>hola@pidevelopment.web.app</li>
-    <li>+54 9 11 7061 9703</li>
-  </ul>
-
-  <h2>Política de Cookies</h2>
-  <h3>¿Qué son las cookies?</h3>
-  <p>Archivos de texto que se almacenan en tu dispositivo al visitar un sitio. Guardan preferencias de idioma, configuración y actividad.</p>
-
-  <h3>¿Qué tipos usamos?</h3>
-  <ul>
-    <li><strong>Técnicas:</strong> necesarias para el funcionamiento del sitio.</li>
-    <li><strong>Analíticas:</strong> ayudan a entender cómo usás el sitio.</li>
-    <li><strong>Marketing:</strong> permiten mostrarte anuncios relevantes.</li>
-  </ul>
-
-  <h3>Gestión de cookies</h3>
-  <p>Podés configurarlas en tu navegador: aceptar todas, rechazarlas o elegir por sitio.</p>
-
-  <h2>Términos y Condiciones</h2>
-  <p>Al usar el sitio aceptás estos términos:</p>
-  <ul>
-    <li>Uso personal y no comercial; no publicar contenido ilegal ni infringir propiedad intelectual.</li>
-    <li>No distribuir virus, malware ni enviar spam.</li>
-    <li>El sitio se ofrece “tal cual”, sin garantías; no respondemos por daños derivados de su uso.</li>
-    <li>Debés indemnizar y mantener indemne a PI Development ante reclamos por tu uso del sitio.</li>
-  </ul>
-</div>
+{% include 'web/components/navbar.html' %}
+<section class="page-shell">
+  <div class="page-shell__inner">
+    <p class="page-shell__eyebrow">Legal</p>
+    <h1>Privacidad, cookies y condiciones de uso</h1>
+    <p class="page-shell__lead">Esta página reúne la base legal del sitio y deja preparada una estructura más clara para futuras mejoras de confianza y cumplimiento.</p>
+  </div>
+</section>
+<section class="policies-page">
+  <div class="contenido">
+    <h1>Política de Privacidad</h1>
+    <h2>1. Información que recopilamos</h2>
+    <p>Recopilamos información personal que nos proporcionás voluntariamente, como tu nombre, correo electrónico, dirección postal, número de teléfono y otros datos de contacto. También recopilamos datos sobre tu dispositivo y actividad en el sitio (IP, navegador, sistema operativo, páginas visitadas, fecha/hora y cookies).</p>
+    <h2>2. Uso de la información</h2>
+    <p>Usamos la información para: brindarte servicios, mejorar tu experiencia, enviarte comunicaciones relevantes (boletines, ofertas, anuncios), realizar análisis y estadísticas, y proteger el sitio de fraude y abuso.</p>
+    <h2>3. Compartir la información</h2>
+    <p>Compartimos datos con terceros que nos ayudan a operar (hosting, marketing, analítica). También podemos compartir si lo requiere la ley, para proteger nuestros derechos o en caso de fusión o adquisición.</p>
+    <h2>4. Tus derechos</h2>
+    <p>Podés acceder, rectificar, eliminar u oponerte al tratamiento de tus datos. También podés ejercer portabilidad o limitar el tratamiento. Escribinos a los datos de contacto para ejercerlos.</p>
+    <h2>5. Seguridad</h2>
+    <p>Aplicamos medidas razonables de seguridad, aunque ninguna es 100% infalible.</p>
+    <h2>6. Menores de edad</h2>
+    <p>No recopilamos intencionalmente datos de menores de 18 años. Si sos menor, no envíes información sin consentimiento de tus tutores.</p>
+    <h2>7. Cambios en la política</h2>
+    <p>Podemos actualizar esta política; publicaremos los cambios y, si son relevantes, te notificaremos.</p>
+    <h2>8. Contacto</h2>
+    <ul>
+      <li>PI Development</li>
+      <li>Buenos Aires, Argentina</li>
+      <li>hola@pidevelopment.web.app</li>
+      <li>+54 9 11 7061 9703</li>
+    </ul>
+    <h2>Política de Cookies</h2>
+    <h3>¿Qué son las cookies?</h3>
+    <p>Archivos de texto que se almacenan en tu dispositivo al visitar un sitio. Guardan preferencias de idioma, configuración y actividad.</p>
+    <h3>¿Qué tipos usamos?</h3>
+    <ul>
+      <li><strong>Técnicas:</strong> necesarias para el funcionamiento del sitio.</li>
+      <li><strong>Analíticas:</strong> ayudan a entender cómo usás el sitio.</li>
+      <li><strong>Marketing:</strong> permiten mostrarte anuncios relevantes.</li>
+    </ul>
+    <h3>Gestión de cookies</h3>
+    <p>Podés configurarlas en tu navegador: aceptar todas, rechazarlas o elegir por sitio.</p>
+    <h2>Términos y Condiciones</h2>
+    <p>Al usar el sitio aceptás estos términos:</p>
+    <ul>
+      <li>Uso personal y no comercial; no publicar contenido ilegal ni infringir propiedad intelectual.</li>
+      <li>No distribuir virus, malware ni enviar spam.</li>
+      <li>El sitio se ofrece "tal cual", sin garantías; no respondemos por daños derivados de su uso.</li>
+      <li>Debés indemnizar y mantener indemne a PI Development ante reclamos por tu uso del sitio.</li>
+    </ul>
+  </div>
+</section>
+{% include 'web/components/footer.html' %}
 {% endblock %}

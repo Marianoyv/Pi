@@ -1,9 +1,22 @@
-{% extends 'web/base.html' %}
+﻿{% extends 'web/base.html' %}
+{% load static %}
 {% block title %}Contacto | Pi Development{% endblock %}
+{% block og_title %}Contacto | Pi Development{% endblock %}
+{% block og_description %}Hablemos de tu proyecto digital y definamos una solución clara para hacerlo crecer.{% endblock %}
 {% block head %}
 <meta name="description" content="Hablemos de tu proyecto digital. Enviá tu consulta y coordinemos.">
 <link rel="canonical" href="https://pidevelopment.web.app/contact/">
+<link rel="stylesheet" href="{% static 'web/css/contacto.css' %}">
 {% endblock %}
 {% block content %}
+{% include 'web/components/navbar.html' %}
+<section class="page-shell">
+  <div class="page-shell__inner">
+    <p class="page-shell__eyebrow">Contacto</p>
+    <h1>Contanos en qué etapa está tu proyecto</h1>
+    <p class="page-shell__lead">La intención es que esta página funcione como punto de entrada real para consultas, campañas y futuras conversiones, no solo como el cierre de una landing.</p>
+  </div>
+</section>
 {% include 'web/contacto.html' %}
+{% include 'web/components/footer.html' %}
 {% endblock %}

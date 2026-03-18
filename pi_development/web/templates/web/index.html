@@ -1,6 +1,8 @@
-{% extends 'web/base.html' %}
+﻿{% extends 'web/base.html' %}
 {% load static %}
 {% block title %}Soluciones digitales personalizadas para tu empresa{% endblock %}
+{% block og_title %}Soluciones digitales personalizadas para tu empresa{% endblock %}
+{% block og_description %}Creamos estrategias digitales que impactan, atraen y convierten.{% endblock %}
 {% block head %}
 <meta name="description" content="Creamos estrategias digitales que impactan, atraen y convierten.">
 <meta name="author" content="PIDev Founder: Mariano Tami">
@@ -24,7 +26,7 @@
 <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/9b7863877e7b1572545a6deb3/9fc65f4503e80b0f5f89ce76d.js");</script>
 {% endblock %}
 {% block content %}
-{% include 'web/components/navbar.html' %}   
+{% include 'web/components/navbar.html' %}
 {% include 'web/hero.html' %}
 {% include 'web/servicios.html' %}
 {% include 'web/portfolio.html' %}
@@ -34,12 +36,10 @@
 {% include 'web/contacto.html' %}
 {% include 'web/components/footer.html' %}
 {% endblock %}
-
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" crossorigin="anonymous"></script>
 <script src="{% static 'web/js/main.js' %}"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 {% endblock %}

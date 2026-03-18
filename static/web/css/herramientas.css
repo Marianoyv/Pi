@@ -1,73 +1,72 @@
-
-.explora {
+﻿.explora {
   width: 100%;
-  min-height: 100vh;
-  padding: 50px;
+  padding: 72px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  align-self: center;
+  background: #f5f1e8;
 }
+
 .explora h2 {
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 20px;
-  font-size: 2.5em;
-  font-weight: 500; 
+  width: min(1200px, 100%);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
 }
+
+.explora > p {
+  width: min(760px, 100%);
+  margin-top: 16px;
+  color: rgba(23, 25, 29, 0.74);
+  font-size: 1.05rem;
+}
+
 section.explora div.container {
-  width: 100%;
-  min-height: max-content;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  padding: 20px;
+  width: min(1200px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
+  padding: 0;
+  margin: 36px 0 0;
 }
+
+.explora .card {
+  width: 100% !important;
+  padding: 0 !important;
+  border: 1px solid rgba(23, 25, 29, 0.08);
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 17, 0.08) 0 20px 40px;
+}
+
+.explora .card-body {
+  padding: 24px !important;
+}
+
 .explora h3 {
-  font-size: 1.5em;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
 }
+
 .explora h4 {
-  font-size: 1em;
+  font-size: 0.96rem;
   font-weight: 600;
 }
-.explora p:not(.card p) {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  font-size: 1em;
+
+.explora .card-text {
+  color: rgba(23, 25, 29, 0.74);
 }
-.explora a.card-link {
-  text-decoration: none;
-  color: #000000c7;
-  font-weight: 400;
-}
-.explora button {
-  width: auto;
-  height: auto;
-  margin: 40px auto;
-  padding: 12px 20px;
-  border-radius: 6px;
-  color: #262626c7;
-  background-color: #ffffff00;
-  border: 1px solid #878787;
-  font-weight: 600;
-  transition: all 0.5s ease-in-out;
-}
-.explora button a {
-  color: #393939;
+
+@media screen and (max-width: 1100px) {
+  section.explora div.container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 769px) {
+  .explora {
+    padding: 56px 20px;
+  }
 
-.explora {
-  padding: 40px 30px;
-}
-.explora h2 {
-    font-size: 1.5em;
-  font-weight: 500;
-}
-
+  section.explora div.container {
+    grid-template-columns: 1fr;
+  }
 }

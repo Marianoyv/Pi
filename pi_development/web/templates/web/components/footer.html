@@ -1,34 +1,35 @@
-{% load static %}
-<footer class="footer">
+﻿<footer class="footer">
   <div class="footer-columns">
     <div class="footer-column">
       <h3>Explora</h3>
       <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Marketing</a></li>
-        <li><a href="#">Desarrollo Web</a></li>
-        <li><a href="#">Redes Sociales</a></li>
-        <li><a href="#">Páginas Legales</a></li>
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'about' %}">Nosotros</a></li>
+        <li><a href="{% url 'process_page' %}">Cómo trabajamos</a></li>
+        <li><a href="{% url 'resources_page' %}">Recursos</a></li>
+        <li><a href="{% url 'policies' %}">Páginas legales</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Servicios</h3>
       <ul>
-        <li><a href="#">Diseño Web</a></li>
-        <li><a href="#">SEO</a></li>
-        <li><a href="#">Gestión de Redes Sociales</a></li>
-        <li><a href="#">Marketing</a></li>
+        <li><a href="{% url 'service_page' slug='web-development' %}">Desarrollo web</a></li>
+        <li><a href="{% url 'service_page' slug='ux-ui' %}">UX/UI</a></li>
+        <li><a href="{% url 'service_page' slug='seo' %}">SEO</a></li>
+        <li><a href="{% url 'service_page' slug='marketing' %}">Marketing digital</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Contacto</h3>
-      <p>Dirección: Buenos Aires, Argentina.</p>
+      <p>Buenos Aires, Argentina</p>
       <a href="mailto:pidev.founder@gmail.com">pidev.founder@gmail.com</a>
     </div>
-      <div class="social-icons">
-    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-  </div>
+    <div class="social-icons">
+      <a href="https://github.com/Marianoyv" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Pi Development"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/company/pi-d" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Pi Development"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/pi.development/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Pi Development"><i class="fab fa-instagram"></i></a>
+    </div>
   </div>
 </footer>

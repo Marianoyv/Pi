@@ -1,0 +1,60 @@
+﻿{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ blog_page.title }} | Pi Development{% endblock %}
+{% block og_title %}{{ blog_page.title }} | Pi Development{% endblock %}
+{% block og_description %}{{ blog_page.description }}{% endblock %}
+{% block head %}
+<meta name="description" content="{{ blog_page.description }}">
+<link rel="canonical" href="{{ site_url }}{{ request.path }}">
+<link rel="stylesheet" href="{% static 'web/css/blog.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<section class="page-shell">
+  <div class="page-shell__inner">
+    <p class="page-shell__eyebrow">{{ blog_page.eyebrow }}</p>
+    <h1>{{ blog_page.title }}</h1>
+    <p class="page-shell__lead">{{ blog_page.description }}</p>
+  </div>
+</section>
+<section class="blog-page">
+  <div class="blog-page__inner">
+    <div class="blog-page__intro">
+      <h2>Base editorial del proyecto</h2>
+      <p>{{ blog_page.intro }}</p>
+    </div>
+    <div class="blog-page__pillars">
+      {% for item in blog_page.pillars %}
+      <article class="blog-page__pillar">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <div class="blog-page__samples">
+      <div class="blog-page__samples-header">
+        <p class="blog-page__eyebrow">Ideas iniciales</p>
+        <h2>Publicaciones que encajan con tu estrategia actual</h2>
+      </div>
+      <div class="blog-page__samples-grid">
+        {% for item in blog_page.sample_posts %}
+        <article class="blog-page__post-card">
+          <p class="blog-page__category">{{ item.category }}</p>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.summary }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="blog-page__cta">
+      <div>
+        <p class="blog-page__eyebrow">Siguiente etapa</p>
+        <h2>El próximo paso natural es volver esto dinámico</h2>
+        <p>Con esta base ya se puede avanzar a categorías, listado real de entradas, detalle por post y una estrategia SEO/editorial sostenida.</p>
+      </div>
+      <a class="button-link button-link--dark" href="{% url 'contact' %}">Planificar el blog</a>
+    </div>
+  </div>
+</section>
+{% include 'web/components/footer.html' %}
+{% endblock %}

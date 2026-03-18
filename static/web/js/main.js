@@ -1,4 +1,4 @@
-function initRellax() {
+﻿function initRellax() {
   if (typeof Rellax !== 'function') return;
   if (!document.querySelector('.rellax')) return;
   new Rellax('.rellax', { center: true });
@@ -35,20 +35,45 @@ function initNavbar() {
   const progressBar = document.getElementById('progress-bar');
   const fadeText = document.getElementById('fade-text');
 
-  function toggleMenu() {
-    if (navLinks) {
-      navLinks.classList.toggle('active');
+  function syncNavbarState() {
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
     }
+  }
+
+  function closeMenu() {
+    if (navLinks) {
+      navLinks.classList.remove('active');
+    }
+    if (menuBtn) {
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  function toggleMenu() {
+    if (!navLinks || !menuBtn) return;
+    const isOpen = navLinks.classList.toggle('active');
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
   }
 
   if (menuBtn) {
     menuBtn.addEventListener('click', toggleMenu);
   }
 
-  window.addEventListener('scroll', () => {
-    if (nav) {
-      nav.classList.toggle('dark', window.scrollY > 80);
+  if (navLinks) {
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      closeMenu();
     }
+  });
+
+  window.addEventListener('scroll', () => {
+    syncNavbarState();
 
     if (fadeText) {
       const viewportHeight = window.innerHeight;
@@ -62,6 +87,8 @@ function initNavbar() {
       progressBar.style.width = `${progress}%`;
     }
   });
+
+  syncNavbarState();
 }
 
 function initProcesoAnimation() {
@@ -95,11 +122,11 @@ window.handleContact = function (e) {
     return;
   }
 
-  const phone = '5491170619703'; // tu número con código país
+  const phone = '5491170619703';
   const message = `Hola! Soy ${nombre}. Mi correo es ${email}. Vengo desde pidevelopment.web.app`;
   const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  window.open(url, '_blank');
+  window.open(url, '_blank', 'noopener,noreferrer');
 
   if (typeof gtag === 'function') {
     gtag('event', 'contact_submit', {

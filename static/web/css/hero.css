@@ -1,5 +1,4 @@
-/*Showcase*/
-.showcase {
+﻿.showcase {
   height: 100vh;
   width: 100%;
   top: 0;
@@ -14,12 +13,14 @@
   z-index: 2;
   box-shadow: inset 0 0 400px #000000;
 }
+
 .layer {
   position: absolute;
   width: 100%;
   height: 100%;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(24, 24, 26, 1) 100%);
 }
+
 .showcase .text {
   color: #ffffffe2;
   position: absolute;
@@ -34,27 +35,25 @@
   text-align: left;
   text-shadow: 11px 11px 20px #16161654;
 }
+
 .showcase .text h1 {
   font-weight: 700;
   font-size: 3em;
-  letter-spacing: 0px;
+  letter-spacing: 0;
 }
+
 .showcase .text h2 {
   font-size: 2.1em;
   max-width: 80%;
   font-weight: 300;
 }
-.showcase .text button.button {
+
+.showcase .text .button-link {
   width: auto;
   height: auto;
-  padding: 12px 28px;
-  border-radius: 6px;
   color: #000000c5;
-  border: none;
-  box-shadow: rgb(255, 255, 255) 0px -50px 36px -28px inset;
-  transition: 0.5s ease-in-out;
-  background-color: #ffffff;
 }
+
 ul.social {
   position: absolute;
   right: 25px;
@@ -71,87 +70,99 @@ ul.social {
   transition: 0.5s ease-in-out;
   background-color: #eeeeee46;
 }
+
 ul.social:hover {
   transition: 1s ease-in-out;
 }
+
 .social li a {
   display: inline-block;
   margin: 10px;
   transition: 0.5s;
 }
+
 .fa-brands {
-    font-size: 2.2em;
-    color: #000000da;
-    text-shadow: 0 0 20px #00000026;
+  font-size: 2.2em;
+  color: #000000da;
+  text-shadow: 0 0 20px #00000026;
 }
-.social li a:hover, .fa-brands:hover {
+
+.social li a:hover,
+.fa-brands:hover {
   color: #ffffff;
   transition: 0.5s ease-in-out;
 }
+
 #fade-text {
   transition: opacity 0.5s ease-in-out;
 }
+
 @media screen and (max-width: 769px) {
   .showcase .text {
-  min-height: max-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  text-align: left;
-  text-shadow: 11px 11px 20px #00000054;
-}
-.showcase .text h1 {
-  padding: 20px 32px;
-  font-weight: 700;
-  font-size: 2em;
-  letter-spacing: 0px;
-}
-.showcase .text h2 {
-  padding: 20px 32px;
-  font-size: 1.4em;
-  font-weight: 300;
-}
-.showcase .text button {
-  font-size: 0.8em;
-  margin: auto;
-  padding: 10px;
-}
-ul.social {
-  position: absolute;
-  bottom: 18px;
-  padding: 0 0;
-  background: none;
-  box-shadow: none;
-  color: #ffffff;
-}
-.social li a {
-  margin: 5px;
-}
-.fa-brands {
+    min-height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    text-align: left;
+    text-shadow: 11px 11px 20px #00000054;
+  }
+
+  .showcase .text h1 {
+    padding: 20px 32px;
+    font-weight: 700;
+    font-size: 2em;
+    letter-spacing: 0;
+  }
+
+  .showcase .text h2 {
+    padding: 20px 32px;
+    font-size: 1.4em;
+    font-weight: 300;
+  }
+
+  .showcase .text .button-link {
+    font-size: 0.8em;
+    margin: auto;
+  }
+
+  ul.social {
+    position: absolute;
+    bottom: 18px;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    color: #ffffff;
+  }
+
+  .social li a {
+    margin: 5px;
+  }
+
+  .fa-brands {
     font-size: 1.8em;
     color: #ffffffda;
     text-shadow: 0 0 20px #a9a9a926;
-}
+  }
 }
 
 @media screen and (max-width: 400px) {
   .showcase .text {
- height: 30vh;
-  gap: 0;
-}
-.showcase .text h1 {
-  font-size: 1.4em;
-  padding: 10px 32px;
- }
-.showcase .text h2 {
-  font-size: 1.1em;
-  padding: 10px 32px;
- }
- .showcase .text button.button {
-  padding: 10px;
-}
-ul.social {
-  bottom: 0;
-}
+    height: 30vh;
+    gap: 0;
+  }
+
+  .showcase .text h1 {
+    font-size: 1.4em;
+    padding: 10px 32px;
+  }
+
+  .showcase .text h2 {
+    font-size: 1.1em;
+    padding: 10px 32px;
+  }
+
+  ul.social {
+    bottom: 0;
+  }
 }

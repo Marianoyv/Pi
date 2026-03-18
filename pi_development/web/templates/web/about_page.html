@@ -1,9 +1,22 @@
-{% extends 'web/base.html' %}
+﻿{% extends 'web/base.html' %}
+{% load static %}
 {% block title %}Quiénes somos | Pi Development{% endblock %}
+{% block og_title %}Quiénes somos | Pi Development{% endblock %}
+{% block og_description %}Conocé el enfoque, la visión y la forma de trabajar de Pi Development.{% endblock %}
 {% block head %}
-<meta name="description" content="Conocé al equipo de Pi Development y nuestra forma de trabajar.">
+<meta name="description" content="Conocé el enfoque, la visión y la forma de trabajar de Pi Development.">
 <link rel="canonical" href="https://pidevelopment.web.app/about/">
+<link rel="stylesheet" href="{% static 'web/css/nosotros.css' %}">
 {% endblock %}
 {% block content %}
+{% include 'web/components/navbar.html' %}
+<section class="page-shell">
+  <div class="page-shell__inner">
+    <p class="page-shell__eyebrow">Nosotros</p>
+    <h1>Diseño, estrategia y tecnología con foco en resultados</h1>
+    <p class="page-shell__lead">Esta página concentra la propuesta y visión de Pi Development fuera del formato one-page, para que la navegación y el crecimiento SEO tengan una base más sólida.</p>
+  </div>
+</section>
 {% include 'web/nosotros.html' %}
+{% include 'web/components/footer.html' %}
 {% endblock %}

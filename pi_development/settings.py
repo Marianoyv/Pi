@@ -1,4 +1,4 @@
-import os
+﻿import os
 from pathlib import Path
 from decouple import config
 
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'pi_development.web',
     'storages',
 ]
@@ -66,7 +67,7 @@ DATABASES = {
     }
 }
 
-# Validadores de contraseñas
+# Validadores de contraseÃ±as
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -74,7 +75,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internacionalización
+# InternacionalizaciÃ³n
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -88,7 +89,7 @@ if not credentials_path.is_absolute():
     credentials_path = BASE_DIR / credentials_path
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
 
-# Configuración de Google Cloud Storage
+# ConfiguraciÃ³n de Google Cloud Storage
 GS_BUCKET_NAME = config('GS_BUCKET_NAME')
 GS_DEFAULT_ACL = None  # Requerido si el bucket tiene Uniform bucket-level access
 STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
@@ -96,7 +97,7 @@ MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 STATICFILES_STORAGE = 'pi_development.storage.StaticRootGoogleCloudStorage'
 DEFAULT_FILE_STORAGE = 'pi_development.storage.MediaRootGoogleCloudStorage'
 
-# Ruta local de archivos estáticos
+# Ruta local de archivos estÃ¡ticos
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Requerido por Django
@@ -112,6 +113,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Campo por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 

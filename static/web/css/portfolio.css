@@ -1,4 +1,77 @@
-/* Portfolio (rellax grid) */
+﻿.portfolio-overview {
+  background: #f7f4ed;
+  color: #111;
+  padding: 56px 24px;
+}
+
+.portfolio-overview__inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.portfolio-overview__header {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.portfolio-overview__eyebrow {
+  margin-bottom: 10px;
+  color: #8a6a00;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.portfolio-overview__header h2 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.portfolio-overview__header p {
+  color: rgba(17, 17, 17, 0.78);
+}
+
+.portfolio-overview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.portfolio-overview__card {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: rgba(17, 17, 17, 0.08) 0 18px 36px;
+}
+
+.portfolio-overview__card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-overview__content {
+  padding: 22px;
+}
+
+.portfolio-overview__category {
+  margin-bottom: 10px;
+  color: #8a6a00;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.portfolio-overview__content h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
+}
+
+.portfolio-overview__content p {
+  color: rgba(17, 17, 17, 0.76);
+}
+
 .rellax-section {
   position: relative;
   box-sizing: border-box;
@@ -43,6 +116,12 @@
   object-fit: cover;
 }
 
+@media screen and (max-width: 900px) {
+  .portfolio-overview__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media screen and (max-width: 769px) {
   .rellax-section {
     min-height: 100vh;
@@ -53,9 +132,11 @@
     flex-direction: column;
     gap: 20px;
   }
-.rellax {
+
+  .rellax {
     transform: none !important;
   }
+
   .card-proyecto {
     position: relative;
     top: auto !important;
@@ -67,6 +148,7 @@
     height: auto;
     aspect-ratio: 4 / 3;
   }
+
   .central-text {
     position: relative;
     top: 50%;

@@ -1,17 +1,20 @@
-{% load static %}
+﻿{% load static %}
 <div id="progress-bar"></div>
 <nav class="topnav" id="Topnav">
   <div class="nav-container">
-    <a class="logo" href="/"><img src="{% static 'web/img/piw.png' %}" alt="Logo"></a>
+    <a class="logo" href="{% url 'index' %}">
+      <img src="{% static 'web/img/piw.png' %}" alt="Logo de Pi Development">
+    </a>
     <div class="nav-links" id="navLinks">
-      <a href="#servicios">Servicios</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#proceso">Cómo trabajamos</a>
-      <a href="#explora">Explora</a>
-      <a href="#contacto">Contacto</a>
+      <a class="{% if request.path == '/' %}is-active{% endif %}" href="{% url 'index' %}">Inicio</a>
+      <a class="{% if request.path == '/services/' or '/services/' in request.path %}is-active{% endif %}" href="{% url 'services' %}">Servicios</a>
+      <a class="{% if request.path == '/portfolio/' %}is-active{% endif %}" href="{% url 'portfolio' %}">Portfolio</a>
+      <a class="{% if request.path == '/blog/' %}is-active{% endif %}" href="{% url 'blog' %}">Blog</a>
+      <a class="{% if request.path == '/about/' %}is-active{% endif %}" href="{% url 'about' %}">Nosotros</a>
+      <a class="{% if request.path == '/contact/' %}is-active{% endif %}" href="{% url 'contact' %}">Contacto</a>
     </div>
-    <div class="menu-icon">
+    <button type="button" class="menu-icon" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
       <i class="fa fa-bars"></i>
-    </div>
+    </button>
   </div>
 </nav>

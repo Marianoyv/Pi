@@ -1,0 +1,39 @@
+﻿{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}Servicios | Pi Development{% endblock %}
+{% block og_title %}Servicios | Pi Development{% endblock %}
+{% block og_description %}Servicios de desarrollo, UX/UI, marketing digital y SEO para transformar una presencia digital en una estructura sólida.{% endblock %}
+{% block head %}
+<meta name="description" content="Servicios de desarrollo, UX/UI, marketing digital y SEO para transformar una presencia digital en una estructura sólida.">
+<link rel="canonical" href="{{ site_url }}{{ request.path }}">
+<link rel="stylesheet" href="{% static 'web/css/services_overview.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<section class="page-shell">
+  <div class="page-shell__inner">
+    <p class="page-shell__eyebrow">{{ overview.eyebrow }}</p>
+    <h1>{{ overview.title }}</h1>
+    <p class="page-shell__lead">{{ overview.description }}</p>
+  </div>
+</section>
+<section class="services-overview">
+  <div class="services-overview__inner">
+    <div class="services-overview__intro">
+      <h2>Una página pensada para ordenar la oferta</h2>
+      <p>{{ overview.intro }}</p>
+    </div>
+    <div class="services-overview__grid">
+      {% for item in service_cards %}
+      <a class="services-overview__card" href="{% url 'service_page' slug=item.slug %}">
+        <p class="services-overview__label">Servicio</p>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <span>Entrar a la página</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% include 'web/components/footer.html' %}
+{% endblock %}
