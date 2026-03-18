@@ -1,72 +1,124 @@
-﻿.explora {
+.explora {
   width: 100%;
-  padding: 72px 24px;
+  padding: var(--section-space-tight) 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f5f1e8;
+  background: var(--color-bg);
 }
 
-.explora h2 {
+.explora__layout {
   width: min(1200px, 100%);
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 600;
+  margin: 0 auto var(--space-32);
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 24px;
+  align-items: start;
 }
 
-.explora > p {
-  width: min(760px, 100%);
-  margin-top: 16px;
-  color: rgba(23, 25, 29, 0.74);
-  font-size: 1.05rem;
+.explora__header {
+  margin: 0;
+  text-align: left;
+}
+
+.explora__eyebrow {
+  margin-bottom: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--font-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.explora__support {
+  padding: var(--space-32);
+  border: 1px solid rgba(var(--rgb-border), 0.78);
+  border-radius: 22px;
+  background: rgba(var(--rgb-surface), 0.92);
+  box-shadow: var(--shadow-soft);
+}
+
+.explora__support h3 {
+  margin-bottom: var(--space-12);
+  font-size: var(--font-h4);
+  color: var(--color-white);
+}
+
+.explora__support p {
+  color: var(--color-text-secondary);
 }
 
 section.explora div.container {
   width: min(1200px, 100%);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 24px;
   padding: 0;
-  margin: 36px 0 0;
+  margin: 0 0 var(--space-32);
 }
 
-.explora .card {
-  width: 100% !important;
-  padding: 0 !important;
-  border: 1px solid rgba(23, 25, 29, 0.08);
-  border-radius: 20px;
-  box-shadow: rgba(17, 17, 17, 0.08) 0 20px 40px;
+.explora-card {
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  border: 1px solid rgba(var(--rgb-border), 0.78);
+  border-radius: 22px;
+  background: rgba(var(--rgb-surface), 0.92);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
 }
 
 .explora .card-body {
-  padding: 24px !important;
+  height: 100%;
+  padding: var(--space-24) !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
 }
 
-.explora h3 {
-  font-size: 1.3rem;
-  margin-bottom: 8px;
-}
-
-.explora h4 {
-  font-size: 0.96rem;
+.explora-card__label {
+  margin-bottom: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--font-small);
   font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.explora h3,
+.explora .card-title {
+  margin-bottom: var(--space-12);
+  font-size: var(--font-h4);
+  font-weight: 600;
+  line-height: var(--leading-h4);
+  color: var(--color-white) !important;
 }
 
 .explora .card-text {
-  color: rgba(23, 25, 29, 0.74);
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
 }
 
 @media screen and (max-width: 1100px) {
+  .explora__layout,
   section.explora div.container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .explora__layout {
+    grid-template-columns: 1fr;
   }
 }
 
 @media screen and (max-width: 769px) {
   .explora {
-    padding: 56px 20px;
+    padding: var(--section-space-tight) 20px;
   }
 
   section.explora div.container {
     grid-template-columns: 1fr;
+    margin-bottom: var(--space-32);
   }
 }

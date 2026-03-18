@@ -1,0 +1,28 @@
+<article class="tool-card">
+  <div class="tool-card__top">
+    <p class="tool-card__tag">{{ tool.tag }}</p>
+    <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+  </div>
+  <div class="tool-card__body">
+    <h3>{{ tool.name }}</h3>
+    <p>{{ tool.summary }}</p>
+    {% if tool.recommended_for %}
+    <div class="tool-card__meta">
+      <p class="tool-card__meta-label">Útil para</p>
+      <ul class="tool-inline-list tool-inline-list--compact">
+        {% for item in tool.recommended_for|slice:":2" %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <ul class="tool-card__list">
+      {% for item in tool.outputs|slice:":3" %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="tool-card__cta">
+    <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.cta_label }}</a>
+  </div>
+</article>

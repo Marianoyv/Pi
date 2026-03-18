@@ -1,0 +1,193 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.seo_title }}{% endblock %}
+{% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Entrada</p>
+            <h2>Construir una URL con UTM consistentes</h2>
+            <p class="tool-panel__lead">La herramienta valida la URL de destino, preserva query params existentes y agrega solo los parámetros UTM que completes.</p>
+            <form method="post" class="tool-form" data-analyze-form>
+              {% csrf_token %}
+              <div class="tool-form__field">
+                {{ form.destination_url.label_tag }}
+                {{ form.destination_url }}
+                {% if form.destination_url.errors %}
+                <ul class="tool-form__errors">
+                  {% for error in form.destination_url.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+              <div class="tool-form__grid tool-form__grid--compact">
+                {% for field in form %}
+                  {% if field.name != "destination_url" %}
+                  <div class="tool-form__field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}
+                    <ul class="tool-form__errors">
+                      {% for error in field.errors %}
+                      <li>{{ error }}</li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <div class="tool-action-row">
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Construyendo URL...">Construir URL</button>
+                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+              </div>
+              <p class="tool-panel__note">Source, medium y campaign no son obligatorios para generar la URL, pero la herramienta los marca como pendientes si faltan.</p>
+            </form>
+          </article>
+
+          {% if utm_result %}
+          <section class="tool-result">
+            <article class="tool-result__hero tool-result__hero--{{ utm_result.overview.tone }}">
+              <p class="tools-label">Estado general</p>
+              <h2>{{ utm_result.overview.label }}</h2>
+              <p>{{ utm_result.overview.summary }}</p>
+            </article>
+
+            <article class="tool-panel">
+              <p class="tools-label">URL final</p>
+              <h3>URL construida</h3>
+              <div class="tool-copy-stack">
+                <textarea id="utm-builder-output" class="tool-copy-output" rows="4" readonly>{{ utm_result.final_url }}</textarea>
+                <div class="tool-copy-row">
+                  <button type="button" class="button-link" data-copy-button data-copy-target="utm-builder-output" data-copied-text="Copiado" data-copy-success="URL final copiada.">Copiar URL</button>
+                  <span class="tool-copy-feedback" data-copy-feedback></span>
+                </div>
+              </div>
+            </article>
+
+            <div class="tool-result__grid">
+              <article class="tool-panel">
+                <p class="tools-label">Parámetros</p>
+                <h3>Vista previa de parámetros</h3>
+                <ul class="tool-checklist">
+                  {% for item in utm_result.parameters %}
+                  <li class="tool-checklist__item">
+                    <div class="tool-checklist__top">
+                      <strong>{{ item.label }}</strong>
+                      <span class="tool-check-status tool-check-status--{{ item.status }}">
+                        {% if item.status == "ok" %}Listo{% elif item.status == "warn" %}Pendiente{% else %}Opcional{% endif %}
+                      </span>
+                    </div>
+                    <p>{{ item.value }}</p>
+                    <span>{{ item.detail }}</span>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Query</p>
+                <h3>Parámetros preservados</h3>
+                {% if utm_result.existing_query_params %}
+                <ul class="tool-inline-list">
+                  {% for key, value in utm_result.existing_query_params %}
+                  <li>{{ key }}={{ value }}</li>
+                  {% endfor %}
+                </ul>
+                {% else %}
+                <p>No habia query params adicionales para preservar.</p>
+                {% endif %}
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Observaciones</p>
+                <h3>Lectura de etiquetado</h3>
+                <ul class="tool-list">
+                  {% for item in utm_result.observations %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+            </div>
+
+            <article class="tool-panel">
+              <p class="tools-label">Recomendación</p>
+              <h3>Siguiente paso recomendado</h3>
+              <p>{{ utm_result.recommendation }}</p>
+            </article>
+          </section>
+          {% else %}
+          <article class="tool-empty">
+            <p class="tools-label">Salida</p>
+            <h2>La salida deja visible la URL final y el estado del etiquetado sin agregar ruido.</h2>
+            <div class="tool-empty__grid">
+              {% for item in tool.outputs %}
+              <div class="tool-empty__item">
+                <h3>{{ item }}</h3>
+              </div>
+              {% endfor %}
+            </div>
+          </article>
+          {% endif %}
+
+          {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+            <p>{{ tool.summary }}</p>
+          </article>
+
+          {% for block in tool.detail_blocks %}
+          <article class="tool-panel">
+            <p class="tools-label">Alcance</p>
+            <h3>{{ block.title }}</h3>
+            <ul class="tool-list">
+              {% for item in block.items %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
+          {% endfor %}
+
+          <article class="tool-panel">
+            <p class="tools-label">Comportamiento</p>
+            <h3>Qué valida esta versión</h3>
+            <ul class="tool-list">
+              <li>URL de destino pública con http o https.</li>
+              <li>Preservación de query params existentes.</li>
+              <li>Campos UTM base y opcionales, sin inventar claves vacías.</li>
+            </ul>
+          </article>
+
+          {% include 'web/components/tool_related_tools.html' with tool=tool related_tools=related_tools %}
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.seo_title }}{% endblock %}
+{% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Entrada</p>
+            <h2>Renderizar una vista previa controlada</h2>
+            <p class="tool-panel__lead">Pega una creatividad HTML o un tag de terceros, define dimensiones y renderiza una vista previa en sandbox con hallazgos técnicos básicos en la misma ejecución.</p>
+            <form method="post" class="tool-form" data-analyze-form>
+              {% csrf_token %}
+              <div class="tool-form__grid">
+                <div class="tool-form__field">
+                  {{ form.creative_name.label_tag }}
+                  {{ form.creative_name }}
+                  {% if form.creative_name.help_text %}<p class="tool-form__help">{{ form.creative_name.help_text }}</p>{% endif %}
+                  {% if form.creative_name.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.creative_name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field">
+                  {{ form.creative_type.label_tag }}
+                  {{ form.creative_type }}
+                  {% if form.creative_type.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.creative_type.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field">
+                  {{ form.width.label_tag }}
+                  {{ form.width }}
+                  {% if form.width.help_text %}<p class="tool-form__help">{{ form.width.help_text }}</p>{% endif %}
+                  {% if form.width.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.width.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field">
+                  {{ form.height.label_tag }}
+                  {{ form.height }}
+                  {% if form.height.help_text %}<p class="tool-form__help">{{ form.height.help_text }}</p>{% endif %}
+                  {% if form.height.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.height.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field tool-form__field--full">
+                  {{ form.input_mode.label_tag }}
+                  {{ form.input_mode }}
+                  {% if form.input_mode.help_text %}<p class="tool-form__help">{{ form.input_mode.help_text }}</p>{% endif %}
+                  {% if form.input_mode.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.input_mode.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field tool-form__field--full">
+                  {{ form.code.label_tag }}
+                  {{ form.code }}
+                  {% if form.code.help_text %}<p class="tool-form__help">{{ form.code.help_text }}</p>{% endif %}
+                  {% if form.code.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.code.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field">
+                  {{ form.click_url.label_tag }}
+                  {{ form.click_url }}
+                  {% if form.click_url.help_text %}<p class="tool-form__help">{{ form.click_url.help_text }}</p>{% endif %}
+                  {% if form.click_url.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.click_url.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                <div class="tool-form__field">
+                  {{ form.notes.label_tag }}
+                  {{ form.notes }}
+                  {% if form.notes.help_text %}<p class="tool-form__help">{{ form.notes.help_text }}</p>{% endif %}
+                  {% if form.notes.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in form.notes.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="tool-action-row">
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Renderizando vista previa...">Renderizar vista previa</button>
+                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+              </div>
+              <p class="tool-panel__note">La vista previa es un sandbox controlado para revisión inicial. No replica un ad server real, SafeFrame ni una validación completa de tracking.</p>
+            </form>
+          </article>
+
+          <section class="tool-result">
+            <article class="tool-result__hero tool-result__hero--{% if preview_result %}{{ preview_result.preview.tone }}{% else %}warn{% endif %}">
+              <p class="tools-label">Estado de la vista previa</p>
+              <h2>{% if preview_result %}{{ preview_result.preview.label }}{% else %}Sandbox listo{% endif %}</h2>
+              <p>{% if preview_result %}{{ preview_result.preview.summary }}{% else %}Pega código, define dimensiones y renderiza una vista previa en pocos segundos.{% endif %}</p>
+            </article>
+
+            {% if preview_result %}
+            {% include 'web/components/tool_insight.html' with insight=preview_result.insight %}
+            {% include 'web/components/tool_exports.html' with exports=preview_result.exports export_prefix='creative-preview-export' %}
+            {% endif %}
+
+            <article class="tool-panel">
+              <p class="tools-label">Vista previa</p>
+              <h3>Área de vista previa aislada</h3>
+              <div class="tool-preview-shell">
+                <div class="tool-preview-meta">
+                  <span>{% if preview_result %}{{ preview_result.preview.width }} x {{ preview_result.preview.height }} px{% else %}300 x 250 px{% endif %}</span>
+                  <span>{% if preview_result %}{{ preview_result.preview.input_mode }}{% else %}Creatividad HTML{% endif %}</span>
+                  <span>{% if preview_result %}{{ preview_result.preview.creative_type }}{% else %}Display{% endif %}</span>
+                </div>
+                <div class="tool-preview-stage">
+                  {% if preview_result and preview_result.preview.frame_document %}
+                  <iframe
+                    class="tool-preview-frame"
+                    title="Vista previa de creatividad"
+                    width="{{ preview_result.preview.width }}"
+                    height="{{ preview_result.preview.height }}"
+                    sandbox="allow-scripts allow-forms"
+                    referrerpolicy="no-referrer"
+                    srcdoc="{{ preview_result.preview.frame_document|escape }}"
+                  ></iframe>
+                  {% else %}
+                  <div class="tool-preview-placeholder">
+                    <strong>Área de vista previa</strong>
+                    <span>Pega código y usa <em>Renderizar vista previa</em> para ver la pieza dentro de un sandbox contenido.</span>
+                  </div>
+                  {% endif %}
+                </div>
+                <p class="tool-panel__note">{% if preview_result %}{{ preview_result.preview.note }}{% else %}La vista previa se ejecuta en un iframe aislado para no romper el diseño principal.{% endif %}</p>
+              </div>
+            </article>
+
+            {% if preview_result %}
+            <div class="tool-result__grid">
+              <article class="tool-panel">
+                <p class="tools-label">Elementos detectados</p>
+                <h3>Elementos detectados</h3>
+                <div class="tool-detected-grid">
+                  {% for item in preview_result.detected_elements %}
+                  <article class="tool-detected-item">
+                    <div class="tool-detected-item__top">
+                      <strong>{{ item.label }}</strong>
+                      <span class="tool-count-badge">{{ item.count }}</span>
+                    </div>
+                    <p>{{ item.detail }}</p>
+                  </article>
+                  {% endfor %}
+                </div>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Observaciones técnicas</p>
+                <h3>Observaciones y alertas</h3>
+                <ul class="tool-list">
+                  {% for item in preview_result.technical_flags %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                  {% for item in preview_result.qa_observations %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Limitaciones</p>
+                <h3>Limitaciones de la vista previa</h3>
+                <ul class="tool-list">
+                  {% for item in preview_result.limitations %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+            </div>
+
+            <article class="tool-panel">
+              <p class="tools-label">Recomendación</p>
+              <h3>{{ preview_result.recommendation.label }}</h3>
+              <p>{{ preview_result.recommendation.text }}</p>
+            </article>
+            {% endif %}
+
+            {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+          </section>
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+            <p>{{ tool.summary }}</p>
+          </article>
+
+          {% for block in tool.detail_blocks %}
+          <article class="tool-panel">
+            <p class="tools-label">Alcance</p>
+            <h3>{{ block.title }}</h3>
+            <ul class="tool-list">
+              {% for item in block.items %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
+          {% endfor %}
+
+          <article class="tool-panel">
+            <p class="tools-label">Reglas del sandbox</p>
+            <h3>Lo que queda contenido en esta versión</h3>
+            <ul class="tool-list">
+              <li>La vista previa corre dentro de un iframe con sandbox para aislar CSS y JS del diseño principal.</li>
+              <li>No valida tracking de red, clics reales ni comportamiento exacto de un ad server.</li>
+              <li>Si el código intenta salir del frame o depende demasiado del entorno, la vista previa puede quedar parcial o bloqueada.</li>
+            </ul>
+          </article>
+
+          {% include 'web/components/tool_related_tools.html' with tool=tool related_tools=related_tools %}
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

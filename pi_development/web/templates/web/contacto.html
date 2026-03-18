@@ -1,17 +1,26 @@
-﻿<section class="intro" id="contacto">
+<section class="intro" id="contacto">
   <div class="chan">
-    <h1>¿Empezamos?</h1>
-    <p>Transforma tu potencial digital en resultados tangibles y conexiones con tu audiencia.</p>
+    <p class="contact-eyebrow">{{ contact_page.eyebrow }}</p>
+    <h2>{{ contact_page.section_title }}</h2>
+    <p>{{ contact_page.description }}</p>
+    <ul class="contact-fit">
+      {% for item in contact_page.fit_items %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+    <p class="contact-note">{{ contact_page.response_note }}</p>
   </div>
   <div class="form-container">
     <form class="form" onsubmit="handleContact(event)">
       <div class="form-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Introduce tu nombre" required>
-        <label for="correo_electronico">Correo electrónico:</label>
-        <input type="email" id="correo_electronico" name="correo_electronico" placeholder="Introduce tu correo electrónico" required>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        <label for="correo_electronico">Email</label>
+        <input type="email" id="correo_electronico" name="correo_electronico" placeholder="tu@email.com" required>
+        <label for="proyecto">URL, herramienta o problema</label>
+        <textarea id="proyecto" name="proyecto" rows="4" placeholder="Describe qué necesitas analizar, validar, ordenar o mejorar." required></textarea>
       </div>
-      <button type="submit" class="form-submit-btn">Enviar</button>
+      <button type="submit" class="form-submit-btn">Abrir conversación</button>
     </form>
   </div>
 </section>

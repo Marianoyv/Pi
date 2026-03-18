@@ -1,0 +1,203 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.seo_title }}{% endblock %}
+{% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Entrada</p>
+            <h2>Revisar una creatividad con criterios técnicos básicos</h2>
+            <p class="tool-panel__lead">La herramienta toma datos manuales y devuelve una lectura inicial con checklist, observaciones, alertas y estado final. No inspecciona binarios ni manifiestos en esta versión.</p>
+            <form method="post" class="tool-form" data-analyze-form>
+              {% csrf_token %}
+              <div class="tool-form__grid">
+                {% for field in form %}
+                <div class="tool-form__field {% if field.name == 'extra_notes' %}tool-form__field--full{% endif %}">
+                  {{ field.label_tag }}
+                  {{ field }}
+                  {% if field.errors %}
+                  <ul class="tool-form__errors">
+                    {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+              <div class="tool-action-row">
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Corriendo checklist...">Evaluar creatividad</button>
+                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+              </div>
+              <p class="tool-panel__note">La salida es transparente: si falta contexto o metadatos, la checklist lo muestra como observación o alerta y no simula aprobaciones.</p>
+            </form>
+          </article>
+
+          {% if qa_result %}
+          <section class="tool-result">
+            <article class="tool-result__hero tool-result__hero--{{ qa_result.overview.tone }}">
+              <p class="tools-label">Estado final</p>
+              <h2>{{ qa_result.overview.state }}</h2>
+              <p>{{ qa_result.overview.summary }}</p>
+            </article>
+
+            {% include 'web/components/tool_insight.html' with insight=qa_result.insight %}
+
+            {% include 'web/components/tool_exports.html' with exports=qa_result.exports export_prefix='creative-qa-export' %}
+
+            <article class="tool-panel">
+              <p class="tools-label">Resumen</p>
+              <h3>Resumen de checklist</h3>
+              <div class="tool-metric-grid tool-metric-grid--triple">
+                <div class="tool-metric">
+                  <span>Puntos correctos</span>
+                  <strong>{{ qa_result.overview.counts.ok }}</strong>
+                </div>
+                <div class="tool-metric">
+                  <span>Observaciones</span>
+                  <strong>{{ qa_result.overview.counts.warn }}</strong>
+                </div>
+                <div class="tool-metric">
+                  <span>Alertas</span>
+                  <strong>{{ qa_result.overview.counts.fail }}</strong>
+                </div>
+              </div>
+            </article>
+
+            <div class="tool-result__grid">
+              <article class="tool-panel">
+                <p class="tools-label">Checklist</p>
+                <h3>Revisión estructurada</h3>
+                <ul class="tool-checklist">
+                  {% for item in qa_result.checklist_items %}
+                  <li class="tool-checklist__item">
+                    <div class="tool-checklist__top">
+                      <strong>{{ item.label }}</strong>
+                      <span class="tool-check-status tool-check-status--{{ item.status }}">
+                        {% if item.status == "ok" %}OK{% elif item.status == "warn" %}Revisar{% elif item.status == "fail" %}Alerta{% else %}Info{% endif %}
+                      </span>
+                    </div>
+                    <p>{{ item.detail }}</p>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Puntos correctos</p>
+                <h3>Puntos correctos</h3>
+                <ul class="tool-list">
+                  {% for item in qa_result.correct_points %}
+                  <li>{{ item }}</li>
+                  {% empty %}
+                  <li>No hubo checks positivos claros en esta corrida.</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Observaciones</p>
+                <h3>Observaciones</h3>
+                <ul class="tool-list">
+                  {% for item in qa_result.observations %}
+                  <li>{{ item }}</li>
+                  {% empty %}
+                  <li>No quedaron observaciones en esta corrida.</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Alertas</p>
+                <h3>Alertas de revisión</h3>
+                <ul class="tool-list">
+                  {% for item in qa_result.flags %}
+                  <li>{{ item }}</li>
+                  {% empty %}
+                  <li>No se detectaron flags fuertes en esta corrida.</li>
+                  {% endfor %}
+                </ul>
+              </article>
+            </div>
+
+            <article class="tool-panel">
+              <p class="tools-label">Recomendación</p>
+              <h3>Siguiente paso recomendado</h3>
+              <p>{{ qa_result.recommendation }}</p>
+            </article>
+          </section>
+          {% else %}
+          <article class="tool-empty">
+            <p class="tools-label">Salida</p>
+            <h2>La salida separa checklist, observaciones y alertas para que la decisión sea legible.</h2>
+            <div class="tool-empty__grid">
+              {% for item in tool.outputs %}
+              <div class="tool-empty__item">
+                <h3>{{ item }}</h3>
+              </div>
+              {% endfor %}
+            </div>
+          </article>
+          {% endif %}
+
+          {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+            <p>{{ tool.summary }}</p>
+          </article>
+
+          {% for block in tool.detail_blocks %}
+          <article class="tool-panel">
+            <p class="tools-label">Alcance</p>
+            <h3>{{ block.title }}</h3>
+            <ul class="tool-list">
+              {% for item in block.items %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
+          {% endfor %}
+
+          <article class="tool-panel">
+            <p class="tools-label">Reglas</p>
+            <h3>Reglas activas en esta versión</h3>
+            <ul class="tool-list">
+              <li>Sin click path claro puede terminar en necesita revisión o bloqueada según el contexto.</li>
+              <li>Un peso por encima del umbral genera observación o alerta.</li>
+              <li>La reproducción automática con sonido o el sonido al cargar bloquean la pieza.</li>
+              <li>Un contexto de serving sin definir y tracking ausente quedan marcados para revisión.</li>
+            </ul>
+          </article>
+
+          {% include 'web/components/tool_related_tools.html' with tool=tool related_tools=related_tools %}
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

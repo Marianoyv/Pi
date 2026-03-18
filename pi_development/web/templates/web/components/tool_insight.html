@@ -1,0 +1,53 @@
+{% if insight %}
+<article class="tool-panel tool-insight tool-insight--{{ insight.tone }}">
+  <div class="tool-insight__header">
+    <div class="tool-insight__copy">
+      <p class="tools-label">Priorización</p>
+      <h3>{{ insight.status_label }}</h3>
+      <p>{{ insight.summary }}</p>
+    </div>
+    <div class="tool-insight__score" aria-label="Puntaje general">
+      <span>Puntaje</span>
+      <strong>{{ insight.score }}</strong>
+      <small>/100</small>
+    </div>
+  </div>
+
+  <div class="tool-insight__meta" aria-label="Dimensiones de prioridad">
+    <span class="tool-insight__pill">
+      <strong>Impacto</strong>
+      <span>{{ insight.impact }}</span>
+    </span>
+    <span class="tool-insight__pill">
+      <strong>Riesgo</strong>
+      <span>{{ insight.risk }}</span>
+    </span>
+    <span class="tool-insight__pill">
+      <strong>Prioridad</strong>
+      <span>{{ insight.priority }}</span>
+    </span>
+  </div>
+
+  {% if insight.affected_areas %}
+  <div class="tool-insight__areas">
+    <p class="tool-insight__label">Áreas afectadas</p>
+    <ul class="tool-inline-list tool-inline-list--compact">
+      {% for area in insight.affected_areas %}
+      <li>{{ area }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if insight.highlights %}
+  <div class="tool-insight__highlights">
+    <p class="tool-insight__label">Factores prioritarios</p>
+    <ul class="tool-list">
+      {% for item in insight.highlights %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</article>
+{% endif %}

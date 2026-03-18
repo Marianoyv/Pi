@@ -1,0 +1,58 @@
+{% if tool.editorial %}
+<section class="tool-editorial">
+  <article class="tool-panel">
+    <p class="tools-label">Qué analiza</p>
+    <h2>{{ tool.editorial.analysis_title }}</h2>
+    <ul class="tool-list">
+      {% for item in tool.editorial.analysis_items %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </article>
+
+  <div class="tool-result__grid">
+    <article class="tool-panel">
+      <p class="tools-label">Cuándo usarla</p>
+      <h3>{{ tool.editorial.use_title }}</h3>
+      <ul class="tool-list">
+        {% for item in tool.editorial.use_items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+
+    <article class="tool-panel">
+      <p class="tools-label">Resultados</p>
+      <h3>{{ tool.editorial.results_title }}</h3>
+      <ul class="tool-list">
+        {% for item in tool.editorial.results_items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+
+    <article class="tool-panel">
+      <p class="tools-label">Limitaciones</p>
+      <h3>{{ tool.editorial.limitations_title }}</h3>
+      <ul class="tool-list">
+        {% for item in tool.editorial.limitations_items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </article>
+  </div>
+
+  <article class="tool-panel">
+    <p class="tools-label">Preguntas frecuentes</p>
+    <h2>{{ tool.editorial.faq_title }}</h2>
+    <div class="tool-editorial__faq-list">
+      {% for item in tool.editorial.faqs %}
+      <article class="tool-editorial__faq-item">
+        <h3>{{ item.question }}</h3>
+        <p>{{ item.answer }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </article>
+</section>
+{% endif %}

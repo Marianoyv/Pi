@@ -1,0 +1,17 @@
+{% if related_tools %}
+<article class="tool-panel">
+  <p class="tools-label">Herramientas relacionadas</p>
+  <h3>Qué puedes revisar después</h3>
+  {% if tool.related_context %}
+  <p class="tool-panel__note">{{ tool.related_context }}</p>
+  {% endif %}
+  <div class="tool-related-list">
+    {% for item in related_tools %}
+    <a href="{% url 'tool_detail' slug=item.slug %}">
+      <strong>{{ item.name }}</strong>
+      <span>{{ item.summary }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</article>
+{% endif %}

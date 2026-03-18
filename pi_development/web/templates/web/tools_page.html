@@ -1,0 +1,84 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}Herramientas de AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
+{% block og_title %}Herramientas de AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
+{% block meta_description %}{{ tools_page.description }}{% endblock %}
+{% block og_description %}{{ tools_page.description }}{% endblock %}
+{% block meta_keywords %}{{ tools_page.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ tools_page.eyebrow }}</p>
+      <h1>{{ tools_page.title }}</h1>
+      <p class="page-shell__lead">{{ tools_page.description }}</p>
+    </div>
+  </section>
+  <section class="tools-index">
+    <div class="tools-index__inner">
+      <article class="tools-feature">
+        <div class="tools-feature__copy">
+          <p class="tools-label">{{ tools_page.featured_label }}</p>
+          <h2>{{ tools_page.featured_title }}</h2>
+          <p>{{ tools_page.featured_description }}</p>
+          <ul class="tools-feature__list">
+            {% for item in featured_tool.outputs %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <aside class="tools-feature__meta">
+          <span class="tool-status tool-status--{{ featured_tool.status_tone }}">{{ featured_tool.status_label }}</span>
+          <h3>{{ featured_tool.name }}</h3>
+          <p>{{ featured_tool.summary }}</p>
+          <div class="tools-feature__stack">
+            {% for item in featured_tool.capabilities %}
+            <p>{{ item }}</p>
+            {% endfor %}
+          </div>
+          {% if featured_tool.recommended_for %}
+          <div class="tools-feature__recommend">
+            <p class="tool-card__meta-label">Útil para</p>
+            <ul class="tool-inline-list tool-inline-list--compact">
+              {% for item in featured_tool.recommended_for %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <div class="tools-feature__cta">
+            <a class="button-link" href="{% url 'tool_detail' slug=featured_tool.slug %}">{{ featured_tool.cta_label }}</a>
+          </div>
+        </aside>
+      </article>
+
+      <div class="tools-index__header">
+        <div>
+          <p class="tools-label">Catálogo</p>
+          <h2>{{ tools_page.catalog_title }}</h2>
+          <p>{{ tools_page.catalog_description }}</p>
+        </div>
+      </div>
+
+      {% for group in tool_groups %}
+      <section class="tools-group">
+        <div class="tools-group__header">
+          <p class="tools-label">{{ group.title }}</p>
+          <h3>{{ group.description }}</h3>
+        </div>
+        <div class="tools-card-grid">
+          {% for tool in group.tools %}
+          {% include 'web/components/tool_card.html' with tool=tool %}
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

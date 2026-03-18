@@ -1,0 +1,200 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.seo_title }}{% endblock %}
+{% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Entrada</p>
+            <h2>Analizar una URL pública</h2>
+            <p class="tool-panel__lead">Ingresa una URL y el auditor construirá una lectura técnica clara. Si una capa externa no está disponible, el resultado lo informará de forma explícita.</p>
+            <form method="post" class="tool-form" data-analyze-form>
+              {% csrf_token %}
+              <div class="tool-form__field">
+                {{ form.url.label_tag }}
+                {{ form.url }}
+                {% if form.url.errors %}
+                <ul class="tool-form__errors">
+                  {% for error in form.url.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+              <div class="tool-action-row">
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Analizando URL...">Analizar URL</button>
+                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+              </div>
+              <p class="tool-panel__note">PageSpeed y OpenAI son capas opcionales. La herramienta no inventa datos si no están disponibles.</p>
+            </form>
+          </article>
+
+          {% if audit_result %}
+          <section class="tool-result">
+            <article class="tool-result__hero tool-result__hero--{{ audit_result.diagnosis.overview.tone }}">
+              <p class="tools-label">Estado general</p>
+              <h2>{{ audit_result.diagnosis.overview.label }}</h2>
+              <p>{{ audit_result.diagnosis.overview.summary }}</p>
+              <p class="tool-result__target">{{ audit_result.target_url }}</p>
+            </article>
+
+            {% include 'web/components/tool_insight.html' with insight=audit_result.insight %}
+
+            {% include 'web/components/tool_exports.html' with exports=audit_result.exports export_prefix='ai-auditor-export' %}
+
+            {% if audit_result.ai_summary.available %}
+            <article class="tool-panel">
+              <p class="tools-label">Capa adicional</p>
+              <h3>Resumen asistido</h3>
+              <p>{{ audit_result.ai_summary.text }}</p>
+            </article>
+            {% endif %}
+
+            <div class="tool-result__grid">
+              <article class="tool-panel">
+                <p class="tools-label">Observaciones técnicas</p>
+                <h3>Observaciones técnicas</h3>
+                <ul class="tool-list">
+                  {% for item in audit_result.diagnosis.technical_observations %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Rendimiento</p>
+                <h3>{{ audit_result.diagnosis.performance.label }}</h3>
+                <div class="tool-metric-grid">
+                  {% for item in audit_result.diagnosis.performance.items %}
+                  <div class="tool-metric">
+                    <span>{{ item.label }}</span>
+                    <strong>{{ item.value }}</strong>
+                  </div>
+                  {% endfor %}
+                </div>
+                <p class="tool-panel__note">{{ audit_result.diagnosis.performance.note }}</p>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">SEO</p>
+                <h3>{{ audit_result.diagnosis.seo.label }}</h3>
+                <div class="tool-metric-grid">
+                  {% for item in audit_result.diagnosis.seo.items %}
+                  <div class="tool-metric">
+                    <span>{{ item.label }}</span>
+                    <strong>{{ item.value }}</strong>
+                  </div>
+                  {% endfor %}
+                </div>
+                <p class="tool-panel__note">{{ audit_result.diagnosis.seo.note }}</p>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Oportunidades</p>
+                <h3>Oportunidades detectadas</h3>
+                <ul class="tool-list">
+                  {% for item in audit_result.diagnosis.opportunities %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+            </div>
+
+            <article class="tool-panel">
+              <p class="tools-label">Recomendación</p>
+              <h3>Siguiente paso recomendado</h3>
+              <p>{{ audit_result.diagnosis.recommendation }}</p>
+            </article>
+          </section>
+          {% else %}
+          <article class="tool-empty">
+            <p class="tools-label">Salida</p>
+            <h2>La salida organiza la revisión para que el problema se entienda rápido.</h2>
+            <div class="tool-empty__grid">
+              {% for item in tool.outputs %}
+              <div class="tool-empty__item">
+                <h3>{{ item }}</h3>
+              </div>
+              {% endfor %}
+            </div>
+          </article>
+          {% endif %}
+
+          {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+            <p>{{ tool.summary }}</p>
+          </article>
+
+          {% for block in tool.detail_blocks %}
+          <article class="tool-panel">
+            <p class="tools-label">Alcance</p>
+            <h3>{{ block.title }}</h3>
+            <ul class="tool-list">
+              {% for item in block.items %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
+          {% endfor %}
+
+          <article class="tool-panel">
+            <p class="tools-label">Fuentes</p>
+            <h3>Capas de datos</h3>
+            <ul class="tool-source-list">
+              {% if audit_result %}
+                {% for source in audit_result.sources %}
+                <li class="tool-source tool-source--{{ source.status }}">
+                  <strong>{{ source.label }}</strong>
+                  <span>{{ source.detail }}</span>
+                </li>
+                {% endfor %}
+              {% else %}
+                <li class="tool-source tool-source--limited">
+                  <strong>Snapshot HTTP</strong>
+                  <span>Siempre intenta una lectura básica desde backend.</span>
+                </li>
+                <li class="tool-source tool-source--limited">
+                  <strong>PageSpeed Insights</strong>
+                  <span>Se usa si la API responde y devuelve datos válidos.</span>
+                </li>
+                <li class="tool-source tool-source--limited">
+                  <strong>Capa de OpenAI</strong>
+                  <span>Preparada como capa opcional de resumen, sin ser requisito para que la herramienta funcione.</span>
+                </li>
+              {% endif %}
+            </ul>
+          </article>
+
+          {% include 'web/components/tool_related_tools.html' with tool=tool related_tools=related_tools %}
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

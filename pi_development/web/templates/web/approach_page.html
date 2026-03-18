@@ -1,0 +1,69 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}Método de trabajo para herramientas y sistemas digitales | Pi Development{% endblock %}
+{% block og_title %}Método de trabajo para herramientas y sistemas digitales | Pi Development{% endblock %}
+{% block meta_description %}{{ approach_page.description }}{% endblock %}
+{% block og_description %}{{ approach_page.description }}{% endblock %}
+{% block meta_keywords %}método de trabajo, sistemas digitales, arquitectura técnica, desarrollo de herramientas, optimización web{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/content_page.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ approach_page.eyebrow }}</p>
+      <h1>{{ approach_page.title }}</h1>
+      <p class="page-shell__lead">{{ approach_page.description }}</p>
+    </div>
+  </section>
+  <section class="content-page">
+    <div class="content-page__grid">
+      <article class="content-page__main">
+        <h2>Secuencia de trabajo</h2>
+        <p>{{ approach_page.lead }}</p>
+        <div class="content-page__faq-list">
+          {% for item in approach_page.stages %}
+          <article class="content-page__faq-item">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
+          {% endfor %}
+        </div>
+        <div class="content-page__section">
+          <h2>Principios operativos</h2>
+          <ul class="content-page__audience">
+            {% for item in approach_page.principles %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </article>
+      <aside class="content-page__aside">
+        <div class="content-page__card">
+          <p class="content-page__card-label">Método</p>
+          <h3>Diagnóstico antes de ejecutar</h3>
+          <p>El sistema se define primero. La implementación llega después, con menos improvisación y mejor lectura técnica.</p>
+        </div>
+        <div class="content-page__card">
+          <p class="content-page__card-label">Encaje</p>
+          <h3>{{ approach_page.fit_title }}</h3>
+          <ul class="content-page__aside-list">
+            {% for item in approach_page.fit_items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="content-page__card">
+          <p class="content-page__card-label">Siguiente paso</p>
+          <h3>Si el problema es estructural, se puede trabajar.</h3>
+          <p>Desde una base nueva hasta una capa existente que necesita orden técnico y criterio de crecimiento.</p>
+          <a class="button-link button-link--dark" href="{% url 'contact' %}">Abrir conversación</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

@@ -1,7 +1,7 @@
-﻿.content-page {
-  background: #f6f6f2;
-  color: #111;
-  padding: 56px 24px 72px;
+.content-page {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: var(--section-space-tight) 24px var(--section-space);
 }
 
 .content-page__grid {
@@ -9,81 +9,66 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
-  gap: 28px;
+  gap: var(--space-32);
 }
 
 .content-page__main,
 .content-page__card,
-.content-page__related-card,
 .content-page__faq-item,
 .content-page__chip {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: rgba(17, 17, 17, 0.08) 0 20px 40px;
+  background: var(--surface-panel);
+  border: 1px solid rgba(var(--rgb-border), 0.82);
+  border-radius: 20px;
+  box-shadow: 0 16px 34px rgba(var(--rgb-bg), 0.24);
 }
 
 .content-page__main {
-  padding: 36px;
-}
-
-.content-page__breadcrumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 24px;
-  color: rgba(17, 17, 17, 0.6);
-  font-size: 0.95rem;
-}
-
-.content-page__breadcrumbs a {
-  color: #8a6a00;
+  padding: var(--space-32);
 }
 
 .content-page__main h2 {
-  margin-bottom: 18px;
-  font-size: 1.8rem;
+  margin-bottom: var(--space-16);
+  font-size: var(--font-h3);
+  font-weight: 600;
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-heading);
 }
 
 .content-page__main p {
   margin-bottom: 24px;
-  color: rgba(17, 17, 17, 0.8);
-  font-size: 1.05rem;
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
 }
 
-.content-page__list,
-.content-page__audience {
+.content-page__audience,
+.content-page__aside-list {
   display: grid;
   gap: 14px;
   padding-left: 0;
 }
 
-.content-page__list li,
-.content-page__audience li {
+.content-page__audience li,
+.content-page__aside-list li {
   list-style: none;
-  color: #222;
+  color: var(--color-text);
   padding: 18px 20px;
-  border-radius: 14px;
-  background: #f0efe8;
+  border-radius: 16px;
+  background: rgba(var(--rgb-surface-elevated), 0.88);
 }
 
 .content-page__section {
-  margin-top: 36px;
+  margin-top: var(--space-32);
 }
 
-.content-page__chips,
 .content-page__faq-list {
   display: grid;
   gap: 16px;
 }
 
-.content-page__chip {
-  padding: 18px 20px;
-  color: rgba(17, 17, 17, 0.82);
-}
-
 .content-page__aside {
   display: grid;
-  gap: 20px;
+  gap: var(--space-24);
   align-self: start;
 }
 
@@ -92,69 +77,44 @@
 }
 
 .content-page__card h3,
-.content-page__faq-item h3,
-.content-page__related-card h3 {
+.content-page__faq-item h3 {
   margin-bottom: 12px;
-  font-size: 1.35rem;
+  font-size: var(--font-h4);
+  font-weight: 600;
+  line-height: var(--leading-h4);
 }
 
 .content-page__card p,
-.content-page__faq-item p,
-.content-page__related-card p {
-  color: rgba(17, 17, 17, 0.8);
+.content-page__faq-item p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
 }
 
 .content-page__card-label {
-  margin-bottom: 10px;
-  color: #8a6a00;
-  font-size: 0.85rem;
+  margin-bottom: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--font-label);
+  font-weight: 500;
+  line-height: var(--leading-small);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .content-page__card .button-link {
-  margin-top: 18px;
+  margin-top: var(--space-16);
 }
 
 .content-page__faq-item {
-  padding: 22px;
-}
-
-.content-page__related {
-  width: min(1100px, 100%);
-  margin: 36px auto 0;
-}
-
-.content-page__related-header {
-  margin-bottom: 18px;
-}
-
-.content-page__related-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.content-page__related-card {
-  display: block;
-  padding: 24px;
-  color: #111;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.content-page__related-card:hover {
-  color: #111;
-  transform: translateY(-4px);
-  box-shadow: rgba(17, 17, 17, 0.12) 0 22px 36px;
+  padding: var(--space-24);
 }
 
 @media screen and (max-width: 900px) {
-  .content-page__grid,
-  .content-page__related-grid {
+  .content-page__grid {
     grid-template-columns: 1fr;
   }
 
   .content-page__main {
-    padding: 28px;
+    padding: var(--space-32);
   }
 }

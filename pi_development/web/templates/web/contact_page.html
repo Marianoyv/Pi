@@ -1,22 +1,24 @@
-﻿{% extends 'web/base.html' %}
+{% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Contacto | Pi Development{% endblock %}
-{% block og_title %}Contacto | Pi Development{% endblock %}
-{% block og_description %}Hablemos de tu proyecto digital y definamos una solución clara para hacerlo crecer.{% endblock %}
+{% block title %}Contacto para herramientas, QA y diagnóstico técnico | Pi Development{% endblock %}
+{% block og_title %}Contacto para herramientas, QA y diagnóstico técnico | Pi Development{% endblock %}
+{% block meta_description %}{{ contact_page.description }}{% endblock %}
+{% block og_description %}{{ contact_page.description }}{% endblock %}
+{% block meta_keywords %}contacto adtech, contacto qa creativo, diagnóstico técnico web, automatización digital{% endblock %}
 {% block head %}
-<meta name="description" content="Hablemos de tu proyecto digital. Enviá tu consulta y coordinemos.">
-<link rel="canonical" href="https://pidevelopment.web.app/contact/">
 <link rel="stylesheet" href="{% static 'web/css/contacto.css' %}">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<section class="page-shell">
-  <div class="page-shell__inner">
-    <p class="page-shell__eyebrow">Contacto</p>
-    <h1>Contanos en qué etapa está tu proyecto</h1>
-    <p class="page-shell__lead">La intención es que esta página funcione como punto de entrada real para consultas, campañas y futuras conversiones, no solo como el cierre de una landing.</p>
-  </div>
-</section>
-{% include 'web/contacto.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ contact_page.eyebrow }}</p>
+      <h1>{{ contact_page.title }}</h1>
+      <p class="page-shell__lead">{{ contact_page.description }}</p>
+    </div>
+  </section>
+  {% include 'web/contacto.html' %}
+</main>
 {% include 'web/components/footer.html' %}
 {% endblock %}

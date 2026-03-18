@@ -1,0 +1,90 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{% if tool.seo_title %}{{ tool.seo_title }}{% else %}{{ tool.name }} | Pi Development{% endif %}{% endblock %}
+{% block og_title %}{% if tool.seo_title %}{{ tool.seo_title }}{% else %}{{ tool.name }} | Pi Development{% endif %}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords|default:'herramientas técnicas, diagnóstico web, QA de creatividades' }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title|default:tool.name }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description|default:tool.description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <h2>Estructura preparada para crecer.</h2>
+            <p class="tool-panel__lead">Esta herramienta ya tiene nombre, salida esperada y arquitectura de detalle. Falta implementar la capa funcional específica.</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+          </article>
+
+          <div class="tool-result__grid">
+            <article class="tool-panel">
+              <p class="tools-label">Entradas</p>
+              <h3>Entrada prevista</h3>
+              <ul class="tool-list">
+                {% for item in tool.inputs %}
+                <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </article>
+
+            <article class="tool-panel">
+              <p class="tools-label">Salidas</p>
+              <h3>Salida prevista</h3>
+              <ul class="tool-list">
+                {% for item in tool.outputs %}
+                <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </article>
+
+            <article class="tool-panel">
+              <p class="tools-label">Capacidades</p>
+              <h3>Base preparada</h3>
+              <ul class="tool-list">
+                {% for item in tool.capabilities %}
+                <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Siguiente paso</p>
+            <h3>Esta herramienta ya tiene lugar dentro del sistema.</h3>
+            <p>La siguiente iteración puede concentrarse en la lógica funcional sin rehacer texto, estructura ni navegación.</p>
+            <a class="button-link button-link--dark" href="{% url 'contact' %}">Hablar de esta herramienta</a>
+          </article>
+
+          <article class="tool-panel">
+            <p class="tools-label">Herramientas relacionadas</p>
+            <h3>Otras herramientas preparadas</h3>
+            <div class="tool-related-list">
+              {% for item in related_tools|slice:":3" %}
+              <a href="{% url 'tool_detail' slug=item.slug %}">{{ item.name }}</a>
+              {% endfor %}
+            </div>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

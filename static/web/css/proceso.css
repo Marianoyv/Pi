@@ -1,54 +1,47 @@
-﻿.proceso-section {
+.proceso-section {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 72px 24px;
-  background: linear-gradient(180deg, #131417 0%, #0d0e11 100%);
-  color: #fff;
+  padding: calc(var(--section-space) + 4px) 24px;
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
-.proceso-section h5 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 600;
-}
-
-.proceso-section > p {
-  width: min(760px, 100%);
-  margin-top: 16px;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: 1.05rem;
-}
-
-.proceso-section p a {
+.proceso-eyebrow {
+  margin-bottom: var(--space-12);
   color: var(--color-accent);
-  font-weight: 600;
+  font-size: var(--font-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .proceso-container {
   width: min(1200px, 100%);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-  margin: 40px 0;
+  gap: var(--space-24);
+  margin: 0 0 var(--space-32);
 }
 
 .proceso-step {
-  min-height: 240px;
+  min-height: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  padding: 24px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: rgba(0, 0, 0, 0.22) 0 16px 32px;
+  padding: var(--space-32);
+  border-radius: 22px;
+  background: var(--surface-panel);
+  border: 1px solid rgba(var(--rgb-border), 0.78);
+  box-shadow: 0 14px 30px rgba(var(--rgb-bg), 0.24);
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.25s ease, background-color 0.25s ease;
+  backdrop-filter: blur(12px);
 }
 
 .proceso-step.visible {
@@ -56,16 +49,36 @@
   transform: translateY(0);
 }
 
-.proceso-step h6 {
-  margin-bottom: 12px;
-  font-size: 1.2rem;
+.proceso-step:hover {
+  border-color: rgba(var(--rgb-secondary), 0.46);
+  background: rgba(var(--rgb-surface-elevated), 0.92);
+}
+
+.proceso-step__index {
+  margin-bottom: var(--space-16);
+  color: var(--color-accent);
+  font-size: var(--font-small);
   font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.proceso-step h3 {
+  margin-bottom: var(--space-16);
+  font-size: var(--font-h4);
+  font-weight: 600;
+  line-height: var(--leading-h4);
 }
 
 .proceso-step p {
-  padding: 0;
-  font-size: 0.98rem;
-  color: rgba(255, 255, 255, 0.72);
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
+}
+
+.proceso-note {
+  width: min(720px, 100%);
+  margin: 0 auto var(--space-32);
+  color: var(--color-text-secondary);
 }
 
 @media screen and (max-width: 1100px) {
@@ -76,10 +89,11 @@
 
 @media screen and (max-width: 769px) {
   .proceso-section {
-    padding: 56px 20px;
+    padding: var(--section-space-tight) 20px;
   }
 
   .proceso-container {
     grid-template-columns: 1fr;
+    margin-bottom: var(--space-24);
   }
 }

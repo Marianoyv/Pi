@@ -1,22 +1,43 @@
-﻿.footer {
-  background: #0b0d10;
-  color: rgba(255, 255, 255, 0.86);
-  padding: 36px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+.footer {
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: var(--space-48) 24px;
+  border-top: 1px solid rgba(var(--rgb-border), 0.72);
 }
 
 .footer-columns {
   width: min(1200px, 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 24px;
 }
 
+.footer-column {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.footer-column--brand {
+  gap: 14px;
+}
+
+.footer-kicker {
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .footer-column h3 {
-  margin-bottom: 14px;
-  color: #fff;
-  font-size: 1rem;
+  margin-bottom: 2px;
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 600;
+  line-height: var(--leading-small);
+  letter-spacing: 0.02em;
 }
 
 .footer-column ul {
@@ -31,13 +52,15 @@
 .footer-column ul li a,
 .footer-column a,
 .footer-column p {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--color-text-secondary);
+  font-size: var(--font-small);
+  line-height: var(--leading-small);
   transition: color 0.2s ease;
 }
 
 .footer-column ul li a:hover,
 .footer-column a:hover {
-  color: #fff;
+  color: var(--color-white);
 }
 
 .social-icons {
@@ -45,6 +68,7 @@
   align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 
 .social-icon {
@@ -54,15 +78,17 @@
   width: 42px;
   height: 42px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #fff;
-  font-size: 1rem;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  background: rgba(var(--rgb-surface), 0.9);
+  color: var(--color-white);
+  font-size: var(--font-small);
+  transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
 }
 
 .social-icon:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
+  background: rgba(var(--rgb-secondary), 0.18);
+  border-color: rgba(var(--rgb-secondary), 0.42);
   transform: translateY(-2px);
 }
 

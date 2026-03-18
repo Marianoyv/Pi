@@ -1,0 +1,229 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.seo_title }}{% endblock %}
+{% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block meta_description %}{{ tool.meta_description }}{% endblock %}
+{% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta</p>
+      <h1>{{ tool.page_title }}</h1>
+      <p class="page-shell__lead">{{ tool.page_description }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <div class="tool-detail__grid">
+        <div class="tool-detail__main">
+          <article class="tool-panel">
+            <p class="tools-label">Entrada</p>
+            <h2>Inspeccionar monetización visible</h2>
+            <p class="tool-panel__lead">Ingresa una URL pública y la herramienta intentará detectar señales visibles de monetización desde la respuesta inicial. Si el stack carga del lado del cliente, el resultado lo indicará con claridad.</p>
+            <form method="post" class="tool-form" data-analyze-form>
+              {% csrf_token %}
+              <div class="tool-form__field">
+                {{ form.url.label_tag }}
+                {{ form.url }}
+                {% if form.url.errors %}
+                <ul class="tool-form__errors">
+                  {% for error in form.url.errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </div>
+              <div class="tool-action-row">
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Inspeccionando URL...">Analizar URL</button>
+                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+              </div>
+              <p class="tool-panel__note">La detección se hace desde backend sobre HTML descargado. No se inventan hallazgos cuando la implementación no es visible.</p>
+            </form>
+          </article>
+
+          {% if debug_result %}
+          <section class="tool-result">
+            <article class="tool-result__hero tool-result__hero--{{ debug_result.diagnosis.overview.tone }}">
+              <p class="tools-label">Estado general</p>
+              <h2>{{ debug_result.diagnosis.overview.label }}</h2>
+              <p>{{ debug_result.diagnosis.overview.summary }}</p>
+              <p class="tool-result__target">{{ debug_result.target_url }}</p>
+            </article>
+
+            {% include 'web/components/tool_insight.html' with insight=debug_result.insight %}
+
+            {% include 'web/components/tool_exports.html' with exports=debug_result.exports export_prefix='adtech-debug-export' %}
+
+            <article class="tool-panel">
+              <p class="tools-label">Señales de monetización</p>
+              <h3>Señales detectadas de monetización</h3>
+              <div class="tool-signal-grid">
+                {% for item in debug_result.diagnosis.monetization_signals %}
+                <article class="tool-signal">
+                  <div class="tool-signal__top">
+                    <strong>{{ item.label }}</strong>
+                    <span class="tool-detection-status tool-detection-status--{{ item.status }}">
+                      {% if item.status == "detected" %}Detectado{% else %}No visible{% endif %}
+                    </span>
+                  </div>
+                  <p>{{ item.detail }}</p>
+                  {% if item.matched_patterns %}
+                  <ul class="tool-inline-list">
+                    {% for pattern in item.matched_patterns %}
+                    <li>{{ pattern }}</li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </article>
+                {% endfor %}
+              </div>
+            </article>
+
+            <div class="tool-result__grid">
+              <article class="tool-panel">
+                <p class="tools-label">Hallazgos técnicos</p>
+                <h3>Hallazgos técnicos</h3>
+                <ul class="tool-list">
+                  {% for item in debug_result.diagnosis.technical_findings %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Evidencia visible</p>
+                <h3>Señales crudas visibles</h3>
+                <div class="tool-metric-grid">
+                  <div class="tool-metric">
+                    <span>Slots estimados</span>
+                    <strong>{{ debug_result.analysis.slot_count_estimate }}</strong>
+                  </div>
+                  <div class="tool-metric">
+                    <span>Scripts publicitarios</span>
+                    <strong>{{ debug_result.analysis.matched_script_sources|length }}</strong>
+                  </div>
+                  <div class="tool-metric">
+                    <span>Iframes detectados</span>
+                    <strong>{{ debug_result.analysis.matched_iframe_sources|length }}</strong>
+                  </div>
+                  <div class="tool-metric">
+                    <span>Vendors detectados</span>
+                    <strong>{{ debug_result.analysis.vendor_hits|length }}</strong>
+                  </div>
+                </div>
+                {% if debug_result.analysis.vendor_hits %}
+                <ul class="tool-inline-list">
+                  {% for item in debug_result.analysis.vendor_hits %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Observaciones</p>
+                <h3>Oportunidades y observaciones</h3>
+                <ul class="tool-list">
+                  {% for item in debug_result.diagnosis.opportunities %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+
+              <article class="tool-panel">
+                <p class="tools-label">Limitaciones</p>
+                <h3>Limitaciones de lectura</h3>
+                <ul class="tool-list">
+                  {% for item in debug_result.diagnosis.limitations %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </article>
+            </div>
+
+            <article class="tool-panel">
+              <p class="tools-label">Recomendación</p>
+              <h3>Siguiente paso recomendado</h3>
+              <p>{{ debug_result.diagnosis.recommendation }}</p>
+            </article>
+          </section>
+          {% else %}
+          <article class="tool-empty">
+            <p class="tools-label">Salida</p>
+            <h2>La salida permite revisar monetización visible sin vender certezas falsas.</h2>
+            <div class="tool-empty__grid">
+              {% for item in tool.outputs %}
+              <div class="tool-empty__item">
+                <h3>{{ item }}</h3>
+              </div>
+              {% endfor %}
+            </div>
+          </article>
+          {% endif %}
+
+          {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+        </div>
+
+        <aside class="tool-detail__aside">
+          <article class="tool-panel">
+            <p class="tools-label">Estado</p>
+            <div class="tool-panel__status">
+              <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+            </div>
+            <p>{{ tool.summary }}</p>
+          </article>
+
+          {% for block in tool.detail_blocks %}
+          <article class="tool-panel">
+            <p class="tools-label">Alcance</p>
+            <h3>{{ block.title }}</h3>
+            <ul class="tool-list">
+              {% for item in block.items %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </article>
+          {% endfor %}
+
+          <article class="tool-panel">
+            <p class="tools-label">Fuentes</p>
+            <h3>Capas de lectura</h3>
+            <ul class="tool-source-list">
+              {% if debug_result %}
+                {% for source in debug_result.sources %}
+                <li class="tool-source tool-source--{{ source.status }}">
+                  <strong>{{ source.label }}</strong>
+                  <span>{{ source.detail }}</span>
+                </li>
+                {% endfor %}
+              {% else %}
+                <li class="tool-source tool-source--limited">
+                  <strong>Snapshot HTTP</strong>
+                  <span>Inspecciona respuesta inicial, scripts, iframes y HTML descargado.</span>
+                </li>
+                <li class="tool-source tool-source--limited">
+                  <strong>Escaneo por patrones</strong>
+                  <span>Busca señales extensibles de stack publicitario o monetización visible.</span>
+                </li>
+                <li class="tool-source tool-source--limited">
+                  <strong>Alcance del render</strong>
+                  <span>No ejecuta JavaScript del lado del navegador en esta versión.</span>
+                </li>
+              {% endif %}
+            </ul>
+          </article>
+
+          {% include 'web/components/tool_related_tools.html' with tool=tool related_tools=related_tools %}
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

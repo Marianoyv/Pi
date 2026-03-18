@@ -1,20 +1,12 @@
-﻿{% extends 'web/base.html' %}
+{% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Soluciones digitales personalizadas para tu empresa{% endblock %}
-{% block og_title %}Soluciones digitales personalizadas para tu empresa{% endblock %}
-{% block og_description %}Creamos estrategias digitales que impactan, atraen y convierten.{% endblock %}
+{% block title %}Herramientas AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
+{% block og_title %}Herramientas AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
+{% block meta_description %}Pi Development reúne herramientas para análisis AdTech, validación de creatividades, diagnóstico técnico web, URLs con UTM y automatización operativa.{% endblock %}
+{% block og_description %}Suite técnica para analizar, validar y optimizar URLs, creatividades, monetización visible y flujos operativos.{% endblock %}
+{% block meta_keywords %}herramientas AdTech, validación de creatividades, diagnóstico técnico web, QA publicitario, generador UTM{% endblock %}
+{% block body_class %}home-page{% endblock %}
 {% block head %}
-<meta name="description" content="Creamos estrategias digitales que impactan, atraen y convierten.">
-<meta name="author" content="PIDev Founder: Mariano Tami">
-<meta name="keywords" content="estrategias digitales, marketing digital, soluciones digitales, PI Development">
-<meta name="robots" content="index, follow">
-<meta property="og:title" content="Soluciones digitales personalizadas para tu empresa">
-<meta property="og:description" content="Creamos estrategias digitales que impactan, atraen y convierten.">
-<meta property="og:image" content="{% static 'web/img/pi.ico' %}">
-<meta property="og:url" content="https://pidevelopment.web.app">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="PI Development">
-<meta property="og:locale" content="es_AR">
 <link rel="stylesheet" href="{% static 'web/css/hero.css' %}">
 <link rel="stylesheet" href="{% static 'web/css/servicios.css' %}">
 <link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}">
@@ -22,18 +14,18 @@
 <link rel="stylesheet" href="{% static 'web/css/herramientas.css' %}">
 <link rel="stylesheet" href="{% static 'web/css/nosotros.css' %}">
 <link rel="stylesheet" href="{% static 'web/css/contacto.css' %}">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8341459305954792" crossorigin="anonymous"></script>
-<script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/9b7863877e7b1572545a6deb3/9fc65f4503e80b0f5f89ce76d.js");</script>
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-{% include 'web/hero.html' %}
-{% include 'web/servicios.html' %}
-{% include 'web/portfolio.html' %}
-{% include 'web/proceso.html' %}
-{% include 'web/herramientas.html' %}
-{% include 'web/nosotros.html' %}
-{% include 'web/contacto.html' %}
+<main>
+  {% include 'web/hero.html' %}
+  {% include 'web/servicios.html' %}
+  {% include 'web/portfolio.html' %}
+  {% include 'web/proceso.html' %}
+  {% include 'web/herramientas.html' %}
+  {% include 'web/nosotros.html' %}
+  {% include 'web/contacto.html' %}
+</main>
 {% include 'web/components/footer.html' %}
 {% endblock %}
 {% block scripts %}

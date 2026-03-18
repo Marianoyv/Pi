@@ -1,5 +1,6 @@
-﻿import os
+import os
 from pathlib import Path
+
 from decouple import config
 
 
@@ -29,6 +30,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'pi_development.middleware.CleanHtmlResponseMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -67,7 +69,7 @@ DATABASES = {
     }
 }
 
-# Validadores de contraseÃ±as
+# Validadores de contrasenas
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -75,13 +77,26 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# InternacionalizaciÃ³n
+# Internacionalizacion
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
 SITE_URL = config('SITE_URL', default='https://pidevelopment.web.app')
+CONTACT_EMAIL = config('CONTACT_EMAIL', default='pidev.founder@gmail.com')
+CONTACT_PHONE = config('CONTACT_PHONE', default='+54 9 11 7061 9703')
+CONTACT_PHONE_WA = config('CONTACT_PHONE_WA', default='5491170619703')
+CONTACT_LOCATION = config('CONTACT_LOCATION', default='Buenos Aires, Argentina')
+PAGESPEED_API_KEY = config('PAGESPEED_API_KEY', default='')
+PAGESPEED_API_ENDPOINT = config(
+    'PAGESPEED_API_ENDPOINT',
+    default='https://www.googleapis.com/pagespeedonline/v5/runPagespeed',
+)
+TOOLS_HTTP_TIMEOUT = config('TOOLS_HTTP_TIMEOUT', default=12, cast=int)
+OPENAI_API_KEY = config('OPENAI_API_KEY', default='')
+OPENAI_API_BASE = config('OPENAI_API_BASE', default='https://api.openai.com/v1')
+OPENAI_AUDITOR_MODEL = config('OPENAI_AUDITOR_MODEL', default='')
 
 # Ruta a credenciales de Google
 credentials_path = Path(config('GOOGLE_APPLICATION_CREDENTIALS'))
@@ -89,15 +104,15 @@ if not credentials_path.is_absolute():
     credentials_path = BASE_DIR / credentials_path
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
 
-# ConfiguraciÃ³n de Google Cloud Storage
+# Configuracion de Google Cloud Storage
 GS_BUCKET_NAME = config('GS_BUCKET_NAME')
-GS_DEFAULT_ACL = None  # Requerido si el bucket tiene Uniform bucket-level access
+GS_DEFAULT_ACL = None
 STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 STATICFILES_STORAGE = 'pi_development.storage.StaticRootGoogleCloudStorage'
 DEFAULT_FILE_STORAGE = 'pi_development.storage.MediaRootGoogleCloudStorage'
 
-# Ruta local de archivos estÃ¡ticos
+# Ruta local de archivos estaticos
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Requerido por Django
@@ -113,7 +128,3 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Campo por defecto
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-

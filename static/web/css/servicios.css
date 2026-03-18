@@ -1,35 +1,60 @@
-﻿.serv {
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
+.serv {
   width: 100%;
-  gap: 36px;
-  padding: 72px 24px;
-  background: linear-gradient(180deg, #ffffff 0%, #fbf8f0 100%);
+  padding: var(--section-space) 24px;
+  background: var(--color-bg);
 }
 
-.serv h3 {
-  width: 100%;
-  font-size: clamp(2rem, 4vw, 2.8rem);
+.serv__layout {
+  width: min(1200px, 100%);
+  margin: 0 auto var(--space-32);
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: var(--space-24);
+  align-items: start;
+}
+
+.serv__header {
+  margin: 0;
+  text-align: left;
+}
+
+.serv__eyebrow {
+  margin-bottom: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--font-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.serv__support {
+  padding: var(--space-32);
+  border-radius: 22px;
+  border: 1px solid rgba(var(--rgb-border), 0.78);
+  background: rgba(var(--rgb-surface), 0.92);
+  box-shadow: 0 14px 30px rgba(var(--rgb-bg), 0.24);
+}
+
+.serv__support-label {
+  margin-bottom: var(--space-12);
+  color: var(--color-white);
+  font-size: var(--font-small);
   font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.serv > p {
-  width: min(760px, 100%);
-  font-size: 1.08rem;
-  line-height: 1.75;
-  color: rgba(23, 25, 29, 0.74);
+.serv__support p:last-of-type {
+  margin-bottom: var(--space-24);
+  color: var(--color-text-secondary);
 }
 
 .serv .cards {
   width: min(1200px, 100%);
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-24);
 }
 
 .service-card-link {
@@ -42,49 +67,70 @@
   min-height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  padding: 26px;
-  border-radius: 20px;
-  background: #fff;
-  border: 1px solid rgba(23, 25, 29, 0.08);
-  box-shadow: rgba(17, 17, 17, 0.08) 0 20px 40px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  padding: var(--space-32);
+  border-radius: 22px;
+  background: rgba(var(--rgb-surface), 0.92);
+  border: 1px solid rgba(var(--rgb-border), 0.78);
+  box-shadow: 0 14px 30px rgba(var(--rgb-bg), 0.24);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+  backdrop-filter: blur(10px);
 }
 
 .service-card-link:hover .card {
-  transform: translateY(-6px);
-  border-color: rgba(255, 183, 3, 0.35);
-  box-shadow: rgba(17, 17, 17, 0.12) 0 22px 42px;
+  transform: translateY(-4px);
+  border-color: rgba(var(--rgb-secondary), 0.48);
+  box-shadow: 0 18px 36px rgba(var(--rgb-bg), 0.3);
+  background: rgba(var(--rgb-surface-elevated), 0.92);
 }
 
-.serv .card h4 {
-  font-size: 1.35rem;
+.serv__card-label {
+  margin-bottom: var(--space-12);
+  color: var(--color-accent);
+  font-size: var(--font-small);
   font-weight: 600;
-  color: #17191d;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.serv .card h3 {
+  margin-bottom: var(--space-16);
+  font-size: var(--font-h4);
+  font-weight: 600;
+  line-height: var(--leading-h4);
+  color: var(--color-white);
 }
 
 .serv .card p {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: rgba(23, 25, 29, 0.74);
+  margin-bottom: auto;
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
+  color: var(--color-text-secondary);
 }
 
-.serv .card span {
-  font-weight: 600;
-  color: #8a6a00;
+.serv .card strong {
+  margin-top: var(--space-24);
+  color: var(--color-text);
+  font-size: var(--font-small);
+  line-height: var(--leading-small);
 }
 
 @media screen and (max-width: 1100px) {
+  .serv__layout,
   .serv .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .serv__layout {
+    grid-template-columns: 1fr;
   }
 }
 
 @media screen and (max-width: 769px) {
   .serv {
-    padding: 56px 20px;
+    padding: var(--section-space-tight) 20px;
   }
 
   .serv .cards {

@@ -1,35 +1,26 @@
-﻿<section class="serv" id="servicios">
-  <h3>Servicios digitales alineados con tus objetivos</h3>
-  <p>Desarrollamos soluciones digitales pensadas para mejorar tu presencia online, optimizar procesos y potenciar resultados reales.</p>
-  <div class="cards">
-    <a class="service-card-link" href="{% url 'service_page' slug='web-development' %}">
-      <div class="card">
-        <h4>Desarrollo web a medida</h4>
-        <p>Sitios rápidos, escalables y visuales. Desde landings hasta plataformas completas con estructura pensada para crecer.</p>
-        <span>Ver servicio</span>
-      </div>
-    </a>
-    <a class="service-card-link" href="{% url 'service_page' slug='ux-ui' %}">
-      <div class="card">
-        <h4>Diseño UX/UI estratégico</h4>
-        <p>Interfaces intuitivas que mejoran la experiencia del usuario y refuerzan tu marca.</p>
-        <span>Ver servicio</span>
-      </div>
-    </a>
-    <a class="service-card-link" href="{% url 'service_page' slug='marketing' %}">
-      <div class="card">
-        <h4>Contenido, redes y marketing digital</h4>
-        <p>Creamos y ejecutamos campañas que conectan con tu audiencia en los canales correctos.</p>
-        <span>Ver servicio</span>
-      </div>
-    </a>
-    <a class="service-card-link" href="{% url 'service_page' slug='seo' %}">
-      <div class="card">
-        <h4>Auditorías y posicionamiento SEO</h4>
-        <p>Analizamos tu presencia digital, detectamos oportunidades y mejoramos tu visibilidad en buscadores.</p>
-        <span>Ver servicio</span>
-      </div>
-    </a>
+<section class="serv" id="systems-intro">
+  <div class="serv__layout">
+    <div class="section-header section-header--wide serv__header">
+      <p class="serv__eyebrow">{{ home_page.systems.eyebrow }}</p>
+      <h2>{{ home_page.systems.title }}</h2>
+      <p>{{ home_page.systems.description }}</p>
+    </div>
+    <aside class="serv__support">
+      <p class="serv__support-label">{{ home_page.systems.support_label }}</p>
+      <p>{{ home_page.systems.support_text }}</p>
+      <a class="button-link button-link--dark" href="{% url 'systems' %}">Ver arquitectura</a>
+    </aside>
   </div>
-  <a class="button-link button-link--dark" href="{% url 'services' %}">Ver todos los servicios</a>
+  <div class="cards">
+    {% for item in home_page.systems.groups %}
+    <a class="service-card-link" href="{% url 'systems' %}">
+      <article class="card">
+        <p class="serv__card-label">{{ item.label }}</p>
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        <strong>{{ item.outcome }}</strong>
+      </article>
+    </a>
+    {% endfor %}
+  </div>
 </section>

@@ -1,23 +1,20 @@
-﻿<section id="proceso" class="proceso-section">
-  <h5>Procesos claros para llegar más lejos</h5>
-  <p>En <a href="{% url 'index' %}">Pi Development</a> trabajamos con una estructura flexible, pero con intención. Cada etapa está pensada para generar resultados reales, sin rodeos.</p>
-  <div class="container proceso-container">
-    <div class="proceso-step">
-      <h6>Entendemos</h6>
-      <p>Hablamos, preguntamos, analizamos. No arrancamos hasta tener claridad sobre tus objetivos.</p>
-    </div>
-    <div class="proceso-step">
-      <h6>Diseñamos</h6>
-      <p>No ofrecemos plantillas. Diseñamos estructuras visuales y funcionales a medida de lo que necesitás.</p>
-    </div>
-    <div class="proceso-step">
-      <h6>Ejecutamos</h6>
-      <p>Desarrollamos rápido, con intención y validación constante. Menos burocracia, más impacto.</p>
-    </div>
-    <div class="proceso-step">
-      <h6>Medimos</h6>
-      <p>Lanzar no es el final. Revisamos, analizamos y optimizamos para que escales con datos reales.</p>
-    </div>
+<section id="approach-preview" class="proceso-section">
+  <div class="section-header section-header--wide section-header--light">
+    <p class="proceso-eyebrow">{{ home_page.approach.eyebrow }}</p>
+    <h2>{{ home_page.approach.title }}</h2>
+    <p>{{ home_page.approach.description }}</p>
   </div>
-  <a class="button-link button-link--dark" href="{% url 'process_page' %}">Ver el proceso completo</a>
+  <div class="container proceso-container">
+    {% for item in home_page.approach.steps %}
+    <article class="proceso-step">
+      <span class="proceso-step__index">{{ item.number }}</span>
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
+  <p class="proceso-note">{{ home_page.approach.note }}</p>
+  <div class="section-actions">
+    <a class="button-link button-link--dark" href="{% url 'approach' %}">Ver método</a>
+  </div>
 </section>

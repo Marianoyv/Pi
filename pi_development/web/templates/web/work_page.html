@@ -1,0 +1,84 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}Casos reales y sistemas publicados | Pi Development{% endblock %}
+{% block og_title %}Casos reales y sistemas publicados | Pi Development{% endblock %}
+{% block meta_description %}{{ work_page.description }}{% endblock %}
+{% block og_description %}{{ work_page.description }}{% endblock %}
+{% block meta_keywords %}casos de sistemas digitales, proyectos web publicados, arquitectura digital, plataformas web{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ work_page.eyebrow }}</p>
+      <h1>{{ work_page.title }}</h1>
+      <p class="page-shell__lead">{{ work_page.description }}</p>
+    </div>
+  </section>
+  <section class="portfolio-overview">
+    <div class="portfolio-overview__inner">
+      <div class="portfolio-overview__header-grid">
+        <div class="portfolio-overview__header">
+          <p class="portfolio-overview__eyebrow">Casos seleccionados</p>
+          <h2>Sistemas construidos para problemas concretos</h2>
+          <p>Cada caso muestra una necesidad real, una solución técnica posible y una base implementada para seguir creciendo.</p>
+        </div>
+        <aside class="portfolio-overview__summary">
+          <h3>{{ work_page.notes_title }}</h3>
+          <ul class="portfolio-overview__summary-list">
+            {% for item in work_page.notes %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+      <div class="portfolio-overview__grid portfolio-overview__grid--cases">
+        {% for item in work_items %}
+        <article class="portfolio-overview__card portfolio-overview__card--case">
+          <a class="portfolio-overview__case-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Visitar {{ item.name }}">
+            <img src="{% static item.image %}" alt="Proyecto {{ item.name }}">
+          </a>
+          <div class="portfolio-overview__content">
+            <p class="portfolio-overview__category">{{ item.category }}</p>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.summary }}</p>
+            <ul class="portfolio-overview__tags">
+              {% for tag in item.highlights %}
+              <li>{{ tag }}</li>
+              {% endfor %}
+            </ul>
+            <div class="portfolio-overview__case-body">
+              <div class="portfolio-overview__case-row">
+                <strong>Contexto</strong>
+                <p>{{ item.context }}</p>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <strong>Problema</strong>
+                <p>{{ item.problem }}</p>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <strong>Solución</strong>
+                <p>{{ item.solution }}</p>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <strong>Implementación</strong>
+                <p>{{ item.implementation }}</p>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <strong>Resultado</strong>
+                <p>{{ item.result }}</p>
+              </div>
+            </div>
+            <span>Visitar proyecto</span>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

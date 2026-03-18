@@ -1,35 +1,41 @@
-﻿<footer class="footer">
+<footer class="footer">
   <div class="footer-columns">
+    <div class="footer-column footer-column--brand">
+      <p class="footer-kicker">Pi Development</p>
+      <p>Herramientas y sistemas digitales para AdTech, validación de creatividades, rendimiento web, automatización y datos.</p>
+    </div>
     <div class="footer-column">
-      <h3>Explora</h3>
+      <h3>Navegación</h3>
       <ul>
         <li><a href="{% url 'index' %}">Inicio</a></li>
-        <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
-        <li><a href="{% url 'blog' %}">Blog</a></li>
-        <li><a href="{% url 'about' %}">Nosotros</a></li>
-        <li><a href="{% url 'process_page' %}">Cómo trabajamos</a></li>
-        <li><a href="{% url 'resources_page' %}">Recursos</a></li>
-        <li><a href="{% url 'policies' %}">Páginas legales</a></li>
+        <li><a href="{% url 'systems' %}">Arquitectura</a></li>
+        <li><a href="{% url 'tools' %}">Herramientas</a></li>
+        <li><a href="{% url 'work' %}">Casos</a></li>
+        <li><a href="{% url 'approach' %}">Método</a></li>
+        <li><a href="{% url 'about' %}">Estudio</a></li>
+        <li><a href="{% url 'contact' %}">Contacto</a></li>
       </ul>
     </div>
     <div class="footer-column">
-      <h3>Servicios</h3>
+      <h3>Enfoque</h3>
       <ul>
-        <li><a href="{% url 'service_page' slug='web-development' %}">Desarrollo web</a></li>
-        <li><a href="{% url 'service_page' slug='ux-ui' %}">UX/UI</a></li>
-        <li><a href="{% url 'service_page' slug='seo' %}">SEO</a></li>
-        <li><a href="{% url 'service_page' slug='marketing' %}">Marketing digital</a></li>
+        <li><a href="{% url 'systems' %}">Arquitectura digital</a></li>
+        <li><a href="{% url 'tools' %}">Herramientas técnicas</a></li>
+        <li><a href="{% url 'systems' %}">Rendimiento y automatización</a></li>
+        <li><a href="{% url 'systems' %}">Datos y monetización</a></li>
+        <li><a href="{% url 'policies' %}">Políticas</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Contacto</h3>
-      <p>Buenos Aires, Argentina</p>
-      <a href="mailto:pidev.founder@gmail.com">pidev.founder@gmail.com</a>
-    </div>
-    <div class="social-icons">
-      <a href="https://github.com/Marianoyv" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Pi Development"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/company/pi-d" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Pi Development"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/pi.development/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Pi Development"><i class="fab fa-instagram"></i></a>
+      <p>{{ contact_location }}</p>
+      <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>
+      <a href="https://wa.me/{{ contact_phone_wa }}" target="_blank" rel="noopener noreferrer">{{ contact_phone }}</a>
+      <div class="social-icons">
+        <a href="https://github.com/Marianoyv" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Pi Development"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/company/pi-d" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Pi Development"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/pi.development/" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Pi Development"><i class="fab fa-instagram"></i></a>
+      </div>
     </div>
   </div>
 </footer>

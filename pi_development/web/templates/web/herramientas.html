@@ -1,35 +1,27 @@
-﻿<section class="explora" id="explora">
-  <h2>Explorá herramientas y proyectos</h2>
-  <p>En Pi Development desarrollamos soluciones internas, herramientas y formatos publicitarios que también compartimos con el mundo.</p>
-  <div class="container">
-    <div class="card" style="width: 16rem; padding: 25px;">
-      <div class="card-body p-2">
-        <h3 class="card-title">Experimentos</h3>
-        <h4 class="card-subtitle mb-2 text-body-secondary">Prototipos y pruebas de concepto</h4>
-        <p class="card-text">Proyectos en desarrollo, conceptos visuales o funcionales, MVPs.</p>
-      </div>
+<section class="explora" id="tools-preview">
+  <div class="explora__layout">
+    <div class="section-header section-header--wide explora__header">
+      <p class="explora__eyebrow">{{ home_page.tools.eyebrow }}</p>
+      <h2>{{ home_page.tools.title }}</h2>
+      <p>{{ home_page.tools.description }}</p>
     </div>
-    <div class="card" style="width: 16rem; padding: 25px;">
-      <div class="card-body p-2">
-        <h3 class="card-title">Creativos</h3>
-        <h4 class="card-subtitle mb-2 text-body-secondary">Formatos interactivos y medibles</h4>
-        <p class="card-text">Formatos publicitarios personalizados, dinámicos y medibles.</p>
-      </div>
-    </div>
-    <div class="card" style="width: 16rem; padding: 25px;">
-      <div class="card-body p-2">
-        <h3 class="card-title">Auditor</h3>
-        <h4 class="card-subtitle mb-2 text-body-secondary">Análisis estructurado y estratégico</h4>
-        <p class="card-text">Plantillas y metodologías para revisar estrategia, UX y contenido.</p>
-      </div>
-    </div>
-    <div class="card" style="width: 16rem; padding: 25px;">
-      <div class="card-body p-2">
-        <h3 class="card-title">Tools</h3>
-        <h4 class="card-subtitle mb-2 text-body-secondary">Utilidades para equipos digitales</h4>
-        <p class="card-text">Herramientas simples y útiles para marketing, diseño y desarrollo.</p>
-      </div>
-    </div>
+    <aside class="explora__support">
+      <h3>{{ home_page.tools.support_title }}</h3>
+      <p>{{ home_page.tools.support_text }}</p>
+    </aside>
   </div>
-  <a class="button-link button-link--dark" href="{% url 'resources_page' %}">Ver esta sección como página</a>
+  <div class="container">
+    {% for item in home_page.tools.groups %}
+    <article class="card explora-card">
+      <div class="card-body p-2">
+        <p class="explora-card__label">{{ item.label }}</p>
+        <h3 class="card-title">{{ item.title }}</h3>
+        <p class="card-text">{{ item.text }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="section-actions">
+    <a class="button-link button-link--dark" href="{% url 'tools' %}">Explorar herramientas</a>
+  </div>
 </section>

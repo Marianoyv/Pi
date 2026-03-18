@@ -1,168 +1,197 @@
-﻿.showcase {
-  height: 100vh;
+.showcase {
+  position: relative;
+  min-height: 100svh;
   width: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
   display: flex;
-  transition: 0.5s;
-  overflow: hidden;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  z-index: 2;
-  box-shadow: inset 0 0 400px #000000;
+  padding: 0 24px;
+  overflow: hidden;
+  background: var(--color-bg);
+  box-shadow: inset 0 0 180px rgba(var(--rgb-primary), 0.08);
 }
 
 .layer {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(24, 24, 26, 1) 100%);
+  inset: 0;
+  background:
+    radial-gradient(circle at 78% 18%, rgba(var(--rgb-primary), 0.18) 0%, transparent 28%),
+    radial-gradient(circle at 24% 78%, rgba(var(--rgb-accent), 0.12) 0%, transparent 32%),
+    linear-gradient(180deg, rgba(var(--rgb-bg), 0.22) 0%, rgba(var(--rgb-surface), 0.36) 54%, var(--color-bg) 100%);
 }
 
 .showcase .text {
-  color: #ffffffe2;
-  position: absolute;
-  max-width: 1200px;
-  min-height: 50vh;
-  gap: 20px;
+  position: relative;
   z-index: 5;
+  width: min(1200px, 100%);
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   align-items: flex-start;
+  min-height: 100svh;
+  padding: calc(var(--nav-height) + var(--space-48)) 0 var(--space-80);
+  gap: var(--space-16);
+  color: var(--color-white);
   text-align: left;
-  text-shadow: 11px 11px 20px #16161654;
+  text-shadow: 0 18px 48px rgba(var(--rgb-bg), 0.28);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.hero-eyebrow {
+  color: var(--color-accent);
+  font-size: var(--font-label);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .showcase .text h1 {
-  font-weight: 700;
-  font-size: 3em;
-  letter-spacing: 0;
+  max-width: 820px;
+  font-size: var(--font-h1);
+  font-weight: 600;
+  line-height: var(--leading-h1);
+  letter-spacing: var(--tracking-heading);
 }
 
-.showcase .text h2 {
-  font-size: 2.1em;
-  max-width: 80%;
-  font-weight: 300;
+.hero-lead {
+  max-width: 720px;
+  font-size: var(--font-body-lg);
+  line-height: var(--leading-body);
+  color: var(--color-text-inverse);
 }
 
 .showcase .text .button-link {
   width: auto;
   height: auto;
-  color: #000000c5;
+  margin-top: var(--space-8);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  margin-top: var(--space-8);
+}
+
+.hero-signals {
+  width: min(980px, 100%);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: var(--space-24);
+}
+
+.hero-signal {
+  padding: 18px 18px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(var(--rgb-border), 0.72);
+  background: rgba(var(--rgb-surface), 0.52);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 36px rgba(var(--rgb-bg), 0.24);
+}
+
+.hero-signal span {
+  display: inline-block;
+  margin-bottom: var(--space-8);
+  color: var(--color-white);
+  font-size: var(--font-small);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-signal p {
+  color: var(--color-text-secondary-inverse);
+  font-size: var(--font-small);
+  line-height: var(--leading-body);
 }
 
 ul.social {
   position: absolute;
-  right: 25px;
-  bottom: 25px;
-  padding: 0 10px;
+  right: 48px;
+  bottom: 48px;
+  padding: 8px 10px;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
   z-index: 6;
-  font-size: 0.8em;
-  border-radius: 6px;
-  color: #000000c5;
-  border: none;
-  box-shadow: rgba(255, 255, 255, 0.565) 0px -50px 36px -28px inset;
-  transition: 0.5s ease-in-out;
-  background-color: #eeeeee46;
-}
-
-ul.social:hover {
-  transition: 1s ease-in-out;
+  border-radius: 999px;
+  list-style: none;
+  border: 1px solid rgba(var(--rgb-border), 0.72);
+  box-shadow: 0 18px 36px rgba(var(--rgb-bg), 0.24);
+  backdrop-filter: blur(16px);
+  background: rgba(var(--rgb-surface), 0.7);
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .social li a {
-  display: inline-block;
-  margin: 10px;
-  transition: 0.5s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  transition: background-color 0.25s ease, transform 0.25s ease;
 }
 
 .fa-brands {
-  font-size: 2.2em;
-  color: #000000da;
-  text-shadow: 0 0 20px #00000026;
+  font-size: var(--font-small);
+  color: var(--color-text-secondary);
+  text-shadow: none;
 }
 
 .social li a:hover,
 .fa-brands:hover {
-  color: #ffffff;
-  transition: 0.5s ease-in-out;
+  color: var(--color-white);
 }
 
-#fade-text {
-  transition: opacity 0.5s ease-in-out;
+.social li a:hover {
+  background: rgba(var(--rgb-primary), 0.16);
+  transform: translateY(-1px);
+}
+
+@media screen and (max-width: 900px) {
+  .hero-signals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media screen and (max-width: 769px) {
+  .showcase {
+    padding: 0 20px;
+  }
+
   .showcase .text {
-    min-height: max-content;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    text-align: left;
-    text-shadow: 11px 11px 20px #00000054;
+    padding: calc(var(--nav-height) + 32px) 0 124px;
   }
 
-  .showcase .text h1 {
-    padding: 20px 32px;
-    font-weight: 700;
-    font-size: 2em;
-    letter-spacing: 0;
-  }
-
-  .showcase .text h2 {
-    padding: 20px 32px;
-    font-size: 1.4em;
-    font-weight: 300;
+  .showcase .text h1,
+  .hero-lead {
+    max-width: 100%;
   }
 
   .showcase .text .button-link {
-    font-size: 0.8em;
-    margin: auto;
+    min-width: 0;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-signals {
+    grid-template-columns: 1fr;
   }
 
   ul.social {
-    position: absolute;
-    bottom: 18px;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-    color: #ffffff;
+    right: 20px;
+    bottom: 28px;
+    padding: 6px 8px;
   }
 
   .social li a {
-    margin: 5px;
-  }
-
-  .fa-brands {
-    font-size: 1.8em;
-    color: #ffffffda;
-    text-shadow: 0 0 20px #a9a9a926;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .showcase .text {
-    height: 30vh;
-    gap: 0;
-  }
-
-  .showcase .text h1 {
-    font-size: 1.4em;
-    padding: 10px 32px;
-  }
-
-  .showcase .text h2 {
-    font-size: 1.1em;
-    padding: 10px 32px;
-  }
-
-  ul.social {
-    bottom: 0;
+    width: 36px;
+    height: 36px;
   }
 }

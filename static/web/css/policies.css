@@ -1,44 +1,55 @@
-﻿.policies-page {
-  background: #f6f3eb;
-  padding: 56px 24px 72px;
+.policies-page {
+  background: var(--color-bg);
+  padding: var(--section-space-tight) 24px var(--section-space);
 }
 
 .contenido {
   width: min(960px, 100%);
   margin: 0 auto;
-  background: #fff;
+  background: var(--surface-panel);
+  border: 1px solid rgba(var(--rgb-border), 0.82);
   border-radius: 24px;
-  box-shadow: rgba(17, 17, 17, 0.08) 0 20px 40px;
+  box-shadow: 0 18px 36px rgba(var(--rgb-bg), 0.24);
   padding: 36px;
-  color: #17191d;
+  color: var(--color-text);
 }
 
 .contenido h1,
 .contenido h2,
 .contenido h3 {
-  color: #111;
+  color: var(--color-white);
 }
 
 .contenido h1 {
-  margin-bottom: 20px;
-  font-size: clamp(2rem, 4vw, 2.7rem);
+  margin-bottom: var(--space-24);
+  font-size: var(--font-h2);
+  font-weight: 600;
+  line-height: var(--leading-h2);
+  letter-spacing: var(--tracking-heading);
 }
 
 .contenido h2 {
   margin-top: 28px;
   margin-bottom: 12px;
-  font-size: 1.45rem;
+  font-size: var(--font-h3);
+  font-weight: 600;
+  line-height: var(--leading-h3);
+  letter-spacing: var(--tracking-heading);
 }
 
 .contenido h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-size: 1.1rem;
+  font-size: var(--font-h4);
+  font-weight: 600;
+  line-height: var(--leading-h4);
 }
 
 .contenido p,
 .contenido li {
-  color: rgba(23, 25, 29, 0.8);
+  color: var(--color-text-secondary);
+  font-size: var(--font-body);
+  line-height: var(--leading-body);
 }
 
 .contenido ul {
@@ -51,7 +62,7 @@
   list-style: none;
   padding: 14px 16px;
   border-radius: 14px;
-  background: #f4f0e7;
+  background: rgba(var(--rgb-surface-elevated), 0.92);
 }
 
 @media screen and (max-width: 769px) {

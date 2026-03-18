@@ -1,0 +1,22 @@
+{% if exports %}
+<article class="tool-panel">
+  <p class="tools-label">Acciones</p>
+  <h3>Copiar o exportar</h3>
+  <div class="tool-export-actions" data-copy-group>
+    {% for export in exports %}
+    <textarea id="{{ export_prefix }}-{{ export.key }}" class="tool-copy-output tool-copy-output--hidden" readonly>{{ export.text }}</textarea>
+    <button
+      type="button"
+      class="button-link button-link--dark"
+      data-copy-button
+      data-copy-target="{{ export_prefix }}-{{ export.key }}"
+      data-copied-text="Copiado"
+      data-copy-success="{{ export.success_message }}"
+    >
+      {{ export.label }}
+    </button>
+    {% endfor %}
+    <span class="tool-copy-feedback" data-copy-feedback></span>
+  </div>
+</article>
+{% endif %}

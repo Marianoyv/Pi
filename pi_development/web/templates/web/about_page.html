@@ -1,22 +1,71 @@
-﻿{% extends 'web/base.html' %}
+{% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Quiénes somos | Pi Development{% endblock %}
-{% block og_title %}Quiénes somos | Pi Development{% endblock %}
-{% block og_description %}Conocé el enfoque, la visión y la forma de trabajar de Pi Development.{% endblock %}
+{% block title %}Estudio técnico para AdTech, QA y rendimiento web | Pi Development{% endblock %}
+{% block og_title %}Estudio técnico para AdTech, QA y rendimiento web | Pi Development{% endblock %}
+{% block meta_description %}{{ about_page.description }}{% endblock %}
+{% block og_description %}{{ about_page.description }}{% endblock %}
+{% block meta_keywords %}estudio técnico digital, AdTech, rendimiento web, validación de creatividades, automatización y datos{% endblock %}
 {% block head %}
-<meta name="description" content="Conocé el enfoque, la visión y la forma de trabajar de Pi Development.">
-<link rel="canonical" href="https://pidevelopment.web.app/about/">
-<link rel="stylesheet" href="{% static 'web/css/nosotros.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/content_page.css' %}">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<section class="page-shell">
-  <div class="page-shell__inner">
-    <p class="page-shell__eyebrow">Nosotros</p>
-    <h1>Diseño, estrategia y tecnología con foco en resultados</h1>
-    <p class="page-shell__lead">Esta página concentra la propuesta y visión de Pi Development fuera del formato one-page, para que la navegación y el crecimiento SEO tengan una base más sólida.</p>
-  </div>
-</section>
-{% include 'web/nosotros.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ about_page.eyebrow }}</p>
+      <h1>{{ about_page.title }}</h1>
+      <p class="page-shell__lead">{{ about_page.description }}</p>
+    </div>
+  </section>
+  <section class="content-page">
+    <div class="content-page__grid">
+      <article class="content-page__main">
+        <h2>Qué es Pi Development</h2>
+        <p>{{ about_page.intro }}</p>
+        <div class="content-page__faq-list">
+          {% for paragraph in about_page.paragraphs %}
+          <article class="content-page__faq-item">
+            <p>{{ paragraph }}</p>
+          </article>
+          {% endfor %}
+        </div>
+        <div class="content-page__section">
+          <h2>Cómo se piensa el trabajo</h2>
+          <div class="content-page__faq-list">
+            {% for item in about_page.values %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+      <aside class="content-page__aside">
+        <div class="content-page__card">
+          <p class="content-page__card-label">Posicionamiento</p>
+          <h3>Herramientas y sistemas digitales</h3>
+          <p>Plataformas, herramientas e infraestructura digital para equipos que necesitan precisión técnica, claridad y escalabilidad.</p>
+        </div>
+        <div class="content-page__card">
+          <p class="content-page__card-label">Encaje</p>
+          <h3>{{ about_page.audience_title }}</h3>
+          <ul class="content-page__aside-list">
+            {% for item in about_page.audience %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="content-page__card">
+          <p class="content-page__card-label">Siguiente paso</p>
+          <h3>Si la necesidad es técnica y estructural, conversemos.</h3>
+          <p>Podemos ordenar una capa digital nueva o reestructurar una base que ya se quedó corta.</p>
+          <a class="button-link button-link--dark" href="{% url 'contact' %}">Ir a contacto</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
 {% include 'web/components/footer.html' %}
 {% endblock %}

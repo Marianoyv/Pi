@@ -1,9 +1,21 @@
-﻿<section id="vanta-hero" class="showcase">
+<section id="vanta-hero" class="showcase">
   <div class="layer"></div>
   <div class="text" id="fade-text">
-    <h1>Estrategias digitales que impulsan tu marca</h1>
-    <h2>Combinamos diseño, tecnología y marketing para crear soluciones reales que <b>generan impacto.</b></h2>
-    <a class="button-link" href="{% url 'services' %}">Conocé nuestros servicios</a>
+    <p class="hero-eyebrow">{{ home_page.hero.eyebrow }}</p>
+    <h1>{{ home_page.hero.title }}</h1>
+    <p class="hero-lead">{{ home_page.hero.description }}</p>
+    <div class="hero-actions">
+      <a class="button-link" href="{% url 'tools' %}">Usar herramientas</a>
+      <a class="button-link button-link--dark" href="{% url 'systems' %}">Ver arquitectura</a>
+    </div>
+    <div class="hero-signals">
+      {% for item in home_page.hero.signals %}
+      <article class="hero-signal">
+        <span>{{ item.label }}</span>
+        <p>{{ item.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
   </div>
   <ul class="social">
     <li><a href="https://github.com/Marianoyv" target="_blank" rel="noopener noreferrer" aria-label="Ir al perfil de GitHub de Pi Development"><i class="fa-brands fa-github"></i></a></li>

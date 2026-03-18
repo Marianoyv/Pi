@@ -1,24 +1,21 @@
-﻿<section class="nosotros" id="nosotros">
-  <h1>¿Quiénes somos?</h1>
-  <h2>Un estudio independiente con visión integral</h2>
-  <p>En Pi Development combinamos estrategia, diseño y tecnología para resolver necesidades reales. Ayudamos a marcas a crecer online con soluciones claras, eficientes y bien hechas.</p>
-  <div class="values">
-    <div class="value">
-      <h3>Enfoque estratégico</h3>
-      <p>Cada proyecto parte de un análisis real, no de suposiciones.</p>
+<section class="nosotros" id="about-preview">
+  <div class="nosotros__layout">
+    <div class="section-header section-header--wide">
+      <p class="nosotros__eyebrow">{{ home_page.about.eyebrow }}</p>
+      <h2>{{ home_page.about.title }}</h2>
+      <p>{{ home_page.about.description }}</p>
     </div>
-    <div class="value">
-      <h3>Desarrollo con intención</h3>
-      <p>Lo que hacemos funciona, escala y está pensado para durar.</p>
-    </div>
-    <div class="value">
-      <h3>Diseño con propósito</h3>
-      <p>Interfaces y experiencias que respetan tu marca y tu audiencia.</p>
-    </div>
-    <div class="value">
-      <h3>Colaboración real</h3>
-      <p>Trabajamos con vos, no para vos. Somos parte de tu equipo.</p>
-    </div>
+    <aside class="nosotros__support">
+      <p>{{ home_page.about.support }}</p>
+      <a class="button-link button-link--dark" href="{% url 'about' %}">Conocer el estudio</a>
+    </aside>
   </div>
-  <a class="button-link button-link--dark" href="{% url 'about' %}">Conocé más sobre nosotros</a>
+  <div class="values">
+    {% for item in home_page.about.values %}
+    <article class="value">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.text }}</p>
+    </article>
+    {% endfor %}
+  </div>
 </section>
