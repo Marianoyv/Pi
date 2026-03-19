@@ -14,6 +14,12 @@
   </div>
 
   <div class="tool-insight__meta" aria-label="Dimensiones de prioridad">
+    {% if insight.issue_count %}
+    <span class="tool-insight__pill tool-insight__pill--count">
+      <strong>Hallazgos</strong>
+      <span>{{ insight.issue_count }}</span>
+    </span>
+    {% endif %}
     <span class="tool-insight__pill">
       <strong>Impacto</strong>
       <span>{{ insight.impact }}</span>

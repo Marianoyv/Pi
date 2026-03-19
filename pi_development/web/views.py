@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import Http404, HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from .forms import (
     AdTechDebugForm,
@@ -10,12 +12,29 @@ from .forms import (
     LandingPerformanceSnapshotForm,
     UTMBuilderForm,
 )
+from .knowledge_pages import (
+    get_knowledge_index_page,
+    get_knowledge_listing_groups,
+    get_knowledge_page,
+    get_public_knowledge_slugs,
+    get_related_knowledge_pages,
+)
+from .schema_utils import build_faq_schema_json, build_item_list_schema_json
 from .services.tools.creative_preview_lab import run_creative_preview_lab
 from .services.tools.creative_qa import run_creative_qa
 from .services.tools.adtech_debug import run_adtech_debug
 from .services.tools.ai_auditor import run_ai_auditor
 from .services.tools.landing_snapshot import run_landing_performance_snapshot
 from .services.tools.utm_builder import run_utm_builder
+from .seo_pages import get_related_seo_pages, get_seo_page
+from .tool_examples import get_tool_example
+from .topic_clusters import (
+    get_related_seo_pages_for_tool,
+    get_topic_cluster_context_for_seo_page,
+    get_topic_cluster_context_for_tool,
+    get_topic_clusters_for_keys,
+    get_topic_clusters_with_content,
+)
 from .tool_catalog import (
     get_featured_tool,
     get_related_tools,
@@ -28,6 +47,7 @@ from .tool_catalog import (
 
 WORK_ITEMS = [
     {
+        "slug": "arcade-world",
         "name": "Arcade World",
         "category": "Plataforma de experiencia",
         "summary": "Un sistema visual para catálogo, exploración temática y presencia digital con una interfaz intensa pero controlada.",
@@ -37,10 +57,13 @@ WORK_ITEMS = [
         "implementation": "Frontend a medida, composición de secciones, recursos optimizados y una base lista para sumar nuevas capas.",
         "result": "Una plataforma inmersiva pero legible, preparada para crecer en catálogo y complejidad sin perder control.",
         "highlights": ["Arquitectura visual", "Jerarquía de contenido", "Rendimiento frontend"],
-        "image": "web/img/1.png",
+        "image": "web/img/arcade.mp4",
+        "media_type": "video",
+        "poster": "web/img/1.png",
         "url": "https://arcade-world.web.app/",
     },
     {
+        "slug": "blog-int-emocional",
         "name": "Blog Int Emocional",
         "category": "Sistema editorial",
         "summary": "Una base editorial pensada para publicar, posicionar y sostener lectura con estructura en lugar de diseños genéricos.",
@@ -54,6 +77,7 @@ WORK_ITEMS = [
         "url": "https://blogintemocional.web.app/index.html",
     },
     {
+        "slug": "indices-argentinos",
         "name": "Índices Argentinos",
         "category": "Interfaz de datos",
         "summary": "Una interfaz de datos para consultar indicadores con lectura rápida, foco en orden y menor fricción operativa.",
@@ -63,10 +87,11 @@ WORK_ITEMS = [
         "implementation": "Sistema visual para tablas, métricas y bloques de consulta priorizando velocidad y claridad.",
         "result": "Una experiencia más técnica y confiable para explorar datos sin depender de interfaces recargadas.",
         "highlights": ["Lectura de datos", "Jerarquía fuerte", "Base escalable"],
-        "image": "web/img/3.png",
+        "image": "web/img/indices.png",
         "url": "https://indices-argentinos.web.app/",
     },
     {
+        "slug": "recetas-del-sapi",
         "name": "Recetas del Sapi",
         "category": "Plataforma de contenido",
         "summary": "Una estructura de contenido pensada para descubrimiento, navegación y continuidad editorial sin perder cercanía.",
@@ -76,10 +101,11 @@ WORK_ITEMS = [
         "implementation": "Composición de entradas, módulos de contenido y estructura lista para publicar con criterio.",
         "result": "Un sistema de contenido más estable, fácil de sostener y preparado para seguir creciendo.",
         "highlights": ["Sistema de contenido", "Categorías claras", "Continuidad editorial"],
-        "image": "web/img/4.png",
+        "image": "web/img/recetas.png",
         "url": "https://recetasdelsapi.web.app/",
     },
     {
+        "slug": "juno-metales",
         "name": "Juno Metales",
         "category": "Plataforma industrial",
         "summary": "Una plataforma corporativa para ordenar oferta, credibilidad y entrada comercial en un contexto industrial.",
@@ -89,10 +115,13 @@ WORK_ITEMS = [
         "implementation": "Arquitectura de información, contenidos orientados a negocio y capas de conversión livianas.",
         "result": "Una presencia más seria y operativa para respaldar actividad comercial sin recursos superfluos.",
         "highlights": ["Narrativa B2B", "Jerarquía comercial", "Base industrial"],
-        "image": "web/img/5.png",
+        "image": "web/img/juno.mp4",
+        "media_type": "video",
+        "poster": "web/img/5.png",
         "url": "https://junometales.com/",
     },
     {
+        "slug": "system-vesta",
         "name": "System Vesta",
         "category": "Plataforma de servicios",
         "summary": "Un sistema multipágina con foco en claridad, estructura técnica y lectura confiable de la oferta.",
@@ -102,10 +131,91 @@ WORK_ITEMS = [
         "implementation": "Estructura multipágina, jerarquía de secciones y base lista para profundizar contenido.",
         "result": "Una capa comercial más sólida y creíble para presentar una oferta técnica con mejor control.",
         "highlights": ["Arquitectura multipágina", "Lectura técnica", "Base comercial"],
-        "image": "web/img/4.png",
+        "image": "web/img/sistemvesta.mp4",
+        "media_type": "video",
+        "poster": "web/img/4.png",
         "url": "https://systemvesta.com/",
     },
 ]
+
+PORTFOLIO_WALL_VARIANTS = {
+    "arcade-world-video": {"slug": "arcade-world"},
+    "arcade-world-shot-1": {"slug": "arcade-world", "image": "web/img/arcade1.png"},
+    "arcade-world-shot-2": {"slug": "arcade-world", "image": "web/img/arcade2.png"},
+    "arcade-world-shot-3": {"slug": "arcade-world", "image": "web/img/arcade3.png"},
+    "blog-int-emocional-main": {"slug": "blog-int-emocional"},
+    "blog-int-emocional-shot-1": {"slug": "blog-int-emocional", "image": "web/img/blogie1.png"},
+    "blog-int-emocional-shot-2": {"slug": "blog-int-emocional", "image": "web/img/blogie2.png"},
+    "indices-argentinos-main": {"slug": "indices-argentinos"},
+    "indices-argentinos-shot-1": {"slug": "indices-argentinos", "image": "web/img/indice1.png"},
+    "indices-argentinos-shot-2": {"slug": "indices-argentinos", "image": "web/img/indice2.png"},
+    "indices-argentinos-shot-3": {"slug": "indices-argentinos", "image": "web/img/indice3.png"},
+    "recetas-del-sapi-main": {"slug": "recetas-del-sapi"},
+    "juno-metales-video": {"slug": "juno-metales"},
+    "system-vesta-video": {"slug": "system-vesta"},
+    "system-vesta-shot-1": {"slug": "system-vesta", "image": "web/img/sistemvesta1.png"},
+}
+
+PORTFOLIO_WALL_SEQUENCE = [
+    "arcade-world-shot-1",
+    "blog-int-emocional-shot-2",
+    "indices-argentinos-shot-1",
+    "recetas-del-sapi-main",
+    "system-vesta-shot-1",
+    "indices-argentinos-shot-2",
+    "arcade-world-shot-2",
+    "blog-int-emocional-shot-1",
+    "indices-argentinos-main",
+    "recetas-del-sapi-main",
+    "blog-int-emocional-main",
+    "arcade-world-shot-3",
+    "indices-argentinos-shot-3",
+    "juno-metales-video",
+    "recetas-del-sapi-main",
+    "blog-int-emocional-shot-2",
+    "indices-argentinos-shot-1",
+    "system-vesta-shot-1",
+    "recetas-del-sapi-main",
+    "blog-int-emocional-shot-1",
+    "indices-argentinos-shot-2",
+    "arcade-world-video",
+    "recetas-del-sapi-main",
+    "indices-argentinos-main",
+    "system-vesta-video",
+]
+
+PORTFOLIO_WALL_ECHO_SEQUENCE = [
+    "indices-argentinos-shot-1",
+    "blog-int-emocional-shot-1",
+    "arcade-world-shot-2",
+    "recetas-del-sapi-main",
+    "system-vesta-shot-1",
+    "arcade-world-shot-1",
+    "blog-int-emocional-main",
+    "indices-argentinos-shot-3",
+    "system-vesta-shot-1",
+    "recetas-del-sapi-main",
+]
+
+
+def _build_portfolio_wall_items(sequence=None):
+    items_by_slug = {item["slug"]: item for item in WORK_ITEMS}
+    wall_items = []
+    for key in sequence or PORTFOLIO_WALL_SEQUENCE:
+        variant = PORTFOLIO_WALL_VARIANTS.get(key)
+        if not variant:
+            continue
+        base_item = items_by_slug.get(variant["slug"])
+        if not base_item:
+            continue
+
+        wall_item = dict(base_item)
+        if variant.get("image"):
+            wall_item["image"] = variant["image"]
+            wall_item.pop("media_type", None)
+            wall_item.pop("poster", None)
+        wall_items.append(wall_item)
+    return wall_items
 
 HOME_PAGE = {
     "hero": {
@@ -113,10 +223,26 @@ HOME_PAGE = {
         "title": "Analiza. Valida. Optimiza.",
         "description": "Pi Development reúne herramientas para diagnóstico técnico web, revisión AdTech, validación de creatividades, etiquetado UTM y automatización operativa.",
         "signals": [
-            {"label": "AdTech", "text": "Diagnóstico inicial de GPT, Prebid, slots y señales visibles de monetización."},
-            {"label": "Creatividades", "text": "Checklist técnico y vista previa para HTML, rich media y tags publicitarios."},
-            {"label": "Rendimiento web", "text": "Revisión rápida de URLs, metadatos, estructura HTML y tiempos de respuesta."},
-            {"label": "Operación", "text": "Etiquetado UTM y utilidades para reducir errores manuales en flujos reales."},
+            {
+                "label": "AdTech",
+                "text": "Diagnóstico inicial de GPT, Prebid, slots y señales visibles de monetización.",
+                "href": "/herramientas-adtech/",
+            },
+            {
+                "label": "Creatividades",
+                "text": "Checklist técnico y vista previa para HTML, rich media y tags publicitarios.",
+                "href": "/tools/#qa_preview",
+            },
+            {
+                "label": "Rendimiento web",
+                "text": "Revisión rápida de URLs, metadatos, estructura HTML y tiempos de respuesta.",
+                "href": "/tools/#diagnostics",
+            },
+            {
+                "label": "Operación",
+                "text": "Etiquetado UTM y utilidades para reducir errores manuales en flujos reales.",
+                "href": "/tools/#operations",
+            },
         ],
     },
     "systems": {
@@ -124,7 +250,7 @@ HOME_PAGE = {
         "title": "Detrás de cada herramienta hay una arquitectura que la sostiene.",
         "description": "Pi Development no trabaja como agencia. Diseña estructuras digitales para que contenido, datos, automatización y herramientas convivan con criterio técnico.",
         "support_label": "Qué significa aquí",
-        "support_text": "La arquitectura digital incluye rutas, módulos, formularios, eventos, datos, automatizaciones e interfaces. Si esas piezas no se ordenan, el sistema se vuelve frágil aunque la capa visual se vea correcta.",
+        "support_text": "La arquitectura digital ordena rutas, módulos, formularios, eventos, datos y automatizaciones para que la capa visible no dependa de parches.",
         "groups": [
             {
                 "label": "Base web",
@@ -169,7 +295,7 @@ HOME_PAGE = {
         "title": "El foco principal del sitio está aquí.",
         "description": "La suite resuelve tareas concretas: auditar URLs, detectar señales AdTech, validar creatividades, generar URLs con UTM y probar código HTML en un sandbox controlado.",
         "support_title": "Herramientas para uso real",
-        "support_text": "Cada herramienta existe porque responde a una necesidad técnica concreta. No son demos decorativas ni páginas vacías.",
+        "support_text": "Cada herramienta responde a una tarea técnica concreta y está pensada para uso real, no para decorar el catálogo.",
         "groups": [
             {"label": "Diagnóstico web", "title": "Revisión de URLs y landing pages", "text": "Auditoría técnica breve para estado HTTP, metadatos, estructura HTML y oportunidades de mejora."},
             {"label": "AdTech", "title": "Lectura de monetización visible", "text": "Detección inicial de GPT, Google Ad Manager, Prebid, wrappers, slots e iframes publicitarios."},
@@ -186,7 +312,7 @@ HOME_PAGE = {
         "eyebrow": "Estudio",
         "title": "Pi Development diseña herramientas y sistemas digitales.",
         "description": "Es un estudio independiente orientado a AdTech, rendimiento web, QA de creatividades, automatización y datos.",
-        "support": "La prioridad está en la utilidad real: detectar problemas, validar implementaciones, ordenar flujos y construir capas técnicas que se puedan sostener en el tiempo.",
+        "support": "La prioridad es construir capas técnicas útiles para detectar problemas, validar implementaciones y ordenar flujos sin ruido innecesario.",
         "values": [
             {"title": "Criterio técnico", "text": "Cada decisión tiene una razón funcional, no solo visual."},
             {"title": "Claridad", "text": "El producto debe entenderse rápido, tanto en la interfaz como en el resultado que devuelve."},
@@ -444,6 +570,8 @@ def index(request):
             "home_page": HOME_PAGE,
             "contact_page": CONTACT_PAGE,
             "portfolio_items": WORK_ITEMS,
+            "portfolio_wall_items": _build_portfolio_wall_items(),
+            "portfolio_wall_echo_items": _build_portfolio_wall_items(PORTFOLIO_WALL_ECHO_SEQUENCE),
         },
     )
 
@@ -461,6 +589,23 @@ def tools(request):
     featured_tool = get_featured_tool()
     tools_catalog = get_tools()
     tool_groups = get_tool_groups()
+    topic_clusters = get_topic_clusters_with_content()
+    structured_data_json = [
+        item
+        for item in [
+            build_item_list_schema_json(
+                tools_page["catalog_title"],
+                [
+                    {
+                        "name": tool["name"],
+                        "url": request.build_absolute_uri(f"/tools/{tool['slug']}/"),
+                    }
+                    for tool in tools_catalog
+                ],
+            )
+        ]
+        if item
+    ]
     return render(
         request,
         "web/tools_page.html",
@@ -469,6 +614,8 @@ def tools(request):
             "featured_tool": featured_tool,
             "tools_catalog": tools_catalog,
             "tool_groups": tool_groups,
+            "topic_clusters": topic_clusters,
+            "structured_data_json": structured_data_json,
         },
     )
 
@@ -479,9 +626,11 @@ def tool_detail(request, slug):
         raise Http404("Tool not found.")
 
     related_tools = get_related_tools(slug)
+    related_seo_pages = get_related_seo_pages_for_tool(slug)
+    topic_cluster = get_topic_cluster_context_for_tool(slug)
     live_tool_config = LIVE_TOOL_CONFIG.get(tool["slug"])
     if live_tool_config:
-        return _render_live_tool(request, tool, related_tools, live_tool_config)
+        return _render_live_tool(request, tool, related_tools, related_seo_pages, topic_cluster, live_tool_config)
 
     return render(
         request,
@@ -489,6 +638,9 @@ def tool_detail(request, slug):
         {
             "tool": tool,
             "related_tools": related_tools,
+            "related_seo_pages": related_seo_pages,
+            "topic_cluster": topic_cluster,
+            "structured_data_json": _build_tool_structured_data(tool),
         },
     )
 
@@ -517,7 +669,89 @@ def contact(request):
 
 
 def blog(request):
-    return render(request, "web/blog_page.html", {"blog_page": BLOG_PAGE})
+    knowledge_index_page = get_knowledge_index_page()
+    knowledge_groups = _build_knowledge_listing_groups()
+    structured_data_json = [
+        item
+        for item in [
+            build_item_list_schema_json(
+                knowledge_index_page["title"],
+                [
+                    {
+                        "name": page["h1"],
+                        "url": request.build_absolute_uri(reverse("knowledge_page", kwargs={"slug": page["slug"]})),
+                    }
+                    for group in knowledge_groups
+                    for page in group["pages"]
+                ],
+            )
+        ]
+        if item
+    ]
+
+    return render(
+        request,
+        "web/blog_page.html",
+        {
+            "knowledge_index_page": knowledge_index_page,
+            "knowledge_groups": knowledge_groups,
+            "structured_data_json": structured_data_json,
+        },
+    )
+
+
+def knowledge_page(request, slug):
+    page = get_knowledge_page(slug)
+    if not page:
+        raise Http404("Page not found.")
+
+    related_tools = [tool for tool in (get_tool(item) for item in page.get("related_tool_slugs", [])) if tool]
+    related_seo_pages = get_related_seo_pages(page.get("related_seo_page_slugs", []))
+    related_knowledge_pages = get_related_knowledge_pages(page.get("related_knowledge_slugs", []))
+    topic_clusters = get_topic_clusters_for_keys([page["cluster_key"]])
+    topic_cluster = topic_clusters[0] if topic_clusters else None
+    structured_data_json = [item for item in [build_faq_schema_json(page.get("faqs"))] if item]
+
+    return render(
+        request,
+        "web/knowledge_article_page.html",
+        {
+            "knowledge_page": page,
+            "related_tools": related_tools,
+            "related_seo_pages": related_seo_pages,
+            "related_knowledge_pages": related_knowledge_pages,
+            "topic_cluster": topic_cluster,
+            "structured_data_json": structured_data_json,
+        },
+    )
+
+
+def seo_page(request, slug):
+    page = get_seo_page(slug)
+    if not page:
+        raise Http404("Page not found.")
+
+    primary_tool = get_tool(page["primary_tool_slug"])
+    related_tools = [tool for tool in (get_tool(item) for item in page.get("related_tool_slugs", [])) if tool]
+    related_pages = get_related_seo_pages(page.get("related_page_slugs", []))
+    topic_cluster = get_topic_cluster_context_for_seo_page(slug)
+    hub_sections = _build_seo_page_hub_sections(page)
+    structured_data_json = [item for item in [build_faq_schema_json(page.get("faqs"))] if item]
+
+    return render(
+        request,
+        "web/seo_landing_page.html",
+        {
+            "seo_page": page,
+            "primary_tool": primary_tool,
+            "related_tools": related_tools,
+            "related_pages": related_pages,
+            "topic_cluster": topic_cluster,
+            "hub_sections": hub_sections,
+            "hub_use_cases": page.get("hub_use_cases", []),
+            "structured_data_json": structured_data_json,
+        },
+    )
 
 
 def policies(request):
@@ -547,16 +781,22 @@ def legacy_resources(request):
 
 
 def robots_txt(request):
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    sitemap_url = f"{site_url}{reverse('sitemap')}" if site_url else request.build_absolute_uri(reverse("sitemap"))
     content = [
         "User-Agent: *",
         "Allow: /",
-        "Sitemap: https://pidevelopment.web.app/sitemap.xml",
+        "Disallow: /admin/",
+        f"Sitemap: {sitemap_url}",
     ]
     return HttpResponse("\n".join(content), content_type="text/plain")
 
 
-def _render_live_tool(request, tool, related_tools, config):
-    form = config["form_class"](request.POST or None)
+def _render_live_tool(request, tool, related_tools, related_seo_pages, topic_cluster, config):
+    tool_example = get_tool_example(tool["slug"])
+    example_requested = request.method == "POST" and request.POST.get("_use_example") == "1" and tool_example
+    form_payload = tool_example["form_data"] if example_requested else (request.POST or None)
+    form = config["form_class"](form_payload)
     result = None
     service = globals()[config["service_attr"]]
 
@@ -573,7 +813,41 @@ def _render_live_tool(request, tool, related_tools, config):
         {
             "tool": tool,
             "related_tools": related_tools,
+            "related_seo_pages": related_seo_pages,
+            "topic_cluster": topic_cluster,
+            "tool_example": tool_example,
+            "tool_example_used": bool(example_requested),
+            "structured_data_json": _build_tool_structured_data(tool),
             "form": form,
             config["context_key"]: result,
         },
     )
+
+
+def _build_tool_structured_data(tool):
+    faq_schema = build_faq_schema_json(((tool.get("editorial") or {}).get("faqs") or []))
+    return [item for item in [faq_schema] if item]
+
+
+def _build_seo_page_hub_sections(page):
+    section_definitions = page.get("hub_sections", [])
+    if not section_definitions:
+        return []
+
+    sections = []
+    for section in section_definitions:
+        cluster = get_topic_clusters_for_keys([section["cluster_key"]], current_seo_slug=page["slug"])
+        section_context = dict(section)
+        section_context["cluster"] = cluster[0] if cluster else None
+        sections.append(section_context)
+    return sections
+
+
+def _build_knowledge_listing_groups():
+    groups = []
+    for group in get_knowledge_listing_groups():
+        clusters = get_topic_clusters_for_keys([group["cluster_key"]])
+        group_context = dict(group)
+        group_context["cluster"] = clusters[0] if clusters else None
+        groups.append(group_context)
+    return groups

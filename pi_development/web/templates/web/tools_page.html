@@ -1,9 +1,11 @@
 {% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Herramientas de AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
-{% block og_title %}Herramientas de AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
+{% block title %}{{ tools_page.seo_title }}{% endblock %}
+{% block og_title %}{{ tools_page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ tools_page.seo_title }}{% endblock %}
 {% block meta_description %}{{ tools_page.description }}{% endblock %}
 {% block og_description %}{{ tools_page.description }}{% endblock %}
+{% block twitter_description %}{{ tools_page.description }}{% endblock %}
 {% block meta_keywords %}{{ tools_page.meta_keywords }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
@@ -57,18 +59,79 @@
       </article>
 
       <div class="tools-index__header">
-        <div>
+        <div class="tools-index__header-copy">
           <p class="tools-label">Catálogo</p>
           <h2>{{ tools_page.catalog_title }}</h2>
           <p>{{ tools_page.catalog_description }}</p>
         </div>
+        <div class="tools-index__header-actions">
+          <p class="tool-card__meta-label">Explorar por grupo</p>
+          <div class="tools-anchor-list">
+            {% for group in tool_groups %}
+            <a href="#{{ group.key }}">{{ group.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
       </div>
 
-      {% for group in tool_groups %}
-      <section class="tools-group">
+      {% if topic_clusters %}
+      <section class="tools-topic-section">
         <div class="tools-group__header">
-          <p class="tools-label">{{ group.title }}</p>
-          <h3>{{ group.description }}</h3>
+          <p class="tools-label">Grupos tematicos</p>
+          <h2>Conecta tools y guias segun el problema tecnico que necesitas resolver.</h2>
+        </div>
+        <div class="tools-topic-grid">
+          {% for cluster in topic_clusters %}
+          <article class="tools-topic-card">
+            <div class="tools-topic-card__header">
+              <div>
+                <p class="tools-label">{{ cluster.title }}</p>
+                <h3>{{ cluster.description }}</h3>
+              </div>
+              <div class="tools-topic-card__meta">
+                <span>{{ cluster.tool_count }} tools</span>
+                <span>{{ cluster.seo_page_count }} guias</span>
+              </div>
+            </div>
+            <div class="tools-topic-card__block">
+              <p class="tool-card__meta-label">Tools</p>
+              <div class="tool-related-list">
+                {% for tool in cluster.tools %}
+                <a href="{% url 'tool_detail' slug=tool.slug %}">
+                  <strong>{{ tool.name }}</strong>
+                  <span>{{ tool.summary }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="tools-topic-card__block">
+              <p class="tool-card__meta-label">Guias SEO</p>
+              <div class="tool-related-list">
+                {% for page in cluster.seo_pages %}
+                <a href="{% url 'seo_page' slug=page.slug %}">
+                  <strong>{{ page.h1 }}</strong>
+                  <span>{{ page.description }}</span>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="tools-topic-card__actions">
+              <a class="button-link button-link--dark" href="{% url 'tools' %}#{{ cluster.catalog_anchor }}">Ver bloque {{ cluster.catalog_label|lower }}</a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      {% for group in tool_groups %}
+      <section class="tools-group" id="{{ group.key }}">
+        <div class="tools-group__header">
+          <div class="tools-group__meta">
+            <p class="tools-label">{{ group.title }}</p>
+            <span class="tools-group__count">{{ group.tools|length }} tools</span>
+          </div>
+          <h2>{{ group.description }}</h2>
         </div>
         <div class="tools-card-grid">
           {% for tool in group.tools %}

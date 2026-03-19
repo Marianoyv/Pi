@@ -1,12 +1,15 @@
-from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps.views import index, sitemap
 from django.urls import path
 
-from pi_development.web.sitemaps import StaticViewSitemap
+from pi_development.web.sitemaps import CorePageSitemap, KnowledgePageSitemap, SeoPageSitemap, ToolPageSitemap
 
 from . import views
 
 sitemaps = {
-    "static": StaticViewSitemap,
+    "pages": CorePageSitemap,
+    "tools": ToolPageSitemap,
+    "seo": SeoPageSitemap,
+    "content": KnowledgePageSitemap,
 }
 
 urlpatterns = [
@@ -19,6 +22,7 @@ urlpatterns = [
     path("approach/", views.approach, name="approach"),
     path("about/", views.about, name="about"),
     path("contact/", views.contact, name="contact"),
+    path("blog/<slug:slug>/", views.knowledge_page, name="knowledge_page"),
     path("blog/", views.blog, name="blog"),
     path("policies/", views.policies, name="policies"),
     path("services/", views.legacy_services, name="services"),
@@ -26,6 +30,8 @@ urlpatterns = [
     path("portfolio/", views.legacy_portfolio, name="portfolio"),
     path("process/", views.legacy_process, name="process_page"),
     path("resources/", views.legacy_resources, name="resources_page"),
+    path("<slug:slug>/", views.seo_page, name="seo_page"),
     path("robots.txt", views.robots_txt, name="robots_txt"),
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    path("sitemap.xml", index, {"sitemaps": sitemaps, "sitemap_url_name": "sitemap_section"}, name="sitemap"),
+    path("sitemap-<section>.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap_section"),
 ]

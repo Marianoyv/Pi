@@ -1,21 +1,20 @@
 .serv {
   width: 100%;
-  padding: var(--section-space) 24px;
+  padding: calc(var(--section-space) + 8px) 32px;
   background: var(--color-bg);
 }
 
-.serv__layout {
-  width: min(1200px, 100%);
-  margin: 0 auto var(--space-32);
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
-  gap: var(--space-24);
-  align-items: start;
+.serv__header {
+  width: min(1080px, 100%);
+  margin-bottom: var(--space-48);
 }
 
-.serv__header {
-  margin: 0;
-  text-align: left;
+.serv__header > h2 {
+  max-width: 980px;
+}
+
+.serv__header > p:not(.serv__eyebrow) {
+  max-width: 920px;
 }
 
 .serv__eyebrow {
@@ -27,34 +26,24 @@
   text-transform: uppercase;
 }
 
-.serv__support {
-  padding: var(--space-32);
-  border-radius: 22px;
-  border: 1px solid rgba(var(--rgb-border), 0.78);
-  background: rgba(var(--rgb-surface), 0.92);
-  box-shadow: 0 14px 30px rgba(var(--rgb-bg), 0.24);
+.serv__support-copy {
+  max-width: 920px;
+  margin-inline: auto;
+  color: var(--color-text);
+  font-size: var(--font-body-lg);
+  line-height: var(--leading-body);
 }
 
-.serv__support-label {
-  margin-bottom: var(--space-12);
-  color: var(--color-white);
-  font-size: var(--font-small);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.serv__support p:last-of-type {
-  margin-bottom: var(--space-24);
-  color: var(--color-text-secondary);
+.serv__actions {
+  margin-top: var(--space-8);
 }
 
 .serv .cards {
-  width: min(1200px, 100%);
+  width: min(1280px, 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-24);
+  gap: 28px;
 }
 
 .service-card-link {
@@ -70,7 +59,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   text-align: left;
-  padding: var(--space-32);
+  padding: 28px;
   border-radius: 22px;
   background: rgba(var(--rgb-surface), 0.92);
   border: 1px solid rgba(var(--rgb-border), 0.78);
@@ -81,8 +70,8 @@
 
 .service-card-link:hover .card {
   transform: translateY(-4px);
-  border-color: rgba(var(--rgb-secondary), 0.48);
-  box-shadow: 0 18px 36px rgba(var(--rgb-bg), 0.3);
+  border-color: rgba(var(--rgb-accent), 0.38);
+  box-shadow: 0 20px 40px rgba(var(--rgb-bg), 0.3);
   background: rgba(var(--rgb-surface-elevated), 0.92);
 }
 
@@ -118,13 +107,8 @@
 }
 
 @media screen and (max-width: 1100px) {
-  .serv__layout,
   .serv .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .serv__layout {
-    grid-template-columns: 1fr;
   }
 }
 

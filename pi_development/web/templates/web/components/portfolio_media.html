@@ -1,0 +1,17 @@
+{% load static %}
+{% if item.media_type == "video" %}
+<video
+  class="{{ media_class|default:'portfolio-media' }}"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  {% if item.poster %}poster="{% static item.poster %}"{% endif %}
+  aria-label="{{ media_label }}"
+>
+  <source src="{% static item.image %}" type="video/mp4">
+</video>
+{% else %}
+<img class="{{ media_class|default:'portfolio-media' }}" src="{% static item.image %}" alt="{{ media_label }}">
+{% endif %}

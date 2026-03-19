@@ -1,0 +1,33 @@
+<article class="content-page__faq-item">
+  <h3>{{ section.title }}</h3>
+  <p>{{ section.summary }}</p>
+  <ul class="content-page__list">
+    <li>{{ section.problem }}</li>
+    <li>{{ section.use_case }}</li>
+  </ul>
+
+  {% if section.cluster and section.cluster.tools %}
+  <div class="content-page__section">
+    <p class="content-page__card-label">Tools principales</p>
+    <div class="tools-card-grid">
+      {% for tool in section.cluster.tools %}
+      {% include 'web/components/tool_card.html' with tool=tool %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  {% if section.cluster and section.cluster.seo_pages %}
+  <div class="content-page__section">
+    <p class="content-page__card-label">Guias relacionadas</p>
+    <div class="content-page__chip-list">
+      {% for page in section.cluster.seo_pages %}
+      <a class="content-page__chip" href="{% url 'seo_page' slug=page.slug %}">
+        <strong>{{ page.h1 }}</strong>
+        <span>{{ page.description }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</article>

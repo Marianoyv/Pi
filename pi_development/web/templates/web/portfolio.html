@@ -1,15 +1,55 @@
 {% load static %}
-<section class="rellax-section" id="portfolio">
-  <div class="layer"></div>
+<section class="portfolio-stream" id="portfolio">
+  <div class="portfolio-stream__backdrop"></div>
+
+  <div class="portfolio-stream__scene" aria-hidden="true">
+    <div class="portfolio-stream__plane">
+      {% for item in portfolio_wall_items %}
+      <article class="portfolio-stream__tile">
+        <div class="portfolio-stream__tile-frame">
+          {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-stream__media' media_label='Vista de '|add:item.name %}
+          <span class="portfolio-stream__tile-shadow"></span>
+          <span class="portfolio-stream__tile-meta">
+            <strong>{{ item.name }}</strong>
+            <small>{{ item.category }}</small>
+          </span>
+        </div>
+      </article>
+      {% endfor %}
+      {% for item in portfolio_wall_echo_items %}
+      <article class="portfolio-stream__tile portfolio-stream__tile--echo">
+        <div class="portfolio-stream__tile-frame">
+          {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-stream__media' media_label='Vista de '|add:item.name %}
+          <span class="portfolio-stream__tile-shadow"></span>
+          <span class="portfolio-stream__tile-meta">
+            <strong>{{ item.name }}</strong>
+            <small>{{ item.category }}</small>
+          </span>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="portfolio-stream__depth-shadow"></div>
+
   <div class="portfolio-copy">
     <p class="portfolio-overline">{{ home_page.portfolio.eyebrow }}</p>
     <h2 class="central-text">{{ home_page.portfolio.title }}</h2>
     <p>{{ home_page.portfolio.description }}</p>
-    <a class="portfolio-cta" data-portfolio-cta href="{% url 'work' %}">Ver casos</a>
+    <a class="portfolio-cta" href="{% url 'work' %}">Ver casos</a>
   </div>
-  {% for item in portfolio_items %}
-  <a class="rellax card-proyecto card-proyecto--{{ forloop.counter }}" data-rellax-speed="{% cycle '-3' '1' '-3' '-4' '-2' '2' %}" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Abrir proyecto {{ item.name }}">
-    <img src="{% static item.image %}" alt="Sitio web de {{ item.name }}">
-  </a>
-  {% endfor %}
+
+  <div class="portfolio-stream__mobile-grid">
+    {% for item in portfolio_items %}
+    <a class="portfolio-stream__mobile-card" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Abrir proyecto {{ item.name }}">
+      {% if item.poster %}
+      <img class="portfolio-stream__mobile-media" src="{% static item.poster %}" alt="Vista de {{ item.name }}">
+      {% else %}
+      <img class="portfolio-stream__mobile-media" src="{% static item.image %}" alt="Vista de {{ item.name }}">
+      {% endif %}
+      <span class="portfolio-stream__mobile-shadow"></span>
+      <span class="portfolio-stream__mobile-title">{{ item.name }}</span>
+    </a>
+    {% endfor %}
+  </div>
 </section>

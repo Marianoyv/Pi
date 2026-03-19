@@ -1,0 +1,143 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ knowledge_page.title }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ knowledge_page.title }}{% endblock %}
+{% block twitter_title %}{{ knowledge_page.title }}{% endblock %}
+{% block meta_description %}{{ knowledge_page.meta_description }}{% endblock %}
+{% block og_description %}{{ knowledge_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ knowledge_page.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ knowledge_page.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/content_page.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ knowledge_page.eyebrow }}</p>
+      <h1>{{ knowledge_page.h1 }}</h1>
+      <p class="page-shell__lead">{{ knowledge_page.description }}</p>
+    </div>
+  </section>
+  <section class="content-page">
+    <div class="content-page__grid">
+      <article class="content-page__main">
+        <h2>Introduccion</h2>
+        <div class="content-page__copy">
+          {% for paragraph in knowledge_page.intro_paragraphs %}
+          <p>{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+
+        {% for section in knowledge_page.sections %}
+        <div class="content-page__section">
+          <h2>{{ section.title }}</h2>
+          <div class="content-page__copy">
+            {% for paragraph in section.paragraphs %}
+            <p>{{ paragraph }}</p>
+            {% endfor %}
+          </div>
+          {% if section.bullets %}
+          <ul class="content-page__list">
+            {% for item in section.bullets %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        {% if related_tools %}
+        <div class="content-page__section">
+        <h2>Herramientas relacionadas</h2>
+          <div class="tools-card-grid">
+            {% for tool in related_tools %}
+            {% include 'web/components/tool_card.html' with tool=tool %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if related_seo_pages %}
+        <div class="content-page__section">
+          <h2>Guias tecnicas relacionadas</h2>
+          <div class="content-page__chip-list">
+            {% for page in related_seo_pages %}
+            <a class="content-page__chip" href="{% url 'seo_page' slug=page.slug %}">
+              <strong>{{ page.h1 }}</strong>
+              <span>{{ page.description }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if related_knowledge_pages %}
+        <div class="content-page__section">
+          <h2>Lecturas relacionadas</h2>
+          <div class="content-page__chip-list">
+            {% for page in related_knowledge_pages %}
+            <a class="content-page__chip" href="{% url 'knowledge_page' slug=page.slug %}">
+              <strong>{{ page.h1 }}</strong>
+              <span>{{ page.summary }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if knowledge_page.faqs %}
+        <div class="content-page__section">
+          <h2>Preguntas frecuentes</h2>
+          <div class="content-page__faq-list">
+            {% for item in knowledge_page.faqs %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.question }}</h3>
+              <p>{{ item.answer }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </article>
+
+      <aside class="content-page__aside">
+        <div class="content-page__card">
+          <p class="content-page__card-label">Contenido tecnico</p>
+          <h3>Capa editorial</h3>
+          <p>Esta pieza forma parte de la capa de conocimiento tecnico de Pi Development.</p>
+          <a class="button-link button-link--dark" href="{% url 'blog' %}">Ver todo el contenido</a>
+        </div>
+
+        {% if topic_cluster %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Grupo tematico</p>
+          <h3>{{ topic_cluster.title }}</h3>
+          <p>{{ topic_cluster.description }}</p>
+          <ul class="content-page__aside-list">
+            <li><a href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }} en el catalogo</a></li>
+            <li><a href="{% url 'seo_page' slug='herramientas-adtech' %}">Abrir hub de herramientas AdTech</a></li>
+          </ul>
+        </div>
+        {% endif %}
+
+        {% if related_tools %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Tools principales</p>
+          <h3>Continuar con una herramienta relacionada</h3>
+          <ul class="content-page__aside-list">
+            {% for tool in related_tools %}
+            <li><a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

@@ -1,21 +1,25 @@
 {% load static %}
+{% static 'web/img/pi.png' as default_og_image %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
-<meta name="description" content="{% block meta_description %}Pi Development reúne herramientas y sistemas digitales para AdTech, validación de creatividades, rendimiento web, automatización y datos.{% endblock %}">
-<meta name="keywords" content="{% block meta_keywords %}herramientas AdTech, arquitectura digital, rendimiento web, validación de creatividades, automatización y datos{% endblock %}">
+<meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+<meta name="description" content="{% block meta_description %}Pi Development reune herramientas y sistemas digitales para AdTech, validacion de creatividades, rendimiento web, automatizacion y datos.{% endblock %}">
+<meta name="keywords" content="{% block meta_keywords %}herramientas AdTech, arquitectura digital, rendimiento web, validacion de creatividades, automatizacion y datos{% endblock %}">
 <link rel="canonical" href="{% block canonical_url %}{{ site_url }}{{ request.path|default:'/' }}{% endblock %}">
 <meta property="og:site_name" content="Pi Development">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
 <meta property="og:locale" content="es_AR">
 <meta property="og:title" content="{% block og_title %}Pi Development{% endblock %}">
-<meta property="og:description" content="{% block og_description %}Pi Development reúne herramientas y sistemas digitales para equipos que necesitan claridad técnica, rendimiento y capacidad de evolución.{% endblock %}">
-<meta property="og:image" content="{% static 'web/img/pi.png' %}">
+<meta property="og:description" content="{% block og_description %}Pi Development reune herramientas y sistemas digitales para equipos que necesitan claridad tecnica, rendimiento y capacidad de evolucion.{% endblock %}">
+<meta property="og:image" content="{% block og_image %}{{ site_url }}{{ default_og_image }}{% endblock %}">
 <meta property="og:url" content="{{ site_url }}{{ request.path|default:'/' }}">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block twitter_title %}Pi Development{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Pi Development reune herramientas y sistemas digitales para equipos que necesitan claridad tecnica, rendimiento y capacidad de evolucion.{% endblock %}">
+<meta name="twitter:image" content="{% block twitter_image %}{{ site_url }}{{ default_og_image }}{% endblock %}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,6 +34,11 @@
   ]
 }
 </script>
+{% if structured_data_json %}
+  {% for item in structured_data_json %}
+<script type="application/ld+json">{{ item|safe }}</script>
+  {% endfor %}
+{% endif %}
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=

@@ -10,10 +10,10 @@
     </div>
     <div class="hero-signals">
       {% for item in home_page.hero.signals %}
-      <article class="hero-signal">
+      <a class="hero-signal" href="{{ item.href|default:'#' }}">
         <span>{{ item.label }}</span>
         <p>{{ item.text }}</p>
-      </article>
+      </a>
       {% endfor %}
     </div>
   </div>

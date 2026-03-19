@@ -9,6 +9,8 @@ URL_WIDGET_ATTRS = {
     "placeholder": "https://ejemplo.com",
     "autocomplete": "url",
     "inputmode": "url",
+    "spellcheck": "false",
+    "autocapitalize": "none",
 }
 
 YES_NO_CHOICES = (
@@ -100,7 +102,15 @@ class UrlToolForm(forms.Form):
 
 
 class AiAuditorForm(UrlToolForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["url"].label = "URL publica"
+        self.fields["url"].help_text = "Usa una URL accesible sin login para obtener una lectura tecnica real."
+        self.fields["url"].widget.attrs.update(
+            {
+                "placeholder": "https://www.tusitio.com/landing",
+            }
+        )
 
 
 class AdTechDebugForm(UrlToolForm):
@@ -108,7 +118,15 @@ class AdTechDebugForm(UrlToolForm):
 
 
 class LandingPerformanceSnapshotForm(UrlToolForm):
-    pass
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["url"].label = "URL publica"
+        self.fields["url"].help_text = "Ideal para una landing o pagina de campana que quieras revisar rapido."
+        self.fields["url"].widget.attrs.update(
+            {
+                "placeholder": "https://www.tusitio.com/campana",
+            }
+        )
 
 
 class CreativePreviewLabForm(forms.Form):
@@ -194,37 +212,76 @@ class UTMBuilderForm(forms.Form):
     destination_url = forms.CharField(
         label="URL de destino",
         max_length=500,
-        widget=forms.TextInput(attrs=URL_WIDGET_ATTRS),
+        widget=forms.TextInput(
+            attrs={
+                **URL_WIDGET_ATTRS,
+                "placeholder": "https://www.tusitio.com/landing",
+            }
+        ),
+        help_text="Se preservan query params existentes antes de agregar UTM.",
     )
     utm_source = forms.CharField(
         label="utm_source",
         max_length=120,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "newsletter"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "google",
+                "spellcheck": "false",
+                "autocapitalize": "none",
+            }
+        ),
+        help_text="Origen del trafico, por ejemplo google, linkedin o newsletter.",
     )
     utm_medium = forms.CharField(
         label="utm_medium",
         max_length=120,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "email"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "cpc",
+                "spellcheck": "false",
+                "autocapitalize": "none",
+            }
+        ),
+        help_text="Canal o tipo de medio, por ejemplo cpc, email o social.",
     )
     utm_campaign = forms.CharField(
         label="utm_campaign",
         max_length=160,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "q2_launch"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "lanzamiento_q2",
+                "spellcheck": "false",
+                "autocapitalize": "none",
+            }
+        ),
+        help_text="Nombre consistente de la campana o iniciativa.",
     )
     utm_term = forms.CharField(
         label="utm_term",
         max_length=160,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "remarketing"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "keyword_principal",
+                "spellcheck": "false",
+                "autocapitalize": "none",
+            }
+        ),
     )
     utm_content = forms.CharField(
         label="utm_content",
         max_length=160,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "hero_variant_a"}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "hero_a",
+                "spellcheck": "false",
+                "autocapitalize": "none",
+            }
+        ),
     )
 
     def clean_destination_url(self):

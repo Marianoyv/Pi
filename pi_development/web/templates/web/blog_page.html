@@ -1,60 +1,84 @@
 {% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Contenido técnico y análisis de herramientas digitales | Pi Development{% endblock %}
-{% block og_title %}Contenido técnico y análisis de herramientas digitales | Pi Development{% endblock %}
-{% block og_description %}{{ blog_page.description }}{% endblock %}
+{% block title %}{{ knowledge_index_page.title }}{% endblock %}
+{% block og_title %}{{ knowledge_index_page.title }}{% endblock %}
+{% block twitter_title %}{{ knowledge_index_page.title }}{% endblock %}
+{% block meta_description %}{{ knowledge_index_page.meta_description }}{% endblock %}
+{% block og_description %}{{ knowledge_index_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ knowledge_index_page.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ knowledge_index_page.meta_keywords }}{% endblock %}
 {% block head %}
-<meta name="description" content="{{ blog_page.description }}">
-<link rel="canonical" href="{{ site_url }}{{ request.path }}">
 <link rel="stylesheet" href="{% static 'web/css/blog.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<section class="page-shell">
-  <div class="page-shell__inner">
-    <p class="page-shell__eyebrow">{{ blog_page.eyebrow }}</p>
-    <h1>{{ blog_page.title }}</h1>
-    <p class="page-shell__lead">{{ blog_page.description }}</p>
-  </div>
-</section>
-<section class="blog-page">
-  <div class="blog-page__inner">
-    <div class="blog-page__intro">
-      <h2>{{ blog_page.intro_title }}</h2>
-      <p>{{ blog_page.intro }}</p>
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ knowledge_index_page.eyebrow }}</p>
+      <h1>{{ knowledge_index_page.h1 }}</h1>
+      <p class="page-shell__lead">{{ knowledge_index_page.description }}</p>
     </div>
-    <div class="blog-page__pillars">
-      {% for item in blog_page.groups %}
-      <article class="blog-page__pillar">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.text }}</p>
-      </article>
+  </section>
+
+  <section class="blog-page">
+    <div class="blog-page__inner">
+      <div class="blog-page__header-grid">
+        <div class="blog-page__intro">
+          <h2>{{ knowledge_index_page.intro_title }}</h2>
+          <p>{{ knowledge_index_page.intro }}</p>
+        </div>
+        <aside class="blog-page__support">
+          <h3>{{ knowledge_index_page.support_title }}</h3>
+          <p>{{ knowledge_index_page.support_text }}</p>
+          <a class="button-link button-link--dark" href="{% url 'seo_page' slug=knowledge_index_page.cta_slug %}">Abrir hub AdTech</a>
+        </aside>
+      </div>
+
+      {% for group in knowledge_groups %}
+      <section class="blog-page__group">
+        <div class="blog-page__samples-header">
+          <p class="blog-page__eyebrow">{{ group.cluster.title }}</p>
+          <h2>{{ group.cluster.description }}</h2>
+        </div>
+
+        <div class="blog-page__samples-grid">
+          {% for page in group.pages %}
+          <a class="blog-page__post-card blog-page__post-card--link" href="{% url 'knowledge_page' slug=page.slug %}">
+            <p class="blog-page__category">{{ page.eyebrow }}</p>
+            <h3>{{ page.h1 }}</h3>
+            <p>{{ page.summary }}</p>
+          </a>
+          {% endfor %}
+        </div>
+
+        {% if group.cluster.tools %}
+        <div class="blog-page__tools">
+          <div class="blog-page__samples-header">
+            <p class="blog-page__eyebrow">Herramientas conectadas</p>
+            <h2>Herramientas relacionadas con este bloque</h2>
+          </div>
+          <div class="tools-card-grid">
+            {% for tool in group.cluster.tools %}
+            {% include 'web/components/tool_card.html' with tool=tool %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </section>
       {% endfor %}
-    </div>
-    <div class="blog-page__samples">
-      <div class="blog-page__samples-header">
-        <p class="blog-page__eyebrow">Estructura futura</p>
-        <h2>Temas reservados para una capa editorial real</h2>
-      </div>
-      <div class="blog-page__samples-grid">
-        {% for item in blog_page.examples %}
-        <article class="blog-page__post-card">
-          <p class="blog-page__category">{{ item.category }}</p>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.summary }}</p>
-        </article>
-        {% endfor %}
+
+      <div class="blog-page__cta">
+        <div>
+          <p class="blog-page__eyebrow">Escalado editorial</p>
+          <h2>{{ knowledge_index_page.cta_title }}</h2>
+          <p>{{ knowledge_index_page.cta_text }}</p>
+        </div>
+        <a class="button-link button-link--dark" href="{% url 'seo_page' slug=knowledge_index_page.cta_slug %}">Abrir hub AdTech</a>
       </div>
     </div>
-    <div class="blog-page__cta">
-      <div>
-        <p class="blog-page__eyebrow">Editorial después</p>
-        <h2>Primero sistema. Después contenido.</h2>
-        <p>El blog queda preparado para crecer más adelante como una capa editorial coherente con arquitectura, herramientas y casos.</p>
-      </div>
-      <a class="button-link button-link--dark" href="{% url 'contact' %}">Hablar de la hoja de ruta</a>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 {% include 'web/components/footer.html' %}
 {% endblock %}

@@ -1,15 +1,35 @@
 .proceso-section {
+  position: relative;
+  isolation: isolate;
+  z-index: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: calc(var(--section-space) + 4px) 24px;
+  padding: calc(var(--section-space) + 4px) 24px calc(var(--section-space) + 34px);
   background: var(--color-bg);
   color: var(--color-text);
 }
 
+.proceso-section::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.proceso-section::before {
+  inset: 4% auto auto 48%;
+  width: min(480px, 38vw);
+  height: 320px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(var(--rgb-accent), 0.12) 0%, rgba(var(--rgb-accent), 0) 72%);
+}
+
 .proceso-eyebrow {
+  position: relative;
+  z-index: 1;
   margin-bottom: var(--space-12);
   color: var(--color-accent);
   font-size: var(--font-label);
@@ -18,7 +38,15 @@
   text-transform: uppercase;
 }
 
+.proceso-section .section-header,
+.proceso-section .section-actions {
+  position: relative;
+  z-index: 1;
+}
+
 .proceso-container {
+  position: relative;
+  z-index: 1;
   width: min(1200px, 100%);
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -76,6 +104,8 @@
 }
 
 .proceso-note {
+  position: relative;
+  z-index: 1;
   width: min(720px, 100%);
   margin: 0 auto var(--space-32);
   color: var(--color-text-secondary);
@@ -89,11 +119,45 @@
 
 @media screen and (max-width: 769px) {
   .proceso-section {
-    padding: var(--section-space-tight) 20px;
+    padding: var(--section-space-tight) 20px calc(var(--section-space-tight) + 18px);
   }
 
   .proceso-container {
     grid-template-columns: 1fr;
+    gap: 16px;
     margin-bottom: var(--space-24);
   }
+
+  .proceso-step {
+    min-height: 0;
+    padding: 22px 20px;
+  }
+
+  .proceso-step__index {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  .proceso-step h3 {
+    margin-bottom: 10px;
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  .proceso-step p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .proceso-note {
+    margin-bottom: 24px;
+  }
+
+  .proceso-section::before {
+    inset: 6% 50% auto auto;
+    width: 280px;
+    height: 190px;
+    transform: translateX(50%);
+  }
+
 }

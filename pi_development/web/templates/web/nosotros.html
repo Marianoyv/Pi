@@ -1,14 +1,12 @@
 <section class="nosotros" id="about-preview">
-  <div class="nosotros__layout">
-    <div class="section-header section-header--wide">
-      <p class="nosotros__eyebrow">{{ home_page.about.eyebrow }}</p>
-      <h2>{{ home_page.about.title }}</h2>
-      <p>{{ home_page.about.description }}</p>
-    </div>
-    <aside class="nosotros__support">
-      <p>{{ home_page.about.support }}</p>
+  <div class="section-header section-header--wide nosotros__header">
+    <p class="nosotros__eyebrow">{{ home_page.about.eyebrow }}</p>
+    <h2>{{ home_page.about.title }}</h2>
+    <p>{{ home_page.about.description }}</p>
+    <p class="nosotros__support-copy">{{ home_page.about.support }}</p>
+    <div class="section-actions nosotros__actions">
       <a class="button-link button-link--dark" href="{% url 'about' %}">Conocer el estudio</a>
-    </aside>
+    </div>
   </div>
   <div class="values">
     {% for item in home_page.about.values %}

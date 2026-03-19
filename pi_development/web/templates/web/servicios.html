@@ -1,15 +1,12 @@
 <section class="serv" id="systems-intro">
-  <div class="serv__layout">
-    <div class="section-header section-header--wide serv__header">
-      <p class="serv__eyebrow">{{ home_page.systems.eyebrow }}</p>
-      <h2>{{ home_page.systems.title }}</h2>
-      <p>{{ home_page.systems.description }}</p>
-    </div>
-    <aside class="serv__support">
-      <p class="serv__support-label">{{ home_page.systems.support_label }}</p>
-      <p>{{ home_page.systems.support_text }}</p>
+  <div class="section-header section-header--wide serv__header">
+    <p class="serv__eyebrow">{{ home_page.systems.eyebrow }}</p>
+    <h2>{{ home_page.systems.title }}</h2>
+    <p>{{ home_page.systems.description }}</p>
+    <p class="serv__support-copy">{{ home_page.systems.support_text }}</p>
+    <div class="section-actions serv__actions">
       <a class="button-link button-link--dark" href="{% url 'systems' %}">Ver arquitectura</a>
-    </aside>
+    </div>
   </div>
   <div class="cards">
     {% for item in home_page.systems.groups %}

@@ -1,0 +1,208 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ seo_page.title }}{% endblock %}
+{% block og_title %}{{ seo_page.title }}{% endblock %}
+{% block twitter_title %}{{ seo_page.title }}{% endblock %}
+{% block meta_description %}{{ seo_page.meta_description }}{% endblock %}
+{% block og_description %}{{ seo_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ seo_page.meta_description }}{% endblock %}
+{% block meta_keywords %}{{ seo_page.meta_keywords }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/content_page.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main>
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ seo_page.eyebrow }}</p>
+      <h1>{{ seo_page.h1 }}</h1>
+      <p class="page-shell__lead">{{ seo_page.description }}</p>
+    </div>
+  </section>
+  <section class="content-page seo-landing">
+    <div class="content-page__grid">
+      <article class="content-page__main">
+        <h2>Contexto tecnico</h2>
+        <div class="content-page__copy">
+          {% for paragraph in seo_page.intro_paragraphs %}
+          <p>{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+
+        <div class="content-page__section">
+          <h2>Problemas comunes</h2>
+          <div class="content-page__faq-list">
+            {% for item in seo_page.common_problems %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="content-page__section">
+          <h2>Enfoque recomendado</h2>
+          <div class="content-page__faq-list">
+            {% for item in seo_page.recommended_approach %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="content-page__section">
+          <h2>Herramienta recomendada</h2>
+          <article class="content-page__card content-page__card--tool">
+            <p class="content-page__card-label">Tool principal</p>
+            <h3>{{ primary_tool.name }}</h3>
+            <p>{{ seo_page.primary_tool_reason }}</p>
+            <ul class="content-page__list">
+              {% for item in primary_tool.outputs|slice:":3" %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            <div class="content-page__actions">
+              <a class="button-link" href="{% url 'tool_detail' slug=primary_tool.slug %}">{{ primary_tool.cta_label }}</a>
+              {% if topic_cluster %}
+              <a class="button-link button-link--dark" href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }}</a>
+              {% else %}
+              <a class="button-link button-link--dark" href="{% url 'tools' %}">Ver todas las tools</a>
+              {% endif %}
+            </div>
+          </article>
+        </div>
+
+        <div class="content-page__section">
+          <h2>Como usar la herramienta</h2>
+          <div class="content-page__faq-list">
+            {% for item in seo_page.how_to_use %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+
+        {% if hub_sections %}
+        <div class="content-page__section">
+          <h2>Herramientas agrupadas por categoria</h2>
+          <div class="content-page__faq-list">
+            {% for section in hub_sections %}
+            {% include 'web/components/seo_hub_group.html' with section=section %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if hub_use_cases %}
+        <div class="content-page__section">
+          <h2>Casos de uso reales</h2>
+          <div class="content-page__faq-list">
+            {% for item in hub_use_cases %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if related_tools and not hub_sections %}
+        <div class="content-page__section">
+          <h2>Herramientas relacionadas</h2>
+          <div class="tools-card-grid">
+            {% for tool in related_tools %}
+            {% include 'web/components/tool_card.html' with tool=tool %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        {% if related_pages and not hub_sections %}
+        <div class="content-page__section">
+          <h2>Guias relacionadas</h2>
+          <div class="content-page__chip-list">
+            {% for page in related_pages %}
+            <a class="content-page__chip" href="{% url 'seo_page' slug=page.slug %}">
+              <strong>{{ page.h1 }}</strong>
+              <span>{{ page.description }}</span>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="content-page__section">
+          <h2>Preguntas frecuentes</h2>
+          <div class="content-page__faq-list">
+            {% for item in seo_page.faqs %}
+            <article class="content-page__faq-item">
+              <h3>{{ item.question }}</h3>
+              <p>{{ item.answer }}</p>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+      <aside class="content-page__aside">
+        <div class="content-page__card">
+          <p class="content-page__card-label">Tool principal</p>
+          <h3>{{ primary_tool.name }}</h3>
+          <p>{{ primary_tool.summary }}</p>
+          <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=primary_tool.slug %}">{{ primary_tool.cta_label }}</a>
+        </div>
+        {% if related_tools %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Herramientas relacionadas</p>
+          <h3>Continuar la revision</h3>
+          <ul class="content-page__aside-list">
+            {% for tool in related_tools %}
+            <li>
+              <a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if related_pages %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Interlinking</p>
+          <h3>Paginas SEO conectadas</h3>
+          <ul class="content-page__aside-list">
+            {% for page in related_pages %}
+            <li>
+              <a href="{% url 'seo_page' slug=page.slug %}">{{ page.h1 }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        {% if topic_cluster %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Grupo tematico</p>
+          <h3>{{ topic_cluster.title }}</h3>
+          <p>{{ topic_cluster.description }}</p>
+          <ul class="content-page__aside-list">
+            <li><a href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }} en el catalogo</a></li>
+            {% for page in topic_cluster.seo_pages %}
+            <li><a href="{% url 'seo_page' slug=page.slug %}">{{ page.h1 }}</a></li>
+            {% endfor %}
+            {% for tool in topic_cluster.tools %}
+            <li><a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

@@ -2,8 +2,10 @@
 {% load static %}
 {% block title %}{% if tool.seo_title %}{{ tool.seo_title }}{% else %}{{ tool.name }} | Pi Development{% endif %}{% endblock %}
 {% block og_title %}{% if tool.seo_title %}{{ tool.seo_title }}{% else %}{{ tool.name }} | Pi Development{% endif %}{% endblock %}
+{% block twitter_title %}{% if tool.seo_title %}{{ tool.seo_title }}{% else %}{{ tool.name }} | Pi Development{% endif %}{% endblock %}
 {% block meta_description %}{{ tool.meta_description }}{% endblock %}
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords|default:'herramientas técnicas, diagnóstico web, QA de creatividades' }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">

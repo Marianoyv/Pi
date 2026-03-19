@@ -39,7 +39,7 @@
         {% for item in work_items %}
         <article class="portfolio-overview__card portfolio-overview__card--case">
           <a class="portfolio-overview__case-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Visitar {{ item.name }}">
-            <img src="{% static item.image %}" alt="Proyecto {{ item.name }}">
+            {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-media' media_label='Proyecto '|add:item.name %}
           </a>
           <div class="portfolio-overview__content">
             <p class="portfolio-overview__category">{{ item.category }}</p>

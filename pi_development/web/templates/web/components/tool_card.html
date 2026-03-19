@@ -5,7 +5,7 @@
   </div>
   <div class="tool-card__body">
     <h3>{{ tool.name }}</h3>
-    <p>{{ tool.summary }}</p>
+    <p class="tool-card__summary">{{ tool.summary }}</p>
     {% if tool.recommended_for %}
     <div class="tool-card__meta">
       <p class="tool-card__meta-label">Útil para</p>
@@ -16,6 +16,7 @@
       </ul>
     </div>
     {% endif %}
+    <p class="tool-card__meta-label">Salida principal</p>
     <ul class="tool-card__list">
       {% for item in tool.outputs|slice:":3" %}
       <li>{{ item }}</li>

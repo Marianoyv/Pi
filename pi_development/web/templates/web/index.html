@@ -1,10 +1,12 @@
 {% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Herramientas AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
-{% block og_title %}Herramientas AdTech, QA de creatividades y diagnóstico web | Pi Development{% endblock %}
-{% block meta_description %}Pi Development reúne herramientas para análisis AdTech, validación de creatividades, diagnóstico técnico web, URLs con UTM y automatización operativa.{% endblock %}
-{% block og_description %}Suite técnica para analizar, validar y optimizar URLs, creatividades, monetización visible y flujos operativos.{% endblock %}
-{% block meta_keywords %}herramientas AdTech, validación de creatividades, diagnóstico técnico web, QA publicitario, generador UTM{% endblock %}
+{% block title %}Herramientas AdTech, QA de creatividades y diagnostico web | Pi Development{% endblock %}
+{% block og_title %}Herramientas AdTech, QA de creatividades y diagnostico web | Pi Development{% endblock %}
+{% block twitter_title %}Herramientas AdTech, QA de creatividades y diagnostico web | Pi Development{% endblock %}
+{% block meta_description %}Pi Development reune herramientas para analisis AdTech, validacion de creatividades, diagnostico tecnico web, URLs con UTM y automatizacion operativa.{% endblock %}
+{% block og_description %}Suite tecnica para analizar, validar y optimizar URLs, creatividades, monetizacion visible y flujos operativos.{% endblock %}
+{% block twitter_description %}Suite tecnica para analizar, validar y optimizar URLs, creatividades, monetizacion visible y flujos operativos.{% endblock %}
+{% block meta_keywords %}herramientas AdTech, validacion de creatividades, diagnostico tecnico web, QA publicitario, generador UTM{% endblock %}
 {% block body_class %}home-page{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/hero.css' %}">
@@ -29,7 +31,6 @@
 {% include 'web/components/footer.html' %}
 {% endblock %}
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" crossorigin="anonymous"></script>
 <script src="{% static 'web/js/main.js' %}"></script>

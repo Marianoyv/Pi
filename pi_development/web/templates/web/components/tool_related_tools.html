@@ -1,7 +1,7 @@
 {% if related_tools %}
-<article class="tool-panel">
+<article class="tool-panel tool-panel--aside">
   <p class="tools-label">Herramientas relacionadas</p>
-  <h3>Qué puedes revisar después</h3>
+  <h3>Que puedes revisar despues</h3>
   {% if tool.related_context %}
   <p class="tool-panel__note">{{ tool.related_context }}</p>
   {% endif %}
@@ -13,5 +13,34 @@
     </a>
     {% endfor %}
   </div>
+</article>
+{% endif %}
+
+{% if related_seo_pages %}
+<article class="tool-panel tool-panel--aside">
+  <p class="tools-label">Guias relacionadas</p>
+  <h3>Lecturas utiles para esta herramienta</h3>
+  <p class="tool-panel__note">Estas guias conectan la herramienta con la capa editorial SEO del sitio.</p>
+  <div class="tool-related-list">
+    {% for page in related_seo_pages %}
+    <a href="{% url 'seo_page' slug=page.slug %}">
+      <strong>{{ page.h1 }}</strong>
+      <span>{{ page.description }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</article>
+{% endif %}
+
+{% if topic_cluster %}
+<article class="tool-panel tool-panel--aside">
+  <p class="tools-label">Grupo tematico</p>
+  <h3>{{ topic_cluster.title }}</h3>
+  <p>{{ topic_cluster.description }}</p>
+  <ul class="tool-inline-list">
+    <li>{{ topic_cluster.tool_count }} tools</li>
+    <li>{{ topic_cluster.seo_page_count }} guias</li>
+  </ul>
+  <a class="button-link button-link--dark" href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }}</a>
 </article>
 {% endif %}

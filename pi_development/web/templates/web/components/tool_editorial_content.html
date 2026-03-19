@@ -1,6 +1,6 @@
 {% if tool.editorial %}
 <section class="tool-editorial">
-  <article class="tool-panel">
+  <article class="tool-panel tool-panel--support">
     <p class="tools-label">Qué analiza</p>
     <h2>{{ tool.editorial.analysis_title }}</h2>
     <ul class="tool-list">
@@ -10,8 +10,8 @@
     </ul>
   </article>
 
-  <div class="tool-result__grid">
-    <article class="tool-panel">
+  <div class="tool-editorial__grid">
+    <article class="tool-panel tool-panel--soft">
       <p class="tools-label">Cuándo usarla</p>
       <h3>{{ tool.editorial.use_title }}</h3>
       <ul class="tool-list">
@@ -21,7 +21,7 @@
       </ul>
     </article>
 
-    <article class="tool-panel">
+    <article class="tool-panel tool-panel--soft">
       <p class="tools-label">Resultados</p>
       <h3>{{ tool.editorial.results_title }}</h3>
       <ul class="tool-list">
@@ -31,7 +31,7 @@
       </ul>
     </article>
 
-    <article class="tool-panel">
+    <article class="tool-panel tool-panel--soft">
       <p class="tools-label">Limitaciones</p>
       <h3>{{ tool.editorial.limitations_title }}</h3>
       <ul class="tool-list">
@@ -42,9 +42,9 @@
     </article>
   </div>
 
-  <article class="tool-panel">
+  <section class="tool-panel tool-panel--support" aria-labelledby="tool-faq-title">
     <p class="tools-label">Preguntas frecuentes</p>
-    <h2>{{ tool.editorial.faq_title }}</h2>
+    <h2 id="tool-faq-title">{{ tool.editorial.faq_title }}</h2>
     <div class="tool-editorial__faq-list">
       {% for item in tool.editorial.faqs %}
       <article class="tool-editorial__faq-item">
@@ -53,6 +53,6 @@
       </article>
       {% endfor %}
     </div>
-  </article>
+  </section>
 </section>
 {% endif %}

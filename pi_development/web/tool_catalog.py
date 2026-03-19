@@ -5,6 +5,7 @@ TOOLS_INDEX_PAGE = {
     "eyebrow": "Herramientas",
     "title": "Herramientas para análisis AdTech, validación de creatividades y diagnóstico técnico web.",
     "description": "La suite de Pi Development reúne utilidades reales para detectar problemas, validar implementaciones y acelerar decisiones técnicas sin ruido visual ni promesas vacías.",
+    "seo_title": "Tools de AdTech, creatividades, SEO tecnico y tracking | Pi Development",
     "featured_label": "Herramienta destacada",
     "featured_title": "AI Auditor",
     "featured_description": "Un auditor técnico web para revisar una URL pública y devolver un diagnóstico breve sobre estado general, rendimiento base, SEO y oportunidades concretas.",

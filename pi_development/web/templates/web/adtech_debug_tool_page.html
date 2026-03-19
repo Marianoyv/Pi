@@ -2,8 +2,10 @@
 {% load static %}
 {% block title %}{{ tool.seo_title }}{% endblock %}
 {% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block twitter_title %}{{ tool.seo_title }}{% endblock %}
 {% block meta_description %}{{ tool.meta_description }}{% endblock %}
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
@@ -44,6 +46,7 @@
                 <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
               </div>
               <p class="tool-panel__note">La detección se hace desde backend sobre HTML descargado. No se inventan hallazgos cuando la implementación no es visible.</p>
+              {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 

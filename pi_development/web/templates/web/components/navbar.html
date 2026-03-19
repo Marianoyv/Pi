@@ -10,12 +10,13 @@
       <a class="{% if request.path == '/' %}is-active{% endif %}" href="{% url 'index' %}">Inicio</a>
       <a class="{% if request.path == '/systems/' %}is-active{% endif %}" href="{% url 'systems' %}">Arquitectura</a>
       <a class="{% if request.path == '/tools/' %}is-active{% endif %}" href="{% url 'tools' %}">Herramientas</a>
+      <a class="{% if '/blog/' in request.path or request.path == '/blog/' %}is-active{% endif %}" href="{% url 'blog' %}">Contenido</a>
       <a class="{% if request.path == '/work/' %}is-active{% endif %}" href="{% url 'work' %}">Casos</a>
-      <a class="{% if request.path == '/approach/' %}is-active{% endif %}" href="{% url 'approach' %}">Método</a>
+      <a class="{% if request.path == '/approach/' %}is-active{% endif %}" href="{% url 'approach' %}">Metodo</a>
       <a class="{% if request.path == '/about/' %}is-active{% endif %}" href="{% url 'about' %}">Estudio</a>
       <a class="{% if request.path == '/contact/' %}is-active{% endif %}" href="{% url 'contact' %}">Contacto</a>
     </div>
-    <button type="button" class="menu-icon" aria-label="Abrir menú" aria-controls="navLinks" aria-expanded="false">
+    <button type="button" class="menu-icon" aria-label="Abrir menu" aria-controls="navLinks" aria-expanded="false">
       <i class="fa fa-bars"></i>
     </button>
   </div>

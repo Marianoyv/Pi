@@ -2,8 +2,10 @@
 {% load static %}
 {% block title %}{{ tool.seo_title }}{% endblock %}
 {% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block twitter_title %}{{ tool.seo_title }}{% endblock %}
 {% block meta_description %}{{ tool.meta_description }}{% endblock %}
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
@@ -24,13 +26,16 @@
         <div class="tool-detail__main">
           <article class="tool-panel">
             <p class="tools-label">Entrada</p>
-            <h2>Analizar una URL pública</h2>
-            <p class="tool-panel__lead">Ingresa una URL y el auditor construirá una lectura técnica clara. Si una capa externa no está disponible, el resultado lo informará de forma explícita.</p>
+            <h2>Analizar una URL publica</h2>
+            <p class="tool-panel__lead">Ingresa una URL y el auditor construira una lectura tecnica clara. Si una capa externa no esta disponible, el resultado lo informara de forma explicita.</p>
             <form method="post" class="tool-form" data-analyze-form>
               {% csrf_token %}
               <div class="tool-form__field">
                 {{ form.url.label_tag }}
                 {{ form.url }}
+                {% if form.url.help_text %}
+                <p class="tool-form__help">{{ form.url.help_text }}</p>
+                {% endif %}
                 {% if form.url.errors %}
                 <ul class="tool-form__errors">
                   {% for error in form.url.errors %}
@@ -43,7 +48,8 @@
                 <button type="submit" class="button-link tool-form__submit" data-loading-text="Analizando URL...">Analizar URL</button>
                 <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
               </div>
-              <p class="tool-panel__note">PageSpeed y OpenAI son capas opcionales. La herramienta no inventa datos si no están disponibles.</p>
+              <p class="tool-panel__note">PageSpeed y OpenAI son capas opcionales. La herramienta no inventa datos si no estan disponibles.</p>
+              {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 
@@ -58,10 +64,16 @@
 
             {% include 'web/components/tool_insight.html' with insight=audit_result.insight %}
 
+            <article class="tool-panel tool-panel--recommendation">
+              <p class="tools-label">Siguiente paso</p>
+              <h3>Que conviene hacer ahora</h3>
+              <p>{{ audit_result.diagnosis.recommendation }}</p>
+            </article>
+
             {% include 'web/components/tool_exports.html' with exports=audit_result.exports export_prefix='ai-auditor-export' %}
 
             {% if audit_result.ai_summary.available %}
-            <article class="tool-panel">
+            <article class="tool-panel tool-panel--soft">
               <p class="tools-label">Capa adicional</p>
               <h3>Resumen asistido</h3>
               <p>{{ audit_result.ai_summary.text }}</p>
@@ -70,8 +82,8 @@
 
             <div class="tool-result__grid">
               <article class="tool-panel">
-                <p class="tools-label">Observaciones técnicas</p>
-                <h3>Observaciones técnicas</h3>
+                <p class="tools-label">Observaciones tecnicas</p>
+                <h3>Observaciones tecnicas</h3>
                 <ul class="tool-list">
                   {% for item in audit_result.diagnosis.technical_observations %}
                   <li>{{ item }}</li>
@@ -117,17 +129,11 @@
                 </ul>
               </article>
             </div>
-
-            <article class="tool-panel">
-              <p class="tools-label">Recomendación</p>
-              <h3>Siguiente paso recomendado</h3>
-              <p>{{ audit_result.diagnosis.recommendation }}</p>
-            </article>
           </section>
           {% else %}
           <article class="tool-empty">
             <p class="tools-label">Salida</p>
-            <h2>La salida organiza la revisión para que el problema se entienda rápido.</h2>
+            <h2>La salida organiza la revision para que el problema se entienda rapido.</h2>
             <div class="tool-empty__grid">
               {% for item in tool.outputs %}
               <div class="tool-empty__item">
@@ -176,11 +182,11 @@
               {% else %}
                 <li class="tool-source tool-source--limited">
                   <strong>Snapshot HTTP</strong>
-                  <span>Siempre intenta una lectura básica desde backend.</span>
+                  <span>Siempre intenta una lectura basica desde backend.</span>
                 </li>
                 <li class="tool-source tool-source--limited">
                   <strong>PageSpeed Insights</strong>
-                  <span>Se usa si la API responde y devuelve datos válidos.</span>
+                  <span>Se usa si la API responde y devuelve datos validos.</span>
                 </li>
                 <li class="tool-source tool-source--limited">
                   <strong>Capa de OpenAI</strong>

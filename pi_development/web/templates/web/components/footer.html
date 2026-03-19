@@ -2,16 +2,17 @@
   <div class="footer-columns">
     <div class="footer-column footer-column--brand">
       <p class="footer-kicker">Pi Development</p>
-      <p>Herramientas y sistemas digitales para AdTech, validación de creatividades, rendimiento web, automatización y datos.</p>
+      <p>Herramientas y sistemas digitales para AdTech, validacion de creatividades, rendimiento web, automatizacion y datos.</p>
     </div>
     <div class="footer-column">
-      <h3>Navegación</h3>
+      <h3>Navegacion</h3>
       <ul>
         <li><a href="{% url 'index' %}">Inicio</a></li>
         <li><a href="{% url 'systems' %}">Arquitectura</a></li>
         <li><a href="{% url 'tools' %}">Herramientas</a></li>
+        <li><a href="{% url 'blog' %}">Contenido</a></li>
         <li><a href="{% url 'work' %}">Casos</a></li>
-        <li><a href="{% url 'approach' %}">Método</a></li>
+        <li><a href="{% url 'approach' %}">Metodo</a></li>
         <li><a href="{% url 'about' %}">Estudio</a></li>
         <li><a href="{% url 'contact' %}">Contacto</a></li>
       </ul>
@@ -20,12 +21,22 @@
       <h3>Enfoque</h3>
       <ul>
         <li><a href="{% url 'systems' %}">Arquitectura digital</a></li>
-        <li><a href="{% url 'tools' %}">Herramientas técnicas</a></li>
-        <li><a href="{% url 'systems' %}">Rendimiento y automatización</a></li>
-        <li><a href="{% url 'systems' %}">Datos y monetización</a></li>
-        <li><a href="{% url 'policies' %}">Políticas</a></li>
+        <li><a href="{% url 'tools' %}">Herramientas tecnicas</a></li>
+        <li><a href="{% url 'systems' %}">Rendimiento y automatizacion</a></li>
+        <li><a href="{% url 'systems' %}">Datos y monetizacion</a></li>
+        <li><a href="{% url 'policies' %}">Politicas</a></li>
       </ul>
     </div>
+    {% if footer_seo_hubs %}
+    <div class="footer-column">
+      <h3>Guias tecnicas</h3>
+      <ul>
+        {% for page in footer_seo_hubs %}
+        <li><a href="{% url 'seo_page' slug=page.slug %}">{{ page.h1 }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
     <div class="footer-column">
       <h3>Contacto</h3>
       <p>{{ contact_location }}</p>

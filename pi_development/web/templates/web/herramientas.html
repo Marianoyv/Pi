@@ -1,14 +1,9 @@
 <section class="explora" id="tools-preview">
-  <div class="explora__layout">
-    <div class="section-header section-header--wide explora__header">
-      <p class="explora__eyebrow">{{ home_page.tools.eyebrow }}</p>
-      <h2>{{ home_page.tools.title }}</h2>
-      <p>{{ home_page.tools.description }}</p>
-    </div>
-    <aside class="explora__support">
-      <h3>{{ home_page.tools.support_title }}</h3>
-      <p>{{ home_page.tools.support_text }}</p>
-    </aside>
+  <div class="section-header section-header--wide explora__header">
+    <p class="explora__eyebrow">{{ home_page.tools.eyebrow }}</p>
+    <h2>{{ home_page.tools.title }}</h2>
+    <p>{{ home_page.tools.description }}</p>
+    <p class="explora__support-copy">{{ home_page.tools.support_text }}</p>
   </div>
   <div class="container">
     {% for item in home_page.tools.groups %}

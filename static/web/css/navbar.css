@@ -80,13 +80,15 @@
   font-weight: 500;
   line-height: var(--leading-button);
   letter-spacing: 0.01em;
-  transition: background-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
+  border: 1px solid transparent;
+  transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.is-active {
   color: var(--color-white);
   background: rgba(var(--rgb-primary), 0.16);
+  border-color: rgba(var(--rgb-primary), 0.22);
 }
 
 .nav-links a:hover {
@@ -105,6 +107,13 @@
   color: var(--color-white);
   font-size: var(--font-small);
   cursor: pointer;
+  transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
+}
+
+.menu-icon:hover {
+  border-color: rgba(var(--rgb-primary), 0.28);
+  background: rgba(var(--rgb-primary), 0.12);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {

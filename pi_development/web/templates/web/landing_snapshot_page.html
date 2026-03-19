@@ -2,8 +2,10 @@
 {% load static %}
 {% block title %}{{ tool.seo_title }}{% endblock %}
 {% block og_title %}{{ tool.seo_title }}{% endblock %}
+{% block twitter_title %}{{ tool.seo_title }}{% endblock %}
 {% block meta_description %}{{ tool.meta_description }}{% endblock %}
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
+{% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
@@ -24,13 +26,16 @@
         <div class="tool-detail__main">
           <article class="tool-panel">
             <p class="tools-label">Entrada</p>
-            <h2>Tomar un snapshot técnico corto</h2>
-            <p class="tool-panel__lead">Ingresa una URL pública y la herramienta devolverá una lectura rápida sobre respuesta, metadatos base y señales simples de fricción para una landing.</p>
+            <h2>Tomar un snapshot tecnico corto</h2>
+            <p class="tool-panel__lead">Ingresa una URL publica y la herramienta devolvera una lectura rapida sobre respuesta, metadatos base y senales simples de friccion para una landing.</p>
             <form method="post" class="tool-form" data-analyze-form>
               {% csrf_token %}
               <div class="tool-form__field">
                 {{ form.url.label_tag }}
                 {{ form.url }}
+                {% if form.url.help_text %}
+                <p class="tool-form__help">{{ form.url.help_text }}</p>
+                {% endif %}
                 {% if form.url.errors %}
                 <ul class="tool-form__errors">
                   {% for error in form.url.errors %}
@@ -44,6 +49,7 @@
                 <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
               </div>
               <p class="tool-panel__note">Esta herramienta es deliberadamente corta: usa la lectura HTTP compartida y evita sumar capas externas o paneles innecesarios.</p>
+              {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 
@@ -57,6 +63,12 @@
             </article>
 
             {% include 'web/components/tool_insight.html' with insight=landing_result.insight %}
+
+            <article class="tool-panel tool-panel--recommendation">
+              <p class="tools-label">Siguiente paso</p>
+              <h3>Que revisar primero</h3>
+              <p>{{ landing_result.diagnosis.recommendation }}</p>
+            </article>
 
             {% include 'web/components/tool_exports.html' with exports=landing_result.exports export_prefix='landing-snapshot-export' %}
 
@@ -76,7 +88,7 @@
 
               <article class="tool-panel">
                 <p class="tools-label">Estructura</p>
-                <h3>Estructura básica</h3>
+                <h3>Estructura basica</h3>
                 <div class="tool-metric-grid">
                   {% for item in landing_result.diagnosis.structure_items %}
                   <div class="tool-metric">
@@ -88,8 +100,8 @@
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Señales rápidas</p>
-                <h3>Señales rápidas</h3>
+                <p class="tools-label">Senales rapidas</p>
+                <h3>Senales rapidas</h3>
                 <ul class="tool-checklist">
                   {% for item in landing_result.diagnosis.quick_signals %}
                   <li class="tool-checklist__item">
@@ -111,17 +123,11 @@
                 <p>{{ landing_result.diagnosis.summary }}</p>
               </article>
             </div>
-
-            <article class="tool-panel">
-              <p class="tools-label">Recomendación</p>
-              <h3>Siguiente paso recomendado</h3>
-              <p>{{ landing_result.diagnosis.recommendation }}</p>
-            </article>
           </section>
           {% else %}
           <article class="tool-empty">
             <p class="tools-label">Salida</p>
-            <h2>La salida se concentra en respuesta, metadatos y señales rápidas sin intentar reemplazar una auditoría más profunda.</h2>
+            <h2>La salida se concentra en respuesta, metadatos y senales rapidas sin intentar reemplazar una auditoria mas profunda.</h2>
             <div class="tool-empty__grid">
               {% for item in tool.outputs %}
               <div class="tool-empty__item">
@@ -173,7 +179,7 @@
                   <span>Siempre intenta una lectura corta desde backend.</span>
                 </li>
                 <li class="tool-source tool-source--limited">
-                  <strong>Reglas rápidas</strong>
+                  <strong>Reglas rapidas</strong>
                   <span>Aplica checks simples sobre metadata, H1, robots y tiempo de respuesta.</span>
                 </li>
               {% endif %}
