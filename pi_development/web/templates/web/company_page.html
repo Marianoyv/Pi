@@ -1,0 +1,239 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ page.seo_title }}{% endblock %}
+{% block og_title %}{{ page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ page.seo_title }}{% endblock %}
+{% block meta_description %}{{ page.meta_description }}{% endblock %}
+{% block og_description %}{{ page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ page.meta_description }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+{% if tools_catalog %}<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">{% endif %}
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">{{ page.eyebrow }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="page-shell__lead">{{ page.description }}</p>
+    </div>
+  </section>
+
+  <section class="company-section">
+    <div class="company-section__inner">
+      <div class="company-intro-grid">
+        <div>
+          <h2>{{ page.intro_title }}</h2>
+          <p>{{ page.intro }}</p>
+        </div>
+        <aside>
+          <p class="company-card__label">{{ page.support_title }}</p>
+          <p>{{ page.support_text }}</p>
+        </aside>
+      </div>
+
+      {% if page.sections %}
+      <div class="company-card-grid company-card-grid--page">
+        {% for item in page.sections %}
+        <article class="company-card" {% if item.anchor %}id="{{ item.anchor }}"{% endif %}>
+          <p class="company-card__label">{{ item.label }}</p>
+          <h2 class="company-card__title">{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+          {% if item.solves or item.for_whom or item.builds or item.scope %}
+          <dl class="company-card__details">
+            {% if item.solves %}<div><dt>Problem</dt><dd>{{ item.solves }}</dd></div>{% endif %}
+            {% if item.for_whom %}<div><dt>For</dt><dd>{{ item.for_whom }}</dd></div>{% endif %}
+            {% if item.builds %}<div><dt>What we build</dt><dd>{{ item.builds }}</dd></div>{% endif %}
+            {% if item.scope %}<div><dt>Typical scope</dt><dd>{{ item.scope }}</dd></div>{% endif %}
+          </dl>
+          {% endif %}
+        </article>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if page.process %}
+  <section class="company-section company-section--muted" id="process">
+    <div class="company-section__inner company-split">
+      <div class="company-section__header company-section__header--sticky">
+        <p class="company-eyebrow">{{ page.process.eyebrow }}</p>
+        <h2>{{ page.process.title }}</h2>
+      </div>
+      <ol class="company-principles company-principles--steps">
+        {% for item in page.process.items %}
+        <li>
+          <span>0{{ forloop.counter }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if tools_catalog %}
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ page.tools_eyebrow }}</p>
+        <h2>{{ page.tools_title }}</h2>
+        <p>{{ page.tools_text }}</p>
+      </div>
+      <div class="tools-card-grid">
+        {% for tool in tools_catalog %}
+        {% include 'web/components/tool_card.html' with tool=tool %}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if knowledge_groups %}
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ page.insights_eyebrow }}</p>
+        <h2>{{ page.insights_title }}</h2>
+        <p>{{ page.insights_text }}</p>
+      </div>
+      <div class="company-insight-groups">
+        {% for group in knowledge_groups %}
+        <section class="company-insight-group">
+          <div>
+            <p class="company-card__label">{{ group.cluster.title }}</p>
+            <h3>{{ group.cluster.description }}</h3>
+          </div>
+          <div class="company-card-grid company-card-grid--two">
+            {% for article in group.pages %}
+            <a class="company-card company-card--link" href="{% url 'knowledge_page' slug=article.slug %}">
+              <p class="company-card__label">{{ article.eyebrow }}</p>
+              <h4>{{ article.h1 }}</h4>
+              <p>{{ article.summary }}</p>
+            </a>
+            {% endfor %}
+          </div>
+          <div class="company-insight-links" aria-label="Related tools and technical guides">
+            {% for tool in group.cluster.tools %}
+            <a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a>
+            {% endfor %}
+            {% for guide in group.cluster.seo_pages %}
+            <a href="{% url 'seo_page' slug=guide.slug %}">{{ guide.h1 }}</a>
+            {% endfor %}
+          </div>
+        </section>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.deliverables or page.evidence or page.technology_text %}
+  <section class="company-section">
+    <div class="company-section__inner company-detail-grid">
+      {% if page.deliverables %}
+      <article>
+        <p class="company-card__label">Delivery</p>
+        <h2>{{ page.deliverables_title }}</h2>
+        <ul class="company-list">
+          {% for item in page.deliverables %}<li>{{ item }}</li>{% endfor %}
+        </ul>
+      </article>
+      {% endif %}
+      {% if page.technology_text %}
+      <article>
+        <p class="company-card__label">Technology</p>
+        <h2>{{ page.technology_title }}</h2>
+        <p>{{ page.technology_text }}</p>
+      </article>
+      {% endif %}
+      {% if page.evidence %}
+      <article>
+        <p class="company-card__label">Evidence</p>
+        <h2>{{ page.evidence_title }}</h2>
+        <div class="company-evidence-links">
+          {% for item in page.evidence %}
+          <a href="{{ item.href }}"><span>{{ item.label }}</span><strong>{{ item.title }}</strong></a>
+          {% endfor %}
+        </div>
+      </article>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.faqs %}
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner company-split">
+      <div class="company-section__header">
+        <p class="company-eyebrow">FAQ</p>
+        <h2>Questions before a first conversation.</h2>
+      </div>
+      <div class="company-faq-list">
+        {% for item in page.faqs %}
+        <article>
+          <h3>{{ item.question }}</h3>
+          <p>{{ item.answer }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.slug == "contact" %}
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner company-contact-layout">
+      <div class="company-contact-copy">
+        <p class="company-eyebrow">Project context</p>
+        <h2>Tell us what needs to work better.</h2>
+        <p>{{ page.contact_reassurance }}</p>
+        <div class="company-contact-details">
+          <p><strong>Email</strong><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+          <p><strong>Location</strong>{{ contact_location }}<br>Working globally</p>
+        </div>
+      </div>
+      <div class="company-form-wrap">
+        {% if contact_success %}
+        <div class="company-form__success" role="status" aria-live="polite">
+          <h2>Thank you. Your project context was received.</h2>
+          <p>Pi Development will review the problem and reply through the email you provided.</p>
+          {% if contact_handoff_url %}<a href="{{ contact_handoff_url }}">Send a copy by email</a>{% endif %}
+        </div>
+        {% endif %}
+        <form method="post" class="company-form" novalidate>
+          {% csrf_token %}
+          {% if contact_form.non_field_errors %}
+          <div class="company-form__errors" role="alert">{{ contact_form.non_field_errors }}</div>
+          {% endif %}
+          {% for field in contact_form %}
+          <div class="company-form__field{% if field.errors %} company-form__field--error{% endif %}">
+            <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span aria-hidden="true"> *</span>{% endif %}</label>
+            {{ field }}
+            {% if field.help_text %}<p id="{{ field.id_for_label }}_help" class="company-form__help">{{ field.help_text }}</p>{% endif %}
+            {% if field.errors %}<div class="company-form__error" role="alert">{{ field.errors }}</div>{% endif %}
+          </div>
+          {% endfor %}
+          <button class="button-link" type="submit">Send project context</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  {% else %}
+  <section class="company-cta">
+    <div class="company-cta__inner">
+      <h2>{{ page.cta_title }}</h2>
+      <p>{{ page.cta_text }}</p>
+      <a class="button-link" href="{% url 'contact' %}">{{ page.cta_label }}</a>
+    </div>
+  </section>
+  {% endif %}
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

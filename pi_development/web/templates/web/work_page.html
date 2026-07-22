@@ -1,16 +1,18 @@
 {% extends 'web/base.html' %}
 {% load static %}
-{% block title %}Casos reales y sistemas publicados | Pi Development{% endblock %}
-{% block og_title %}Casos reales y sistemas publicados | Pi Development{% endblock %}
-{% block meta_description %}{{ work_page.description }}{% endblock %}
-{% block og_description %}{{ work_page.description }}{% endblock %}
-{% block meta_keywords %}casos de sistemas digitales, proyectos web publicados, arquitectura digital, plataformas web{% endblock %}
+{% block title %}{{ work_page.seo_title }}{% endblock %}
+{% block og_title %}{{ work_page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ work_page.seo_title }}{% endblock %}
+{% block meta_description %}{{ work_page.meta_description }}{% endblock %}
+{% block og_description %}{{ work_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ work_page.meta_description }}{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<main>
+<main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
       <p class="page-shell__eyebrow">{{ work_page.eyebrow }}</p>
@@ -18,65 +20,82 @@
       <p class="page-shell__lead">{{ work_page.description }}</p>
     </div>
   </section>
+
   <section class="portfolio-overview">
     <div class="portfolio-overview__inner">
       <div class="portfolio-overview__header-grid">
         <div class="portfolio-overview__header">
-          <p class="portfolio-overview__eyebrow">Casos seleccionados</p>
-          <h2>Sistemas construidos para problemas concretos</h2>
-          <p>Cada caso muestra una necesidad real, una solución técnica posible y una base implementada para seguir creciendo.</p>
+          <p class="portfolio-overview__eyebrow">Purpose before presentation</p>
+          <h2>{{ work_page.intro_title }}</h2>
+          <p>{{ work_page.intro }}</p>
         </div>
         <aside class="portfolio-overview__summary">
-          <h3>{{ work_page.notes_title }}</h3>
+          <h3>Evidence policy</h3>
           <ul class="portfolio-overview__summary-list">
-            {% for item in work_page.notes %}
-            <li>{{ item }}</li>
-            {% endfor %}
+            {% for item in work_page.notes %}<li>{{ item }}</li>{% endfor %}
           </ul>
         </aside>
       </div>
+
       <div class="portfolio-overview__grid portfolio-overview__grid--cases">
         {% for item in work_items %}
-        <article class="portfolio-overview__card portfolio-overview__card--case">
-          <a class="portfolio-overview__case-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Visitar {{ item.name }}">
-            {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-media' media_label='Proyecto '|add:item.name %}
+        <article class="portfolio-overview__card portfolio-overview__card--case" id="{{ item.slug }}">
+          <a class="portfolio-overview__case-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Open the published {{ item.name }} project">
+            {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-media' media_label=item.name|add:' software interface' %}
           </a>
           <div class="portfolio-overview__content">
-            <p class="portfolio-overview__category">{{ item.category }}</p>
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.summary }}</p>
-            <ul class="portfolio-overview__tags">
-              {% for tag in item.highlights %}
-              <li>{{ tag }}</li>
-              {% endfor %}
-            </ul>
-            <div class="portfolio-overview__case-body">
-              <div class="portfolio-overview__case-row">
-                <strong>Contexto</strong>
-                <p>{{ item.context }}</p>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <strong>Problema</strong>
-                <p>{{ item.problem }}</p>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <strong>Solución</strong>
-                <p>{{ item.solution }}</p>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <strong>Implementación</strong>
-                <p>{{ item.implementation }}</p>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <strong>Resultado</strong>
-                <p>{{ item.result }}</p>
-              </div>
+            <div class="portfolio-overview__case-meta">
+              <p class="portfolio-overview__category">{{ item.category }}</p>
+              <span>{{ item.work_type }}</span>
+              <span>{{ item.status }}</span>
             </div>
-            <span>Visitar proyecto</span>
+            <h2>{{ item.name }}</h2>
+            <p>{{ item.summary }}</p>
+            <ul class="portfolio-overview__tags" aria-label="Technologies and disciplines">
+              {% for technology in item.technologies %}<li>{{ technology }}</li>{% endfor %}
+            </ul>
+            <dl class="portfolio-overview__case-body">
+              <div class="portfolio-overview__case-row">
+                <dt>Context</dt>
+                <dd>{{ item.context }}</dd>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <dt>Problem</dt>
+                <dd>{{ item.problem }}</dd>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <dt>Approach</dt>
+                <dd>{{ item.approach }}</dd>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <dt>What was built</dt>
+                <dd>{{ item.what_built }}</dd>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <dt>Technical decisions</dt>
+                <dd>{{ item.technical_decisions }}</dd>
+              </div>
+              <div class="portfolio-overview__case-row">
+                <dt>Result</dt>
+                <dd>{{ item.result }}</dd>
+              </div>
+            </dl>
+            <div class="portfolio-overview__actions">
+              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">Visit published project <span aria-hidden="true">↗</span></a>
+              <a href="{% url 'solutions' %}">Explore related software solutions <span aria-hidden="true">→</span></a>
+            </div>
           </div>
         </article>
         {% endfor %}
       </div>
+    </div>
+  </section>
+
+  <section class="company-cta">
+    <div class="company-cta__inner">
+      <h2>{{ work_page.cta_title }}</h2>
+      <p>{{ work_page.cta_text }}</p>
+      <a class="button-link" href="{% url 'contact' %}">{{ work_page.cta_label }}</a>
     </div>
   </section>
 </main>

@@ -1,0 +1,45 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ tool.name }} temporalmente deshabilitada | Pi Development{% endblock %}
+{% block meta_description %}{{ tool.availability_message }}{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Herramienta en mantenimiento</p>
+      <h1>{{ tool.name }}</h1>
+      <p class="page-shell__lead">{{ tool.availability_message }}</p>
+    </div>
+  </section>
+  <section class="tool-detail">
+    <div class="tool-detail__inner">
+      <article class="tool-panel">
+        <p class="tools-label">Estado</p>
+        <h2>Diagnostico remoto no disponible.</h2>
+        <p>La herramienta no analiza URLs ni genera puntajes mientras este control de seguridad permanece activo.</p>
+        <div class="tool-panel__status">
+          <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
+        </div>
+      </article>
+
+      {% if related_tools %}
+      <article class="tool-panel">
+        <p class="tools-label">Herramientas disponibles</p>
+        <h2>Utilidades que no realizan solicitudes remotas.</h2>
+        <div class="tool-related-list">
+          {% for item in related_tools %}
+          <a href="{% url 'tool_detail' slug=item.slug %}">{{ item.name }}</a>
+          {% endfor %}
+        </div>
+      </article>
+      {% endif %}
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

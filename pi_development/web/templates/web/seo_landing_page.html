@@ -13,7 +13,7 @@
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<main>
+<main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
       <p class="page-shell__eyebrow">{{ seo_page.eyebrow }}</p>
@@ -55,6 +55,7 @@
           </div>
         </div>
 
+        {% if primary_tool %}
         <div class="content-page__section">
           <h2>Herramienta recomendada</h2>
           <article class="content-page__card content-page__card--tool">
@@ -76,6 +77,7 @@
             </div>
           </article>
         </div>
+        {% endif %}
 
         <div class="content-page__section">
           <h2>Como usar la herramienta</h2>
@@ -152,12 +154,14 @@
         </div>
       </article>
       <aside class="content-page__aside">
+        {% if primary_tool %}
         <div class="content-page__card">
           <p class="content-page__card-label">Tool principal</p>
           <h3>{{ primary_tool.name }}</h3>
           <p>{{ primary_tool.summary }}</p>
           <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=primary_tool.slug %}">{{ primary_tool.cta_label }}</a>
         </div>
+        {% endif %}
         {% if related_tools %}
         <div class="content-page__card">
           <p class="content-page__card-label">Herramientas relacionadas</p>
@@ -200,6 +204,18 @@
           </ul>
         </div>
         {% endif %}
+        <div class="content-page__card">
+          <p class="content-page__card-label">Siguiente paso comercial</p>
+          {% if topic_cluster.key == "adtech" or topic_cluster.key == "creatividades" %}
+          <h3>Revisar una implementación AdTech</h3>
+          <p>Escala la guía hacia diagnóstico, Google Ad Manager, GPT, creative QA o publisher tooling.</p>
+          <a class="button-link button-link--dark" href="{% url 'adtech' %}">Explorar AdTech</a>
+          {% else %}
+          <h3>Mejorar un sistema o workflow</h3>
+          <p>Conecta la revisión técnica con software a medida, automatización o una herramienta interna.</p>
+          <a class="button-link button-link--dark" href="{% url 'solutions' %}">Explorar soluciones</a>
+          {% endif %}
+        </div>
       </aside>
     </div>
   </section>

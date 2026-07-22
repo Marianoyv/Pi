@@ -1,9 +1,14 @@
+from urllib.parse import urlencode
+
 from django.conf import settings
+from django.core.mail import send_mail
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
 
+from .rebuild_forms import RebuildContactForm
+from .contact_forms import CompanyContactForm
 from .forms import (
     AdTechDebugForm,
     AiAuditorForm,
@@ -12,6 +17,11 @@ from .forms import (
     LandingPerformanceSnapshotForm,
     UTMBuilderForm,
 )
+from .company_pages import (
+    CONTACT_PAGE as COMPANY_CONTACT_PAGE,
+    get_company_page,
+    get_home_page,
+)
 from .knowledge_pages import (
     get_knowledge_index_page,
     get_knowledge_listing_groups,
@@ -19,7 +29,13 @@ from .knowledge_pages import (
     get_public_knowledge_slugs,
     get_related_knowledge_pages,
 )
-from .schema_utils import build_faq_schema_json, build_item_list_schema_json
+from .rebuild_pages import get_rebuild_nav_items, get_rebuild_page
+from .schema_utils import (
+    build_article_schema_json,
+    build_faq_schema_json,
+    build_item_list_schema_json,
+    build_software_application_schema_json,
+)
 from .services.tools.creative_preview_lab import run_creative_preview_lab
 from .services.tools.creative_qa import run_creative_qa
 from .services.tools.adtech_debug import run_adtech_debug
@@ -43,6 +59,7 @@ from .tool_catalog import (
     get_tools,
     get_tools_index_page,
 )
+from .work_content import get_work_items, get_work_page
 
 
 WORK_ITEMS = [
@@ -157,51 +174,31 @@ PORTFOLIO_WALL_VARIANTS = {
 }
 
 PORTFOLIO_WALL_SEQUENCE = [
-    "arcade-world-shot-1",
-    "blog-int-emocional-shot-2",
-    "indices-argentinos-shot-1",
-    "recetas-del-sapi-main",
-    "system-vesta-shot-1",
-    "indices-argentinos-shot-2",
-    "arcade-world-shot-2",
-    "blog-int-emocional-shot-1",
-    "indices-argentinos-main",
-    "recetas-del-sapi-main",
-    "blog-int-emocional-main",
-    "arcade-world-shot-3",
-    "indices-argentinos-shot-3",
-    "juno-metales-video",
-    "recetas-del-sapi-main",
-    "blog-int-emocional-shot-2",
-    "indices-argentinos-shot-1",
-    "system-vesta-shot-1",
-    "recetas-del-sapi-main",
-    "blog-int-emocional-shot-1",
-    "indices-argentinos-shot-2",
     "arcade-world-video",
+    "blog-int-emocional-main",
+    "indices-argentinos-shot-1",
     "recetas-del-sapi-main",
+    "system-vesta-shot-1",
+    "juno-metales-video",
+    "arcade-world-shot-1",
+    "blog-int-emocional-shot-1",
     "indices-argentinos-main",
     "system-vesta-video",
+    "arcade-world-shot-2",
+    "blog-int-emocional-shot-2",
+    "indices-argentinos-shot-2",
+    "arcade-world-shot-3",
+    "indices-argentinos-shot-3",
 ]
 
-PORTFOLIO_WALL_ECHO_SEQUENCE = [
-    "indices-argentinos-shot-1",
-    "blog-int-emocional-shot-1",
-    "arcade-world-shot-2",
-    "recetas-del-sapi-main",
-    "system-vesta-shot-1",
-    "arcade-world-shot-1",
-    "blog-int-emocional-main",
-    "indices-argentinos-shot-3",
-    "system-vesta-shot-1",
-    "recetas-del-sapi-main",
-]
+PORTFOLIO_WALL_ECHO_SEQUENCE = []
 
 
 def _build_portfolio_wall_items(sequence=None):
     items_by_slug = {item["slug"]: item for item in WORK_ITEMS}
     wall_items = []
-    for key in sequence or PORTFOLIO_WALL_SEQUENCE:
+    selected_sequence = PORTFOLIO_WALL_SEQUENCE if sequence is None else sequence
+    for key in selected_sequence:
         variant = PORTFOLIO_WALL_VARIANTS.get(key)
         if not variant:
             continue
@@ -565,13 +562,9 @@ LIVE_TOOL_CONFIG = {
 def index(request):
     return render(
         request,
-        "web/index.html",
+        "web/company_home.html",
         {
-            "home_page": HOME_PAGE,
-            "contact_page": CONTACT_PAGE,
-            "portfolio_items": WORK_ITEMS,
-            "portfolio_wall_items": _build_portfolio_wall_items(),
-            "portfolio_wall_echo_items": _build_portfolio_wall_items(PORTFOLIO_WALL_ECHO_SEQUENCE),
+            "home_page": get_home_page(),
         },
     )
 
@@ -581,7 +574,92 @@ def favicon(request):
 
 
 def systems(request):
-    return render(request, "web/systems_page.html", {"systems_page": SYSTEMS_PAGE})
+    return redirect("solutions", permanent=True)
+
+
+def solutions(request):
+    page = get_company_page("solutions")
+    return render(
+        request,
+        "web/company_page.html",
+        {
+            "page": page,
+            "structured_data_json": [item for item in [build_faq_schema_json(page.get("faqs"))] if item],
+        },
+    )
+
+
+def products(request):
+    live_tools = [tool for tool in get_tools() if tool.get("is_live")]
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    return render(
+        request,
+        "web/company_page.html",
+        {
+            "page": get_company_page("products"),
+            "tools_catalog": live_tools,
+            "structured_data_json": [
+                build_item_list_schema_json(
+                    "Live software products and public tools",
+                    [
+                        {
+                            "name": tool["name"],
+                            "url": f"{site_url}{reverse('tool_detail', kwargs={'slug': tool['slug']})}",
+                        }
+                        for tool in live_tools
+                    ],
+                )
+            ],
+        },
+    )
+
+
+def adtech(request):
+    adtech_tools = [
+        tool
+        for tool in get_tools()
+        if tool["slug"] in {"adtech-debug-tool", "creative-qa-checklist", "creative-preview-lab", "utm-builder"}
+    ]
+    page = get_company_page("adtech")
+    return render(
+        request,
+        "web/company_page.html",
+        {
+            "page": page,
+            "tools_catalog": adtech_tools,
+            "structured_data_json": [item for item in [build_faq_schema_json(page.get("faqs"))] if item],
+        },
+    )
+
+
+def labs(request):
+    return redirect("products", permanent=True)
+
+
+def insights(request):
+    knowledge_groups = _build_knowledge_listing_groups()
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    return render(
+        request,
+        "web/company_page.html",
+        {
+            "page": get_company_page("insights"),
+            "knowledge_groups": knowledge_groups,
+            "structured_data_json": [
+                build_item_list_schema_json(
+                    "Published technical insights",
+                    [
+                        {
+                            "name": article["h1"],
+                            "url": f"{site_url}{reverse('knowledge_page', kwargs={'slug': article['slug']})}",
+                        }
+                        for group in knowledge_groups
+                        for article in group["pages"]
+                    ],
+                )
+            ],
+        },
+    )
 
 
 def tools(request):
@@ -590,6 +668,7 @@ def tools(request):
     tools_catalog = get_tools()
     tool_groups = get_tool_groups()
     topic_clusters = get_topic_clusters_with_content()
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
     structured_data_json = [
         item
         for item in [
@@ -598,7 +677,7 @@ def tools(request):
                 [
                     {
                         "name": tool["name"],
-                        "url": request.build_absolute_uri(f"/tools/{tool['slug']}/"),
+                        "url": f"{site_url}{reverse('tool_detail', kwargs={'slug': tool['slug']})}",
                     }
                     for tool in tools_catalog
                 ],
@@ -621,11 +700,25 @@ def tools(request):
 
 
 def tool_detail(request, slug):
-    tool = get_tool(slug)
+    tool = get_tool(slug, include_unavailable=True)
     if not tool:
         raise Http404("Tool not found.")
 
     related_tools = get_related_tools(slug)
+    if not tool["is_available"]:
+        response = render(
+            request,
+            "web/tool_unavailable_page.html",
+            {
+                "tool": tool,
+                "related_tools": related_tools,
+            },
+            status=503,
+        )
+        response["Retry-After"] = "3600"
+        response["Cache-Control"] = "no-store"
+        return response
+
     related_seo_pages = get_related_seo_pages_for_tool(slug)
     topic_cluster = get_topic_cluster_context_for_tool(slug)
     live_tool_config = LIVE_TOOL_CONFIG.get(tool["slug"])
@@ -646,58 +739,228 @@ def tool_detail(request, slug):
 
 
 def work(request):
+    work_items = get_work_items()
     return render(
         request,
         "web/work_page.html",
         {
-            "work_page": WORK_PAGE,
-            "work_items": WORK_ITEMS,
+            "work_page": get_work_page(),
+            "work_items": work_items,
+            "structured_data_json": [
+                build_item_list_schema_json(
+                    "Selected software work",
+                    [{"name": item["name"], "url": item["url"]} for item in work_items],
+                )
+            ],
         },
     )
+
+
+def case_studies(request):
+    return redirect("work", permanent=True)
 
 
 def approach(request):
-    return render(request, "web/approach_page.html", {"approach_page": APPROACH_PAGE})
+    return HttpResponsePermanentRedirect(f"{reverse('solutions')}#process")
 
 
 def about(request):
-    return render(request, "web/about_page.html", {"about_page": ABOUT_PAGE})
+    return redirect("company", permanent=True)
+
+
+def company(request):
+    return render(request, "web/company_page.html", {"page": get_company_page("company")})
 
 
 def contact(request):
-    return render(request, "web/contact_page.html", {"contact_page": CONTACT_PAGE})
+    contact_success = False
+    contact_handoff_url = ""
 
-
-def blog(request):
-    knowledge_index_page = get_knowledge_index_page()
-    knowledge_groups = _build_knowledge_listing_groups()
-    structured_data_json = [
-        item
-        for item in [
-            build_item_list_schema_json(
-                knowledge_index_page["title"],
-                [
-                    {
-                        "name": page["h1"],
-                        "url": request.build_absolute_uri(reverse("knowledge_page", kwargs={"slug": page["slug"]})),
-                    }
-                    for group in knowledge_groups
-                    for page in group["pages"]
-                ],
-            )
-        ]
-        if item
-    ]
+    if request.method == "POST":
+        contact_form = CompanyContactForm(request.POST)
+        if contact_form.is_valid():
+            _send_company_contact_notification(contact_form.cleaned_data)
+            contact_success = True
+            contact_handoff_url = _build_company_contact_handoff_url(contact_form.cleaned_data)
+            contact_form = CompanyContactForm()
+        else:
+            for field_name in contact_form.errors:
+                if field_name in contact_form.fields:
+                    contact_form.fields[field_name].widget.attrs["aria-invalid"] = "true"
+    else:
+        contact_form = CompanyContactForm()
 
     return render(
         request,
-        "web/blog_page.html",
+        "web/company_page.html",
         {
-            "knowledge_index_page": knowledge_index_page,
-            "knowledge_groups": knowledge_groups,
-            "structured_data_json": structured_data_json,
+            "page": COMPANY_CONTACT_PAGE,
+            "contact_form": contact_form,
+            "contact_success": contact_success,
+            "contact_handoff_url": contact_handoff_url,
         },
     )
+
+
+def _send_company_contact_notification(cleaned_data):
+    contact_email = getattr(settings, "CONTACT_EMAIL", "")
+    if not contact_email:
+        return
+
+    message_lines = [
+        "New Pi Development project inquiry.",
+        "",
+        f"Name: {cleaned_data['name']}",
+        f"Email: {cleaned_data['email']}",
+        f"Company or team: {cleaned_data['company'] or 'Not provided'}",
+        f"Project intent: {cleaned_data['project_intent']}",
+        "",
+        "Problem:",
+        cleaned_data["problem"],
+        "",
+        f"Relevant URL: {cleaned_data['relevant_link'] or 'Not provided'}",
+    ]
+    send_mail(
+        subject="Pi Development project inquiry",
+        message="\n".join(message_lines),
+        from_email=None,
+        recipient_list=[contact_email],
+        fail_silently=True,
+    )
+
+
+def _build_company_contact_handoff_url(cleaned_data):
+    contact_email = getattr(settings, "CONTACT_EMAIL", "")
+    if not contact_email:
+        return ""
+
+    body = "\n".join(
+        [
+            f"Name: {cleaned_data['name']}",
+            f"Email: {cleaned_data['email']}",
+            f"Company or team: {cleaned_data['company'] or 'Not provided'}",
+            f"Project intent: {cleaned_data['project_intent']}",
+            "",
+            "Problem:",
+            cleaned_data["problem"],
+            "",
+            f"Relevant URL: {cleaned_data['relevant_link'] or 'Not provided'}",
+        ]
+    )
+    return f"mailto:{contact_email}?{urlencode({'subject': 'Pi Development project inquiry', 'body': body})}"
+
+
+def rebuild_home(request):
+    return rebuild_page(request, "home")
+
+
+def rebuild_page(request, slug):
+    page = get_rebuild_page(slug)
+    if not page:
+        raise Http404("Page not found.")
+
+    contact_form = None
+    contact_success = False
+    contact_handoff_url = ""
+
+    if slug == "contact":
+        if request.method == "POST":
+            contact_form = RebuildContactForm(request.POST)
+            if contact_form.is_valid():
+                _send_rebuild_contact_notification(contact_form.cleaned_data)
+                contact_success = True
+                contact_handoff_url = _build_rebuild_contact_handoff_url(contact_form.cleaned_data)
+                contact_form = RebuildContactForm()
+            else:
+                for field_name in contact_form.errors:
+                    if field_name in contact_form.fields:
+                        contact_form.fields[field_name].widget.attrs["aria-invalid"] = "true"
+        else:
+            contact_form = RebuildContactForm()
+
+    return render(
+        request,
+        "web/rebuild/page.html",
+        {
+            "page": page,
+            "rebuild_nav_items": get_rebuild_nav_items(),
+            "contact_form": contact_form,
+            "contact_success": contact_success,
+            "contact_handoff_url": contact_handoff_url,
+        },
+    )
+
+
+def _send_rebuild_contact_notification(cleaned_data):
+    contact_email = getattr(settings, "CONTACT_EMAIL", "")
+    if not contact_email:
+        return
+
+    message_lines = [
+        "New Pi Development rebuild contact submission.",
+        "",
+        f"Name: {cleaned_data['name']}",
+        f"Email: {cleaned_data['email']}",
+        f"Company or organization: {cleaned_data['company']}",
+        f"Role: {cleaned_data['role']}",
+        f"Project type: {cleaned_data['project_type']}",
+        f"Timeline: {cleaned_data['timeline']}",
+        f"Budget range: {cleaned_data['budget_range']}",
+        "",
+        "Problem or opportunity:",
+        cleaned_data["problem"],
+        "",
+        "Current situation:",
+        cleaned_data["current_situation"],
+        "",
+        "Desired outcome:",
+        cleaned_data["desired_outcome"],
+        "",
+        "Relevant links:",
+        cleaned_data["relevant_links"],
+    ]
+    send_mail(
+        subject="Pi Development rebuild contact submission",
+        message="\n".join(message_lines),
+        from_email=None,
+        recipient_list=[contact_email],
+        fail_silently=True,
+    )
+
+
+def _build_rebuild_contact_handoff_url(cleaned_data):
+    contact_email = getattr(settings, "CONTACT_EMAIL", "")
+    if not contact_email:
+        return ""
+
+    body = "\n".join(
+        [
+            f"Name: {cleaned_data['name']}",
+            f"Email: {cleaned_data['email']}",
+            f"Company or organization: {cleaned_data['company']}",
+            f"Role: {cleaned_data['role']}",
+            f"Project type: {cleaned_data['project_type']}",
+            f"Timeline: {cleaned_data['timeline']}",
+            f"Budget range: {cleaned_data['budget_range']}",
+            "",
+            "Problem or opportunity:",
+            cleaned_data["problem"],
+            "",
+            "Current situation:",
+            cleaned_data["current_situation"],
+            "",
+            "Desired outcome:",
+            cleaned_data["desired_outcome"],
+            "",
+            "Relevant links:",
+            cleaned_data["relevant_links"],
+        ]
+    )
+    return f"mailto:{contact_email}?{urlencode({'subject': 'Pi Development problem', 'body': body})}"
+
+
+def blog(request):
+    return redirect("insights", permanent=True)
 
 
 def knowledge_page(request, slug):
@@ -710,7 +973,16 @@ def knowledge_page(request, slug):
     related_knowledge_pages = get_related_knowledge_pages(page.get("related_knowledge_slugs", []))
     topic_clusters = get_topic_clusters_for_keys([page["cluster_key"]])
     topic_cluster = topic_clusters[0] if topic_clusters else None
-    structured_data_json = [item for item in [build_faq_schema_json(page.get("faqs"))] if item]
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    page_url = f"{site_url}{reverse('knowledge_page', kwargs={'slug': slug})}"
+    structured_data_json = [
+        item
+        for item in [
+            build_article_schema_json(page, page_url, site_url),
+            build_faq_schema_json(page.get("faqs")),
+        ]
+        if item
+    ]
 
     return render(
         request,
@@ -759,13 +1031,13 @@ def policies(request):
 
 
 def legacy_services(request):
-    return redirect("systems", permanent=True)
+    return redirect("solutions", permanent=True)
 
 
 def legacy_service_page(request, slug):
     if slug not in LEGACY_SERVICE_SLUGS:
         raise Http404("Page not found.")
-    return redirect("systems", permanent=True)
+    return redirect("solutions", permanent=True)
 
 
 def legacy_portfolio(request):
@@ -773,20 +1045,20 @@ def legacy_portfolio(request):
 
 
 def legacy_process(request):
-    return redirect("approach", permanent=True)
+    return HttpResponsePermanentRedirect(f"{reverse('solutions')}#process")
 
 
 def legacy_resources(request):
-    return redirect("tools", permanent=True)
+    return redirect("products", permanent=True)
 
 
 def robots_txt(request):
     site_url = getattr(settings, "SITE_URL", "").rstrip("/")
     sitemap_url = f"{site_url}{reverse('sitemap')}" if site_url else request.build_absolute_uri(reverse("sitemap"))
     content = [
-        "User-Agent: *",
+        "User-agent: *",
         "Allow: /",
-        "Disallow: /admin/",
+        "Disallow: /rebuild/",
         f"Sitemap: {sitemap_url}",
     ]
     return HttpResponse("\n".join(content), content_type="text/plain")
@@ -826,7 +1098,10 @@ def _render_live_tool(request, tool, related_tools, related_seo_pages, topic_clu
 
 def _build_tool_structured_data(tool):
     faq_schema = build_faq_schema_json(((tool.get("editorial") or {}).get("faqs") or []))
-    return [item for item in [faq_schema] if item]
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    tool_url = f"{site_url}{reverse('tool_detail', kwargs={'slug': tool['slug']})}"
+    software_schema = build_software_application_schema_json(tool, tool_url)
+    return [item for item in [software_schema, faq_schema] if item]
 
 
 def _build_seo_page_hub_sections(page):

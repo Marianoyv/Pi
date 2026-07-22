@@ -1,6 +1,8 @@
 from django.conf import settings
 import requests
 
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
+
 
 PAGESPEED_CATEGORIES = ("performance", "seo", "best-practices")
 METRIC_AUDITS = (
@@ -29,6 +31,7 @@ OPPORTUNITY_AUDITS = (
 
 
 def run_pagespeed_audit(url):
+    require_remote_url_tools_enabled()
     params = [("url", url), ("strategy", "mobile")]
     params.extend(("category", category) for category in PAGESPEED_CATEGORIES)
 

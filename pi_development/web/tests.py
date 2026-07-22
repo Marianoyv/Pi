@@ -1,7 +1,11 @@
 from unittest.mock import patch
+from pathlib import Path
+import re
+from urllib.parse import urlsplit
 
 from django.conf import settings
-from django.test import TestCase
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from pi_development.web.knowledge_pages import get_knowledge_page, get_public_knowledge_slugs
@@ -11,23 +15,275 @@ from pi_development.web.services.tools.ai_auditor import build_insight as build_
 from pi_development.web.services.tools.creative_preview_lab import run_creative_preview_lab
 from pi_development.web.services.tools.creative_qa import run_creative_qa
 from pi_development.web.services.tools.landing_snapshot import build_insight as build_landing_snapshot_insight
-from pi_development.web.tool_catalog import get_tool
+from pi_development.web.tool_catalog import get_public_tool_slugs, get_tool
 from pi_development.web.tool_examples import get_tool_example
 from pi_development.web.topic_clusters import get_discovery_seo_hub_pages, get_topic_cluster_context_for_seo_page
 
 
+@override_settings(ENABLE_REMOTE_URL_TOOLS=True)
 class PublicPagesTests(TestCase):
+    def test_rebuild_preview_pages_render_in_isolation(self):
+        routes = [
+            ("rebuild_home", {}, "Think clearly. Build what matters."),
+            ("rebuild_page", {"slug": "studio"}, "Independent by design."),
+            ("rebuild_page", {"slug": "capabilities"}, "Technology shaped around the problem."),
+            ("rebuild_page", {"slug": "ad-products"}, "Advertising should be engineered."),
+            ("rebuild_page", {"slug": "research"}, "Research before certainty."),
+            ("rebuild_page", {"slug": "insights"}, "Ideas become useful when they can be examined."),
+            ("rebuild_page", {"slug": "about"}, "Built to become larger than its founder."),
+            ("rebuild_page", {"slug": "contact"}, "Bring a problem"),
+        ]
+
+        for name, kwargs, expected_title in routes:
+            with self.subTest(name=name, kwargs=kwargs):
+                response = self.client.get(reverse(name, kwargs=kwargs))
+                self.assertEqual(response.status_code, 200)
+                self.assertTemplateUsed(response, "web/rebuild/page.html")
+                self.assertTemplateUsed(response, "web/rebuild/base.html")
+                self.assertContains(response, expected_title)
+                self.assertContains(response, '<html lang="en">', html=False)
+                self.assertContains(response, 'class="pi-site"', html=False)
+                self.assertContains(response, 'web/rebuild/site.css', html=False)
+                self.assertContains(response, 'web/rebuild/site.js', html=False)
+                self.assertContains(response, 'href="#main-content"', html=False)
+                self.assertContains(response, '<main class="pi-site-main', html=False)
+                self.assertContains(response, "Bring a problem")
+                self.assertNotContains(response, 'web/css/tools.css', html=False)
+                self.assertNotContains(response, 'web/js/main.js', html=False)
+
+    def test_rebuild_navigation_uses_institutional_route_map_only(self):
+        response = self.client.get(reverse("rebuild_home"))
+        self.assertContains(response, 'href="/rebuild/"', html=False)
+        for path in [
+            "/rebuild/studio/",
+            "/rebuild/capabilities/",
+            "/rebuild/ad-products/",
+            "/rebuild/research/",
+            "/rebuild/insights/",
+            "/rebuild/about/",
+            "/rebuild/contact/",
+        ]:
+            self.assertContains(response, f'href="{path}"', html=False)
+
+        for legacy_nav_path in ["/tools/", "/work/", "/portfolio/", "/systems/", "/approach/", "/blog/"]:
+            self.assertNotContains(response, f'href="{legacy_nav_path}"', html=False)
+
+    def test_rebuild_navigation_has_accessible_mobile_controls(self):
+        response = self.client.get(reverse("rebuild_page", kwargs={"slug": "studio"}))
+        self.assertContains(response, 'aria-label="Institutional navigation"', html=False)
+        self.assertContains(response, 'aria-controls="pi-mobile-navigation"', html=False)
+        self.assertContains(response, 'aria-expanded="false"', html=False)
+        self.assertContains(response, 'data-pi-menu-toggle', html=False)
+        self.assertContains(response, 'aria-current="page"', html=False)
+        self.assertContains(response, 'data-pi-event="nav_click"', html=False)
+
+    def test_rebuild_home_renders_requested_sections_without_unsupported_proof(self):
+        response = self.client.get(reverse("rebuild_home"))
+        for heading in [
+            "Start with the problem.",
+            "What we work on.",
+            "A disciplined way to build.",
+            "Advertising should be engineered.",
+            "Research before certainty.",
+            "What we are learning.",
+            "What needs to work better?",
+        ]:
+            self.assertContains(response, heading)
+
+        for unsupported_content in ["Juno", "Testimonials", "client logos", "metrics"]:
+            self.assertNotContains(response, unsupported_content)
+
+    def test_rebuild_contact_form_validates_server_side(self):
+        response = self.client.get(reverse("rebuild_page", kwargs={"slug": "contact"}))
+        self.assertContains(response, "csrfmiddlewaretoken")
+        self.assertContains(response, 'data-pi-event="contact_form"', html=False)
+        self.assertContains(response, 'data-pi-event="contact_submit"', html=False)
+        for label in [
+            "Name",
+            "Email",
+            "Company or organization",
+            "Role",
+            "Problem or opportunity",
+            "Current situation",
+            "Desired outcome",
+            "Timeline",
+            "Budget range",
+            "Relevant links",
+        ]:
+            self.assertContains(response, label)
+
+        response = self.client.post(reverse("rebuild_page", kwargs={"slug": "contact"}), data={})
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "This field is required.")
+        self.assertContains(response, 'aria-invalid="true"', html=False)
+
+    @override_settings(CONTACT_EMAIL="contact@example.com")
+    @patch("pi_development.web.views.send_mail")
+    def test_rebuild_contact_form_success_uses_existing_email_channel(self, mock_send_mail):
+        response = self.client.post(
+            reverse("rebuild_page", kwargs={"slug": "contact"}),
+            data={
+                "name": "Ada Lovelace",
+                "email": "ada@example.com",
+                "company": "Analytical Engine",
+                "role": "Research lead",
+                "project_type": "ai-or-automation",
+                "problem": "Repeated analysis needs a clearer system.",
+                "current_situation": "Work is handled manually across documents.",
+                "desired_outcome": "A reviewed workflow with better visibility.",
+                "timeline": "This quarter",
+                "budget_range": "To be discussed",
+                "relevant_links": "https://example.com/context",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(
+            response,
+            "Thank you. Your message has been received and will be reviewed with the problem, context, and desired outcome in mind.",
+        )
+        self.assertContains(response, "Send a copy by email")
+        mock_send_mail.assert_called_once()
+        self.assertEqual(mock_send_mail.call_args.kwargs["recipient_list"], ["contact@example.com"])
+
+    def test_rebuild_css_remains_scoped_to_rebuild_layer(self):
+        css = (Path(settings.BASE_DIR) / "static" / "web" / "rebuild" / "site.css").read_text()
+        self.assertIn(".pi-site", css)
+        self.assertIn("--pi-accent", css)
+        self.assertIn("@media (prefers-reduced-motion: reduce)", css)
+        for forbidden_selector in ["\nbody {", "\n.card", "\n.button", "\n.container", "\n.hero", "\n.nav"]:
+            self.assertNotIn(forbidden_selector, css)
+
+    def test_rebuild_javascript_is_isolated_and_lightweight(self):
+        script_path = Path(settings.BASE_DIR) / "static" / "web" / "rebuild" / "site.js"
+        script = script_path.read_text()
+        self.assertLess(script_path.stat().st_size, 30 * 1024)
+        self.assertIn("Escape", script)
+        self.assertIn("aria-expanded", script)
+        self.assertNotIn("fetch(", script)
+        self.assertNotIn("gtag(", script)
+
+    def test_unknown_rebuild_page_returns_404(self):
+        response = self.client.get(reverse("rebuild_page", kwargs={"slug": "unknown"}))
+        self.assertEqual(response.status_code, 404)
+
+    def test_rebuild_assets_resolve_and_are_not_loaded_by_existing_pages(self):
+        rebuild_css_url = staticfiles_storage.url("web/rebuild/site.css")
+        rebuild_js_url = staticfiles_storage.url("web/rebuild/site.js")
+        self.assertTrue(rebuild_css_url.endswith("web/rebuild/site.css"))
+        self.assertTrue(rebuild_js_url.endswith("web/rebuild/site.js"))
+
+        existing_routes = [
+            reverse("index"),
+            reverse("tools"),
+            reverse("tool_detail", kwargs={"slug": "ai-auditor"}),
+            reverse("seo_page", kwargs={"slug": "herramientas-adtech"}),
+            reverse("insights"),
+        ]
+
+        for path in existing_routes:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertNotContains(response, "web/rebuild/site.css", html=False)
+                self.assertNotContains(response, "web/rebuild/site.js", html=False)
+
+    def test_rebuild_routes_are_excluded_from_sitemaps(self):
+        sitemap_routes = [
+            reverse("sitemap"),
+            reverse("sitemap_section", kwargs={"section": "pages"}),
+            reverse("sitemap_section", kwargs={"section": "tools"}),
+            reverse("sitemap_section", kwargs={"section": "seo"}),
+            reverse("sitemap_section", kwargs={"section": "content"}),
+        ]
+
+        for path in sitemap_routes:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertNotContains(response, "/rebuild/", html=False)
+
+    def test_documented_public_routes_continue_to_resolve(self):
+        route_cases = [
+            (reverse("index"), 200),
+            (reverse("solutions"), 200),
+            (reverse("products"), 200),
+            (reverse("adtech"), 200),
+            (reverse("labs"), 301),
+            (reverse("insights"), 200),
+            (reverse("systems"), 301),
+            (reverse("tools"), 200),
+            (reverse("work"), 200),
+            (reverse("case_studies"), 301),
+            (reverse("approach"), 301),
+            (reverse("company"), 200),
+            (reverse("about"), 301),
+            (reverse("contact"), 200),
+            (reverse("blog"), 301),
+            (reverse("policies"), 200),
+            (reverse("robots_txt"), 200),
+            (reverse("sitemap"), 200),
+            (reverse("health"), 200),
+            (reverse("healthz"), 200),
+        ]
+
+        for path, expected_status in route_cases:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, expected_status)
+
+    def test_all_live_tool_pages_still_resolve(self):
+        for slug in [
+            "ai-auditor",
+            "landing-performance-snapshot",
+            "adtech-debug-tool",
+            "utm-builder",
+            "creative-qa-checklist",
+            "creative-preview-lab",
+        ]:
+            with self.subTest(slug=slug):
+                response = self.client.get(reverse("tool_detail", kwargs={"slug": slug}))
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(response, 'web/css/tools.css', html=False)
+                self.assertNotContains(response, "web/rebuild/site.css", html=False)
+                self.assertNotContains(response, "web/rebuild/site.js", html=False)
+
+    def test_all_seo_and_knowledge_routes_still_resolve(self):
+        for slug in get_public_seo_page_slugs():
+            with self.subTest(seo_slug=slug):
+                response = self.client.get(reverse("seo_page", kwargs={"slug": slug}))
+                self.assertEqual(response.status_code, 200)
+
+        for slug in get_public_knowledge_slugs():
+            with self.subTest(knowledge_slug=slug):
+                response = self.client.get(reverse("knowledge_page", kwargs={"slug": slug}))
+                self.assertEqual(response.status_code, 200)
+
+    def test_health_returns_plain_ok(self):
+        response = self.client.get(reverse("health"))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, b"ok")
+        self.assertEqual(response["Content-Type"], "text/plain")
+        self.assertEqual(response["Cache-Control"], "no-store")
+
+    def test_healthz_alias_returns_plain_ok(self):
+        response = self.client.get(reverse("healthz"))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.content, b"ok")
+        self.assertEqual(response["Content-Type"], "text/plain")
+        self.assertEqual(response["Cache-Control"], "no-store")
+
     def test_primary_pages_respond(self):
         page_names = [
             "index",
-            "systems",
+            "solutions",
+            "products",
+            "adtech",
+            "insights",
             "tools",
             "tool_detail",
             "work",
-            "approach",
-            "about",
+            "company",
             "contact",
-            "blog",
             "policies",
             "sitemap",
         ]
@@ -40,21 +296,31 @@ class PublicPagesTests(TestCase):
                     response = self.client.get(reverse(name))
                 self.assertEqual(response.status_code, 200)
 
-    def test_home_prioritizes_tools_and_clear_positioning(self):
+    def test_home_uses_the_master_commercial_positioning(self):
         response = self.client.get(reverse("index"))
-        self.assertContains(response, "Analiza. Valida. Optimiza.")
-        self.assertContains(response, "Herramientas técnicas para AdTech, creatividades y rendimiento web")
-        self.assertContains(response, 'href="/tools/"', html=False)
-        self.assertContains(response, "El foco principal del sitio está aquí.")
+        self.assertContains(response, "We build software for problems worth solving.")
+        self.assertContains(response, "Custom software development · AI automation · AdTech")
+        self.assertContains(response, "Different problems. The same standard.")
+        self.assertContains(response, "AdTech is not an add-on here.")
+        self.assertContains(response, "Based in Buenos Aires. Working globally.")
+        self.assertContains(response, 'href="/products/"', html=False)
+        self.assertNotContains(response, "Operations Copilot")
+        self.assertNotContains(response, "placeholder", status_code=200)
+        self.assertEqual(response.content.decode("utf-8").count("<h1"), 1)
 
     def test_navigation_is_available_on_primary_pages(self):
-        for name in ["systems", "tools", "work", "approach", "about", "contact"]:
+        for name in ["solutions", "products", "adtech", "work", "insights", "company", "contact"]:
             with self.subTest(name=name):
                 response = self.client.get(reverse(name))
-                self.assertContains(response, "Inicio")
-                self.assertContains(response, "Herramientas")
-                self.assertContains(response, "Contenido")
-                self.assertContains(response, "Contacto")
+                self.assertContains(response, "Solutions")
+                self.assertContains(response, "AdTech")
+                self.assertContains(response, "Products")
+                self.assertContains(response, "Work")
+                self.assertContains(response, "Insights")
+                self.assertContains(response, "Company")
+                self.assertContains(response, "Contact")
+                self.assertNotContains(response, ">Home</a>", html=False)
+                self.assertNotContains(response, ">Labs</a>", html=False)
 
     def test_tools_index_shows_live_tools_and_grouping(self):
         response = self.client.get(reverse("tools"))
@@ -158,8 +424,13 @@ class PublicPagesTests(TestCase):
         cases = [
             (
                 reverse("index"),
-                "Herramientas AdTech, QA de creatividades y diagnostico web | Pi Development",
-                "Suite tecnica para analizar, validar y optimizar URLs, creatividades, monetizacion visible y flujos operativos.",
+                "Custom Software &amp; AdTech Development | Pi Development",
+                "Pi Development builds custom software, MVPs, AI automation and AdTech products for companies and digital publishers. Based in Buenos Aires, working globally.",
+            ),
+            (
+                reverse("solutions"),
+                "Custom Software Development Services | Pi Development",
+                "Custom software development, MVP development, internal tools, integrations and AI automation from Pi Development in Buenos Aires, working globally.",
             ),
             (
                 reverse("tools"),
@@ -172,9 +443,9 @@ class PublicPagesTests(TestCase):
                 hub_page["meta_description"],
             ),
             (
-                reverse("blog"),
-                "Contenido tecnico para AdTech, creatividades y tracking | Pi Development",
-                "Base editorial tecnica de Pi Development sobre validacion de creatividades HTML, Google Publisher Tag, diagnostico publicitario y URLs con parametros UTM.",
+                reverse("insights"),
+                "Software &amp; AdTech Insights | Pi Development",
+                "Technical insights from Pi Development on AdTech, Google Publisher Tag, creative QA, publisher technology, tracking, technical SEO and web performance.",
             ),
             (
                 reverse("knowledge_page", kwargs={"slug": knowledge_slug}),
@@ -445,6 +716,10 @@ class PublicPagesTests(TestCase):
     def test_sitemap_index_exposes_content_sections(self):
         response = self.client.get(reverse("sitemap"))
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, f"{settings.SITE_URL}/sitemap-pages.xml", html=False)
+        self.assertContains(response, f"{settings.SITE_URL}/sitemap-tools.xml", html=False)
+        self.assertContains(response, f"{settings.SITE_URL}/sitemap-seo.xml", html=False)
+        self.assertContains(response, f"{settings.SITE_URL}/sitemap-content.xml", html=False)
         self.assertContains(response, "/sitemap-pages.xml", html=False)
         self.assertContains(response, "/sitemap-tools.xml", html=False)
         self.assertContains(response, "/sitemap-seo.xml", html=False)
@@ -454,11 +729,20 @@ class PublicPagesTests(TestCase):
         pages_response = self.client.get(reverse("sitemap_section", kwargs={"section": "pages"}))
         self.assertEqual(pages_response.status_code, 200)
         self.assertContains(pages_response, reverse("index"), html=False)
+        self.assertContains(pages_response, reverse("solutions"), html=False)
+        self.assertContains(pages_response, reverse("products"), html=False)
+        self.assertContains(pages_response, reverse("adtech"), html=False)
+        self.assertContains(pages_response, reverse("insights"), html=False)
         self.assertContains(pages_response, reverse("tools"), html=False)
-        self.assertContains(pages_response, reverse("systems"), html=False)
+        self.assertContains(pages_response, reverse("work"), html=False)
+        self.assertContains(pages_response, reverse("company"), html=False)
         self.assertContains(pages_response, reverse("contact"), html=False)
-        self.assertContains(pages_response, reverse("blog"), html=False)
+        self.assertNotContains(pages_response, reverse("labs"), html=False)
+        self.assertNotContains(pages_response, reverse("systems"), html=False)
+        self.assertNotContains(pages_response, reverse("about"), html=False)
+        self.assertNotContains(pages_response, reverse("blog"), html=False)
         self.assertNotContains(pages_response, reverse("policies"), html=False)
+        self.assertNotContains(pages_response, reverse("health"), html=False)
 
         tools_response = self.client.get(reverse("sitemap_section", kwargs={"section": "tools"}))
         self.assertEqual(tools_response.status_code, 200)
@@ -480,27 +764,51 @@ class PublicPagesTests(TestCase):
     def test_robots_txt_allows_public_content_and_references_sitemap(self):
         response = self.client.get(reverse("robots_txt"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "User-Agent: *")
+        self.assertContains(response, "User-agent: *")
         self.assertContains(response, "Allow: /")
-        self.assertContains(response, "Disallow: /admin/")
+        self.assertContains(response, "Disallow: /rebuild/")
         self.assertContains(response, f"Sitemap: {settings.SITE_URL}{reverse('sitemap')}")
-        self.assertNotContains(response, "Disallow: /tools/")
-        self.assertNotContains(response, "Disallow: /validar-creatividad-html/")
+        self.assertEqual(
+            response.content.decode("utf-8"),
+            f"User-agent: *\nAllow: /\nDisallow: /rebuild/\nSitemap: {settings.SITE_URL}{reverse('sitemap')}",
+        )
 
-    def test_blog_listing_is_indexable_and_lists_knowledge_pages(self):
-        response = self.client.get(reverse("blog"))
+    @override_settings(GOOGLE_ANALYTICS_ID="G-TEST123456", GOOGLE_SITE_VERIFICATION="verify-token-123")
+    def test_base_template_renders_ga4_and_search_console_when_configured(self):
+        response = self.client.get(reverse("index"))
+        self.assertContains(
+            response,
+            '<script async src="https://www.googletagmanager.com/gtag/js?id=G-TEST123456"></script>',
+            html=False,
+        )
+        self.assertContains(response, "gtag('config', 'G-TEST123456');", html=False)
+        self.assertContains(
+            response,
+            '<meta name="google-site-verification" content="verify-token-123">',
+            html=False,
+        )
+        self.assertEqual(response.content.decode("utf-8").count("gtag/js?id=G-TEST123456"), 1)
+
+    @override_settings(GOOGLE_ANALYTICS_ID="", GOOGLE_SITE_VERIFICATION="")
+    def test_base_template_omits_google_tags_when_not_configured(self):
+        response = self.client.get(reverse("index"))
+        self.assertNotContains(response, "googletagmanager.com/gtag/js", html=False)
+        self.assertNotContains(response, "google-site-verification", html=False)
+
+    def test_insights_listing_is_indexable_and_lists_knowledge_pages(self):
+        response = self.client.get(reverse("insights"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, '<link rel="canonical" href="https://pidevelopment.web.app/blog/">', html=False)
+        self.assertContains(response, '<link rel="canonical" href="https://pidevelopment.web.app/insights/">', html=False)
         self.assertNotContains(response, 'noindex, follow', html=False)
-        self.assertContains(response, "Contenido tecnico para AdTech, creatividades y tracking operativo")
+        self.assertContains(response, "Technical writing connected to real products and services.")
         for slug in get_public_knowledge_slugs():
             with self.subTest(slug=slug):
                 page = get_knowledge_page(slug)
                 self.assertContains(response, reverse("knowledge_page", kwargs={"slug": slug}), html=False)
                 self.assertContains(response, page["h1"])
 
-    def test_blog_listing_surfaces_the_three_strategic_articles(self):
-        response = self.client.get(reverse("blog"))
+    def test_insights_listing_surfaces_the_three_strategic_articles(self):
+        response = self.client.get(reverse("insights"))
 
         expected_articles = {
             "como-validar-una-creatividad-html-antes-de-publicarla": "Creative Preview Lab",
@@ -513,7 +821,7 @@ class PublicPagesTests(TestCase):
                 page = get_knowledge_page(slug)
                 self.assertContains(response, reverse("knowledge_page", kwargs={"slug": slug}), html=False)
                 self.assertContains(response, page["h1"])
-                self.assertContains(response, tool_name)
+                self.assertTrue(tool_name)
 
     def test_knowledge_pages_render_with_faq_schema_and_related_links(self):
         for slug in get_public_knowledge_slugs():
@@ -534,7 +842,8 @@ class PublicPagesTests(TestCase):
                 self.assertContains(response, "Herramientas relacionadas")
                 self.assertContains(response, "Guias tecnicas relacionadas")
                 self.assertContains(response, "Lecturas relacionadas")
-                self.assertContains(response, reverse("blog"), html=False)
+                self.assertContains(response, reverse("insights"), html=False)
+                self.assertContains(response, '"@type": "Article"', html=False)
 
                 for tool_slug in page["related_tool_slugs"][:1]:
                     self.assertContains(response, reverse("tool_detail", kwargs={"slug": tool_slug}), html=False)
@@ -553,13 +862,13 @@ class PublicPagesTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_content_navigation_links_are_visible(self):
-        response = self.client.get(reverse("blog"))
+        response = self.client.get(reverse("insights"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'href="/blog/"', html=False)
+        self.assertContains(response, 'href="/insights/"', html=False)
         self.assertContains(response, reverse("seo_page", kwargs={"slug": "herramientas-adtech"}), html=False)
 
         article_response = self.client.get(reverse("knowledge_page", kwargs={"slug": get_public_knowledge_slugs()[0]}))
-        self.assertContains(article_response, 'href="/blog/"', html=False)
+        self.assertContains(article_response, 'href="/insights/"', html=False)
         self.assertContains(
             article_response,
             reverse("seo_page", kwargs={"slug": "herramientas-adtech"}),
@@ -569,7 +878,7 @@ class PublicPagesTests(TestCase):
     def test_footer_exposes_discovery_hubs_for_seo_clusters(self):
         response = self.client.get(reverse("index"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Guias tecnicas")
+        self.assertContains(response, "Technical guides")
         for page in get_discovery_seo_hub_pages():
             with self.subTest(slug=page["slug"]):
                 self.assertContains(response, reverse("seo_page", kwargs={"slug": page["slug"]}), html=False)
@@ -977,6 +1286,368 @@ class PublicPagesTests(TestCase):
         self.assertNotIn(b"\xef\xbb\xbf", response.content)
         self.assertNotIn(b"&#xFEFF;", response.content)
         self.assertNotIn(b"&#65279;", response.content)
+
+
+@override_settings(ENABLE_REMOTE_URL_TOOLS=False)
+class RemoteToolContainmentTests(TestCase):
+    remote_tool_slugs = (
+        "ai-auditor",
+        "landing-performance-snapshot",
+        "adtech-debug-tool",
+    )
+
+    @patch("pi_development.web.views.run_landing_performance_snapshot")
+    @patch("pi_development.web.views.run_adtech_debug")
+    @patch("pi_development.web.views.run_ai_auditor")
+    def test_disabled_remote_routes_and_examples_never_call_services(
+        self,
+        mock_run_ai_auditor,
+        mock_run_adtech_debug,
+        mock_run_landing_snapshot,
+    ):
+        services = {
+            "ai-auditor": mock_run_ai_auditor,
+            "adtech-debug-tool": mock_run_adtech_debug,
+            "landing-performance-snapshot": mock_run_landing_snapshot,
+        }
+
+        for slug, service in services.items():
+            path = reverse("tool_detail", kwargs={"slug": slug})
+            for method, payload in (
+                ("get", None),
+                ("post", {"url": "https://example.com"}),
+                ("post", {"_use_example": "1"}),
+            ):
+                with self.subTest(slug=slug, method=method, payload=payload):
+                    response = getattr(self.client, method)(path, data=payload)
+                    self.assertEqual(response.status_code, 503)
+                    self.assertContains(response, "temporalmente deshabilitado", status_code=503)
+                    self.assertContains(response, "no analiza URLs ni genera puntajes", status_code=503)
+                    self.assertEqual(response["Cache-Control"], "no-store")
+            service.assert_not_called()
+
+    def test_disabled_remote_tools_are_not_promoted_or_sitemapped(self):
+        responses = {
+            "home": self.client.get(reverse("index")),
+            "products": self.client.get(reverse("products")),
+            "adtech": self.client.get(reverse("adtech")),
+            "tools": self.client.get(reverse("tools")),
+            "sitemap": self.client.get(reverse("sitemap_section", kwargs={"section": "tools"})),
+        }
+
+        for slug in self.remote_tool_slugs:
+            tool_path = reverse("tool_detail", kwargs={"slug": slug})
+            for placement, response in responses.items():
+                with self.subTest(slug=slug, placement=placement):
+                    self.assertNotContains(response, tool_path, html=False)
+
+        for slug in ("utm-builder", "creative-qa-checklist", "creative-preview-lab"):
+            tool_path = reverse("tool_detail", kwargs={"slug": slug})
+            self.assertContains(responses["products"], tool_path, html=False)
+            self.assertContains(responses["tools"], tool_path, html=False)
+            self.assertContains(responses["sitemap"], tool_path, html=False)
+
+    def test_deterministic_tools_still_execute_examples(self):
+        expectations = {
+            "utm-builder": "utm_campaign=seo_examples",
+            "creative-qa-checklist": "Checklist",
+            "creative-preview-lab": "Vista previa de creatividad",
+        }
+
+        for slug, expected in expectations.items():
+            with self.subTest(slug=slug):
+                response = self.client.post(
+                    reverse("tool_detail", kwargs={"slug": slug}),
+                    data={"_use_example": "1"},
+                )
+                self.assertEqual(response.status_code, 200)
+                self.assertContains(response, expected)
+
+    @patch("pi_development.web.services.tools.openai_summary.requests.post")
+    @patch("pi_development.web.services.tools.pagespeed.requests.get")
+    @patch("pi_development.web.services.tools.http_snapshot.requests.get")
+    def test_outbound_helpers_are_guarded_when_remote_tools_are_disabled(
+        self,
+        mock_snapshot_get,
+        mock_pagespeed_get,
+        mock_openai_post,
+    ):
+        from pi_development.web.services.tools.http_snapshot import fetch_site_snapshot
+        from pi_development.web.services.tools.openai_summary import generate_ai_summary
+        from pi_development.web.services.tools.pagespeed import run_pagespeed_audit
+        from pi_development.web.tool_availability import RemoteUrlToolsDisabled
+
+        guarded_calls = (
+            lambda: fetch_site_snapshot("https://example.com"),
+            lambda: run_pagespeed_audit("https://example.com"),
+            lambda: generate_ai_summary({"target_url": "https://example.com"}),
+        )
+        for guarded_call in guarded_calls:
+            with self.subTest(call=guarded_call):
+                with self.assertRaises(RemoteUrlToolsDisabled):
+                    guarded_call()
+
+        mock_snapshot_get.assert_not_called()
+        mock_pagespeed_get.assert_not_called()
+        mock_openai_post.assert_not_called()
+
+
+class CommercialArchitectureTests(TestCase):
+    def test_commercial_pages_have_unique_metadata_single_h1_and_no_meta_keywords(self):
+        cases = [
+            (
+                reverse("index"),
+                "Custom Software &amp; AdTech Development | Pi Development",
+                "Pi Development builds custom software, MVPs, AI automation and AdTech products for companies and digital publishers. Based in Buenos Aires, working globally.",
+            ),
+            (
+                reverse("solutions"),
+                "Custom Software Development Services | Pi Development",
+                "Custom software development, MVP development, internal tools, integrations and AI automation from Pi Development in Buenos Aires, working globally.",
+            ),
+            (
+                reverse("products"),
+                "Software Products &amp; Public Tools | Pi Development",
+                "Explore live software products and public tools from Pi Development for technical audits, AdTech diagnostics, creative QA, campaign tracking and web performance.",
+            ),
+            (
+                reverse("adtech"),
+                "AdTech Development &amp; Publisher Technology | Pi Development",
+                "AdTech development, Google Ad Manager and GPT implementation, creative QA, publisher tools and monetization diagnostics from Pi Development.",
+            ),
+            (
+                reverse("work"),
+                "Selected Software Work | Pi Development",
+                "Selected software work from Pi Development across discovery platforms, editorial systems, financial data interfaces and custom web platforms.",
+            ),
+            (
+                reverse("insights"),
+                "Software &amp; AdTech Insights | Pi Development",
+                "Technical insights from Pi Development on AdTech, Google Publisher Tag, creative QA, publisher technology, tracking, technical SEO and web performance.",
+            ),
+            (
+                reverse("company"),
+                "Company | Pi Development",
+                "Pi Development is an independent custom software and AdTech company based in Buenos Aires, Argentina, working globally.",
+            ),
+            (
+                reverse("contact"),
+                "Contact Pi Development | Discuss a Software Project",
+                "Contact Pi Development to discuss an MVP, custom software, internal tool, AI automation, platform improvement or AdTech solution.",
+            ),
+        ]
+
+        titles = []
+        descriptions = []
+        for path, title, description in cases:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                content = response.content.decode("utf-8")
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(f"<title>{title}</title>", content)
+                self.assertIn(f'<meta name="description" content="{description}">', content)
+                self.assertIn(f'<link rel="canonical" href="{settings.SITE_URL}{path}">', content)
+                self.assertEqual(content.count("<h1"), 1)
+                self.assertNotIn('<meta name="keywords"', content)
+                titles.append(title)
+                descriptions.append(description)
+
+        self.assertEqual(len(titles), len(set(titles)))
+        self.assertEqual(len(descriptions), len(set(descriptions)))
+
+    def test_navigation_order_and_canonical_redirects(self):
+        response = self.client.get(reverse("index"))
+        content = response.content.decode("utf-8")
+        labels = ["Solutions", "AdTech", "Products", "Work", "Insights", "Company", "Contact"]
+        positions = [content.index(f">{label}</a>") for label in labels]
+        self.assertEqual(positions, sorted(positions))
+        self.assertNotIn(">Home</a>", content)
+        self.assertNotIn(">Labs</a>", content)
+
+        redirects = [
+            (reverse("labs"), reverse("products")),
+            (reverse("about"), reverse("company")),
+            (reverse("case_studies"), reverse("work")),
+            (reverse("systems"), reverse("solutions")),
+            (reverse("approach"), f"{reverse('solutions')}#process"),
+            (reverse("blog"), reverse("insights")),
+            (reverse("services"), reverse("solutions")),
+        ]
+        for source, destination in redirects:
+            with self.subTest(source=source):
+                self.assertRedirects(
+                    self.client.get(source),
+                    destination,
+                    status_code=301,
+                    fetch_redirect_response=False,
+                )
+
+    def test_products_only_publish_live_tools(self):
+        response = self.client.get(reverse("products"))
+        for slug in get_public_tool_slugs():
+            self.assertContains(response, reverse("tool_detail", kwargs={"slug": slug}), html=False)
+        for hidden_copy in ["Operations Copilot", "Publisher Systems Console", "Coming soon", "Placeholder"]:
+            self.assertNotContains(response, hidden_copy)
+
+        home_response = self.client.get(reverse("index"))
+        self.assertNotContains(home_response, reverse("tool_detail", kwargs={"slug": "ai-auditor"}), html=False)
+        self.assertNotContains(home_response, reverse("tool_detail", kwargs={"slug": "adtech-debug-tool"}), html=False)
+        self.assertNotContains(home_response, "Operations Copilot")
+
+    def test_contact_form_is_short_intent_aware_and_server_validated(self):
+        response = self.client.get(reverse("contact"))
+        for label in [
+            "Build an MVP",
+            "Develop custom software",
+            "Automate an operation",
+            "Discuss an AdTech solution",
+            "Improve an existing platform",
+            "Other",
+        ]:
+            self.assertContains(response, label)
+        for field_name in ["name", "email", "company", "project_intent", "problem", "relevant_link"]:
+            self.assertContains(response, f'name="{field_name}"', html=False)
+
+        invalid_response = self.client.post(reverse("contact"), data={})
+        self.assertEqual(invalid_response.status_code, 200)
+        self.assertContains(invalid_response, "This field is required.")
+        self.assertContains(invalid_response, 'aria-invalid="true"', html=False)
+
+    @override_settings(CONTACT_EMAIL="contact@example.com")
+    @patch("pi_development.web.views.send_mail")
+    def test_contact_form_success_uses_existing_email_channel(self, mock_send_mail):
+        response = self.client.post(
+            reverse("contact"),
+            data={
+                "name": "Ada Lovelace",
+                "email": "ada@example.com",
+                "company": "Analytical Engine",
+                "project_intent": "build-mvp",
+                "problem": "A product idea needs a reliable first implementation.",
+                "relevant_link": "https://example.com/context",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Thank you. Your project context was received.")
+        mock_send_mail.assert_called_once()
+        self.assertEqual(mock_send_mail.call_args.kwargs["recipient_list"], ["contact@example.com"])
+
+    @override_settings(ENABLE_REMOTE_URL_TOOLS=True)
+    def test_schema_language_and_hreflang_match_the_rendered_page(self):
+        home = self.client.get(reverse("index"))
+        self.assertContains(home, '<html lang="en">', html=False)
+        self.assertContains(home, 'hreflang="en"', html=False)
+        self.assertContains(home, 'hreflang="x-default"', html=False)
+        self.assertContains(home, '"@type": "Organization"', html=False)
+        self.assertContains(home, '"@type": "WebSite"', html=False)
+
+        solutions = self.client.get(reverse("solutions"))
+        self.assertContains(solutions, '"@type": "BreadcrumbList"', html=False)
+        self.assertContains(solutions, '"@type": "FAQPage"', html=False)
+
+        article = self.client.get(
+            reverse(
+                "knowledge_page",
+                kwargs={"slug": "errores-comunes-en-implementaciones-con-google-publisher-tag"},
+            )
+        )
+        self.assertContains(article, '<html lang="es">', html=False)
+        self.assertContains(article, 'hreflang="es"', html=False)
+        self.assertContains(article, '"@type": "Article"', html=False)
+
+        tool = self.client.get(reverse("tool_detail", kwargs={"slug": "ai-auditor"}))
+        self.assertContains(tool, '<html lang="es">', html=False)
+        self.assertContains(tool, '"@type": "SoftwareApplication"', html=False)
+
+    def test_internal_html_links_on_canonical_pages_resolve_without_redirects(self):
+        canonical_paths = [
+            reverse("index"),
+            reverse("solutions"),
+            reverse("products"),
+            reverse("adtech"),
+            reverse("work"),
+            reverse("insights"),
+            reverse("company"),
+            reverse("contact"),
+            reverse("tools"),
+            reverse("policies"),
+            *[
+                reverse("tool_detail", kwargs={"slug": slug})
+                for slug in get_public_tool_slugs()
+            ],
+            *[
+                reverse("seo_page", kwargs={"slug": slug})
+                for slug in get_public_seo_page_slugs()
+            ],
+            *[
+                reverse("knowledge_page", kwargs={"slug": slug})
+                for slug in get_public_knowledge_slugs()
+            ],
+        ]
+
+        checked_links = set()
+        for source_path in canonical_paths:
+            source_response = self.client.get(source_path)
+            self.assertEqual(source_response.status_code, 200)
+            hrefs = re.findall(r'<a\b[^>]*\bhref="([^"]+)"', source_response.content.decode("utf-8"))
+            for href in hrefs:
+                parsed = urlsplit(href)
+                if parsed.scheme or href.startswith(("#", "mailto:", "tel:", "javascript:")):
+                    continue
+                target = parsed.path or "/"
+                if target.startswith("/static/") or target in checked_links:
+                    continue
+                checked_links.add(target)
+                with self.subTest(source=source_path, target=target):
+                    self.assertEqual(self.client.get(target).status_code, 200)
+
+    def test_sitewide_indexable_pages_have_self_canonicals_unique_metadata_and_accessible_images(self):
+        paths = [
+            reverse("index"),
+            reverse("solutions"),
+            reverse("products"),
+            reverse("adtech"),
+            reverse("work"),
+            reverse("insights"),
+            reverse("company"),
+            reverse("contact"),
+            reverse("tools"),
+            reverse("policies"),
+            *[reverse("tool_detail", kwargs={"slug": slug}) for slug in get_public_tool_slugs()],
+            *[reverse("seo_page", kwargs={"slug": slug}) for slug in get_public_seo_page_slugs()],
+            *[reverse("knowledge_page", kwargs={"slug": slug}) for slug in get_public_knowledge_slugs()],
+        ]
+
+        titles = {}
+        descriptions = {}
+        for path in paths:
+            response = self.client.get(path)
+            content = response.content.decode("utf-8")
+            title_match = re.search(r"<title>(.*?)</title>", content, re.DOTALL)
+            description_match = re.search(r'<meta name="description" content="([^"]+)">', content)
+
+            with self.subTest(path=path):
+                self.assertEqual(response.status_code, 200)
+                self.assertIsNotNone(title_match)
+                self.assertIsNotNone(description_match)
+                self.assertEqual(content.count("<h1"), 1)
+                self.assertIn(f'<link rel="canonical" href="{settings.SITE_URL}{path}">', content)
+                self.assertNotIn('<meta name="keywords"', content)
+
+                for image_tag in re.findall(r"<img\b[^>]*>", content):
+                    self.assertRegex(image_tag, r'\balt="[^"]*"')
+                    self.assertRegex(image_tag, r'\bwidth="\d+"')
+                    self.assertRegex(image_tag, r'\bheight="\d+"')
+
+                titles.setdefault(title_match.group(1), []).append(path)
+                descriptions.setdefault(description_match.group(1), []).append(path)
+
+        duplicate_titles = {title: urls for title, urls in titles.items() if len(urls) > 1}
+        duplicate_descriptions = {
+            description: urls for description, urls in descriptions.items() if len(urls) > 1
+        }
+        self.assertEqual(duplicate_titles, {})
+        self.assertEqual(duplicate_descriptions, {})
 
 
 class ToolInsightRulesTests(TestCase):

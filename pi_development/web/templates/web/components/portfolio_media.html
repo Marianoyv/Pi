@@ -7,11 +7,13 @@
   loop
   playsinline
   preload="metadata"
+  width="1200"
+  height="675"
   {% if item.poster %}poster="{% static item.poster %}"{% endif %}
   aria-label="{{ media_label }}"
 >
   <source src="{% static item.image %}" type="video/mp4">
 </video>
 {% else %}
-<img class="{{ media_class|default:'portfolio-media' }}" src="{% static item.image %}" alt="{{ media_label }}">
+<img class="{{ media_class|default:'portfolio-media' }}" src="{% static item.image %}" alt="{{ media_label }}" width="1200" height="675" loading="lazy" decoding="async">
 {% endif %}

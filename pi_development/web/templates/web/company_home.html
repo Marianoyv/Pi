@@ -1,0 +1,168 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ home_page.seo_title }}{% endblock %}
+{% block og_title %}{{ home_page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ home_page.seo_title }}{% endblock %}
+{% block meta_description %}{{ home_page.meta_description }}{% endblock %}
+{% block og_description %}{{ home_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ home_page.meta_description }}{% endblock %}
+{% block body_class %}home-page company-home{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="company-hero" aria-labelledby="home-title">
+    <div class="company-hero__inner">
+      <p class="company-eyebrow">{{ home_page.hero.eyebrow }}</p>
+      <h1 id="home-title">{{ home_page.hero.title }}</h1>
+      <p class="company-hero__lead">{{ home_page.hero.description }}</p>
+      <div class="company-actions">
+        <a class="button-link" href="{{ home_page.hero.primary_cta.href }}">{{ home_page.hero.primary_cta.label }}</a>
+        <a class="button-link button-link--dark" href="{{ home_page.hero.secondary_cta.href }}">{{ home_page.hero.secondary_cta.label }}</a>
+      </div>
+      <p class="company-hero__location">{{ home_page.hero.location }}</p>
+    </div>
+  </section>
+
+  <aside class="audience-strip" aria-label="Who Pi Development works with">
+    <div class="audience-strip__inner">
+      {% for item in home_page.audience %}
+      <span>{{ item }}</span>
+      {% endfor %}
+    </div>
+  </aside>
+
+  <section class="company-section" aria-labelledby="what-we-solve-title">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ home_page.what_we_solve.eyebrow }}</p>
+        <h2 id="what-we-solve-title">{{ home_page.what_we_solve.title }}</h2>
+        <p>{{ home_page.what_we_solve.description }}</p>
+      </div>
+      <div class="company-card-grid company-card-grid--three">
+        {% for item in home_page.what_we_solve.items %}
+        <a class="company-card company-card--link" href="{{ item.href }}">
+          <span class="company-card__number">0{{ forloop.counter }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </a>
+        {% endfor %}
+      </div>
+      <a class="company-section__link" href="{{ home_page.what_we_solve.cta.href }}">{{ home_page.what_we_solve.cta.label }} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="company-section company-section--muted" aria-labelledby="how-we-build-title">
+    <div class="company-section__inner company-split">
+      <div class="company-section__header company-section__header--sticky">
+        <p class="company-eyebrow">{{ home_page.how_we_build.eyebrow }}</p>
+        <h2 id="how-we-build-title">{{ home_page.how_we_build.title }}</h2>
+        <p>{{ home_page.how_we_build.description }}</p>
+      </div>
+      <ol class="company-principles company-principles--steps">
+        {% for item in home_page.how_we_build.items %}
+        <li>
+          <span>0{{ forloop.counter }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <section class="company-section" aria-labelledby="why-pi-title">
+    <div class="company-section__inner company-split">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ home_page.why_pi.eyebrow }}</p>
+        <h2 id="why-pi-title">{{ home_page.why_pi.title }}</h2>
+        <p>{{ home_page.why_pi.description }}</p>
+      </div>
+      <div class="company-principles">
+        {% for item in home_page.why_pi.items %}
+        <article>
+          <span>0{{ forloop.counter }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="company-feature" aria-labelledby="adtech-title">
+    <div class="company-feature__inner">
+      <div>
+        <p class="company-eyebrow">{{ home_page.adtech.eyebrow }}</p>
+        <h2 id="adtech-title">{{ home_page.adtech.title }}</h2>
+      </div>
+      <div class="company-feature__copy">
+        {% for paragraph in home_page.adtech.paragraphs %}
+        <p>{{ paragraph }}</p>
+        {% endfor %}
+        <a class="button-link" href="{{ home_page.adtech.cta.href }}">{{ home_page.adtech.cta.label }}</a>
+      </div>
+    </div>
+  </section>
+
+  {% if home_page.products.items %}
+  <section class="company-section company-section--muted" aria-labelledby="products-title">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ home_page.products.eyebrow }}</p>
+        <h2 id="products-title">{{ home_page.products.title }}</h2>
+        <p>{{ home_page.products.description }}</p>
+      </div>
+      <div class="company-card-grid company-card-grid--two">
+        {% for item in home_page.products.items %}
+        <article class="company-card company-product-card">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+          <a class="company-card__cta" href="{{ item.href }}">{{ item.cta }} <span aria-hidden="true">→</span></a>
+        </article>
+        {% endfor %}
+      </div>
+      <a class="company-section__link" href="{{ home_page.products.cta.href }}">{{ home_page.products.cta.label }} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="company-section" aria-labelledby="selected-work-title">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ home_page.selected_work.eyebrow }}</p>
+        <h2 id="selected-work-title">{{ home_page.selected_work.title }}</h2>
+      </div>
+      <div class="company-case-grid">
+        {% for item in home_page.selected_work.items %}
+        <a class="company-work-row" href="{% url 'work' %}#{{ item.slug }}">
+          <span>0{{ forloop.counter }}</span>
+          <div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </div>
+          <span class="company-work-row__arrow" aria-hidden="true">↗</span>
+        </a>
+        {% endfor %}
+      </div>
+      <a class="company-section__link" href="{{ home_page.selected_work.cta.href }}">{{ home_page.selected_work.cta.label }} <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="company-cta" aria-labelledby="home-contact-title">
+    <div class="company-cta__inner">
+      <p class="company-eyebrow">{{ home_page.contact.eyebrow }}</p>
+      <h2 id="home-contact-title">{{ home_page.contact.title }}</h2>
+      <p>{{ home_page.contact.description }}</p>
+      <a class="button-link" href="{{ home_page.contact.cta.href }}">{{ home_page.contact.cta.label }}</a>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

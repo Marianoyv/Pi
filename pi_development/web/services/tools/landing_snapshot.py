@@ -1,6 +1,7 @@
 from .export_utils import build_copy_exports
 from .http_snapshot import fetch_site_snapshot
 from .insight_utils import build_insight_issue, summarize_insight
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
 
 
 RESPONSE_TIME_WARN_MS = 1200
@@ -8,6 +9,7 @@ RESPONSE_TIME_CRITICAL_MS = 2500
 
 
 def run_landing_performance_snapshot(url):
+    require_remote_url_tools_enabled()
     snapshot = fetch_site_snapshot(url)
     diagnosis = build_diagnosis(url, snapshot)
     insight = build_insight(snapshot)

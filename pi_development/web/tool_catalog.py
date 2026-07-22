@@ -1,5 +1,7 @@
 from copy import deepcopy
 
+from .tool_availability import REMOTE_TOOLS_UNAVAILABLE_MESSAGE, is_tool_available
+
 
 TOOLS_INDEX_PAGE = {
     "eyebrow": "Herramientas",
@@ -508,29 +510,37 @@ def get_tools_index_page():
     return deepcopy(TOOLS_INDEX_PAGE)
 
 
-def get_tools():
-    return deepcopy(TOOL_DEFINITIONS)
+def get_tools(include_unavailable=False):
+    tools = [_with_availability(tool) for tool in TOOL_DEFINITIONS]
+    if include_unavailable:
+        return tools
+    return [tool for tool in tools if tool["is_available"]]
 
 
 def get_featured_tool():
-    return deepcopy(TOOL_DEFINITIONS[0])
+    tools = get_tools()
+    return tools[0] if tools else None
 
 
-def get_tool(slug):
+def get_tool(slug, include_unavailable=False):
     for tool in TOOL_DEFINITIONS:
         if tool["slug"] == slug:
-            return deepcopy(tool)
+            prepared_tool = _with_availability(tool)
+            if prepared_tool["is_available"] or include_unavailable:
+                return prepared_tool
+            return None
     return None
 
 
 def get_public_tool_slugs():
-    return [tool["slug"] for tool in TOOL_DEFINITIONS]
+    return [tool["slug"] for tool in get_tools() if tool.get("is_live")]
 
 
 def get_tool_groups():
+    available_tools = get_tools()
     groups = []
     for group_key, group_meta in TOOL_GROUPS.items():
-        group_tools = [deepcopy(tool) for tool in TOOL_DEFINITIONS if tool.get("group_key") == group_key]
+        group_tools = [tool for tool in available_tools if tool.get("group_key") == group_key]
         if group_tools:
             groups.append(
                 {
@@ -544,7 +554,7 @@ def get_tool_groups():
 
 
 def get_related_tools(slug, limit=3):
-    current_tool = next((tool for tool in TOOL_DEFINITIONS if tool["slug"] == slug), None)
+    current_tool = get_tool(slug, include_unavailable=True)
     if not current_tool:
         return []
 
@@ -564,3 +574,17 @@ def get_related_tools(slug, limit=3):
             break
 
     return related_tools
+
+
+def _with_availability(tool):
+    prepared_tool = deepcopy(tool)
+    prepared_tool["is_available"] = is_tool_available(prepared_tool["slug"])
+
+    if not prepared_tool["is_available"]:
+        prepared_tool["is_live"] = False
+        prepared_tool["status_label"] = "Temporalmente deshabilitada"
+        prepared_tool["status_tone"] = "maintenance"
+        prepared_tool["cta_label"] = "Ver estado tecnico"
+        prepared_tool["availability_message"] = REMOTE_TOOLS_UNAVAILABLE_MESSAGE
+
+    return prepared_tool

@@ -1,0 +1,18 @@
+<header class="pi-site-header" data-pi-header>
+  <div class="pi-site-header-inner">
+    <a class="pi-site-brand" href="{% url 'rebuild_home' %}" aria-label="Pi Development home" data-pi-event="nav_logo">
+      <span class="pi-site-brand-mark" aria-hidden="true">Pi</span>
+      <span class="pi-site-brand-text">Pi Development</span>
+    </a>
+    <button class="pi-menu-toggle" type="button" aria-controls="pi-mobile-navigation" aria-expanded="false" data-pi-menu-toggle>
+      <span class="pi-menu-toggle-lines" aria-hidden="true"></span>
+      <span class="pi-menu-toggle-label">Menu</span>
+    </button>
+    <nav class="pi-nav" id="pi-mobile-navigation" aria-label="Institutional navigation" data-pi-navigation>
+      {% for item in rebuild_nav_items %}
+      <a class="pi-nav-link{% if page.slug == item.slug %} pi-nav-link-active{% endif %}" href="{% url 'rebuild_page' slug=item.slug %}"{% if page.slug == item.slug %} aria-current="page"{% endif %} data-pi-event="nav_click">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+    <a class="pi-site-cta" href="{% url 'rebuild_page' slug='contact' %}" data-pi-event="primary_cta">Bring a problem</a>
+  </div>
+</header>

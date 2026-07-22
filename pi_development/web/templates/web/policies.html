@@ -9,6 +9,7 @@
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
+<main id="main-content">
 <section class="page-shell">
   <div class="page-shell__inner">
     <p class="page-shell__eyebrow">Legal</p>
@@ -18,7 +19,7 @@
 </section>
 <section class="policies-page">
   <div class="contenido">
-    <h1>Política de Privacidad</h1>
+    <h2>Política de Privacidad</h2>
     <h2>1. Información que recopilamos</h2>
     <p>Recopilamos información personal que nos proporcionás voluntariamente, como tu nombre, correo electrónico, dirección postal, número de teléfono y otros datos de contacto. También recopilamos datos sobre tu dispositivo y actividad en el sitio (IP, navegador, sistema operativo, páginas visitadas, fecha/hora y cookies).</p>
     <h2>2. Uso de la información</h2>
@@ -61,5 +62,6 @@
     </ul>
   </div>
 </section>
+</main>
 {% include 'web/components/footer.html' %}
 {% endblock %}

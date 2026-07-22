@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>{% block title %}Pi Development reconstruction preview{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Isolated structural preview for the Pi Development institutional website reconstruction.{% endblock %}">
+  <link rel="stylesheet" href="{% static 'web/rebuild/site.css' %}">
+  <script src="{% static 'web/rebuild/site.js' %}" defer></script>
+</head>
+<body>
+  <div class="pi-site">
+    <a class="pi-skip-link" href="#main-content">Skip to content</a>
+    {% include 'web/rebuild/components/header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'web/rebuild/components/footer.html' %}
+  </div>
+</body>
+</html>

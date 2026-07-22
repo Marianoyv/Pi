@@ -1,0 +1,273 @@
+{% extends "web/rebuild/base.html" %}
+
+{% block title %}{{ page.title }} | Pi Development{% endblock %}
+{% block meta_description %}{{ page.meta_description }}{% endblock %}
+
+{% block content %}
+<main class="pi-site-main pi-page-{{ page.slug }}" id="main-content" tabindex="-1">
+  {% if page.slug == "home" %}
+  <section class="pi-hero-section pi-home-hero">
+    <div class="pi-site-shell pi-hero-grid">
+      <div class="pi-hero-content">
+        <p class="pi-site-eyebrow">{{ page.hero.eyebrow }}</p>
+        <h1 class="pi-hero-title">{{ page.hero.title }}</h1>
+        <p class="pi-hero-text">{{ page.hero.body }}</p>
+        <div class="pi-actions" aria-label="Primary actions">
+          <a class="pi-button pi-button-primary" href="{{ page.hero.primary_cta.href }}" data-pi-event="primary_cta">{{ page.hero.primary_cta.label }}</a>
+          <a class="pi-button pi-button-secondary" href="{{ page.hero.secondary_cta.href }}" data-pi-event="secondary_cta">{{ page.hero.secondary_cta.label }}</a>
+        </div>
+        <p class="pi-site-microcopy">{{ page.hero.microcopy }}</p>
+      </div>
+      <aside class="pi-system-diagram pi-hero-diagram" aria-label="Problem to system diagram">
+        <div class="pi-diagram-stage">
+          <span class="pi-diagram-label">Inputs</span>
+          <span class="pi-diagram-node pi-diagram-node-offset"></span>
+          <span class="pi-diagram-node"></span>
+          <span class="pi-diagram-node pi-diagram-node-low"></span>
+        </div>
+        <div class="pi-diagram-constraint">
+          <span>Defined constraint</span>
+        </div>
+        <div class="pi-diagram-stage pi-diagram-stage-system">
+          <span class="pi-diagram-label">System</span>
+          <span class="pi-diagram-grid" aria-hidden="true"></span>
+        </div>
+        <div class="pi-diagram-output">
+          <span>Measurable output</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {% for section in page.sections %}
+  <section class="pi-section pi-section-{{ section.type }}">
+    <div class="pi-site-shell pi-section-layout">
+      <div class="pi-section-meta" aria-hidden="true">0{{ forloop.counter }}</div>
+      <div class="pi-section-body">
+        {% if section.label %}<p class="pi-section-label">{{ section.label }}</p>{% endif %}
+        <div class="pi-section-header">
+          <h2>{{ section.title }}</h2>
+          {% if section.intro %}<p>{{ section.intro }}</p>{% endif %}
+          {% if section.body %}<p>{{ section.body }}</p>{% endif %}
+        </div>
+
+        {% if section.supporting_line %}
+        <p class="pi-section-support">{{ section.supporting_line }}</p>
+        {% endif %}
+
+        {% if section.type == "capabilities" %}
+        <div class="pi-capability-columns">
+          {% for item in section.items %}
+          <section class="pi-capability-item">
+            <span class="pi-item-number">0{{ forloop.counter }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.body }}</p>
+          </section>
+          {% endfor %}
+        </div>
+        {% elif section.type == "method" %}
+        <ol class="pi-process-sequence">
+          {% for step in section.steps %}
+          <li>
+            <span class="pi-item-number">0{{ forloop.counter }}</span>
+            <strong>{{ step.name }}</strong>
+            <span>{{ step.body }}</span>
+          </li>
+          {% endfor %}
+        </ol>
+        {% elif section.type == "ad_products" %}
+        <div class="pi-ad-system">
+          <ul class="pi-technical-list">
+            {% for item in section.items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          <div class="pi-ad-diagram" aria-label="Advertising delivery system diagram">
+            <span>Publisher</span>
+            <span>Format</span>
+            <span>Delivery</span>
+            <span>Validation</span>
+            <span>Measurement</span>
+          </div>
+        </div>
+        {% elif section.items %}
+        <ul class="pi-technical-list">
+          {% for item in section.items %}
+          <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if section.link %}
+        <a class="pi-text-link" href="{{ section.link.href }}" data-pi-event="{% if section.type == 'capabilities' %}capability_link{% elif section.type == 'ad_products' %}ad_products_link{% elif section.type == 'research' %}research_link{% else %}text_link{% endif %}">{{ section.link.label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+
+  {% elif page.slug == "contact" %}
+  <section class="pi-hero-section pi-page-hero">
+    <div class="pi-site-shell pi-page-hero-grid">
+      <div>
+        <p class="pi-site-eyebrow">{{ page.label }}</p>
+        <h1 class="pi-hero-title">{{ page.title }}</h1>
+      </div>
+      <div>
+        <p class="pi-hero-text">{{ page.intro }}</p>
+        <p class="pi-site-microcopy">{{ page.microcopy }}</p>
+      </div>
+    </div>
+  </section>
+  <section class="pi-section pi-contact-section">
+    <div class="pi-site-shell pi-contact-layout">
+      <div class="pi-contact-panel">
+        <p class="pi-section-label">Project intake</p>
+        <h2>Send the problem</h2>
+        <p class="pi-section-copy">Use this form to share context, constraints, and the outcome that needs to change.</p>
+        <p class="pi-privacy-note">Your submission is used to review the problem, context, and desired outcome. Do not include secrets, passwords, or confidential credentials.</p>
+      </div>
+      <div class="pi-form-panel">
+        {% if contact_success %}
+        <div class="pi-form-status" role="status">
+          <p>Thank you. Your message has been received and will be reviewed with the problem, context, and desired outcome in mind.</p>
+          {% if contact_handoff_url %}
+          <a class="pi-text-link" href="{{ contact_handoff_url }}">Send a copy by email</a>
+          {% endif %}
+        </div>
+        {% endif %}
+        {% if contact_form.errors %}
+        <div class="pi-form-summary" role="alert" aria-labelledby="pi-form-summary-title">
+          <h2 id="pi-form-summary-title">Review the required fields.</h2>
+          <p>Each highlighted field needs a valid response before this problem can be sent.</p>
+        </div>
+        {% endif %}
+        <form class="pi-contact-form" method="post" novalidate data-pi-event="contact_form">
+          {% csrf_token %}
+          {% for field in contact_form %}
+          <div class="pi-form-field pi-form-field-{{ field.name }}{% if field.errors %} pi-form-field-error{% endif %}">
+            <label for="{{ field.id_for_label }}">{{ field.label }} <span>required</span></label>
+            {{ field }}
+            {% if field.errors %}
+            <div class="pi-form-errors" id="{{ field.auto_id }}_errors" role="alert">
+              {% for error in field.errors %}
+              <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+          <button class="pi-button pi-button-primary" type="submit" data-pi-event="contact_submit">Send the problem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  {% else %}
+  <section class="pi-hero-section pi-page-hero">
+    <div class="pi-site-shell pi-page-hero-grid">
+      <div>
+        <p class="pi-site-eyebrow">{{ page.label }}</p>
+        <h1 class="pi-hero-title">{{ page.title }}</h1>
+      </div>
+      <p class="pi-hero-text">{{ page.intro }}</p>
+    </div>
+  </section>
+
+  {% for section in page.sections %}
+  <section class="pi-section pi-interior-section pi-interior-{{ section.type }}">
+    <div class="pi-site-shell pi-section-layout">
+      <div class="pi-section-meta" aria-hidden="true">0{{ forloop.counter }}</div>
+      <div class="pi-section-body">
+        {% if section.label %}<p class="pi-section-label">{{ section.label }}</p>{% endif %}
+        <div class="pi-section-header">
+          <h2>{{ section.title }}</h2>
+          {% if section.body %}<p>{{ section.body }}</p>{% endif %}
+        </div>
+        {% if section.paragraphs %}
+        <div class="pi-copy-stack">
+          {% for paragraph in section.paragraphs %}
+          <p>{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if section.items %}
+          {% if section.type == "principles" %}
+          <div class="pi-principle-grid">
+            {% for item in section.items %}
+            <section class="pi-principle-item">
+              <span class="pi-item-number">0{{ forloop.counter }}</span>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.body }}</p>
+            </section>
+            {% endfor %}
+          </div>
+          {% else %}
+          <ul class="pi-technical-list">
+            {% for item in section.items %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+
+  {% if page.slug == "insights" and not page.articles %}
+  <section class="pi-section pi-editorial-empty">
+    <div class="pi-site-shell pi-section-layout">
+      <div class="pi-section-meta" aria-hidden="true">01</div>
+      <div class="pi-section-body">
+        <p class="pi-section-label">Editorial index</p>
+        <div class="pi-section-header">
+          <h2>Technical notes will appear here when they are ready to be examined.</h2>
+          <p>The index is prepared for writing on software, artificial intelligence, automation, advertising technology, systems, and product decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.articles %}
+  <section class="pi-section">
+    <div class="pi-site-shell">
+      <div class="pi-editorial-list">
+        {% for article in page.articles %}
+        <article class="pi-editorial-item">
+          <p>{{ article.category }}{% if article.publication_date %} / {{ article.publication_date }}{% endif %}</p>
+          <h2>{{ article.title }}</h2>
+          <p>{{ article.excerpt }}</p>
+          <a class="pi-text-link" href="{{ article.href }}">Read</a>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.closing %}
+  <section class="pi-section pi-section-closing">
+    <div class="pi-site-shell pi-closing-layout">
+      <div class="pi-section-header">
+        <h2>{{ page.closing.title }}</h2>
+        {% if page.closing.body %}<p>{{ page.closing.body }}</p>{% endif %}
+      </div>
+      {% if page.closing.cta %}
+      <a class="pi-button pi-button-primary" href="{{ page.closing.cta.href }}" data-pi-event="primary_cta">{{ page.closing.cta.label }}</a>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.cta %}
+  <section class="pi-section pi-section-closing">
+    <div class="pi-site-shell pi-closing-layout">
+      <a class="pi-button pi-button-primary" href="{{ page.cta.href }}" data-pi-event="primary_cta">{{ page.cta.label }}</a>
+    </div>
+  </section>
+  {% endif %}
+  {% endif %}
+</main>
+{% endblock %}

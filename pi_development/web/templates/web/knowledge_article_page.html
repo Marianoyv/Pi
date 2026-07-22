@@ -14,7 +14,7 @@
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<main>
+<main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
       <p class="page-shell__eyebrow">{{ knowledge_page.eyebrow }}</p>
@@ -109,7 +109,7 @@
           <p class="content-page__card-label">Contenido tecnico</p>
           <h3>Capa editorial</h3>
           <p>Esta pieza forma parte de la capa de conocimiento tecnico de Pi Development.</p>
-          <a class="button-link button-link--dark" href="{% url 'blog' %}">Ver todo el contenido</a>
+          <a class="button-link button-link--dark" href="{% url 'insights' %}">Ver todos los insights</a>
         </div>
 
         {% if topic_cluster %}
@@ -135,6 +135,19 @@
           </ul>
         </div>
         {% endif %}
+
+        <div class="content-page__card">
+          <p class="content-page__card-label">Aplicar este contenido</p>
+          {% if topic_cluster.key == "adtech" or topic_cluster.key == "creatividades" %}
+          <h3>AdTech engineering and publisher technology</h3>
+          <p>Connect this guide with implementation, diagnostics, creative QA or AdOps automation.</p>
+          <a class="button-link button-link--dark" href="{% url 'adtech' %}">Explore AdTech</a>
+          {% else %}
+          <h3>Custom software and technical workflows</h3>
+          <p>Turn a repeated technical task into a more reliable tool, integration or workflow.</p>
+          <a class="button-link button-link--dark" href="{% url 'solutions' %}">Explore solutions</a>
+          {% endif %}
+        </div>
       </aside>
     </div>
   </section>

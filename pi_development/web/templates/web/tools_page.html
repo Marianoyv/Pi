@@ -12,7 +12,7 @@
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
-<main>
+<main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
       <p class="page-shell__eyebrow">{{ tools_page.eyebrow }}</p>
@@ -25,8 +25,8 @@
       <article class="tools-feature">
         <div class="tools-feature__copy">
           <p class="tools-label">{{ tools_page.featured_label }}</p>
-          <h2>{{ tools_page.featured_title }}</h2>
-          <p>{{ tools_page.featured_description }}</p>
+          <h2>{{ featured_tool.name }}</h2>
+          <p>{{ featured_tool.description }}</p>
           <ul class="tools-feature__list">
             {% for item in featured_tool.outputs %}
             <li>{{ item }}</li>

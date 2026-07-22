@@ -1,8 +1,11 @@
 from django.conf import settings
 import requests
 
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
+
 
 def generate_ai_summary(diagnosis):
+    require_remote_url_tools_enabled()
     if not settings.OPENAI_API_KEY or not settings.OPENAI_AUDITOR_MODEL:
         return {
             "available": False,

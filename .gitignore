@@ -62,8 +62,11 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# Environment configuration: ignore real files, allow safe examples.
 .env
+.env.*
+!.env.example
+!.env.prod.example
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -95,9 +98,6 @@ Thumbs.db
 credentials/*.json
 # Logs
 *.log
-.env
-interface.py
 staticfiles/
 credentials/
 *.json
-pidevelopment-26f464065269.json

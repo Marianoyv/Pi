@@ -5,6 +5,8 @@ from urllib.parse import urlparse
 import requests
 from django.conf import settings
 
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
+
 
 HTML_SNAPSHOT_LIMIT = 350000
 AD_SLOT_HINT_TOKENS = (
@@ -76,6 +78,7 @@ class HttpSnapshotParser(HTMLParser):
 
 
 def fetch_site_snapshot(url):
+    require_remote_url_tools_enabled()
     start = monotonic()
     parsed_url = urlparse(url)
 

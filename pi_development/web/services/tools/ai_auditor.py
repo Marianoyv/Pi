@@ -3,9 +3,11 @@ from .http_snapshot import fetch_site_snapshot
 from .insight_utils import build_insight_issue, summarize_insight
 from .openai_summary import generate_ai_summary
 from .pagespeed import run_pagespeed_audit
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
 
 
 def run_ai_auditor(url):
+    require_remote_url_tools_enabled()
     snapshot = fetch_site_snapshot(url)
     pagespeed = run_pagespeed_audit(url)
     diagnosis = build_diagnosis(url, snapshot, pagespeed)

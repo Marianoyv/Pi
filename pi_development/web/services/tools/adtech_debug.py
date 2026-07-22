@@ -3,6 +3,7 @@ import re
 from .export_utils import build_copy_exports
 from .http_snapshot import fetch_site_snapshot
 from .insight_utils import build_insight_issue, summarize_insight
+from pi_development.web.tool_availability import require_remote_url_tools_enabled
 
 
 SIGNAL_DEFINITIONS = [
@@ -106,6 +107,7 @@ SCRIPT_VENDOR_PATTERNS = (
 
 
 def run_adtech_debug(url):
+    require_remote_url_tools_enabled()
     snapshot = fetch_site_snapshot(url)
     analysis = analyze_adtech_signals(snapshot)
     diagnosis = build_diagnosis(url, snapshot, analysis)

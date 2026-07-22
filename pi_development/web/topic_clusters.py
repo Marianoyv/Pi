@@ -127,7 +127,7 @@ def _build_cluster_context(cluster, current_tool_slug=None, current_seo_slug=Non
     cluster_copy = deepcopy(cluster)
     cluster_copy["tools"] = _get_tools(cluster_copy["tool_slugs"], current_slug=current_tool_slug)
     cluster_copy["seo_pages"] = _get_seo_pages(cluster_copy["seo_page_slugs"], current_slug=current_seo_slug)
-    cluster_copy["tool_count"] = len(cluster_copy["tool_slugs"])
+    cluster_copy["tool_count"] = len(cluster_copy["tools"])
     cluster_copy["seo_page_count"] = len(cluster_copy["seo_page_slugs"])
     return cluster_copy
 
