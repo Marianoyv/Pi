@@ -6,18 +6,30 @@
 {% block meta_description %}{{ work_page.meta_description }}{% endblock %}
 {% block og_description %}{{ work_page.meta_description }}{% endblock %}
 {% block twitter_description %}{{ work_page.meta_description }}{% endblock %}
+{% block body_class %}work-index-page{% endblock %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}?v=20260717">
-<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}?v=20260722">
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260722">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
 <main id="main-content">
   <section class="page-shell">
-    <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">{{ work_page.eyebrow }}</p>
-      <h1>{{ work_page.title }}</h1>
-      <p class="page-shell__lead">{{ work_page.description }}</p>
+    <div class="page-shell__inner page-shell__inner--visual">
+      <div class="page-shell__copy">
+        <p class="page-shell__eyebrow">{{ work_page.eyebrow }}</p>
+        <h1>{{ work_page.title }}</h1>
+        <p class="page-shell__lead">{{ work_page.description }}</p>
+      </div>
+      {% with featured=work_items.0 %}
+      <div class="page-shell__visual">
+        <a class="work-hero-visual" href="{% url 'work_case' slug=featured.slug %}" aria-label="Read the {{ featured.name }} case study">
+          <div class="pi-browser-bar" aria-hidden="true"><span></span><span></span><span></span><p>VERIFIED / {{ featured.name|upper }}</p></div>
+          <img src="{% static featured.poster %}" width="1600" height="900" alt="{{ featured.name }} website interface">
+          <span>PUBLIC CASE</span>
+        </a>
+      </div>
+      {% endwith %}
     </div>
   </section>
 
@@ -30,7 +42,7 @@
           <p>{{ work_page.intro }}</p>
         </div>
         <aside class="portfolio-overview__summary">
-          <h3>Evidence policy</h3>
+          <h3>Publishing standard</h3>
           <ul class="portfolio-overview__summary-list">
             {% for item in work_page.notes %}<li>{{ item }}</li>{% endfor %}
           </ul>
@@ -40,14 +52,43 @@
       <div class="portfolio-overview__grid portfolio-overview__grid--cases">
         {% for item in work_items %}
         <article class="portfolio-overview__card portfolio-overview__card--case" id="{{ item.slug }}">
-          <a class="portfolio-overview__case-link" href="{{ item.url }}" target="_blank" rel="noopener noreferrer" aria-label="Open the published {{ item.name }} project">
-            {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-media' media_label=item.name|add:' software interface' %}
-          </a>
+          <div class="portfolio-overview__preview" data-project-preview data-project-name="{{ item.slug }}" data-preview-size="desktop">
+            <div class="portfolio-overview__preview-controls">
+              <div class="portfolio-overview__preview-id"><span>0{{ forloop.counter }}</span><strong>{{ item.name }}</strong></div>
+              <div class="portfolio-overview__viewport-switch" role="group" aria-label="Preview viewport for {{ item.name }}">
+                <button type="button" data-preview-size-button="desktop" aria-pressed="true">Desktop</button>
+                <button type="button" data-preview-size-button="mobile" aria-pressed="false">Mobile</button>
+              </div>
+              <button class="portfolio-overview__live-toggle" type="button" data-preview-launch aria-pressed="false">
+                <i aria-hidden="true"></i><span data-preview-launch-label>Live preview</span>
+              </button>
+              <a class="portfolio-overview__external" href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open {{ item.name }} in a new tab">↗</a>
+            </div>
+            <div class="portfolio-overview__device">
+              <div class="pi-browser-bar" aria-hidden="true"><span></span><span></span><span></span><p>CASE 0{{ forloop.counter }} / {{ item.name|upper }}</p></div>
+              <div class="portfolio-overview__media-frame">
+                <div class="portfolio-overview__poster" data-preview-poster>
+                  {% include 'web/components/portfolio_media.html' with item=item media_class='portfolio-media' media_label=item.name|add:' software interface' interactive_preview=1 %}
+                </div>
+                <div class="portfolio-overview__live" data-preview-live aria-hidden="true">
+                  <iframe
+                    title="Live preview of {{ item.name }}"
+                    data-preview-src="{{ item.external_url }}"
+                    loading="lazy"
+                    sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                  ></iframe>
+                  <span class="portfolio-overview__live-loading" data-preview-loading role="status" aria-live="polite">Loading live project…</span>
+                </div>
+              </div>
+            </div>
+            <a class="portfolio-overview__case-open" href="{% url 'work_case' slug=item.slug %}">Open case <b aria-hidden="true">↗</b></a>
+          </div>
           <div class="portfolio-overview__content">
             <div class="portfolio-overview__case-meta">
               <p class="portfolio-overview__category">{{ item.category }}</p>
-              <span>{{ item.work_type }}</span>
-              <span>{{ item.status }}</span>
+              <span>{{ item.project_type }}</span>
+              <span>{{ item.current_status }}</span>
             </div>
             <h2>{{ item.name }}</h2>
             <p>{{ item.summary }}</p>
@@ -55,34 +96,12 @@
               {% for technology in item.technologies %}<li>{{ technology }}</li>{% endfor %}
             </ul>
             <dl class="portfolio-overview__case-body">
-              <div class="portfolio-overview__case-row">
-                <dt>Context</dt>
-                <dd>{{ item.context }}</dd>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <dt>Problem</dt>
-                <dd>{{ item.problem }}</dd>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <dt>Approach</dt>
-                <dd>{{ item.approach }}</dd>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <dt>What was built</dt>
-                <dd>{{ item.what_built }}</dd>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <dt>Technical decisions</dt>
-                <dd>{{ item.technical_decisions }}</dd>
-              </div>
-              <div class="portfolio-overview__case-row">
-                <dt>Result</dt>
-                <dd>{{ item.result }}</dd>
-              </div>
+              <div class="portfolio-overview__case-row"><dt>Evidence</dt><dd>{{ item.evidence_status }}</dd></div>
+              <div class="portfolio-overview__case-row"><dt>Result</dt><dd>{{ item.result }}</dd></div>
             </dl>
             <div class="portfolio-overview__actions">
-              <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer">Visit published project <span aria-hidden="true">↗</span></a>
-              <a href="{% url 'solutions' %}">Explore related software solutions <span aria-hidden="true">→</span></a>
+              <a href="{% url 'work_case' slug=item.slug %}">Read the case <span aria-hidden="true">→</span></a>
+              <a href="{{ item.external_url }}" target="_blank" rel="noopener noreferrer">Visit published project <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </article>

@@ -1,0 +1,104 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "crux-navegaciones-suaves-spa",
+  "title": "CrUX mide navegaciones SPA | Pi Development",
+  "meta_description": "CrUX suma métricas experimentales para navegaciones suaves en SPA. Qué cambia en LCP, INP y CLS, cuáles son los límites y qué conviene auditar.",
+  "meta_keywords": "CrUX, navegaciones suaves, Core Web Vitals, SPA, LCP, INP, CLS",
+  "eyebrow": "SEO técnico · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "CrUX incorpora métricas experimentales para navegaciones SPA",
+  "description": "Chrome empezó a publicar en CrUX versiones experimentales de LCP, INP y CLS que incluyen las transiciones internas de las aplicaciones de una sola página. El cambio permite observar cada vista con más precisión, pero todavía no modifica los Core Web Vitals estables ni Search Console.",
+  "summary": "CrUX ya ofrece métricas experimentales para medir LCP, INP y CLS después de cada navegación suave en una SPA.",
+  "search_intent": "Entender cómo medir las navegaciones suaves de una SPA en CrUX, qué cambia en LCP, INP y CLS y qué revisar antes de usar esos datos.",
+  "business_relevance": "Los equipos que operan sitios y aplicaciones SPA pueden necesitar una auditoría técnica, instrumentación RUM o mejoras de performance para separar cambios de medición de problemas reales de experiencia.",
+  "target_audience": [
+    "Equipos de producto, desarrollo y SEO técnico que operan aplicaciones SPA",
+    "Empresas que necesitan auditar Core Web Vitals y medición de rendimiento"
+  ],
+  "published_at": "2026-10-14",
+  "updated_at": "2026-10-14",
+  "published_datetime": "2026-10-14T11:09:20-03:00",
+  "updated_datetime": "2026-10-14T11:09:20-03:00",
+  "image": "web/img/insights/crux-navegaciones-suaves-spa.webp",
+  "image_alt": "Vistas conectadas de una aplicación web envían señales de carga, interacción y estabilidad a un panel de medición.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Chrome comenzó a publicar en el Chrome User Experience Report (CrUX) versiones experimentales de Largest Contentful Paint, Interaction to Next Paint y Cumulative Layout Shift que incluyen navegaciones suaves. La novedad, anunciada por web.dev el 13 de octubre de 2026, busca cubrir una brecha histórica: en una aplicación de una sola página, muchas transiciones cambian el contenido y la URL sin cargar un nuevo documento HTML.",
+    "Hasta ahora, CrUX tomaba la navegación inicial como referencia y no trataba cada cambio de ruta interno como una carga independiente. Los nuevos campos permiten analizar esas vistas posteriores, pero tienen carácter experimental. Google aclara que los Core Web Vitals estables no cambian durante esta evaluación y que Search Console todavía no adopta los nuevos datos."
+  ],
+  "key_takeaways": [
+    "CrUX agrega variantes experimentales de LCP, INP y CLS que combinan navegaciones completas y navegaciones suaves.",
+    "El cambio afecta sobre todo a SPA con muchas transiciones internas; la mayoría de los sitios verá valores iguales o muy parecidos a los actuales.",
+    "Conviene comparar métricas estables y experimentales por URL, validar la detección de rutas con RUM y evitar interpretar una mejora estadística como una mejora automática del producto."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en CrUX",
+      "paragraphs": [
+        "La publicación incorpora tres nombres de métrica específicos: `experimental_largest_contentful_paint_with_softnavs`, `experimental_interaction_to_next_paint_with_softnavs` y `experimental_cumulative_layout_shift_with_softnavs`. Las tres combinan cargas tradicionales con transiciones internas detectadas como navegaciones suaves y estarán disponibles desde la edición de octubre de 2026 en el dataset de BigQuery, la CrUX API y la CrUX History API.",
+        "El criterio no consiste solamente en observar un cambio de URL. La medición de navegación suave depende de las nuevas capacidades de plataforma que relacionan una interacción del usuario, una actualización de la URL y un cambio visible de contenido. Con esa señal, CrUX puede separar la experiencia posterior a una transición interna y asociarla con la URL de destino, siempre que esa URL alcance los criterios habituales de elegibilidad y volumen de datos.",
+        "Google anticipa que en noviembre agregará métricas experimentales de tipo de navegación y First Contentful Paint. El objetivo declarado es graduar la medición en mayo de 2027, sujeto al resultado de la evaluación y al feedback recibido; recién entonces Search Console pasaría a usar estos datos."
+      ]
+    },
+    {
+      "title": "A quién afecta y cómo pueden moverse LCP, INP y CLS",
+      "paragraphs": [
+        "El impacto se concentra en aplicaciones que cambian de vista muchas veces dentro del mismo documento. Según los datos publicados por Chrome, cerca del 70% de los orígenes de CrUX tiene menos de un 5% de vistas con navegaciones suaves, mientras que solo entre el 7% y el 11% supera el 50%. Entre los mil sitios con más tráfico, sin embargo, esa proporción crece: entre el 35% y el 42% usa navegaciones suaves en más de la mitad de sus vistas, según plataforma.",
+        "En una SPA con uso intensivo de rutas internas, LCP puede mejorar porque las vistas posteriores reutilizan código y recursos ya descargados. INP deja de cargar sobre la página inicial la peor interacción de toda una sesión y pasa a segmentarse por vista. CLS también se reparte por navegación en lugar de acumular desplazamientos durante una sesión prolongada. Esa segmentación puede producir valores más representativos, aunque no elimina el costo de JavaScript pesado ni las inestabilidades reales de una transición."
+      ]
+    },
+    {
+      "title": "Límites que conviene mantener visibles",
+      "paragraphs": [
+        "Estas métricas no reemplazan todavía a los Core Web Vitals oficiales. No cambian por sí solas una evaluación de Search Console, no garantizan una mejora de ranking y pueden variar mientras Chrome ajusta la detección. Además, la medición depende de capacidades introducidas en Chromium; otros motores de navegador aún no ofrecen el mismo soporte, de modo que una comparación de RUM entre navegadores necesita conservar esa diferencia.",
+        "Tampoco corresponde concluir que una SPA se volvió más rápida solo porque su percentil mejora. Parte del movimiento puede venir de dividir una sesión larga en vistas individuales y de incorporar transiciones con recursos ya calientes en caché. La experiencia inicial, el trabajo del hilo principal, las solicitudes de red y los cambios de layout siguen necesitando diagnóstico propio."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción útil es construir una línea de base antes de que la medición deje de ser experimental. Un equipo puede consultar la misma URL u origen en CrUX, guardar los percentiles estables y compararlos con las variantes `with_softnavs`. Para propiedades SPA, conviene complementar ese dato agregado con RUM que registre ruta, tipo de navegación y versión de la aplicación.",
+        "El análisis debe separar dos preguntas: si Chrome reconoce correctamente las transiciones que el producto considera páginas y si la experiencia de cada transición es realmente rápida y estable. Una diferencia grande entre las series es una señal para investigar, no un resultado que deba celebrarse o corregirse sin contexto."
+      ],
+      "bullets": [
+        "Comparar LCP, INP y CLS estables con sus variantes experimentales por origen y por URL elegible.",
+        "Verificar en DevTools y en la instrumentación RUM que cada cambio de ruta relevante actualice la URL y produzca contenido visible.",
+        "Segmentar por navegación inicial y transición interna, conservando navegador, dispositivo y versión de despliegue.",
+        "Revisar tareas largas, solicitudes tardías y layout shifts de cada ruta aunque el percentil agregado mejore."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La novedad reduce una asimetría importante entre sitios multipágina y aplicaciones SPA: una sesión extensa deja de quedar resumida bajo la URL de entrada. Para producto y SEO técnico, el valor principal no es obtener un número más favorable, sino localizar con mayor precisión qué vista interna concentra una demora o una interacción lenta.",
+        "Durante la etapa experimental, Pi recomienda tratar ambas series como instrumentos distintos. La métrica estable mantiene continuidad histórica; la variante con navegaciones suaves anticipa cómo podría verse la evaluación futura. Documentar esa brecha ahora permite evitar falsas alarmas cuando cambien las herramientas y, al mismo tiempo, priorizar mejoras que el usuario percibe en cada transición."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "web.dev",
+      "title": "Experimental soft navigation metrics now available in CrUX",
+      "url": "https://web.dev/blog/crux-experimental-soft-navs",
+      "published_at": "2026-10-13",
+      "accessed_at": "2026-10-14",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "auditoria-tecnica-web"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Las métricas de navegaciones suaves ya afectan los Core Web Vitals de Search Console?",
+      "answer": "No. En octubre de 2026 son métricas experimentales de CrUX. Los Core Web Vitals estables no cambian y Google prevé que Search Console adopte estos datos cuando la medición se gradúe, con un objetivo sujeto a evaluación para mayo de 2027."
+    },
+    {
+      "question": "¿Por qué una SPA puede mostrar mejores valores al incluir navegaciones suaves?",
+      "answer": "Porque las vistas posteriores pueden reutilizar recursos ya descargados y porque INP y CLS se segmentan por navegación en vez de acumularse durante toda la sesión. Esa mejora de medición no demuestra por sí sola que el producto haya acelerado."
+    }
+  ]
+}

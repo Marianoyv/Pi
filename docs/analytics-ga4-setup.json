@@ -1,0 +1,200 @@
+{
+  "status": "ACCOUNT_CONFIG_APPLIED",
+  "property_id": "342133855",
+  "measurement_id": "G-6XVTWEY4LW",
+  "data_retention": "FOURTEEN_MONTHS",
+  "key_events": [
+    {
+      "event_name": "contact_start",
+      "counting_method": "ONCE_PER_SESSION",
+      "meaning": "Contact intent, not a confirmed lead"
+    }
+  ],
+  "enhanced_measurement": {
+    "page_views": true,
+    "scrolls": true,
+    "outbound_clicks": false,
+    "site_search": false,
+    "video_engagement": true,
+    "file_downloads": true,
+    "form_interactions": false
+  },
+  "event_dimensions": [
+    "page_type",
+    "content_language",
+    "contact_method",
+    "link_location",
+    "tool_name",
+    "error_type",
+    "link_domain",
+    "project_name",
+    "preset_name",
+    "article_slug",
+    "article_type",
+    "article_cluster",
+    "returning_reader",
+    "destination_section",
+    "origin_article_slug",
+    "origin_article_cluster",
+    "section_id",
+    "plan_name",
+    "case_name",
+    "metric_name",
+    "metric_rating",
+    "navigation_type",
+    "video_title",
+    "video_provider"
+  ],
+  "event_metrics": [
+    "read_percent",
+    "milestone_seconds",
+    "metric_value",
+    "metric_delta",
+    "video_percent"
+  ],
+  "audiences": [
+    {
+      "name": "Business interest",
+      "events": [
+        "plan_view",
+        "plan_select"
+      ],
+      "exclude_event": "contact_start"
+    },
+    {
+      "name": "Contact intent",
+      "events": [
+        "contact_start"
+      ]
+    },
+    {
+      "name": "Tool users",
+      "events": [
+        "tool_use"
+      ]
+    },
+    {
+      "name": "Engaged readers",
+      "event": "editorial_engaged_time",
+      "minimum_milestone_seconds": 60
+    }
+  ],
+  "notes": [
+    "Owner resumed the account setup in Chrome on 2026-10-24.",
+    "Editor access is required for property configuration.",
+    "Do not enable Google Signals or advertising personalization without a separate purpose and consent.",
+    "Do not mark contact_cta_click and contact_start as two primary conversions.",
+    "Do not register metric_id or link_text as custom dimensions.",
+    "Verify custom definitions already present before adding to avoid duplicates."
+  ],
+  "account_verified_at": "2026-10-24",
+  "stream_id": "4280290746",
+  "verified_in_chrome": {
+    "property_and_measurement_id": true,
+    "enhanced_measurement": {
+      "page_views": true,
+      "scrolls": true,
+      "outbound_clicks": false,
+      "site_search": false,
+      "video_engagement": true,
+      "file_downloads": true,
+      "form_interactions": false
+    },
+    "event_retention_months": 14,
+    "event_dimensions": [
+      "page_type",
+      "content_language",
+      "contact_method",
+      "link_location",
+      "tool_name",
+      "error_type",
+      "link_domain",
+      "project_name",
+      "preset_name",
+      "article_slug",
+      "article_type",
+      "article_cluster",
+      "returning_reader",
+      "destination_section",
+      "origin_article_slug",
+      "origin_article_cluster",
+      "section_id",
+      "plan_name",
+      "case_name",
+      "metric_name",
+      "metric_rating",
+      "navigation_type",
+      "video_title",
+      "video_provider"
+    ],
+    "email_redaction": true,
+    "redacted_query_keys": [
+      "email",
+      "e-mail",
+      "mail",
+      "phone",
+      "tel",
+      "telephone",
+      "name",
+      "nombre",
+      "message",
+      "mensaje",
+      "subject",
+      "asunto",
+      "url",
+      "html",
+      "tag",
+      "creative",
+      "token",
+      "access_token",
+      "password",
+      "api_key",
+      "q",
+      "s",
+      "search",
+      "query",
+      "keyword"
+    ],
+    "event_metrics": [
+      "read_percent",
+      "milestone_seconds",
+      "metric_value",
+      "metric_delta",
+      "video_percent"
+    ],
+    "audiences": [
+      {"name": "Business interest", "membership_days": 30, "events_any": ["plan_view", "plan_select"], "exclude_event": "contact_start", "exclusion_mode": "TEMPORARY"},
+      {"name": "Contact intent", "membership_days": 30, "events_any": ["contact_start"]},
+      {"name": "Tool users", "membership_days": 30, "events_any": ["tool_use"]},
+      {"name": "Engaged readers", "membership_days": 30, "event": "editorial_engaged_time", "event_parameter": "milestone_seconds", "operator": "GREATER_THAN_OR_EQUAL", "value": 60}
+    ],
+    "data_filters": [{"name": "Internal Traffic", "type": "INTERNAL_TRAFFIC", "operation": "EXCLUDE", "state": "TESTING", "action": "PRESERVED"}],
+    "funnel_exploration": {
+      "name": "Pi Development — Contact journey",
+      "id": "TbutU5rMSImQCIU-BmLykw",
+      "sharing": "PRIVATE",
+      "open_funnel": false,
+      "steps": ["page_view", "plan_view", "plan_select", "contact_start"],
+      "sequence": "INDIRECTLY_FOLLOWED_BY",
+      "breakdown": "device_category",
+      "show_elapsed_time": true
+    },
+    "search_console_association": {
+      "property": "https://pidevelopment.web.app/",
+      "analytics_property": "Pi Development",
+      "web_stream": "Pi Development",
+      "verified_at": "2026-10-24"
+    },
+    "key_events": [
+      {
+        "event_name": "contact_start",
+        "counting_method": "ONCE_PER_SESSION",
+        "default_monetary_value": null
+      }
+    ]
+  },
+  "deployed_at": "2026-10-24",
+  "deployment_url": "https://pidevelopment.web.app/",
+  "remaining": ["Verify consent, Realtime, DebugView and new-event data after deployment", "Validate real internal traffic IP rules in testing before activating exclusions"],
+  "optional_extensions_not_enabled": ["BigQuery export", "Google Ads linking", "Google Signals"]
+}

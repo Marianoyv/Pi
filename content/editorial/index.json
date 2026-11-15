@@ -1,0 +1,488 @@
+{
+  "version": 1,
+  "generated_on": "2026-11-14",
+  "instructions": "Use recent_articles to prevent duplicate coverage and internal_links to avoid scanning the project.",
+  "recent_articles": [
+    {
+      "published_at": "2026-10-23",
+      "slug": "google-flexibiliza-video-sticky",
+      "title": "Google flexibiliza las reglas para video sticky",
+      "cluster": "adtech",
+      "search_intent": "Entender qué cambió en las restricciones de Google para Accompanying Content y video sticky, y qué debe auditar un publisher antes de modificar su implementación.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/9385069?hl=en",
+        "https://support.google.com/publisherpolicies/answer/15208072"
+      ]
+    },
+    {
+      "published_at": "2026-10-22",
+      "slug": "gpt-correlator-navegaciones-spa",
+      "title": "GPT renueva el correlator al navegar una SPA",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo cambia el correlator de Google Publisher Tag en una SPA y qué revisar en una implementación que ya lo actualiza manualmente.",
+      "source_urls": [
+        "https://developers.google.com/publisher-tag/release-notes",
+        "https://developers.google.com/publisher-tag/reference#googletag.PubAdsService_updateCorrelator"
+      ]
+    },
+    {
+      "published_at": "2026-10-21",
+      "slug": "gpt-hooks-solicitudes-anuncios",
+      "title": "GPT suma hooks asíncronos antes de cada solicitud de anuncios",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo funcionan los request hooks de Google Publisher Tag y qué medir antes de usarlos en una implementación publicitaria.",
+      "source_urls": [
+        "https://developers.google.com/publisher-tag/release-notes",
+        "https://developers.google.com/publisher-tag/reference"
+      ]
+    },
+    {
+      "published_at": "2026-10-20",
+      "slug": "google-ad-manager-rewarded-web-7-segundos",
+      "title": "Google Ad Manager exige 7 segundos para otorgar recompensas web",
+      "cluster": "adtech",
+      "search_intent": "Entender cuándo Google Ad Manager concede ahora una recompensa en rewarded web y qué debe validar un publisher en su implementación.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/9116812?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-19",
+      "slug": "chrome-depreca-evento-unload",
+      "title": "Chrome deja de ejecutar el evento unload por defecto",
+      "cluster": "seo-performance",
+      "search_intent": "Entender qué deja de funcionar al deprecarse unload en Chrome y cómo migrar la analítica y el guardado de estado sin bloquear bfcache.",
+      "source_urls": [
+        "https://developer.chrome.com/blog/unload-deprecated-in-chrome"
+      ]
+    },
+    {
+      "published_at": "2026-10-16",
+      "slug": "google-errores-tcf-policy-center",
+      "title": "Google mueve los errores TCF al Policy Center",
+      "cluster": "adtech",
+      "search_intent": "Entender dónde ver ahora los errores TCF de Google y cómo priorizar su corrección desde el Policy Center.",
+      "source_urls": [
+        "https://support.google.com/adsense/answer/18766358",
+        "https://support.google.com/adsense/answer/9999955?hl=en",
+        "https://support.google.com/adsense/answer/9485926"
+      ]
+    },
+    {
+      "published_at": "2026-10-14",
+      "slug": "crux-navegaciones-suaves-spa",
+      "title": "CrUX incorpora métricas experimentales para navegaciones SPA",
+      "cluster": "seo-performance",
+      "search_intent": "Entender cómo medir las navegaciones suaves de una SPA en CrUX, qué cambia en LCP, INP y CLS y qué revisar antes de usar esos datos.",
+      "source_urls": [
+        "https://web.dev/blog/crux-experimental-soft-navs"
+      ]
+    },
+    {
+      "published_at": "2026-10-10",
+      "slug": "google-ad-manager-sobreentrega-dv360",
+      "title": "Ad Manager ajustará la sobreentrega en acuerdos con DV360",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo afectará la conciliación de sobreentrega a los acuerdos Programmatic Guaranteed con DV360 y qué revisar en ingresos y reportes.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-09",
+      "slug": "chrome-155-jpeg-xl-imagenes-web",
+      "title": "Chrome 155 incorpora JPEG XL para imágenes web",
+      "cluster": "seo-performance",
+      "search_intent": "Entender cuándo conviene usar JPEG XL en sitios web, qué compatibilidad tiene y cómo medirlo frente a JPEG y AVIF antes de adoptarlo.",
+      "source_urls": [
+        "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
+        "https://webkit.org/blog/14445/webkit-features-in-safari-17-0/"
+      ]
+    },
+    {
+      "published_at": "2026-10-08",
+      "slug": "google-ad-manager-anuncios-nativos-newsletters",
+      "title": "Ad Manager suma anuncios nativos para newsletters",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo funcionan los anuncios nativos para newsletters en Google Ad Manager 360 y qué debe validar un publisher antes de implementarlos.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/16386460?hl=en",
+        "https://support.google.com/admanager/answer/14292448?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-07",
+      "slug": "google-ad-manager-optimiza-consentimiento",
+      "title": "Ad Manager activa la optimización del consentimiento",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo funcionan la cobertura y la optimización de mensajes de consentimiento en Google Ad Manager y qué debe revisar un publisher antes de mantenerlas activas.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/17340703?hl=en",
+        "https://support.google.com/admanager/answer/17560841?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-06",
+      "slug": "google-ad-manager-tests-protecciones",
+      "title": "Google Ad Manager habilita tests A/B para protecciones",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo probar protecciones publicitarias en Google Ad Manager, qué variables admite el experimento y qué medir antes de aplicar un cambio.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/9799933?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-05",
+      "slug": "google-ad-manager-depreca-wta-video",
+      "title": "Google Ad Manager depreca &wta en anuncios de video",
+      "cluster": "adtech",
+      "search_intent": "Entender qué cambia al deprecarse &wta en Google Ad Manager y cómo validar que un reproductor propio muestre los íconos VAST.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-10-04",
+      "slug": "omsdk-javascript-aislado-android",
+      "title": "OM SDK aísla JavaScript para medir anuncios en Android",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo usar JavaScriptEngine con OM SDK 1.6.10 en Android, qué sesiones admite y qué medir antes de reemplazar el ejecutor basado en WebView.",
+      "source_urls": [
+        "https://iabtechlab.com/improving-om-sdk-performance-reliability-on-android-with-sandboxed-javascript-execution/",
+        "https://developer.android.com/develop/ui/views/layout/webapps/jsengine"
+      ]
+    },
+    {
+      "published_at": "2026-09-24",
+      "slug": "search-console-busqueda-multimodal",
+      "title": "Search Console separa la búsqueda multimodal",
+      "cluster": "seo-performance",
+      "search_intent": "Entender cómo medir las búsquedas con imágenes en Google Search Console y qué revisar para evaluar el rendimiento multimodal de un sitio.",
+      "source_urls": [
+        "https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc"
+      ]
+    },
+    {
+      "published_at": "2026-09-23",
+      "slug": "google-ad-manager-categorias-contextuales-openrtb",
+      "title": "Ad Manager compartirá categorías contextuales en OpenRTB",
+      "cluster": "adtech",
+      "search_intent": "Entender qué categorías contextuales enviará Google Ad Manager en OpenRTB, a qué tráfico aplica y qué debe revisar un publisher antes del 15 de octubre de 2026.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/18081962?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-09-22",
+      "slug": "workspace-studio-disparadores-externos",
+      "title": "Workspace Studio ya admite disparadores desde otras apps",
+      "cluster": "ia",
+      "search_intent": "Entender cómo iniciar un flujo de Google Workspace Studio desde un sistema externo y qué requisitos técnicos y administrativos debe cumplir la integración.",
+      "source_urls": [
+        "https://developers.google.com/workspace/release-notes",
+        "https://developers.google.com/workspace/add-ons/studio/build-a-starter",
+        "https://workspaceupdates.googleblog.com/2026/09/automate-workflows-with-custom-starters-and-steps-third-party-integrations-and-webhooks-in-Workspace-Studio.html"
+      ]
+    },
+    {
+      "published_at": "2026-09-21",
+      "slug": "google-agregadores-negocios-locales",
+      "title": "Google suma negocios locales a su unidad de agregadores",
+      "cluster": "seo-performance",
+      "search_intent": "Entender si un directorio de negocios locales puede participar en la unidad de agregadores de Google Search en el EEE y qué datos debe preparar.",
+      "source_urls": [
+        "https://developers.google.com/search/updates",
+        "https://developers.google.com/search/docs/appearance/aggregator-unit",
+        "https://developers.google.com/actions-center/verticals/local_vss/integration-steps/overview"
+      ]
+    },
+    {
+      "published_at": "2026-09-20",
+      "slug": "interop-2027-agentes-codigo",
+      "title": "Interop 2027 propone auditar la web con agentes de código",
+      "cluster": "seo-performance",
+      "search_intent": "Entender cómo usar un agente de código para auditar compatibilidad web y priorizar propuestas de Interop 2027.",
+      "source_urls": [
+        "https://web.dev/blog/coding-agents-interop-proposals",
+        "https://web.dev/blog/interop-2027-proposals",
+        "https://github.com/web-platform-tests/interop/blob/main/proposal_guide.md"
+      ]
+    },
+    {
+      "published_at": "2026-09-17",
+      "slug": "iab-practicas-programatica-duplicacion-bids",
+      "title": "IAB propone reglas para ordenar la publicidad programática",
+      "cluster": "adtech",
+      "search_intent": "Entender qué propone IAB Tech Lab para reducir la duplicación de bid requests y qué deberían revisar publishers y equipos de AdOps.",
+      "source_urls": [
+        "https://iabtechlab.com/press-releases/iab-tech-labs-programmatic-standard-practices-available-for-public-comment/",
+        "https://iabtechlab.com/wp-content/uploads/2026/09/Public-Comment-Programmatic-Best-Practices-v1-1.pdf"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "google-ad-manager-ad-podding-apps",
+      "title": "Google Ad Manager llevará ad podding al inventario de apps",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo funcionará el ad podding de Google Ad Manager en apps móviles y qué métricas, reglas y costos revisar antes de su activación.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/16531745?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "generative-ai-npcs-conversations",
+      "title": "Artificial Intelligence in Games: How NPCs Can Hold Unscripted Conversations",
+      "cluster": "ia",
+      "search_intent": "Learn how generative AI NPC conversations work in modern video games and understand their technical and creative limitations.",
+      "source_urls": [
+        "https://developer.nvidia.com/ace",
+        "https://developer.nvidia.com/blog/build-on-device-ai-companions-with-the-nvidia-ace-game-agent-sdk-and-unreal-engine-5-plugins/",
+        "https://gdconf.com/article/gdc-2026-state-of-the-game-industry-reveals-impact-of-layoffs-generative-ai-and-more/",
+        "https://www.globant.com/news/globant-report-gaming-2026-game-on"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "gaming-hardware-2026-pc-vs-handheld",
+      "title": "2026 Gaming Hardware Guide: Build a PC or Go Fully Portable?",
+      "cluster": "ia",
+      "search_intent": "Decide whether to build a gaming PC or buy a portable gaming system in 2026 based on real use, cost and performance trade-offs.",
+      "source_urls": [
+        "https://www.nintendo.com/us/gaming-systems/switch-2/",
+        "https://store.steampowered.com/steamdeck/",
+        "https://www.xbox.com/en-us/handhelds/rog-xbox-ally",
+        "https://gdconf.com/article/gdc-2026-state-of-the-game-industry-reveals-impact-of-layoffs-generative-ai-and-more/",
+        "https://rog.asus.com/articles/rog-ally/the-latest-rog-xbox-ally-updates-provide-a-more-seamless-docking-experience-for-living-room-play/"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "gaming-beyond-living-room-2026",
+      "title": "Is This the End of the Living-Room Console? How Cloud and Handhelds Redefined Gaming in 2026",
+      "cluster": "ia",
+      "search_intent": "Understand whether handheld PCs and cloud gaming are replacing traditional consoles in 2026 and what players should consider before switching.",
+      "source_urls": [
+        "https://www.globant.com/news/globant-report-gaming-2026-game-on",
+        "https://www.nintendo.com/us/gaming-systems/switch-2/",
+        "https://www.xbox.com/en-US/cloud-gaming",
+        "https://www.latercera.com/tecnologia/noticia/las-5-tendencias-que-marcan-el-gaming-en-2026-el-fin-de-la-consola-fija-ia-y-menos-estrenos-pero-con-mayor-profundidad/"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "games-as-a-service-vs-campaigns",
+      "title": "Games as a Service vs. Traditional Campaigns: Why Expand a Game Instead of Building a New One?",
+      "cluster": "ia",
+      "search_intent": "Understand why game companies invest in live-service updates instead of new standalone releases and compare the benefits and risks of both models.",
+      "source_urls": [
+        "https://www.globant.com/news/globant-report-gaming-2026-game-on",
+        "https://newzoo.com/reports/newzoo-s-global-games-market-report-2026",
+        "https://dev.epicgames.com/documentation/fortnite/fortnite-developer-program-faqs-in-fortnite",
+        "https://www.latercera.com/tecnologia/noticia/las-5-tendencias-que-marcan-el-gaming-en-2026-el-fin-de-la-consola-fija-ia-y-menos-estrenos-pero-con-mayor-profundidad/"
+      ]
+    },
+    {
+      "published_at": "2026-09-15",
+      "slug": "game-streaming-tools-2026",
+      "title": "From Player to Creator: The Best Tools for Streaming Your Games in 2026",
+      "cluster": "ia",
+      "search_intent": "Choose the best software and hardware for streaming gameplay and creating social clips in 2026.",
+      "source_urls": [
+        "https://obsproject.com/",
+        "https://blog.twitch.tv/en/2026/06/17/introducing-dual-format-and-2k-streaming-on-twitch/",
+        "https://www.nvidia.com/en-us/geforce/broadcasting/broadcast-app/faq/",
+        "https://brunch.com.ar/dia-del-gamer-2026-una-comunidad-que-crece-crea-y-transforma-la-tecnologia/"
+      ]
+    },
+    {
+      "published_at": "2026-09-14",
+      "slug": "google-ad-manager-apaga-reportes-legacy",
+      "title": "Google Ad Manager apaga los reportes legacy",
+      "cluster": "adtech",
+      "search_intent": "Entender qué deja de funcionar en los reportes legacy de Google Ad Manager y cómo migrar los flujos críticos a Interactive reports.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/16071282?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-09-11",
+      "slug": "google-ad-manager-bloqueos-private-auctions",
+      "title": "Google cambiará los bloqueos en Private Auctions",
+      "cluster": "adtech",
+      "search_intent": "Entender cómo cambia el comportamiento de los bloqueos en Private Auctions de Google Ad Manager y qué deals revisar antes del 17 de septiembre de 2026.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-09-10",
+      "slug": "ia-extincion-humanidad-diez-anos",
+      "title": "¿Podría la IA acabar con la humanidad en diez años?",
+      "cluster": "ia",
+      "search_intent": "Entender a qué se refieren las noticias que advierten que la IA podría acabar con la humanidad en diez años y mediante qué mecanismos hipotéticos podría ocurrir.",
+      "source_urls": [
+        "https://transcripts.cnn.com/show/cg/date/2026-08-12/segment/02",
+        "https://safe.ai/work/statement-on-ai-extinction-risk",
+        "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+        "https://arxiv.org/abs/2306.12001",
+        "https://ai-2027.com/summary",
+        "https://www.anthropic.com/research/agentic-misalignment"
+      ]
+    },
+    {
+      "published_at": "2026-09-10",
+      "slug": "google-ad-manager-begin-to-render-impresiones",
+      "title": "Google Ad Manager cambiará cómo cuenta impresiones display",
+      "cluster": "adtech",
+      "search_intent": "Entender qué cambia con begin-to-render en Google Ad Manager y cómo estimar su impacto sobre las impresiones display.",
+      "source_urls": [
+        "https://support.google.com/admanager/answer/179039?hl=en",
+        "https://support.google.com/admanager/answer/16896667?hl=en"
+      ]
+    },
+    {
+      "published_at": "2026-09-07",
+      "slug": "chrome-scroll-un-solo-eje",
+      "title": "Chrome 153 prueba contenedores de scroll de un solo eje",
+      "cluster": "seo-performance",
+      "search_intent": "Entender qué cambia con los contenedores de scroll de un solo eje en Chrome 153 y cómo probar compatibilidad en sitios y aplicaciones web.",
+      "source_urls": [
+        "https://developer.chrome.com/blog/single-axis-scroll-containers-ready-for-testing"
+      ]
+    },
+    {
+      "published_at": "2026-09-06",
+      "slug": "google-publisher-tag-fetch-priority-refresh-bfcache",
+      "title": "Google Publisher Tag prioriza su carga y cambia el refresh al volver con bfcache",
+      "cluster": "adtech",
+      "search_intent": "Entender los cambios de Google Publisher Tag sobre fetchpriority y refresh con bfcache, y saber qué revisar en una implementación publisher.",
+      "source_urls": [
+        "https://developers.google.com/publisher-tag/release-notes"
+      ]
+    },
+    {
+      "published_at": "2026-03-19",
+      "slug": "errores-comunes-en-implementaciones-con-google-publisher-tag",
+      "title": "Errores comunes en implementaciones con Google Publisher Tag",
+      "cluster": "adtech",
+      "search_intent": "Identificar errores frecuentes de carga, slots y refresh en implementaciones con Google Publisher Tag.",
+      "source_urls": [
+        "https://developers.google.com/publisher-tag/guides/general-best-practices",
+        "https://developers.google.com/publisher-tag/guides/control-ad-loading"
+      ]
+    },
+    {
+      "published_at": "2026-03-19",
+      "slug": "como-validar-una-creatividad-html-antes-de-publicarla",
+      "title": "Cómo validar una creatividad HTML antes de publicarla",
+      "cluster": "creatividades",
+      "search_intent": "Aprender qué revisar en una creatividad HTML antes de publicarla o enviarla a trafficking.",
+      "source_urls": [
+        "https://iabtechlab.com/wp-content/uploads/2016/04/HTML5forDigitalAdvertising2.0.pdf"
+      ]
+    },
+    {
+      "published_at": "2026-03-19",
+      "slug": "como-crear-urls-con-parametros-utm-correctamente",
+      "title": "Cómo crear URLs con parámetros UTM correctamente",
+      "cluster": "tracking",
+      "search_intent": "Aprender a crear URLs con parámetros UTM sin romper la URL de destino ni fragmentar la medición.",
+      "source_urls": [
+        "https://support.google.com/analytics/answer/10917952?hl=en"
+      ]
+    }
+  ],
+  "internal_links": {
+    "products": [
+      {
+        "slug": "utm-builder",
+        "name": "UTM Builder",
+        "url": "/products/utm-builder/"
+      },
+      {
+        "slug": "creative-qa-checklist",
+        "name": "Creative QA Checklist",
+        "url": "/products/creative-qa-checklist/"
+      },
+      {
+        "slug": "creative-preview-lab",
+        "name": "Creative Preview Lab",
+        "url": "/products/creative-preview-lab/"
+      }
+    ],
+    "guides": [
+      {
+        "slug": "validar-creatividad-html",
+        "title": "How to validate an HTML creative before trafficking",
+        "url": "/validar-creatividad-html/"
+      },
+      {
+        "slug": "preview-anuncios-html",
+        "title": "HTML and rich media ad preview",
+        "url": "/preview-anuncios-html/"
+      },
+      {
+        "slug": "debug-anuncios-web",
+        "title": "How to debug web ads and visible advertising implementation",
+        "url": "/debug-anuncios-web/"
+      },
+      {
+        "slug": "debug-gpt-ads",
+        "title": "How to debug GPT Ads on a web page",
+        "url": "/debug-gpt-ads/"
+      },
+      {
+        "slug": "como-crear-utms",
+        "title": "How to create UTMs without breaking the destination URL",
+        "url": "/como-crear-utms/"
+      },
+      {
+        "slug": "auditoria-tecnica-web",
+        "title": "First pass technical web audit",
+        "url": "/auditoria-tecnica-web/"
+      },
+      {
+        "slug": "analizar-seo-pagina",
+        "title": "How to analyze the SEO of a website",
+        "url": "/analizar-seo-pagina/"
+      },
+      {
+        "slug": "errores-creatividades-display",
+        "title": "Common errors in display creatives",
+        "url": "/errores-creatividades-display/"
+      },
+      {
+        "slug": "como-validar-tags-publicitarios",
+        "title": "How to validate advertising tags and third-party tags",
+        "url": "/como-validar-tags-publicitarios/"
+      },
+      {
+        "slug": "herramientas-adtech",
+        "title": "AdTech tools for diagnosis, QA and technical preview",
+        "url": "/herramientas-adtech/"
+      }
+    ],
+    "commercial_pages": [
+      {
+        "name": "AdTech",
+        "url": "/adtech/"
+      },
+      {
+        "name": "Solutions",
+        "url": "/solutions/"
+      },
+      {
+        "name": "Contact",
+        "url": "/contact/"
+      }
+    ]
+  }
+}

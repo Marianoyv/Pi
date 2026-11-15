@@ -1,0 +1,15 @@
+.analytics-preferences-panel[hidden], [data-analytics-settings][hidden] { display: none !important; }
+.analytics-preferences-panel {
+  position: fixed; right: 24px; bottom: 24px; z-index: 2200;
+  width: min(440px, calc(100% - 32px)); padding: 24px;
+  color: var(--pi-ink); background: var(--pi-paper);
+  border: 1px solid rgba(83,109,155,.35); box-shadow: 0 12px 48px #15171618;
+}
+.analytics-preferences-panel > p:first-child { margin: 0 0 10px; font-size: 1.05rem; font-weight: 650; }
+.analytics-preferences-panel > p + p { margin: 0 0 20px; font-size: .9rem; line-height: 1.6; }
+.analytics-preferences-panel > div { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.analytics-preferences-panel button { padding: 10px 14px; border: 1px solid var(--pi-cobalt); color: var(--pi-cobalt-dark); background: transparent; font: inherit; font-size: .82rem; cursor: pointer; }
+.analytics-preferences-panel button:hover { background: #536d9b14; }
+.analytics-preferences-panel a { color: var(--pi-ink); font-size: .8rem; text-decoration: underline; }
+[data-analytics-settings] { border: 0; padding: 0; color: inherit; background: transparent; text-decoration: underline; font: inherit; cursor: pointer; }
+@media(max-width:600px) { .analytics-preferences-panel { right: 16px; bottom: 16px; padding: 20px; } }

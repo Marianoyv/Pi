@@ -1,0 +1,103 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "chrome-depreca-evento-unload",
+  "title": "Chrome 155 depreca el evento unload | Pi Development",
+  "meta_description": "Chrome 155 completó la deprecación de unload. Qué revisar en analítica, guardado de estado y bfcache para evitar pérdidas silenciosas de datos.",
+  "meta_keywords": "Chrome unload, bfcache, analítica web, ciclo de vida de página",
+  "eyebrow": "Performance · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Chrome deja de ejecutar el evento unload por defecto",
+  "description": "Chrome completó la deprecación de unload en la versión 155. Los sitios que todavía dependen de ese evento para enviar analítica, guardar estado o liberar recursos deben revisar su implementación.",
+  "summary": "Chrome 155 completa la deprecación de unload y obliga a revisar analítica, estado de sesión y compatibilidad con bfcache.",
+  "search_intent": "Entender qué deja de funcionar al deprecarse unload en Chrome y cómo migrar la analítica y el guardado de estado sin bloquear bfcache.",
+  "business_relevance": "La migración exige auditar código propio y de terceros, validar la calidad de los datos y medir el comportamiento real del ciclo de vida de la página, tareas vinculadas con diagnóstico técnico, performance y desarrollo web a medida.",
+  "target_audience": [
+    "Equipos de producto, tecnología y analítica web",
+    "Publishers digitales y responsables de monetización"
+  ],
+  "published_at": "2026-10-19",
+  "updated_at": "2026-10-19",
+  "published_datetime": "2026-10-19T09:37:40-03:00",
+  "updated_datetime": "2026-10-19T09:37:40-03:00",
+  "image": "web/img/insights/chrome-depreca-evento-unload.webp",
+  "image_alt": "Flujo de eventos de una página web con una ruta obsoleta desactivada y un circuito activo de caché de navegación, analítica y guardado de estado.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Chrome anunció el 16 de octubre de 2026 que completó la deprecación del evento unload con Chrome 155. Desde esta versión, los manejadores de unload ya no se ejecutan por defecto en Chrome y el mismo cambio quedará habilitado por defecto en el código de Chromium, salvo que otro navegador basado en ese proyecto decida modificarlo.",
+    "El cambio importa porque unload todavía aparece en implementaciones que intentan enviar el último evento de analítica, guardar información del usuario o cerrar recursos cuando la persona abandona una página. Chrome considera que ese momento nunca fue confiable, especialmente en dispositivos móviles, y que además el evento interfería con bfcache, la caché que permite restaurar una página al volver atrás o avanzar sin cargarla desde cero."
+  ],
+  "key_takeaways": [
+    "En Chrome 155, unload dejó de ejecutarse por defecto; depender de ese evento puede producir fallas silenciosas en medición, persistencia o limpieza de recursos.",
+    "La deprecación no equivale a una eliminación universal: existen excepciones temporales y Chrome en iOS usa WebKit, por lo que su comportamiento puede ser distinto.",
+    "La acción recomendada es inventariar listeners propios y de terceros, migrar cada caso al evento adecuado y medir tanto la entrega de datos como la elegibilidad para bfcache."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en Chrome 155",
+      "paragraphs": [
+        "La publicación oficial de Chrome confirma el cierre de un despliegue gradual que buscó reducir el riesgo de romper sitios existentes. A partir de Chrome 155, unload deja de dispararse por defecto incluso en situaciones en las que técnicamente podría hacerlo. El objetivo es retirar una señal que daba una falsa sensación de certeza sobre el final de una sesión de página.",
+        "Chrome informa que el uso de unload cayó del 18% de las navegaciones a menos del 4% durante el proceso. También señala que el evento pasó de ser el único bloqueo para bfcache en un 6% de las navegaciones a alrededor del 1%. Son cifras agregadas del navegador: sirven para dimensionar el cambio, pero no predicen el resultado de un sitio particular."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuál es el impacto operativo",
+      "paragraphs": [
+        "El riesgo principal recae sobre aplicaciones y sitios que todavía ejecutan trabajo crítico al abandonar la página. Entre los casos habituales están el envío final de eventos de analítica, la persistencia de formularios o estado de interfaz, y la liberación de conexiones o recursos. Si la lógica depende exclusivamente de unload, puede dejar de ocurrir sin mostrar un error visible al usuario.",
+        "Para publishers y equipos de monetización, la revisión también debe incluir etiquetas, librerías de medición y componentes de terceros. Una dependencia puede estar fuera del código principal y aun así alterar conteos de sesión, eventos de salida o procesos de reconciliación. La deprecación no demuestra por sí sola que una caída de datos provenga de unload; esa relación debe verificarse con instrumentación y pruebas controladas."
+      ]
+    },
+    {
+      "title": "Riesgos y límites del anuncio",
+      "paragraphs": [
+        "Chrome conserva mecanismos de excepción mediante Permissions Policy y políticas empresariales. Esos opt-outs pueden dar tiempo para migrar, pero no vuelven confiable al evento y el equipo de Chrome recomienda dejar de depender de él. Tampoco debe asumirse que el comportamiento es idéntico en todos los navegadores: Chrome para iOS utiliza WebKit y allí unload todavía puede ejecutarse.",
+        "beforeunload no es un reemplazo general. Tiene un propósito diferente —por ejemplo, advertir sobre cambios sin guardar— y también puede no dispararse si el sistema termina una pestaña en segundo plano. Para guardar datos o estado, Chrome recomienda evaluar visibilitychange cuando el documento pasa a hidden; para detectar una navegación, pagehide suele ser una alternativa más compatible con bfcache. La elección depende del trabajo que deba realizarse."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La migración conviene tratarla como una auditoría de comportamiento y de datos, no como un reemplazo textual de un nombre de evento. Primero hay que identificar qué intenta garantizar cada listener; luego elegir una señal coherente con ese objetivo y comprobar qué sucede cuando una página se oculta, se restaura desde bfcache, se cierra o es descartada por el sistema.",
+        "Para envíos de analítica, la prueba debería comparar volumen, duplicación y latencia antes y después del cambio. Para estado de aplicación, debe validarse que una restauración desde bfcache no reabra recursos en una condición inconsistente. Chrome DevTools incluye una prueba de Back/forward cache, y la propiedad notRestoredReasons de PerformanceNavigationTiming puede aportar evidencia sobre bloqueos observados en navegación real."
+      ],
+      "bullets": [
+        "Buscar listeners de unload en código propio, bundles y dependencias de terceros, y asignar un responsable a cada uso.",
+        "Migrar el guardado de estado a visibilitychange cuando la página pasa a hidden y usar pagehide solo cuando la navegación sea la señal relevante.",
+        "Medir pérdida o duplicación de eventos y comprobar en DevTools y telemetría si las páginas vuelven a ser elegibles para bfcache."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La deprecación de unload es, ante todo, un problema de integridad operacional. Un listener que deja de ejecutarse puede degradar métricas o persistencia sin producir una falla evidente, mientras que una migración apresurada puede duplicar señales al combinar varios eventos del ciclo de vida.",
+        "La oportunidad está en convertir una dependencia histórica en un contrato observable: definir qué dato debe sobrevivir, en qué momento puede enviarse, cómo se evita la duplicación y qué evidencia confirma que bfcache funciona. Ese enfoque separa la corrección técnica de la simple compatibilidad aparente y permite evaluar el cambio con métricas propias."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Chrome for Developers",
+      "title": "Unload event deprecated in Chrome",
+      "url": "https://developer.chrome.com/blog/unload-deprecated-in-chrome",
+      "published_at": "2026-10-16",
+      "accessed_at": "2026-10-19",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "auditoria-tecnica-web",
+    "analizar-seo-pagina"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿El evento unload dejó de existir en todos los navegadores?",
+      "answer": "No. Chrome 155 dejó de ejecutarlo por defecto y Chromium adoptará ese valor, pero existen excepciones y otros motores pueden conservar un comportamiento diferente. Chrome en iOS usa WebKit."
+    },
+    {
+      "question": "¿Qué evento reemplaza a unload para enviar analítica o guardar estado?",
+      "answer": "No hay un reemplazo único. visibilitychange al pasar a hidden suele ser la señal recomendada para persistir estado o enviar datos; pagehide puede servir para navegación. La implementación debe probar duplicación, entrega y restauración desde bfcache."
+    }
+  ]
+}

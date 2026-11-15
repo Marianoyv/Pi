@@ -1,9 +1,4 @@
-"""Structured English content for Pi Development's commercial pages.
-
-Templates render this module as the single source of truth for the current
-English site. A future Spanish edition can provide the same schema without
-duplicating copy in templates.
-"""
+"Structured English content for Pi Development's commercial pages.\n\nTemplates render this module as the single source of truth for the current\nEnglish site. A future Spanish edition can provide the same schema without\nduplicating copy in templates."
 
 from copy import deepcopy
 
@@ -17,6 +12,7 @@ HOME_PAGE = {
     ),
     "hero": {
         "eyebrow": "Custom software development · AI automation · AdTech",
+        "brand_statement": "Think clearly. Build what matters.",
         "title": "We build software for problems worth solving.",
         "description": (
             "Pi Development turns product ideas, manual operations and monetization challenges into reliable "
@@ -24,7 +20,7 @@ HOME_PAGE = {
         ),
         "primary_cta": {"label": "Discuss a project", "href": "/contact/"},
         "secondary_cta": {"label": "Explore our work", "href": "/work/"},
-        "location": "Based in Buenos Aires. Working globally.",
+        "location": "Based in Buenos Aires. Available for remote work.",
     },
     "audience": ["For founders", "Operational teams", "Digital publishers"],
     "what_we_solve": {
@@ -68,16 +64,20 @@ HOME_PAGE = {
         ),
         "items": [
             {
-                "title": "Define",
-                "text": "Clarify the users, workflow, data, constraints and expected outcome.",
+                "title": "Understand",
+                "text": "Define the problem, the people affected and the outcome that must change.",
+            },
+            {
+                "title": "Design",
+                "text": "Reduce complexity into a system that can be explained, tested and maintained.",
             },
             {
                 "title": "Build",
-                "text": "Connect product, engineering and automation in one coherent system.",
+                "text": "Create the smallest useful version capable of operating reliably and proving value.",
             },
             {
-                "title": "Improve",
-                "text": "Measure real use, remove friction and expand what proves valuable.",
+                "title": "Evolve",
+                "text": "Measure real use, learn from it and improve what proves valuable.",
             },
         ],
     },
@@ -121,30 +121,11 @@ HOME_PAGE = {
         ],
         "cta": {"label": "Explore AdTech", "href": "/adtech/"},
     },
-    "products": {
+    "tools": {
         "eyebrow": "Products",
-        "title": "Products built from recurring problems.",
-        "description": "Some problems should not be solved repeatedly. They should become products.",
-        "items": [
-            {
-                "title": "AI Auditor",
-                "text": (
-                    "Turn a URL into a clear technical baseline for metadata, structure, discoverability and "
-                    "improvement priorities."
-                ),
-                "cta": "Open AI Auditor",
-                "href": "/tools/ai-auditor/",
-            },
-            {
-                "title": "AdTech Debug Tool",
-                "text": (
-                    "Surface visible ad stack and monetization signals before beginning a deeper technical "
-                    "investigation."
-                ),
-                "cta": "Open AdTech Debug Tool",
-                "href": "/tools/adtech-debug-tool/",
-            },
-        ],
+        "title": "Working products for repeatable technical work.",
+        "description": "Maintained products with live interfaces, explicit capabilities and documented limits.",
+        "items": [],
         "cta": {"label": "Explore all products", "href": "/products/"},
     },
     "selected_work": {
@@ -161,7 +142,7 @@ HOME_PAGE = {
             },
             {
                 "slug": "blog-int-emocional",
-                "title": "Blog Int Emocional",
+                "title": "Emotional Int Blog",
                 "text": (
                     "An editorial system structured for long-form publishing, organic discovery and "
                     "maintainable content growth."
@@ -169,7 +150,7 @@ HOME_PAGE = {
             },
             {
                 "slug": "indices-argentinos",
-                "title": "Índices Argentinos",
+                "title": "Argentine Indices",
                 "text": (
                     "A financial data interface designed to make economic indicators easier to scan, compare "
                     "and understand."
@@ -296,8 +277,8 @@ SOLUTIONS_PAGE = {
     "evidence_title": "Relevant work",
     "evidence": [
         {"label": "Catalog and discovery platform", "title": "Arcade World", "href": "/work/#arcade-world"},
-        {"label": "Editorial system", "title": "Blog Int Emocional", "href": "/work/#blog-int-emocional"},
-        {"label": "Financial data interface", "title": "Índices Argentinos", "href": "/work/#indices-argentinos"},
+        {"label": "Editorial system", "title": "Emotional Int Blog", "href": "/work/#blog-int-emocional"},
+        {"label": "Financial data interface", "title": "Argentine Indices", "href": "/work/#indices-argentinos"},
     ],
     "technology_title": "Technology follows the system",
     "technology_text": (
@@ -321,35 +302,6 @@ SOLUTIONS_PAGE = {
     "cta_title": "Bring the workflow, product idea or technical bottleneck.",
     "cta_text": "We will define the smallest reliable system that can create value and keep improving.",
     "cta_label": "Discuss a project",
-}
-
-
-PRODUCTS_PAGE = {
-    "slug": "products",
-    "language": "en",
-    "seo_title": "Software Products & Public Tools | Pi Development",
-    "meta_description": (
-        "Explore live software products and public tools from Pi Development for technical audits, AdTech "
-        "diagnostics, creative QA, campaign tracking and web performance."
-    ),
-    "eyebrow": "Products",
-    "title": "Products built from recurring technical work.",
-    "description": (
-        "Pi Development turns repeated diagnostics, quality checks and operational tasks into accessible software."
-    ),
-    "intro_title": "Only usable products are published.",
-    "intro": (
-        "Every item below has a working public interface. Experimental work remains private until it provides "
-        "a clear use case and a reliable implementation."
-    ),
-    "support_title": "Publication rule",
-    "support_text": "Live tools appear publicly. Draft, private and planned products do not.",
-    "tools_eyebrow": "Live products and public tools",
-    "tools_title": "Open a tool and use it now.",
-    "tools_text": "Choose the product that matches the technical task in front of you.",
-    "cta_title": "Does your team repeat a technical check every week?",
-    "cta_text": "A recurring workflow may be ready to become an internal tool or a product.",
-    "cta_label": "Discuss a product workflow",
 }
 
 
@@ -429,9 +381,9 @@ ADTECH_PAGE = {
             {"title": "Validate", "text": "Test behavior, document limits and improve the workflow with real use."},
         ],
     },
-    "tools_eyebrow": "Public AdTech tools",
+    "tools_eyebrow": "Public AdTech products",
     "tools_title": "Begin with a focused technical check.",
-    "tools_text": "Use a live tool for an initial signal, then escalate to browser-level investigation or custom engineering when needed.",
+    "tools_text": "Use a live product for an initial signal, then escalate to browser-level investigation or custom engineering when needed.",
     "faqs": [
         {
             "question": "Does an AdTech audit replace browser and network inspection?",
@@ -455,16 +407,16 @@ ADTECH_PAGE = {
 INSIGHTS_PAGE = {
     "slug": "insights",
     "language": "en",
-    "seo_title": "Software & AdTech Insights | Pi Development",
+    "seo_title": "Spanish Software & AdTech Insights | Pi Development",
     "meta_description": (
         "Technical insights from Pi Development on AdTech, Google Publisher Tag, creative QA, publisher "
         "technology, tracking, technical SEO and web performance."
     ),
     "eyebrow": "Insights",
-    "title": "Technical writing connected to real products and services.",
+    "title": "Spanish technical guides connected to real products and services.",
     "description": (
-        "Guides and implementation notes for teams working on publisher technology, creative QA, tracking, "
-        "technical SEO and web performance."
+        "A clearly separated Spanish-language library for teams working on publisher technology, creative QA, "
+        "tracking, technical SEO and web performance."
     ),
     "intro_title": "Useful content should help someone make a better technical decision.",
     "intro": (
@@ -473,9 +425,9 @@ INSIGHTS_PAGE = {
     ),
     "support_title": "Editorial structure",
     "support_text": "Each article connects to a related tool, service or next technical step.",
-    "insights_eyebrow": "Published insights",
-    "insights_title": "Explore the current topic clusters.",
-    "insights_text": "The existing Spanish technical library remains available while the localized editorial system is expanded.",
+    "insights_eyebrow": "Spanish-language library",
+    "insights_title": "Explore the current topic clusters in Spanish.",
+    "insights_text": "All articles in this library are published in Spanish; Pi Development's commercial pages remain in English.",
     "cta_title": "Need help applying a technical guide to a real implementation?",
     "cta_text": "Share the system, URL or workflow that needs a closer review.",
     "cta_label": "Review an implementation",
@@ -485,44 +437,74 @@ INSIGHTS_PAGE = {
 COMPANY_PAGE = {
     "slug": "company",
     "language": "en",
-    "seo_title": "Company | Pi Development",
+    "seo_title": "Founder-Led Software & AdTech Studio | Pi Development",
     "meta_description": (
-        "Pi Development is an independent custom software and AdTech company based in Buenos Aires, Argentina, "
-        "working globally."
+        "Pi Development is a founder-led software and AdTech studio led by Mariano Tami in Buenos Aires, Argentina, "
+        "and available for remote work."
     ),
     "eyebrow": "Company",
-    "title": "An independent custom software and AdTech company.",
+    "title": "Founder-led, with direct technical ownership.",
     "description": (
-        "Pi Development defines, designs and builds software for product ideas, operational problems and "
-        "publisher technology. Based in Buenos Aires, Argentina, and working globally."
+        "Mariano Tami leads Pi Development and remains responsible for product definition, architecture, "
+        "implementation, deployment, measurement and ongoing improvement."
     ),
-    "intro_title": "Why Pi Development exists",
+    "intro_title": "Mariano Tami · Founder",
     "intro": (
-        "Useful software often begins between categories: a product idea that still needs definition, an "
-        "operation held together manually or a monetization problem that generic development teams do not understand."
+        "Mariano is a self-taught software developer and AdTech practitioner with experience across digital "
+        "marketing, analytics, SEO and web measurement. He works professionally in English and is a native "
+        "Spanish speaker."
     ),
-    "support_title": "Position",
-    "support_text": "Independent, technically direct and designed to grow through working software rather than inflated claims.",
+    "support_title": "Founder role",
+    "support_text": "Founder · AdTech, Web Monetization & Product Development",
     "sections": [
         {
-            "label": "Purpose",
-            "title": "Problems worth solving",
-            "description": "The work begins with a recurring problem, a clear user or an outcome that software can materially improve.",
+            "label": "Background",
+            "title": "From aviation to digital systems",
+            "description": (
+                "Before entering technology, Mariano trained in civil aviation and worked as a commercial pilot. "
+                "That background supports a systems-oriented approach to preparation, constraints, testing and clear responsibility."
+            ),
         },
         {
-            "label": "Method",
-            "title": "Product and engineering stay connected",
-            "description": "Definition, interface, architecture, automation and QA are treated as one delivery system.",
+            "label": "Transition",
+            "title": "A practical path into technology",
+            "description": (
+                "During the pandemic, Mariano began studying digital marketing, web development and programming. "
+                "His initial digital work included SEO and landing pages, followed by marketing specialist and "
+                "marketing leadership roles for a language-education organization."
+            ),
         },
         {
-            "label": "Experience",
-            "title": "Software, operations and AdTech",
-            "description": "The company combines product development with operational context and publisher-side advertising technology.",
+            "label": "Delivery",
+            "title": "Direct technical ownership",
+            "description": (
+                "Mariano personally connects problem discovery, product definition, architecture, frontend and backend "
+                "implementation, infrastructure, analytics, AdTech, QA, documentation and maintenance."
+            ),
         },
         {
-            "label": "Reach",
-            "title": "Buenos Aires. Working globally.",
-            "description": "Pi Development is based in Argentina and collaborates remotely with teams beyond the local market.",
+            "label": "Delivery model",
+            "title": "Founder-led by design",
+            "description": (
+                "Pi Development does not currently have a standing team. When a project genuinely requires additional "
+                "expertise, collaborators may be incorporated with their responsibilities made explicit."
+            ),
+        },
+        {
+            "label": "Fit",
+            "title": "Useful, maintainable and responsibly operated",
+            "description": (
+                "Pi works with people committed to building a useful product and operating it responsibly, including "
+                "founders, local businesses, operations teams, publishers and monetization teams."
+            ),
+        },
+        {
+            "label": "Availability",
+            "title": "Buenos Aires Remote",
+            "description": (
+                "Pi Development is based in Buenos Aires, Argentina, and available for remote work. Capacity is "
+                "deliberately limited and depends on the complexity and responsibilities of each project."
+            ),
         },
     ],
     "process": {
@@ -541,6 +523,359 @@ COMPANY_PAGE = {
 }
 
 
+BUSINESS_SOLUTIONS_PAGE = {
+    "slug": "business-solutions",
+    "language": "es",
+    "seo_title": "Web design for business, with strategy and marketing | Pi Development",
+    "meta_description": (
+        "Complete web design for businesses: strategy, content, experience, SEO, measurement and queries by "
+        "WhatsApp, with direct attention from Mariano Tami."
+    ),
+    "eyebrow": "Business solutions",
+    "title": "A website that explains your business, generates trust and converts interest into inquiries.",
+    "description": (
+        "It's not just about publishing a page. I connect strategy, content, design, development and "
+        "measurement so that your digital presence has a clear commercial purpose."
+    ),
+    "hero_primary_label": "Know the service",
+    "hero_secondary_label": "See plans and prices",
+    "outcomes_title": "What changes when the website is thought of as part of the business",
+    "outcomes": [
+        {
+            "number": "01",
+            "title": "Your offer is understood",
+            "text": "Information is no longer dispersed among publications, messages and repeated explanations.",
+        },
+        {
+            "number": "02",
+            "title": "Your business transmits trust",
+            "text": "You have your own space, coherent and prepared to work well on any device.",
+        },
+        {
+            "number": "03",
+            "title": "The consultation arrives better prepared",
+            "text": "Each journey leads to a clear action: write, request a quote or consult a product.",
+        },
+        {
+            "number": "04",
+            "title": "You can learn and improve",
+            "text": "Measurement allows us to observe what is visited, what is of interest and where it is advisable to continue investing.",
+        },
+    ],
+    "service_title": "A complete service, not a collection of separate tasks",
+    "service_intro": (
+        "I work directly with you to transform the reality of the business into a clear web experience, "
+        "published and ready to evolve."
+    ),
+    "service_items": [
+        {"title": "Strategy", "text": "Objective, audience, value proposition and main action before choosing technology."},
+        {"title": "Content and structure", "text": "Order of services, products, arguments and questions that a person needs to solve."},
+        {"title": "Design and development", "text": "Its own interface, responsive, accessible and built around the real route."},
+        {"title": "Marketing and conversion", "text": "Technical SEO, messages, calls to action and contact connected with a commercial intent."},
+        {"title": "Publishing and measurement", "text": "Domain, hosting, testing, Analytics and events to observe usage since launch."},
+        {"title": "Accompaniment", "text": "Explanation of decisions, clear boundaries and a maintenance option after delivery."},
+    ],
+    "ai_title": "AI can create a page. The value is in deciding which page your business needs.",
+    "ai_intro": (
+        "I use artificial intelligence when it speeds up work, but I don't delegate business understanding to it. "
+        "nor responsibility for the result."
+    ),
+    "ai_columns": [
+        {
+            "label": "Do it only with AI",
+            "items": [
+                "You receive options, drafts and code quickly.",
+                "You define what to ask for, what to keep and what to correct.",
+                "You connect domain, measurement, forms and publication.",
+                "You test, maintain and respond when something fails.",
+            ],
+        },
+        {
+            "label": "work with me",
+            "items": [
+                "First I understand the situation and reduce the complexity.",
+                "I make content, experience and technology decisions with common criteria.",
+                "I deliver the integrated, published and tested solution.",
+                "There is a person responsible before, during and after the launch.",
+            ],
+        },
+    ],
+    "marketing_title": "The web also needs a marketing base",
+    "marketing_intro": (
+        "I do not promise results that a page alone cannot guarantee. Yes I build the conditions for "
+        "make the business easier to find, understand, consult and measure."
+    ),
+    "marketing_items": [
+        {"title": "Positioning", "text": "A message that explains who the offer is for and why to choose it."},
+        {"title": "Discovery", "text": "Content and technical foundations that help search engines and people interpret the site."},
+        {"title": "Conversion", "text": "Walkthroughs and calls to action that reduce the distance to a real consultation."},
+        {"title": "Measurement", "text": "Useful events and metrics to stop deciding solely by intuition."},
+    ],
+    "intro_title": "A concrete solution, without becoming a technology specialist.",
+    "intro": (
+        "You don't need to arrive with a perfect brief or decide which platform to use. First I understand how it works "
+        "your business, I organize the information and build the smallest version that can really help you."
+    ),
+    "support_title": "Direct work",
+    "support_text": (
+        "You talk to Mariano from the first conversation to publication. The same person understands the "
+        "problem, makes technical decisions, tests the solution and monitors its evolution."
+    ),
+    "sections": [
+        {
+            "anchor": "sitio-comercial",
+            "label": "Offer 01",
+            "title": "Commercial site",
+            "description": (
+                "A professional presence to explain what you do, show confidence and facilitate a consultation."
+            ),
+            "solves": (
+                "Your business depends on social networks, recommendations or a page that no longer represents what you offer well."
+            ),
+            "for_whom": "Professionals, businesses, manufacturers, distributors and service companies.",
+            "builds": (
+                "Home page, products or services, business information, contact by WhatsApp, technical SEO "
+                "basic, measurement and mobile experience."
+            ),
+            "scope": "Content, design, development, mastering, publishing, testing and a ready base to maintain.",
+        },
+        {
+            "anchor": "catalogo-guiado",
+            "label": "Offer 02",
+            "title": "Guided digital catalog",
+            "description": (
+                "An experience that orders products, helps compare them and turns a visit into a better prepared consultation."
+            ),
+            "solves": (
+                "Your products have variants, measurements, categories or decisions that do not fit well in a list or social post."
+            ),
+            "for_whom": "Businesses with physical products, custom work, advice or personalized budgets.",
+            "builds": (
+                "Catalog, filters or categories, product sheets, recommendation tours and direct contact via WhatsApp."
+            ),
+            "scope": (
+                "Definition of the route, organization of information, interface, development, publication, testing and evolution."
+            ),
+        },
+    ],
+    "process": {
+        "title": "The difference is not generating a page. It is taking responsibility for the result.",
+        "items": [
+            {
+                "title": "Understand",
+                "text": "I listen to how the business works, what the customer needs, and where an opportunity is being missed today.",
+            },
+            {
+                "title": "Organize",
+                "text": "I turn dispersed products, services and decisions into a clear and easy-to-navigate structure.",
+            },
+            {
+                "title": "Build and test",
+                "text": "I deliver the published site, mobile responsive, measured and reviewed as a complete experience.",
+            },
+            {
+                "title": "Accompany",
+                "text": "I explain decisions, document boundaries, and can remain available when the business changes.",
+            },
+        ],
+    },
+    "deliverables_title": "What delivery may include",
+    "deliverables": [
+        "Structure and content oriented to a real query.",
+        "Responsive design for cell phone, tablet and desktop.",
+        "WhatsApp, email, domain, hosting and measurement.",
+        "Basic technical SEO, testing and delivery documentation.",
+        "A maintenance proposal according to the real scope.",
+    ],
+    "technology_title": "AI is a tool, not who is responsible for the project",
+    "technology_text": (
+        "Artificial intelligence can speed up drafts, code, and exploration. Mariano defines what is appropriate "
+        "build, reviews every decision and assumes technical responsibility for the entire delivery."
+    ),
+    "evidence_title": "Two ways to turn a business into a clear experience",
+    "evidence": [
+        {
+            "label": "Commercial site SEO and measurement",
+            "title": "Juno Metals",
+            "href": "/work/juno-metales/",
+        },
+        {
+            "label": "Catalog · recommendation and consultation",
+            "title": "Taitet",
+            "href": "/work/taitet/",
+        },
+    ],
+    "faq_title": "Questions before talking.",
+    "faqs": [
+        {
+            "question": "Why hire a person when I can create a page with AI?",
+            "answer": (
+                "If you need to experiment and have time to learn, AI may be enough. Pi provides criteria, "
+                "organization, complete implementation, testing and a responsible person when the result matters."
+            ),
+        },
+        {
+            "question": "Do I need a complete online store?",
+            "answer": (
+                "Not necessarily. Many businesses first need to present their offer well and prepare a useful consultation. "
+                "by WhatsApp. The smallest solution that resolves this path is proposed."
+            ),
+        },
+        {
+            "question": "How is the budget defined?",
+            "answer": (
+                "After a brief conversation, content, functions, responsibilities and maintenance are defined. "
+                "The proposal separates the initial project from recurring costs."
+            ),
+        },
+        {
+            "question": "Who does the work?",
+            "answer": (
+                "Mariano Tami personally leads the definition, development, testing and publishing. "
+                "Business understanding and technical responsibility are not delegated."
+            ),
+        },
+    ],
+    "labels": {
+        "problem": "Situation",
+        "for_whom": "for whom",
+        "builds": "What do I build?",
+        "scope": "What it covers",
+        "delivery": "Delivery",
+        "technology": "Judgment",
+        "evidence": "Published work",
+    },
+    "cta_title": "I chose a clear starting point.",
+    "cta_text": (
+        "The plans order scope, times and reference price. Then we confirm which option corresponds "
+        "to the reality of your business."
+    ),
+    "cta_label": "Compare plans and prices",
+}
+
+
+BUSINESS_PLANS_PAGE = {
+    "slug": "web-plans",
+    "language": "es",
+    "seo_title": "Website plans and pricing | Pi Development",
+    "meta_description": (
+        "Compare web design plans for commercial presence, digital catalogs and assisted sales, with scope, "
+        "clear reference times and prices."
+    ),
+    "eyebrow": "Website plans",
+    "title": "A clear starting point for each stage of the business.",
+    "description": (
+        "Three comparable scopes to know what you receive, how much it may cost and when it could be published. "
+        "The final proposal confirms the content and functions before starting."
+    ),
+    "plans": [
+        {
+            "slug": "presencia",
+            "name": "Presence",
+            "purpose": "To explain",
+            "price": "USD 550",
+            "price_note": "from",
+            "timeline": "10 business days",
+            "description": "To stop depending solely on social networks and present the business clearly.",
+            "features": [
+                "Up to 5 sections",
+                "Main services or products",
+                "Responsive design",
+                "WhatsApp and email",
+                "Domain and publication",
+                "Basic technical SEO",
+                "Google Analytics",
+                "1 round of adjustments",
+            ],
+            "not_included": "It does not include a complete catalog, online payments or personalized functions.",
+        },
+        {
+            "slug": "catalogo",
+            "name": "Catalog",
+            "purpose": "To display and order",
+            "price": "USD 1,100",
+            "price_note": "from",
+            "timeline": "3 weeks",
+            "featured": True,
+            "description": "To organize a broad offer and convert each product into a specific query.",
+            "features": [
+                "Everything included in Presencia",
+                "Categories and product sheets",
+                "Up to 20 starting elements",
+                "Filters or category navigation",
+                "WhatsApp from each product",
+                "Variants, measures or characteristics",
+                "Measurement of visits and contacts",
+                "2 rounds of adjustments",
+            ],
+            "not_included": "Does not include checkout, real-time inventory or complex integrations.",
+        },
+        {
+            "slug": "venta-asistida",
+            "name": "Assisted sale",
+            "purpose": "To guide and qualify",
+            "price": "USD 2,200",
+            "price_note": "from",
+            "timeline": "4 to 6 weeks",
+            "description": "For offers that need recommendation, calculation or context before quoting.",
+            "features": [
+                "Everything included in the Catalog",
+                "Guided tour of recommendation",
+                "Questions to qualify the query",
+                "Guidance calculation when feasible",
+                "Up to 50 starting items",
+                "Simple automations or integrations",
+                "Custom analytics",
+                "3 rounds of adjustments and training",
+            ],
+            "not_included": "Final logic and integrations are confirmed before closing the quote.",
+        },
+    ],
+    "common_title": "All plans include a complete delivery",
+    "common_items": [
+        "Direct work with Mariano",
+        "Defining scope before building",
+        "Responsive experience",
+        "Publishing and testing",
+        "Reported recurring costs",
+        "30 days to correct delivery errors",
+        "AI used under human supervision",
+        "Post maintenance option",
+    ],
+    "faq_title": "Before choosing a plan",
+    "faqs": [
+        {
+            "question": "Is the published price final?",
+            "answer": (
+                "It is a reference price from the scope described. Before starting, confirm in writing the "
+                "amount of content, functions, responsibilities, third party services and final price."
+            ),
+        },
+        {
+            "question": "Who prepares the texts and images?",
+            "answer": (
+                "The plan organizes and adapts the agreed material. Extensive writing, photography, visual identity or "
+                "additional production are included only when they appear in the proposal."
+            ),
+        },
+        {
+            "question": "What costs continue after publishing?",
+            "answer": (
+                "Domain, paid tools, infrastructure and maintenance are detailed separately. They are prioritized "
+                "simple options and transparent operating costs."
+            ),
+        },
+        {
+            "question": "Can I start with a plan and expand it later?",
+            "answer": (
+                "Yes. The solution is designed to evolve, but each new stage is defined and priced according to the "
+                "actual scope at that time."
+            ),
+        },
+    ],
+}
+
+
 CONTACT_PAGE = {
     "slug": "contact",
     "language": "en",
@@ -552,14 +887,19 @@ CONTACT_PAGE = {
     "eyebrow": "Contact",
     "title": "Bring the problem. We will define the right system around it.",
     "description": (
-        "A complete brief is not required. Share what needs to be launched, automated, repaired or made easier "
-        "to operate."
+        "A complete brief is not required. Share the problem, current stage and intended outcome. Mariano reviews "
+        "each commercial inquiry personally."
     ),
     "intro_title": "A useful first message is short.",
     "intro": "Tell us who the software is for, what happens today and what should work better.",
     "support_title": "Good starting points",
     "support_text": "An MVP, custom platform, internal tool, recurring operation, existing implementation or AdTech requirement.",
-    "contact_reassurance": "Your message goes directly to Pi Development. No sales sequence or formal request for proposal is required.",
+    "form_title": "Tell Mariano what needs to work better.",
+    "response_time": "Normally within 2–3 business days",
+    "contact_reassurance": (
+        "The first response will clarify fit and the appropriate next step. Submitting the form does not create a "
+        "contract or guarantee project availability."
+    ),
 }
 
 
@@ -567,8 +907,9 @@ CONTACT_PAGE = {
 ABOUT_PAGE = COMPANY_PAGE
 
 PAGE_BY_SLUG = {
+    "business-solutions": BUSINESS_SOLUTIONS_PAGE,
+    "web-plans": BUSINESS_PLANS_PAGE,
     "solutions": SOLUTIONS_PAGE,
-    "products": PRODUCTS_PAGE,
     "adtech": ADTECH_PAGE,
     "insights": INSIGHTS_PAGE,
     "company": COMPANY_PAGE,
@@ -579,14 +920,93 @@ PAGE_BY_SLUG = {
 def get_home_page(language="en"):
     if language != "en":
         raise KeyError(f"Unsupported commercial content language: {language}")
-    from .tool_availability import is_tool_available
+    from .tool_catalog import get_tools
+    from .work_content import get_home_featured_work_items
 
     page = deepcopy(HOME_PAGE)
-    page["products"]["items"] = [
-        item
-        for item in page["products"]["items"]
-        if not item.get("href", "").startswith("/tools/")
-        or is_tool_available(item["href"].strip("/").split("/")[-1])
+    page["meta_description"] = (
+        "Founder-led product development, operational software and AdTech engineering from Buenos Aires, "
+        "available for remote work."
+    )
+    page["hero"].update(
+        {
+            "eyebrow": "Product Development · Operational Software · AdTech Engineering",
+            "description": (
+                "Founder-led product and engineering work for useful software, real business operations and "
+                "publisher monetization workflows."
+            ),
+            "location": "Based in Buenos Aires. Available for remote work.",
+        }
+    )
+    page["audience"] = ["For founders", "Operations teams", "Publishers and monetization teams"]
+    page["what_we_solve"].update(
+        {
+            "title": "Three connected commercial specialties.",
+            "description": "Software and measurement shaped around the way the work actually operates.",
+            "items": [
+                {
+                    "title": "Product Development",
+                    "text": "Custom web products and maintainable MVPs built around a defined problem and real users.",
+                    "href": "/solutions/#product-development",
+                },
+                {
+                    "title": "Operational Software",
+                    "text": "Internal tools, integrations and controlled automation for recurring business processes.",
+                    "href": "/solutions/#operational-software",
+                },
+                {
+                    "title": "AdTech Engineering",
+                    "text": "Publisher monetization, Google Ad Manager and GPT workflows, creative QA and technical debugging.",
+                    "href": "/adtech/",
+                },
+            ],
+        }
+    )
+    page["why_pi"].update(
+        {
+            "title": "Founder-led from discovery to maintenance.",
+            "description": (
+                "Every engagement stays directly connected to product decisions, implementation, measurement "
+                "and technical responsibility."
+            ),
+            "items": [
+                {"title": "Direct ownership", "text": "The founder who defines the problem also leads the technical delivery."},
+                {"title": "Responsible fit", "text": "Projects are selected for useful outcomes, maintainability and responsible operation."},
+                {"title": "Deliberate capacity", "text": "Capacity stays limited and is assessed according to project complexity."},
+            ],
+        }
+    )
+    page["tools"].update(
+        {
+            "eyebrow": "Products",
+            "title": "Working products for repeatable technical work.",
+            "description": "Maintained products with live interfaces, explicit capabilities and documented limits.",
+            "items": [
+                {
+                    "title": tool["name"],
+                    "text": tool["summary"],
+                    "cta": tool["cta_label"],
+                    "href": f"/products/{tool['slug']}/",
+                }
+                for tool in get_tools()
+            ],
+            "cta": {"label": "Explore all products", "href": "/products/"},
+        }
+    )
+    page["selected_work"]["items"] = [
+        {
+            "slug": item["slug"],
+            "title": item["name"],
+            "text": item["home_summary"],
+            "href": item["internal_url"],
+            "image": item["poster"],
+            "metrics": item["metrics"],
+            "project_type": item["project_type"],
+            "status": item.get("home_status", "Live"),
+            "visual_note_primary": item["project_type"],
+            "visual_note_secondary": item["timeline_label"],
+        }
+        for item in get_home_featured_work_items()
     ]
     return page
 
@@ -594,4 +1014,79 @@ def get_home_page(language="en"):
 def get_company_page(slug, language="en"):
     if language != "en":
         raise KeyError(f"Unsupported commercial content language: {language}")
-    return deepcopy(PAGE_BY_SLUG[slug])
+    page = deepcopy(PAGE_BY_SLUG[slug])
+    if slug == "solutions":
+        from .work_content import get_featured_work_items
+
+        page.update(
+            {
+                "seo_title": "Product Development, Operational Software & AdTech | Pi Development",
+                "meta_description": (
+                    "Founder-led product development, operational software and AdTech engineering for useful, maintainable systems."
+                ),
+                "title": "Three commercial pillars, one direct delivery path.",
+                "description": (
+                    "Product development, operational software and AdTech engineering for useful systems connected "
+                    "to real business processes."
+                ),
+                "sections": [
+                    {
+                        "anchor": "product-development",
+                        "label": "Product",
+                        "title": "Product Development",
+                        "description": "Custom web products and lean MVPs built around a useful, maintainable core.",
+                        "solves": "A business or product idea needs a working digital system rather than a decorative site.",
+                        "for_whom": "Founders and established local businesses improving discovery, lead capture and service delivery.",
+                        "builds": "Django and JavaScript applications, structured websites, portals and measured MVPs.",
+                        "scope": "Discovery, definition, architecture, implementation, deployment, analytics, QA and maintenance.",
+                    },
+                    {
+                        "anchor": "operational-software",
+                        "label": "Operations",
+                        "title": "Operational Software",
+                        "description": "Purpose-built tools and automation connected to recurring business processes.",
+                        "solves": "Important work depends on fragmented tools, manual handoffs or repeated checks.",
+                        "for_whom": "Operations teams and businesses digitizing processes that currently happen primarily offline.",
+                        "builds": "Internal tools, integrations, dashboards and controlled automation; AI is used only where suitable.",
+                        "scope": "Workflow mapping, roles, data, safeguards, implementation, documentation and ongoing improvement.",
+                    },
+                    {
+                        "anchor": "adtech-engineering",
+                        "label": "Monetization",
+                        "title": "AdTech Engineering",
+                        "description": "Publisher technology and monetization workflows with direct technical context.",
+                        "solves": "Ad serving, creative QA or revenue operations need clearer systems and evidence-led debugging.",
+                        "for_whom": "Publishers, AdOps teams and monetization teams.",
+                        "builds": "Google Ad Manager and GPT implementations, Prebid workflows, creative QA and operational tools.",
+                        "scope": "Inspection, architecture, implementation, browser-level QA, measurement and documentation.",
+                    },
+                ],
+                "evidence": [
+                    {
+                        "label": item["category"],
+                        "title": item["name"],
+                        "href": item["internal_url"],
+                    }
+                    for item in get_featured_work_items()
+                ],
+                "faqs": [
+                    {
+                        "question": "How are hosting and ongoing maintenance handled?",
+                        "answer": (
+                            "Hosting and maintenance are quoted separately according to actual infrastructure, storage, "
+                            "usage, integrations and support requirements. Pi designs for durable systems with lean, "
+                            "transparent recurring operating costs."
+                        ),
+                    },
+                    {
+                        "question": "Where does AI fit?",
+                        "answer": "AI is a capability used within suitable software and automation workflows, with explicit quality and review boundaries.",
+                    },
+                    {
+                        "question": "What makes a project a good fit?",
+                        "answer": "A good fit is committed to a useful, maintainable product and to operating it responsibly after launch.",
+                    },
+                ],
+            }
+        )
+    return page

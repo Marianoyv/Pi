@@ -1,0 +1,104 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-depreca-wta-video",
+  "title": "Google Ad Manager depreca &wta en video | Pi Development",
+  "meta_description": "Google Ad Manager deja de usar &wta en anuncios in-stream. Qué deben validar los publishers con reproductores propios para mostrar íconos VAST.",
+  "meta_keywords": "Google Ad Manager, wta, VAST Icons, anuncios de video, IMA SDK",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager depreca &wta en anuncios de video",
+  "description": "Ad Manager ya ignora el parámetro &wta en solicitudes in-stream de video y audio. El cambio concentra la señalización de disclosures en VAST <Icons> y obliga a revisar los reproductores personalizados.",
+  "summary": "Ad Manager ignora &wta y traslada el badging de anuncios in-stream a VAST <Icons>; los players propios necesitan una prueba específica.",
+  "search_intent": "Entender qué cambia al deprecarse &wta en Google Ad Manager y cómo validar que un reproductor propio muestre los íconos VAST.",
+  "business_relevance": "Publishers y plataformas con players propios pueden necesitar una auditoría de tags, respuestas VAST y renderizado para evitar una implementación incompleta de disclosures publicitarios.",
+  "target_audience": [
+    "Publishers digitales con inventario de video o audio in-stream",
+    "Equipos de AdOps, monetización y desarrollo que mantienen reproductores propios"
+  ],
+  "published_at": "2026-10-05",
+  "updated_at": "2026-10-05",
+  "published_datetime": "2026-10-05T20:03:15-03:00",
+  "updated_datetime": "2026-10-05T20:03:15-03:00",
+  "image": "web/img/insights/google-ad-manager-depreca-wta-video.webp",
+  "image_alt": "Flujo técnico que reemplaza un parámetro obsoleto por un ícono de disclosure dentro de un reproductor de video.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google Ad Manager informó el 5 de octubre de 2026 que deprecó el parámetro de tag &wta para solicitudes in-stream de video y audio. Según las notas de versión, Ad Manager ya ignora ese valor y entrega los disclosures o distintivos obligatorios, como AdChoices, mediante elementos estándar VAST <Icons> incluidos en la respuesta publicitaria.",
+    "El serving no se corta por conservar &wta: Google aclara que los tags existentes continúan funcionando. El punto operativo está en otro lugar. Cuando un publisher usa un reproductor personalizado, ese player debe interpretar y mostrar correctamente los elementos VAST <Icons>. Quienes usan Google IMA SDK cuentan con ese renderizado automático, de acuerdo con la misma publicación."
+  ],
+  "key_takeaways": [
+    "Ad Manager ignora &wta en las solicitudes in-stream; mantenerlo en la URL ya no controla el badging.",
+    "Google IMA SDK renderiza los íconos VAST automáticamente, pero un player propio debe demostrar que soporta el flujo completo.",
+    "La acción prioritaria es probar respuestas reales de Ad Manager y verificar visualmente disclosure, clic y fallback en cada entorno soportado."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en Google Ad Manager",
+      "paragraphs": [
+        "Hasta ahora, &wta se utilizaba para indicar si el reproductor podía renderizar el distintivo asociado a \"Why this ad?\". La nota de octubre elimina esa función de control: Ad Manager ignora el parámetro y estandariza la entrega del badging por medio de VAST <Icons>. El anuncio abarca solicitudes in-stream tanto de video como de audio.",
+        "Esto separa dos asuntos que conviene no mezclar. La URL puede seguir conteniendo &wta sin impedir que el anuncio se sirva, pero su valor dejó de decidir el comportamiento. La capacidad relevante pasa a ser la del cliente que consume la respuesta VAST: tiene que reconocer el elemento, presentar el recurso correspondiente y resolver la interacción prevista."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuál es el impacto operativo",
+      "paragraphs": [
+        "El impacto es bajo para implementaciones basadas en Google IMA SDK, porque Google afirma que el SDK renderiza los íconos automáticamente. Aun así, conviene confirmar la versión desplegada y probar los entornos reales: web, aplicaciones, CTV o audio pueden tener ciclos de actualización, wrappers y capas de integración distintos.",
+        "El riesgo es mayor en reproductores propios, integraciones sin SDK y pipelines que transforman o filtran XML VAST. Un parser puede aceptar el anuncio y reproducir el media file, pero omitir el bloque de íconos, su recurso, el destino de clic o una imagen de fallback. En ese caso la monetización puede parecer normal mientras el disclosure visible queda incompleto."
+      ]
+    },
+    {
+      "title": "Límites de lo anunciado",
+      "paragraphs": [
+        "Google no anunció que deban eliminarse de inmediato todos los parámetros &wta ni que los tags que todavía los contienen fallen. La nota dice expresamente que continúan sirviendo. Tampoco publica en este anuncio métricas sobre impacto en ingresos, fill rate o latencia, por lo que no corresponde atribuir mejoras comerciales automáticas al cambio.",
+        "La publicación tampoco reemplaza una validación regulatoria o de políticas para cada mercado. VAST <Icons> define un mecanismo técnico de entrega y presentación; no demuestra por sí solo que todos los disclosures exigidos se vean, sean accesibles o cumplan las obligaciones aplicables en cada dispositivo y jurisdicción."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La revisión debería seguir la respuesta completa y no limitarse a buscar &wta en la URL. Pi recomienda capturar una solicitud real de cada familia de player, inspeccionar el VAST devuelto y contrastarlo con lo que finalmente ve y puede accionar una persona. La evidencia útil es una combinación de XML, logs del parser y registro visual del reproductor."
+      ],
+      "bullets": [
+        "Inventariar qué players usan IMA SDK y cuáles interpretan VAST con código propio o de terceros.",
+        "Confirmar que el parser conserva VAST <Icons>, sus recursos, la interacción de clic y cualquier fallback aplicable.",
+        "Probar preroll, midroll y audio en los dispositivos soportados, incluyendo wrappers o respuestas encadenadas.",
+        "Registrar errores de parsing, ausencia visual del ícono y diferencias entre la respuesta VAST y el render final.",
+        "Tratar la eliminación de &wta como limpieza posterior a la validación, no como sustituto de la prueba."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La lectura de Pi es que Google está moviendo una decisión propietaria del query string hacia una capacidad declarada en el estándar que consume el player. Eso reduce la importancia de un flag específico de Ad Manager, pero aumenta la responsabilidad de las implementaciones que no delegan el renderizado en IMA.",
+        "La prueba correcta no es comprobar que el video arranca ni que la impresión aparece en un reporte. Es verificar que la cadena completa conserva y presenta la información del ícono. Para equipos con múltiples players o proveedores, esta deprecación es una buena oportunidad para convertir esa comprobación en un caso de QA repetible antes de retirar parámetros legacy."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager",
+      "title": "What’s new in Google Ad Manager — Release notes for October 5, 2026",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-05",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "como-validar-tags-publicitarios",
+    "debug-gpt-ads"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Hay que quitar &wta de todos los tags de Google Ad Manager?",
+      "answer": "No de forma urgente. Google indica que los tags existentes continúan sirviendo, aunque Ad Manager ignora el parámetro. Primero conviene validar VAST <Icons> y después retirar el parámetro como limpieza controlada."
+    },
+    {
+      "question": "¿Google IMA SDK muestra automáticamente los íconos VAST?",
+      "answer": "Sí, la nota de Google dice que IMA SDK los renderiza automáticamente. Los publishers deberían confirmar la versión y probar cada plataforma; los reproductores personalizados requieren una validación específica."
+    }
+  ]
+}

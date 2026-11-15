@@ -1,0 +1,130 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "interop-2027-agentes-codigo",
+  "title": "Interop 2027 y agentes de código | Pi Development",
+  "meta_description": "web.dev propone usar agentes de código para detectar brechas entre navegadores y priorizar propuestas de Interop 2027 antes del 23 de septiembre.",
+  "meta_keywords": "Interop 2027, agentes de código, compatibilidad entre navegadores, Baseline, Web Platform Tests",
+  "eyebrow": "Desarrollo web · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Interop 2027 propone auditar la web con agentes de código",
+  "description": "web.dev publicó un flujo para detectar incompatibilidades, polyfills y workarounds con un agente de código. La ventana para apoyar o presentar propuestas de Interop 2027 cierra el 23 de septiembre.",
+  "summary": "Un flujo asistido por IA ayuda a encontrar brechas entre navegadores y priorizar propuestas para Interop 2027.",
+  "search_intent": "Entender cómo usar un agente de código para auditar compatibilidad web y priorizar propuestas de Interop 2027.",
+  "business_relevance": "Una auditoría de compatibilidad puede identificar librerías, polyfills y código de mantenimiento que encarecen un producto web, y convertir esos hallazgos en un plan concreto de modernización y pruebas.",
+  "target_audience": [
+    "Equipos de producto, tecnología y operaciones con aplicaciones web",
+    "Empresas que necesitan auditoría, automatización o modernización de software"
+  ],
+  "published_at": "2026-09-20",
+  "updated_at": "2026-09-20",
+  "published_datetime": "2026-09-20T15:46:45-03:00",
+  "updated_datetime": "2026-09-20T15:46:45-03:00",
+  "image": "web/img/insights/interop-2027-agentes-codigo.webp",
+  "image_alt": "Paneles de navegador convergen mediante un sistema de análisis que compara código, pruebas y compatibilidad.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "web.dev publicó el 18 de septiembre de 2026 una guía para usar agentes de código en la detección de brechas de interoperabilidad de la plataforma web. La propuesta combina una auditoría de Baseline en Lighthouse con una búsqueda de polyfills, librerías de compatibilidad, bloques @supports y soluciones personalizadas, y luego contrasta los hallazgos con las propuestas abiertas de Interop 2027.",
+    "La publicación llega con una fecha concreta: el período para apoyar o presentar propuestas cierra el 23 de septiembre. El hecho verificable es la disponibilidad del flujo y la convocatoria. No implica que un agente pueda decidir qué funciones adoptarán los navegadores ni que sus hallazgos sean suficientes para presentar una propuesta sin revisión humana."
+  ],
+  "key_takeaways": [
+    "web.dev sugiere auditar un proyecto real para relacionar código de compatibilidad con propuestas abiertas de Interop 2027.",
+    "Una propuesta necesita especificación estable, pruebas Web Platform Tests suficientes y evidencia verificable; el resultado de un agente no reemplaza esos requisitos.",
+    "La acción inmediata es priorizar las brechas que más código o librerías permitirían eliminar y revisar manualmente la evidencia antes del 23 de septiembre."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "La novedad no es una nueva API del navegador, sino un método operativo para participar en Interop 2027. web.dev propone que un agente examine el repositorio, ejecute una auditoría de funciones Baseline con Lighthouse y localice señales de deuda de compatibilidad: polyfills, wrappers, condiciones @supports y soluciones JavaScript creadas para compensar diferencias entre motores.",
+        "Después, el flujo compara esos hallazgos con las propuestas abiertas del repositorio de Interop. El resultado esperado separa tres grupos: funciones que ya usa el proyecto, propuestas existentes que convendría apoyar y brechas que todavía podrían justificar una propuesta nueva. La recomendación es ordenar los casos por impacto estimado, medido en código o dependencias que podrían eliminarse si la función fuera interoperable."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El llamado es relevante para equipos que mantienen productos web con una matriz amplia de navegadores, especialmente cuando la compatibilidad agrega dependencias, ramas condicionales o pruebas manuales. También puede servir a agencias, plataformas de contenido y publishers que sostienen interfaces de larga vida y no siempre tienen inventariado por qué existe cada workaround.",
+        "Para esos equipos, el valor inmediato no depende de que una propuesta sea elegida para Interop 2027. La auditoría puede revelar decisiones históricas sin documentación, funciones que ya alcanzaron Baseline y código que quizá dejó de ser necesario. Ese inventario permite separar una limitación vigente de una precaución que quedó congelada en el proyecto."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "El método convierte un problema difuso —la compatibilidad entre navegadores— en evidencia rastreable. Cada hallazgo debería conectar una ocurrencia de código con una función de la plataforma, su estado de soporte, las pruebas existentes y, cuando corresponda, una propuesta pública. Esa trazabilidad es más útil que un listado genérico de APIs modernas porque permite estimar esfuerzo de mantenimiento y riesgo de regresión sobre el producto real.",
+        "También abre una forma concreta de priorización. Un polyfill grande usado en una ruta crítica, una diferencia que rompe accesibilidad o un workaround repetido en varios componentes merece más atención que una función atractiva sin incidencia actual. La salida del agente puede acelerar el relevamiento, pero la prioridad final necesita contexto de producto, métricas de uso y pruebas en los navegadores que importan al negocio."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "Interop no es un canal para inventar funciones nuevas ni para resolver desacuerdos de estandarización. La guía oficial exige que las áreas propuestas tengan una especificación reconocida y cobertura suficiente en Web Platform Tests; además, valora evidencia de roturas, workarounds, demanda de desarrolladores e impacto visible sobre compatibilidad.",
+        "Hay otro límite explícito: las propuestas deben ser escritas por personas. El repositorio permite incluir texto generado por un modelo solo bajo el formato indicado por su política, y puede cerrar presentaciones que no la respeten. Por eso, copiar la salida de un agente y enviarla como evidencia sería una mala implementación del propio consejo de web.dev.",
+        "Tampoco debe asumirse que detectar un polyfill prueba que el navegador todavía carece de soporte. Puede existir por versiones antiguas, por una configuración de compilación o por requisitos específicos del proyecto. Antes de removerlo o convertirlo en argumento público hay que reproducir el caso, verificar soporte actual y ejecutar pruebas de regresión."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "Con el cierre del 23 de septiembre, conviene hacer una pasada acotada y verificable en lugar de intentar cubrir toda la plataforma. Una muestra de rutas críticas suele alcanzar para detectar si existe una brecha repetida y reunir evidencia útil para apoyar una propuesta existente.",
+        "Si el plazo no permite construir una propuesta sólida, apoyar y comentar un caso ya abierto puede ser más útil que presentar uno incompleto. Después del cierre, el inventario sigue sirviendo como backlog técnico para modernización y para ajustar la matriz de pruebas."
+      ],
+      "bullets": [
+        "Ejecutar Lighthouse con la auditoría de Baseline y registrar funciones no interoperables que aparecen en rutas reales.",
+        "Buscar polyfills, wrappers, @supports y comentarios de compatibilidad, y asociar cada caso con una prueba reproducible.",
+        "Comparar los hallazgos con las propuestas abiertas y priorizar por código eliminado, impacto visible y riesgo operativo.",
+        "Confirmar especificación, cobertura en Web Platform Tests y posición de los motores antes de proponer una nueva área.",
+        "Hacer que una persona revise y redacte cualquier aporte; no enviar automáticamente la salida del agente."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La lectura de Pi es que el aporte más valioso del flujo no está en producir más propuestas, sino en relacionar deuda técnica con el estado real de la plataforma. En muchos proyectos, la compatibilidad se trata como una capa permanente y poco observable. Un agente puede reducir el costo de encontrar patrones dispersos y preparar una primera matriz de evidencia.",
+        "Esa automatización solo es confiable si termina en una verificación reproducible: archivo y línea afectados, navegador donde falla, prueba que demuestra la diferencia y costo concreto del workaround. Sin esa cadena, la lista puede parecer precisa y aun así mezclar incompatibilidades actuales con código heredado o falsos positivos.",
+        "La acción recomendada es tomar una ruta crítica, medir cuántas excepciones de compatibilidad contiene y validar las dos o tres de mayor impacto. Si coinciden con propuestas abiertas, aportar evidencia antes del 23 de septiembre. Si no coinciden, conservar el relevamiento como base para pruebas, simplificación de dependencias y decisiones de modernización."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "web.dev",
+      "title": "Find features to support for Interop 2027 with your coding agent",
+      "url": "https://web.dev/blog/coding-agents-interop-proposals",
+      "published_at": "2026-09-18",
+      "accessed_at": "2026-09-20",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "web.dev",
+      "title": "Submit your proposals for Interop 2027",
+      "url": "https://web.dev/blog/interop-2027-proposals",
+      "published_at": "2026-09-03",
+      "accessed_at": "2026-09-20",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "web-platform-tests",
+      "title": "Interop Proposers Guide",
+      "url": "https://github.com/web-platform-tests/interop/blob/main/proposal_guide.md",
+      "published_at": "2026-09-03",
+      "accessed_at": "2026-09-20",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "auditoria-tecnica-web",
+    "analizar-seo-pagina"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Cómo puede un agente de código ayudar con Interop 2027?",
+      "answer": "Puede buscar polyfills, wrappers, bloques @supports y workarounds, relacionarlos con el estado Baseline y comparar los hallazgos con propuestas abiertas. La evidencia y la redacción final deben revisarse manualmente."
+    },
+    {
+      "question": "¿Hasta cuándo se pueden presentar propuestas para Interop 2027?",
+      "answer": "El período de propuestas termina el 23 de septiembre de 2026. Una propuesta debe apoyarse en una especificación reconocida, pruebas suficientes y evidencia concreta de problemas de interoperabilidad."
+    }
+  ]
+}

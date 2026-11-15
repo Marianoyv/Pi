@@ -8,7 +8,7 @@
     <p class="tool-card__summary">{{ tool.summary }}</p>
     {% if tool.recommended_for %}
     <div class="tool-card__meta">
-      <p class="tool-card__meta-label">Útil para</p>
+      <p class="tool-card__meta-label">Useful for</p>
       <ul class="tool-inline-list tool-inline-list--compact">
         {% for item in tool.recommended_for|slice:":2" %}
         <li>{{ item }}</li>
@@ -16,7 +16,7 @@
       </ul>
     </div>
     {% endif %}
-    <p class="tool-card__meta-label">Salida principal</p>
+    <p class="tool-card__meta-label">Primary output</p>
     <ul class="tool-card__list">
       {% for item in tool.outputs|slice:":3" %}
       <li>{{ item }}</li>
@@ -24,6 +24,6 @@
     </ul>
   </div>
   <div class="tool-card__cta">
-    <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.cta_label }}</a>
+    <a class="button-link button-link--dark" href="{% url 'product_detail' slug=tool.slug %}">{{ tool.cta_label }}</a>
   </div>
 </article>

@@ -1,0 +1,118 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "omsdk-javascript-aislado-android",
+  "title": "OM SDK usa JavaScript aislado en Android | Pi Development",
+  "meta_description": "OM SDK 1.6.10 permite ejecutar verificaciones nativas en un sandbox de Android. Qué cambia, cuáles son sus límites y cómo probar la migración.",
+  "meta_keywords": "OM SDK Android, JavaScriptEngine, medición de anuncios, publicidad in-app",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "OM SDK aísla JavaScript para medir anuncios en Android",
+  "description": "IAB Tech Lab incorporó en OM SDK 1.6.10 una ejecución aislada y opt-in para los scripts de verificación de sesiones publicitarias nativas. La alternativa reduce el costo de iniciar un WebView, pero exige validar compatibilidad, ciclo de vida y fallback antes de adoptarla.",
+  "summary": "OM SDK 1.6.10 suma un sandbox de JavaScript para sesiones nativas en Android y mantiene WebView como fallback.",
+  "search_intent": "Entender cómo usar JavaScriptEngine con OM SDK 1.6.10 en Android, qué sesiones admite y qué medir antes de reemplazar el ejecutor basado en WebView.",
+  "business_relevance": "Publishers de apps, equipos de AdOps móviles y proveedores de SDK pueden necesitar revisar una integración de medición que afecta recursos, estabilidad y observabilidad durante la carga de anuncios nativos.",
+  "target_audience": [
+    "Publishers y equipos de monetización de aplicaciones Android",
+    "Equipos de AdOps, mobile engineering y proveedores de SDK publicitarios"
+  ],
+  "published_at": "2026-10-04",
+  "updated_at": "2026-10-04",
+  "published_datetime": "2026-10-04T12:15:14-03:00",
+  "updated_datetime": "2026-10-04T12:15:14-03:00",
+  "image": "web/img/insights/omsdk-javascript-aislado-android.webp",
+  "image_alt": "Teléfono con anuncios nativos conectado a un módulo aislado que procesa señales de medición",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "IAB Tech Lab publicó el 1 de octubre de 2026 una opción nueva en Open Measurement SDK para Android 1.6.10: los scripts de verificación de sesiones de anuncios nativos pueden ejecutarse mediante Jetpack JavaScriptEngine en un proceso aislado, en lugar de requerir un WebView interno. La integración es opt-in y apunta a reducir el costo de inicialización y a separar una falla del motor JavaScript del proceso principal de la aplicación.",
+    "El cambio no reemplaza WebView en todos los casos. OM SDK conserva el ejecutor anterior como fallback cuando el sandbox no está disponible o el proveedor no entrega una instancia a tiempo. Además, las sesiones HTML/JavaScript en las que el integrador aporta su propio WebView todavía no admiten JavaScriptEngine. Por eso la decisión correcta no es activar la opción de forma general, sino probarla en el tipo de sesión, los dispositivos y el tráfico que realmente usa cada aplicación."
+  ],
+  "key_takeaways": [
+    "OM SDK Android 1.6.10 permite que las verificaciones de sesiones nativas usen Jetpack JavaScriptEngine fuera del proceso principal de la app.",
+    "La función es opcional, requiere API 26 o superior con soporte disponible y vuelve automáticamente a WebView cuando el sandbox no puede usarse.",
+    "Antes de ampliar el rollout conviene comparar tiempo de creación de sesión, frames lentos, fallos del sandbox y continuidad de la medición por tipo de dispositivo."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en OM SDK 1.6.10",
+      "paragraphs": [
+        "Hasta esta versión, OM SDK ejecutaba los scripts de verificación de sesiones nativas dentro de un WebView interno. La versión 1.6.10 agrega la posibilidad de entregar a OM SDK un JavaScriptSandbox conectado y ejecutar esos scripts con la biblioteca androidx.javascriptengine. Android documenta JavaScriptEngine como una alternativa para evaluar JavaScript no interactivo sin crear un WebView y mantener esa ejecución en un proceso separado.",
+        "La activación requiere actualizar OM SDK, incorporar la dependencia de JavaScriptEngine, crear la conexión con JavaScriptSandbox y exponerla durante Omid.activate mediante un JavaScriptSandboxProvider. IAB Tech Lab indica que la instancia debe mantenerse durante la vida de la aplicación. Esto coincide con la documentación de Android: solo puede existir un JavaScriptSandbox por app, aunque dentro de él puedan crearse varios entornos aislados."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "La novedad es relevante para aplicaciones Android que muestran anuncios nativos y usan OM SDK para habilitar medición y verificación independientes. El trabajo técnico recae sobre quienes integran OM SDK o distribuyen un SDK publicitario; AdOps y monetización deberían participar en la validación porque una migración incompleta puede alterar la cobertura de medición aunque la interfaz visible del anuncio no cambie.",
+        "No es una migración aplicable a todas las sesiones. IAB Tech Lab aclara que las sesiones HTML/JavaScript con un WebView provisto por el integrador todavía quedan fuera. Tampoco basta con que el dispositivo use Android moderno: Android exige comprobar JavaScriptSandbox.isSupported(), y el soporte en API 26 o superior también depende de la implementación de WebView presente en el equipo."
+      ]
+    },
+    {
+      "title": "Impacto operativo y evidencia disponible",
+      "paragraphs": [
+        "En el benchmark publicado por IAB Tech Lab, realizado con un dispositivo de gama baja y diez iteraciones de arranque en frío, la primera sesión tardó una mediana de 11,07 ms con JavaScriptEngine frente a 268,51 ms con WebView. El frame overrun P99 fue de 119,08 ms con el sandbox, cerca del baseline sin sesión OM de 114,51 ms; con WebView fue de 589,07 ms.",
+        "Esos números muestran una diferencia importante en ese entorno, pero no constituyen una garantía universal de rendimiento. La publicación no presenta una muestra amplia de modelos, versiones de WebView, cargas publicitarias o condiciones de producción. Cada integración debería repetir la comparación con su propia telemetría y verificar al mismo tiempo que los eventos de medición continúan llegando con la cobertura esperada."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "El aislamiento reduce el impacto de un crash o de un exceso de memoria dentro del sandbox sobre el proceso principal, pero no elimina la necesidad de manejar fallos. La documentación de Android contempla terminaciones del sandbox y excepciones específicas; además, las capacidades disponibles pueden variar según la implementación subyacente. La app debe consultar soporte antes de crear la instancia y conservar un camino operativo cuando no esté disponible.",
+        "El fallback automático de OM SDK evita romper sesiones por falta del sandbox, pero también puede ocultar una adopción parcial si el equipo no registra qué ejecutor se utilizó. Sin esa observabilidad, una mejora aparente en promedios globales puede mezclar dispositivos con JavaScriptEngine y dispositivos que siguen pagando el costo de WebView. Tampoco corresponde extrapolar el benchmark a ingresos, viewability o latencia de toda la carga publicitaria: la prueba mide el costo de crear la sesión en un escenario específico."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción recomendada es preparar una prueba controlada sobre sesiones nativas, empezando por una cohorte pequeña de dispositivos compatibles. El criterio de éxito debe combinar rendimiento, estabilidad y continuidad de medición; reducir tiempo de arranque no alcanza si aparecen pérdidas de eventos o fallos de ciclo de vida.",
+        "Antes de ampliar el porcentaje, conviene documentar quién crea y cierra la única instancia permitida, cómo se recupera la app después de una terminación del sandbox y cómo se identifica el fallback a WebView. La comparación debe separar al menos versión de Android, versión de WebView, gama del dispositivo y formato publicitario."
+      ],
+      "bullets": [
+        "Confirmar OM SDK Android 1.6.10 o posterior y limitar la prueba inicial a sesiones nativas.",
+        "Comprobar JavaScriptSandbox.isSupported() antes de crear la instancia y definir su ciclo de vida a nivel de aplicación.",
+        "Medir creación de la primera sesión, frames lentos, crashes o terminaciones, uso de memoria, fallback a WebView y continuidad de eventos OM.",
+        "Comparar una cohorte con JavaScriptEngine contra un control equivalente antes de extender el rollout."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La lectura de Pi es que el valor principal no está solo en reemplazar un componente pesado, sino en separar mejor responsabilidades. La medición publicitaria deja de depender necesariamente de una vista web creada para ejecutar scripts no interactivos y obtiene un límite de proceso más claro. Esa arquitectura puede ser especialmente útil en dispositivos modestos y en pantallas donde varias sesiones coinciden.",
+        "También obliga a tratar el fallback como parte del producto, no como una excepción invisible. Una implementación sólida debería poder responder qué porcentaje de sesiones usa cada ejecutor, dónde falla el sandbox y si la cobertura de verificación se mantiene. Con esos datos, la migración puede decidirse por evidencia propia y no por una cifra de laboratorio aislada."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "IAB Tech Lab",
+      "title": "Improving OM SDK Performance & Reliability on Android with Sandboxed JavaScript Execution",
+      "url": "https://iabtechlab.com/improving-om-sdk-performance-reliability-on-android-with-sandboxed-javascript-execution/",
+      "published_at": "2026-10-01",
+      "accessed_at": "2026-10-04",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Android Developers",
+      "title": "Executing JavaScript and WebAssembly",
+      "url": "https://developer.android.com/develop/ui/views/layout/webapps/jsengine",
+      "published_at": "2026-02-26",
+      "accessed_at": "2026-10-04",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "herramientas-adtech"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿OM SDK 1.6.10 elimina WebView en Android?",
+      "answer": "No. JavaScriptEngine es opcional para sesiones nativas y OM SDK vuelve al ejecutor basado en WebView si el sandbox no está disponible. Las sesiones HTML/JavaScript con un WebView aportado por el integrador todavía no son compatibles."
+    },
+    {
+      "question": "¿Qué necesita una app para usar JavaScriptEngine con OM SDK?",
+      "answer": "Debe usar OM SDK Android 1.6.10 o posterior, agregar androidx.javascriptengine, comprobar soporte, crear un único JavaScriptSandbox conectado y entregarlo a OM SDK mediante JavaScriptSandboxProvider durante la activación."
+    }
+  ]
+}

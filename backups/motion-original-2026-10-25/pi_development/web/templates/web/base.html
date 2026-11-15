@@ -1,0 +1,71 @@
+{% load static %}
+{% static 'web/img/pi.png' as default_og_image %}
+<!DOCTYPE html>
+<html lang="{{ page_language|default:'en' }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+<meta name="description" content="{% block meta_description %}Founder-led product development, operational software and AdTech engineering from Buenos Aires.{% endblock %}">
+<link rel="canonical" href="{% block canonical_url %}{{ canonical_url }}{% endblock %}">
+{% for alternate in hreflang_links %}
+<link rel="alternate" hreflang="{{ alternate.code }}" href="{{ alternate.url }}">
+{% endfor %}
+{% if x_default_url %}<link rel="alternate" hreflang="x-default" href="{{ x_default_url }}">{% endif %}
+<meta property="og:site_name" content="Pi Development">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+<meta property="og:locale" content="{{ og_locale|default:'en_US' }}">
+<meta property="og:title" content="{% block og_title %}Pi Development{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Product development, operational software and AdTech engineering.{% endblock %}">
+<meta property="og:image" content="{% block og_image %}{{ site_url }}{{ default_og_image }}{% endblock %}">
+<meta property="og:image:alt" content="{% block og_image_alt %}Pi Development — custom software and AdTech{% endblock %}">
+<meta property="og:url" content="{% block og_url %}{{ canonical_url }}{% endblock %}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{% block twitter_title %}Pi Development{% endblock %}">
+<meta name="twitter:description" content="{% block twitter_description %}Product development, operational software and AdTech engineering.{% endblock %}">
+<meta name="twitter:image" content="{% block twitter_image %}{{ site_url }}{{ default_og_image }}{% endblock %}">
+<meta name="twitter:image:alt" content="{% block twitter_image_alt %}Pi Development — custom software and AdTech{% endblock %}">
+{% if google_site_verification %}
+<meta name="google-site-verification" content="{{ google_site_verification }}">
+{% endif %}
+<title>{% block title %}Pi Development{% endblock %}</title>
+{% if google_analytics_id %}
+<link rel="stylesheet" href="{% static 'web/css/analytics.css' %}?v=20261023-1">
+<script defer src="{% static 'web/js/analytics.js' %}?v=20261023-1" data-measurement-id="{{ google_analytics_id }}" data-production-origin="{{ site_url }}" data-production-hosts="{{ analytics_allowed_hosts }}" data-page-type="{{ analytics_page_type }}"></script>
+{% endif %}
+{% for item in global_structured_data_json %}
+<script type="application/ld+json">{{ item|safe }}</script>
+{% endfor %}
+{% if structured_data_json %}
+  {% for item in structured_data_json %}
+<script type="application/ld+json">{{ item|safe }}</script>
+  {% endfor %}
+{% endif %}
+{% static 'web/img/pi.ico' as favicon_url %}
+<link rel="icon" type="image/x-icon" href="{{ favicon_url }}?v=20260318">
+<link rel="shortcut icon" type="image/x-icon" href="{{ favicon_url }}?v=20260318">
+<link rel="alternate icon" href="{{ favicon_url }}?v=20260318">
+<link rel="apple-touch-icon" href="{% static 'web/img/pi.png' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'web/css/base.css' %}?v=20260822-1">
+<link rel="stylesheet" href="{% static 'web/css/navbar.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/footer.css' %}?v=20260717">
+<script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous" defer></script>
+{% block head %}{% endblock %}
+<link rel="stylesheet" href="{% static 'web/css/pi-editorial.css' %}?v=20261025-6">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+{% block content %}{% endblock %}
+{% include 'web/components/analytics_preferences.html' %}
+{% block scripts %}
+<script src="{% static 'web/js/main.js' %}?v=20261024-1"></script>
+<script type="module" src="{% static 'web/js/motion-effects.js' %}?v=20260822-3"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>

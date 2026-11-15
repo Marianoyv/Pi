@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "status": "hypotheses_not_commissioned",
+  "instructions": "Estas ideas son puntos de partida. Deben investigarse, puntuarse y reformularse antes de producirse. La presencia en este archivo no autoriza publicación.",
+  "territories": {
+    "ia": [
+      "Programar ya no empieza escribiendo código",
+      "La IA puede hacerte más rápido y menos capaz al mismo tiempo",
+      "Un día de trabajo con IA, contado sin promesas",
+      "Qué tareas conviene delegar a una IA y cuáles conservar",
+      "El nuevo trabajo invisible: revisar lo que produce una máquina",
+      "Qué aprende un principiante cuando la IA resuelve antes de que pueda pensar",
+      "La diferencia entre usar IA y depender de ella",
+      "Quién responde cuando una decisión automatizada sale mal",
+      "Por qué hablar bien con una IA no reemplaza entender el problema",
+      "La creatividad después de la página en blanco"
+    ],
+    "web-actual": [
+      "Por qué tantos sitios modernos parecen el mismo sitio",
+      "Cómo saber si un sitio transmite confianza antes de leer una palabra",
+      "El costo invisible de una página lenta",
+      "Internet se volvió más pulido y menos memorable",
+      "Por qué cada vez más páginas esconden lo que viniste a buscar",
+      "El sitio que funciona para la empresa pero no para sus usuarios",
+      "Qué hace que una página se sienta cara, barata o confiable",
+      "La accesibilidad no empieza con una lista de cumplimiento",
+      "Cuándo una animación mejora una experiencia y cuándo la interrumpe",
+      "Por qué una web pequeña puede ser mejor que una plataforma enorme"
+    ],
+    "tecnologia-vida": [
+      "La estafa digital que funciona porque parece demasiado normal",
+      "Por qué una aplicación quiere que nunca termines de mirar",
+      "La comodidad digital también nos vuelve dependientes",
+      "Qué puede saber una aplicación por detalles que parecen insignificantes",
+      "Cómo cambió nuestra memoria desde que todo puede buscarse",
+      "El costo de no poder hablar con una persona cuando algo falla",
+      "Qué significa aceptar términos que nadie puede leer",
+      "La tecnología que desaparece es la que más poder tiene",
+      "Por qué las recomendaciones terminan pareciéndose a nuestros hábitos",
+      "La diferencia entre personalización útil y vigilancia"
+    ],
+    "producto": [
+      "La función que parecía pequeña y terminó cambiando todo el producto",
+      "Antes de construir una aplicación, probá si el problema existe",
+      "Lo que ocurre después de lanzar es el verdadero producto",
+      "La automatización que nadie usa también es deuda",
+      "El día en que una planilla deja de ser suficiente",
+      "Por qué agregar una función puede empeorar un producto",
+      "La decisión técnica correcta que llegó en el momento equivocado",
+      "Cómo distinguir un prototipo de un producto abandonado a medias",
+      "Qué aprendemos cuando observamos a alguien usar mal nuestro sistema",
+      "El costo de mantener una herramienta que solo entiende una persona"
+    ],
+    "carrera": [
+      "El problema de aprender programación mirando solamente respuestas",
+      "Ser generalista volvió a ser una ventaja",
+      "Cómo mostrar que sabés construir cuando cualquiera puede generar una demo",
+      "Trabajar rápido no siempre significa avanzar",
+      "La experiencia no es saber más respuestas sino reconocer mejores preguntas",
+      "Qué pierde un equipo cuando nadie quiere admitir que no entiende",
+      "El agotamiento de convertir cada hobby en una ventaja profesional",
+      "Por qué algunos programadores excelentes explican mal su trabajo",
+      "Aprender una herramienta o aprender un oficio",
+      "La carrera tecnológica cuando el conocimiento envejece cada seis meses"
+    ],
+    "adtech": [
+      "La publicidad que paga una impresión que quizá nadie vio",
+      "Qué entrega realmente una persona cuando acepta publicidad personalizada",
+      "Cuando mejorar una métrica empeora la experiencia",
+      "Cómo una decisión publicitaria termina afectando toda una página",
+      "Por qué un sitio lleno de anuncios puede ganar menos confianza que dinero",
+      "La subasta invisible que ocurre antes de que cargue una página",
+      "Qué significa que un anuncio sea visible y por qué no es tan simple",
+      "Cuándo bloquear publicidad también rompe un modelo de contenido",
+      "La diferencia entre medir una persona y medir un navegador",
+      "Por qué los equipos de contenido y monetización necesitan hablar entre sí"
+    ]
+  }
+}

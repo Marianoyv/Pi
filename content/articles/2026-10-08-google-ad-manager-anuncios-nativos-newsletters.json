@@ -1,0 +1,132 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-anuncios-nativos-newsletters",
+  "title": "Nativos en newsletters de Ad Manager | Pi Development",
+  "meta_description": "Google Ad Manager 360 suma formatos nativos para newsletters. Qué admite la beta y qué revisar en medición, targeting, creatividades y QA.",
+  "meta_keywords": "Google Ad Manager, anuncios nativos, newsletters, email advertising",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Ad Manager suma anuncios nativos para newsletters",
+  "description": "Google Ad Manager 360 habilitó en beta formatos nativos para inventario de newsletters. La implementación amplía las opciones de diseño, pero conserva límites propios del correo en medición, targeting y ejecución de creatividades.",
+  "summary": "La beta permite adaptar anuncios nativos al diseño de una newsletter, con requisitos específicos de formato, estilo, etiquetado y medición.",
+  "search_intent": "Entender cómo funcionan los anuncios nativos para newsletters en Google Ad Manager 360 y qué debe validar un publisher antes de implementarlos.",
+  "business_relevance": "El cambio abre un nuevo flujo de trafficking y QA para publishers con newsletters: requiere coordinar Ad Manager, plantillas de email, variables del ESP, medición y controles de privacidad sin asumir que el entorno se comporta como la web.",
+  "target_audience": [
+    "Publishers con inventario de newsletters y equipos de monetización",
+    "Equipos de AdOps, producto, desarrollo y operaciones de email"
+  ],
+  "published_at": "2026-10-08",
+  "updated_at": "2026-10-08",
+  "published_datetime": "2026-10-08T15:10:54-03:00",
+  "updated_datetime": "2026-10-08T15:10:54-03:00",
+  "image": "web/img/insights/google-ad-manager-anuncios-nativos-newsletters.webp",
+  "image_alt": "Flujo ilustrado que integra una pieza publicitaria nativa en una newsletter y la distribuye a distintas bandejas de entrada.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google Ad Manager incorporó en beta formatos nativos para anuncios en newsletters. La novedad, incluida en las notas de versión del 5 de octubre de 2026, permite que publishers con Ad Manager 360 sirvan campañas de reserva directa y Programmatic Guaranteed con una presentación adaptada al contenido que rodea al anuncio dentro del correo.",
+    "La posibilidad de personalizar el formato no convierte al email en una página web. Los clientes de correo bloquean scripts, los proveedores pueden precargar o cachear imágenes y los proxies pueden reemplazar señales del dispositivo real. Por eso, la oportunidad comercial debe evaluarse junto con las restricciones de creatividad, targeting, atribución y control de calidad que Google documenta para este inventario."
+  ],
+  "key_takeaways": [
+    "La beta está disponible solo para Google Ad Manager 360 y requiere activar Newsletter ads como función avanzada.",
+    "El formato nativo debe crearse específicamente con elegibilidad para email; no admite estilos fluidos ni puede combinarse con la elegibilidad de video nativo.",
+    "Antes de escalar, conviene probar clicks, deduplicación, caché de imágenes, reporting y fallback con correos reales en los principales clientes de email."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta ahora, la documentación de newsletters de Ad Manager se concentraba en tags simples y creatividades de imagen. La actualización agrega la opción de crear un formato nativo nuevo y marcarlo con “Serve email newsletter”. Sobre ese formato, el publisher puede definir variables, asociar un estilo nativo hecho con HTML y CSS y cargar creatividades nativas desde el line item.",
+        "La elegibilidad se decide al crear el formato: Google indica que la casilla solo puede seleccionarse en ese momento. Además, la elegibilidad para video nativo y la elegibilidad para newsletter son excluyentes. Un mismo formato no puede habilitar ambas, y los estilos nativos de tamaño fluid tampoco funcionan en newsletters.",
+        "Para que una impresión sirva correctamente, el targeting del estilo nativo debe coincidir con el targeting del line item. La beta no elimina el resto del flujo de newsletter: el inventario necesita un ad unit, un newsletter tag insertado en la plantilla del correo y parámetros compatibles con las variables dinámicas del proveedor de email."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El cambio afecta de forma directa a publishers que operan newsletters con Google Ad Manager 360 y venden campañas de reserva o Programmatic Guaranteed gestionadas por el publisher. No es una disponibilidad general para todas las cuentas: Google señala que la función requiere Ad Manager 360, activación de Newsletter ads en Advanced features y coordinación con el account manager.",
+        "También involucra a más equipos que AdOps. Diseño debe preparar una representación que sobreviva a las restricciones del correo; desarrollo o marketing operations debe integrar correctamente los merge tags del ESP; analytics debe distinguir aperturas reales de precargas; y comercial debe alinear lo prometido al anunciante con lo que el inventario puede medir de manera confiable."
+      ]
+    },
+    {
+      "title": "Límites técnicos y de medición",
+      "paragraphs": [
+        "El límite principal es el entorno de ejecución. Los clientes de correo no ejecutan JavaScript en estos tags, por lo que Ad Manager restringe las newsletters a creatividades de imagen estática. No deben trasladarse sin revisión piezas HTML5, rich media o personalización dinámica basada en scripts que sí funcionarían en una página web.",
+        "La medición también necesita una lectura específica. Ad Manager registra la impresión cuando responde a la solicitud del anuncio. Esa solicitud puede ocurrir cuando la persona abre el correo, pero también antes, si Apple Mail Privacy Protection, Gmail u otro proveedor cachea la imagen. En consecuencia, una impresión de newsletter no equivale necesariamente a una vista humana confirmada.",
+        "Los proxies y cachés de los clientes de email pueden sustituir la IP y el user agent del destinatario por los del servidor intermediario. Google advierte que el targeting geográfico y por dispositivo puede ser impreciso. Además, proveedores externos de tracking pueden filtrar los pings de newsletter como tráfico automatizado si no reconocen o autorizan el user agent y los rangos de IP documentados por Google.",
+        "El parámetro `clkk` merece atención especial: debe ser único por destinatario y por envío, sin incluir datos que Google pueda reconocer como información personal identificable. Reutilizarlo puede llevar a destinos incorrectos, páginas vacías o reportes inexactos. El parámetro de posición `clkp` también debe variar cuando un mismo correo contiene más de un anuncio."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción recomendada es tratar la beta como una integración nueva y probarla con un conjunto limitado de campañas, plantillas y clientes de correo. El objetivo inicial no debería ser comparar directamente sus impresiones con las de display web, sino comprobar que cada etapa del flujo conserva el destino, el diseño, el etiquetado y la trazabilidad esperados.",
+        "Conviene documentar por separado qué señales son contractuales para la campaña y cuáles son solo diagnósticas. Si la segmentación por dispositivo, la geografía precisa o una validación estricta de viewability son condiciones necesarias, el inventario de newsletter puede no ofrecer evidencia equivalente a la web."
+      ],
+      "bullets": [
+        "Confirmar que la red sea Ad Manager 360, que Newsletter ads esté activado y que el nuevo formato tenga elegibilidad para email desde su creación.",
+        "Verificar coincidencia entre targeting del estilo y del line item, tamaños declarados, URL de vista web, `clkk` único, `clkp` por posición y ausencia de PII en parámetros y key-values.",
+        "Enviar pruebas a Apple Mail, Gmail, Outlook y los clientes relevantes; validar render, click, destino, fallback de house line item y etiqueta “About this ad”.",
+        "Separar en reporting el tipo de inventario Email/Newsletter y contrastar impresiones, clicks, discrepancias de terceros y comportamiento de proxies antes de ampliar el volumen."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La lectura de Pi es que el valor de esta beta está menos en replicar display dentro del email y más en reducir la distancia visual entre la pieza comercial y la plantilla editorial. Esa coherencia puede mejorar la experiencia, pero también aumenta la responsabilidad de conservar una identificación publicitaria clara y un QA repetible en cada variante.",
+        "El riesgo operativo aparece cuando el equipo interpreta señales de correo con criterios de navegador. Un buen piloto debería definir primero qué significa una impresión utilizable, qué discrepancia con terceros es tolerable y qué variables del ESP garantizan clicks únicos y destinos correctos. Sin esas definiciones, un formato más flexible puede producir reportes aparentemente precisos pero difíciles de comparar o auditar."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-08",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Native format in email newsletter ads (Beta)",
+      "url": "https://support.google.com/admanager/answer/16386460?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-08",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Manage email newsletters (Beta)",
+      "url": "https://support.google.com/admanager/answer/14292448?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-08",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [
+    "creative-preview-lab",
+    "creative-qa-checklist"
+  ],
+  "related_seo_page_slugs": [
+    "validar-creatividad-html",
+    "preview-anuncios-html",
+    "errores-creatividades-display",
+    "como-validar-tags-publicitarios"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Google Ad Manager permite anuncios nativos en newsletters?",
+      "answer": "Sí. Google Ad Manager 360 ofrece en beta formatos nativos elegibles para newsletters. La red debe activar Newsletter ads como función avanzada y crear un formato nuevo con la opción específica para servir en email."
+    },
+    {
+      "question": "¿Los anuncios de newsletter admiten HTML5 o JavaScript?",
+      "answer": "No. Los clientes de correo y los tags simples de newsletter no ejecutan scripts, por lo que este inventario utiliza creatividades de imagen estática. El estilo puede definirse con HTML y CSS, pero la pieza no debe depender de JavaScript, rich media o DCO ejecutado en el cliente."
+    },
+    {
+      "question": "¿Cómo cuenta Ad Manager una impresión de newsletter?",
+      "answer": "Ad Manager registra la impresión cuando responde a la solicitud del anuncio. La solicitud puede producirse por una apertura real o por la precarga y el caché de imágenes de un proveedor de correo, por lo que no siempre confirma una vista humana."
+    }
+  ]
+}

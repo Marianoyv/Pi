@@ -1,0 +1,120 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ case.name }} Case Study | Pi Development{% endblock %}
+{% block og_title %}{{ case.name }} Case Study | Pi Development{% endblock %}
+{% block twitter_title %}{{ case.name }} Case Study | Pi Development{% endblock %}
+{% block meta_description %}{{ case.summary }}{% endblock %}
+{% block og_description %}{{ case.summary }}{% endblock %}
+{% block twitter_description %}{{ case.summary }}{% endblock %}
+{% block og_image %}{{ site_url }}{% static case.poster %}{% endblock %}
+{% block og_image_alt %}{{ case.name }} public product interface{% endblock %}
+{% block twitter_image %}{{ site_url }}{% static case.poster %}{% endblock %}
+{% block twitter_image_alt %}{{ case.name }} public product interface{% endblock %}
+{% block body_class %}work-case-page work-case-page--{{ case.slug }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/portfolio.css' %}?v=20260722">
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260722">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="page-shell">
+    <div class="page-shell__inner page-shell__inner--visual">
+      <div class="page-shell__copy">
+        <p class="page-shell__eyebrow">Case study · {{ case.project_type }}</p>
+        <h1>{{ case.name }}</h1>
+        <p class="page-shell__lead">{{ case.summary }}</p>
+      </div>
+      <div class="page-shell__visual">
+        <div class="case-hero-index" aria-hidden="true">
+          <span>CASE</span>
+          <strong>{{ case.timeline_label }}</strong>
+          <i></i>
+          <span>{{ case.current_status }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="work-case-media" aria-label="{{ case.name }} project interface">
+    <div class="work-case-media__inner">
+      <div class="pi-browser-bar" aria-hidden="true"><span></span><span></span><span></span><p>PUBLIC IMPLEMENTATION / {{ case.name|upper }}</p></div>
+      {% if case.media_type == "responsive_image" %}
+      {% include 'web/components/indices_media.html' %}
+      {% elif case.media_type == "project_screenshots" %}
+      <picture class="pi-indices-shot">
+        <source media="(max-width: 620px)" srcset="{% static case.mobile_image %}" width="430" height="932">
+        <img src="{% static case.desktop_image %}" width="1600" height="1000" alt="Current {{ case.name }} interface" loading="eager" decoding="async">
+      </picture>
+      {% else %}
+      <img src="{% static case.poster %}" width="1600" height="900" alt="{{ case.name }} public website interface">
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="company-section">
+    <div class="company-section__inner company-intro-grid">
+      <div>
+        <p class="company-eyebrow">Context</p>
+        <h2>{{ case.context_heading }}</h2>
+        <p>{{ case.context }}</p>
+        <p>{{ case.problem }}</p>
+      </div>
+      <aside class="company-card">
+        <p class="company-card__label">Case status</p>
+        <p><strong>Launch:</strong> {{ case.launch_date }}</p>
+        <p><strong>Permission:</strong> {{ case.permission_status }}</p>
+        <p><strong>Evidence:</strong> {{ case.evidence_status }}</p>
+        <p><strong>Current status:</strong> {{ case.current_status }}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner company-card-grid company-card-grid--two">
+      <article class="company-card"><p class="company-card__label">Solution</p><h2>{{ case.build_heading }}</h2><p>{{ case.what_built }}</p></article>
+      <article class="company-card"><p class="company-card__label">Stack</p><h2>Technology used</h2><ul class="company-list">{% for technology in case.technologies %}<li>{{ technology }}</li>{% endfor %}</ul></article>
+      <article class="company-card"><p class="company-card__label">Key decisions</p><h2>{{ case.supporting_work_title }}</h2><p>{{ case.delivery_approach }}</p><p>{{ case.seo_analytics }}</p></article>
+      <article class="company-card"><p class="company-card__label">Result</p><h2>{{ case.result_heading }}</h2><p>{{ case.result }}</p></article>
+      <article class="company-card"><p class="company-card__label">Project constraints</p><h2>Boundaries that shaped the build</h2><p>{{ case.constraints }}</p></article>
+      <article class="company-card"><p class="company-card__label">Pi Development's role</p><h2>Delivery responsibility</h2><p>{{ case.role }}</p></article>
+    </div>
+  </section>
+
+  <section class="company-section">
+    <div class="company-section__inner">
+      <div class="company-section__header">
+        <p class="company-eyebrow">{{ case.evidence_eyebrow }}</p>
+        <h2>{{ case.evidence_title }}</h2>
+        <p>{{ case.evidence_period }}</p>
+      </div>
+      <div class="company-card-grid company-card-grid--two">
+        {% for metric in case.metrics %}
+        <article class="company-card"><p class="company-card__label">{% if case.slug == "juno-metales" %}Measured usage{% else %}Product scope{% endif %}</p><h3>{{ metric.value }} {{ metric.label }}</h3></article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="company-section company-section--muted">
+    <div class="company-section__inner company-split">
+      <div class="company-section__header">
+        <p class="company-eyebrow">Interpretation</p>
+        <h2>What these figures do—and do not—show.</h2>
+      </div>
+      <ul class="company-list">
+        {% for boundary in case.evidence_boundaries %}<li>{{ boundary }}</li>{% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section class="company-cta">
+    <div class="company-cta__inner">
+      <h2>View the current public implementation.</h2>
+      <p>The external project opens in a new tab.</p>
+      <a class="button-link" href="{{ case.external_url }}" target="_blank" rel="noopener noreferrer">Visit {{ case.name }}</a>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

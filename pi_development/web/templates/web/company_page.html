@@ -6,6 +6,7 @@
 {% block meta_description %}{{ page.meta_description }}{% endblock %}
 {% block og_description %}{{ page.meta_description }}{% endblock %}
 {% block twitter_description %}{{ page.meta_description }}{% endblock %}
+{% block body_class %}company-page company-page--{{ page.slug }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
 {% if tools_catalog %}<link rel="stylesheet" href="{% static 'web/css/tools.css' %}">{% endif %}
@@ -14,10 +15,56 @@
 {% include 'web/components/navbar.html' %}
 <main id="main-content">
   <section class="page-shell">
-    <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">{{ page.eyebrow }}</p>
-      <h1>{{ page.title }}</h1>
-      <p class="page-shell__lead">{{ page.description }}</p>
+    <div class="page-shell__inner page-shell__inner--visual">
+      <div class="page-shell__copy">
+        <h1>{{ page.title }}</h1>
+        <p class="page-shell__lead">{{ page.description }}</p>
+      </div>
+      <div class="page-shell__visual" aria-hidden="true">
+        {% if page.slug == "business-solutions" %}
+        <div class="page-visual page-visual--business">
+          <div class="page-visual__top"><span>REAL BUSINESS</span><span>DIRECT CARE</span></div>
+          <div class="page-visual__trace">
+            <div class="page-visual__trace-row"><span>OFFER</span><i></i><b>CLARA</b></div>
+            <div class="page-visual__trace-row"><span>PRODUCTS</span><i></i><b>ORDERED</b></div>
+            <div class="page-visual__trace-row"><span>CONSULTATION</span><i></i><b>WHATSAPP</b></div>
+            <div class="page-visual__trace-row"><span>DELIVERY</span><i></i><b>WORKING</b></div>
+          </div>
+          <div class="page-visual__bottom"><span>CRITERION / IMPLEMENTATION</span><span>RESPONSIBILITY</span></div>
+        </div>
+        {% elif page.slug == "adtech" %}
+        <div class="page-visual">
+          <div class="page-visual__top"><span>MONETIZATION TRACE</span><span>LIVE CONTEXT</span></div>
+          <div class="page-visual__trace">
+            <div class="page-visual__trace-row"><span>PAGE</span><i></i><b>READY</b></div>
+            <div class="page-visual__trace-row"><span>CONSENT</span><i></i><b>READ</b></div>
+            <div class="page-visual__trace-row"><span>GPT</span><i></i><b>REQUEST</b></div>
+            <div class="page-visual__trace-row"><span>RENDER</span><i></i><b>MEASURE</b></div>
+          </div>
+          <div class="page-visual__bottom"><span>GAM / GPT / QA</span><span>EVIDENCE FIRST</span></div>
+        </div>
+        {% elif page.slug == "company" %}
+        <div class="page-visual page-visual--founder"><strong>M / T</strong><span>BUENOS AIRES<br>FOUNDER-LED DELIVERY</span></div>
+        {% elif page.slug == "contact" %}
+        <div class="page-visual page-visual--contact"><span>PI / CONTACT CHANNEL</span><strong>34.6037° S<br>58.3816° W</strong><span>2–3 BUSINESS DAYS / REMOTE</span></div>
+        {% elif page.slug == "insights" %}
+        <div class="page-visual page-visual--editorial"><span>FIELD NOTE / PRODUCT</span><span>TECHNICAL GUIDE / ADTECH</span><span>IMPLEMENTATION / QA</span><strong>Aa</strong></div>
+        {% else %}
+        <div class="page-visual">
+          <div class="page-visual__top"><span>VALUE PATH</span><span>DEFINED SCOPE</span></div>
+          <div class="page-visual__canvas">
+            <div class="page-visual__node">PROBLEM / INPUT</div>
+            <div class="page-visual__node">PRODUCT / LOGIC</div>
+            <div class="page-visual__node">SYSTEM / OUTPUT</div>
+            <svg class="page-visual__path" viewBox="0 0 420 280" preserveAspectRatio="none">
+              <path d="M60 58 C150 58 120 145 210 145 S275 225 365 225" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="60" cy="58" r="4" fill="currentColor"/><circle cx="210" cy="145" r="4" fill="currentColor"/><rect x="360" y="220" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="page-visual__bottom"><span>DISCOVER / BUILD</span><span>MEASURE / IMPROVE</span></div>
+        </div>
+        {% endif %}
+      </div>
     </div>
   </section>
 
@@ -35,7 +82,7 @@
       </div>
 
       {% if page.sections %}
-      <div class="company-card-grid company-card-grid--page">
+      <div class="company-card-grid company-card-grid--page company-offer-index">
         {% for item in page.sections %}
         <article class="company-card" {% if item.anchor %}id="{{ item.anchor }}"{% endif %}>
           <p class="company-card__label">{{ item.label }}</p>
@@ -43,10 +90,10 @@
           <p>{{ item.description }}</p>
           {% if item.solves or item.for_whom or item.builds or item.scope %}
           <dl class="company-card__details">
-            {% if item.solves %}<div><dt>Problem</dt><dd>{{ item.solves }}</dd></div>{% endif %}
-            {% if item.for_whom %}<div><dt>For</dt><dd>{{ item.for_whom }}</dd></div>{% endif %}
-            {% if item.builds %}<div><dt>What we build</dt><dd>{{ item.builds }}</dd></div>{% endif %}
-            {% if item.scope %}<div><dt>Typical scope</dt><dd>{{ item.scope }}</dd></div>{% endif %}
+            {% if item.solves %}<div><dt>{{ page.labels.problem|default:"Problem" }}</dt><dd>{{ item.solves }}</dd></div>{% endif %}
+            {% if item.for_whom %}<div><dt>{{ page.labels.for_whom|default:"For" }}</dt><dd>{{ item.for_whom }}</dd></div>{% endif %}
+            {% if item.builds %}<div><dt>{{ page.labels.builds|default:"What we build" }}</dt><dd>{{ item.builds }}</dd></div>{% endif %}
+            {% if item.scope %}<div><dt>{{ page.labels.scope|default:"Typical scope" }}</dt><dd>{{ item.scope }}</dd></div>{% endif %}
           </dl>
           {% endif %}
         </article>
@@ -60,13 +107,11 @@
   <section class="company-section company-section--muted" id="process">
     <div class="company-section__inner company-split">
       <div class="company-section__header company-section__header--sticky">
-        <p class="company-eyebrow">{{ page.process.eyebrow }}</p>
         <h2>{{ page.process.title }}</h2>
       </div>
       <ol class="company-principles company-principles--steps">
         {% for item in page.process.items %}
         <li>
-          <span>0{{ forloop.counter }}</span>
           <div>
             <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
@@ -82,7 +127,6 @@
   <section class="company-section company-section--muted">
     <div class="company-section__inner">
       <div class="company-section__header">
-        <p class="company-eyebrow">{{ page.tools_eyebrow }}</p>
         <h2>{{ page.tools_title }}</h2>
         <p>{{ page.tools_text }}</p>
       </div>
@@ -96,10 +140,9 @@
   {% endif %}
 
   {% if knowledge_groups %}
-  <section class="company-section company-section--muted">
+  <section class="company-section company-section--muted" lang="en">
     <div class="company-section__inner">
       <div class="company-section__header">
-        <p class="company-eyebrow">{{ page.insights_eyebrow }}</p>
         <h2>{{ page.insights_title }}</h2>
         <p>{{ page.insights_text }}</p>
       </div>
@@ -113,15 +156,21 @@
           <div class="company-card-grid company-card-grid--two">
             {% for article in group.pages %}
             <a class="company-card company-card--link" href="{% url 'knowledge_page' slug=article.slug %}">
-              <p class="company-card__label">{{ article.eyebrow }}</p>
-              <h4>{{ article.h1 }}</h4>
-              <p>{{ article.summary }}</p>
+              {% if article.image %}<img class="company-card__image" src="{% static article.image %}" width="1536" height="864" alt="" loading="lazy" decoding="async">{% endif %}
+              <div class="company-card__content">
+                <div class="company-card__meta">
+                  <p class="company-card__label">{{ article.eyebrow }}</p>
+                  {% if article.published_at %}<p class="company-card__date">{{ article.published_at }}{% if article.reading_time_minutes %} · {{ article.reading_time_minutes }} min{% endif %}</p>{% endif %}
+                </div>
+                <h4>{{ article.h1 }}</h4>
+                <p>{{ article.summary }}</p>
+              </div>
             </a>
             {% endfor %}
           </div>
-          <div class="company-insight-links" aria-label="Related tools and technical guides">
+          <div class="company-insight-links" aria-label="Related products and technical guides">
             {% for tool in group.cluster.tools %}
-            <a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a>
+            <a href="{% url 'product_detail' slug=tool.slug %}">{{ tool.name }}</a>
             {% endfor %}
             {% for guide in group.cluster.seo_pages %}
             <a href="{% url 'seo_page' slug=guide.slug %}">{{ guide.h1 }}</a>
@@ -139,7 +188,7 @@
     <div class="company-section__inner company-detail-grid">
       {% if page.deliverables %}
       <article>
-        <p class="company-card__label">Delivery</p>
+        <p class="company-card__label">{{ page.labels.delivery|default:"Delivery" }}</p>
         <h2>{{ page.deliverables_title }}</h2>
         <ul class="company-list">
           {% for item in page.deliverables %}<li>{{ item }}</li>{% endfor %}
@@ -148,14 +197,14 @@
       {% endif %}
       {% if page.technology_text %}
       <article>
-        <p class="company-card__label">Technology</p>
+        <p class="company-card__label">{{ page.labels.technology|default:"Technology" }}</p>
         <h2>{{ page.technology_title }}</h2>
         <p>{{ page.technology_text }}</p>
       </article>
       {% endif %}
       {% if page.evidence %}
       <article>
-        <p class="company-card__label">Evidence</p>
+        <p class="company-card__label">{{ page.labels.evidence|default:"Evidence" }}</p>
         <h2>{{ page.evidence_title }}</h2>
         <div class="company-evidence-links">
           {% for item in page.evidence %}
@@ -172,8 +221,7 @@
   <section class="company-section company-section--muted">
     <div class="company-section__inner company-split">
       <div class="company-section__header">
-        <p class="company-eyebrow">FAQ</p>
-        <h2>Questions before a first conversation.</h2>
+        <h2>{{ page.faq_title|default:"Questions before a first conversation." }}</h2>
       </div>
       <div class="company-faq-list">
         {% for item in page.faqs %}
@@ -191,28 +239,36 @@
   <section class="company-section company-section--muted">
     <div class="company-section__inner company-contact-layout">
       <div class="company-contact-copy">
-        <p class="company-eyebrow">Project context</p>
-        <h2>Tell us what needs to work better.</h2>
+        <h2>{{ page.form_title }}</h2>
         <p>{{ page.contact_reassurance }}</p>
         <div class="company-contact-details">
           <p><strong>Email</strong><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
-          <p><strong>Location</strong>{{ contact_location }}<br>Working globally</p>
+          <p><strong>Response time</strong>{{ page.response_time }}</p>
+          <p><strong>Location</strong>{{ contact_location }}<br>Available for remote work</p>
         </div>
       </div>
       <div class="company-form-wrap">
         {% if contact_success %}
         <div class="company-form__success" role="status" aria-live="polite">
-          <h2>Thank you. Your project context was received.</h2>
-          <p>Pi Development will review the problem and reply through the email you provided.</p>
-          {% if contact_handoff_url %}<a href="{{ contact_handoff_url }}">Send a copy by email</a>{% endif %}
+          <h2>Your inquiry was sent.</h2>
+          <p>Mariano will review it personally and normally reply within 2–3 business days.</p>
         </div>
         {% endif %}
+        {% if contact_delivery_error %}
+        <div class="company-form__errors" role="alert">
+          <p>Your inquiry could not be sent. It has not been received.</p>
+          <p>Please try again later or email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a>.</p>
+        </div>
+        {% endif %}
+        {% if contact_form_enabled %}
         <form method="post" class="company-form" novalidate>
           {% csrf_token %}
+          {{ contact_form.website }}
+          {{ contact_form.form_token }}
           {% if contact_form.non_field_errors %}
           <div class="company-form__errors" role="alert">{{ contact_form.non_field_errors }}</div>
           {% endif %}
-          {% for field in contact_form %}
+          {% for field in contact_form.visible_fields %}
           <div class="company-form__field{% if field.errors %} company-form__field--error{% endif %}">
             <label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %}<span aria-hidden="true"> *</span>{% endif %}</label>
             {{ field }}
@@ -221,8 +277,25 @@
           </div>
           {% endfor %}
           <button class="button-link" type="submit">Send project context</button>
+          <p class="company-form__help">Submitting this form does not create a contract or guarantee project availability.</p>
         </form>
+        {% else %}
+        <div class="company-form__errors" role="status">
+          <p>To discuss a project, email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a> or use WhatsApp below.</p>
+        </div>
+        {% endif %}
       </div>
+    </div>
+  </section>
+  <section class="company-section" aria-labelledby="secondary-contact-title">
+    <div class="company-section__inner">
+      <article class="company-card company-contact-secondary">
+        <h2 id="secondary-contact-title">Prefer WhatsApp?</h2>
+        <p>For a brief introductory message, you can contact Mariano at
+          <a href="{{ contact_whatsapp_url }}" target="_blank" rel="noopener noreferrer">{{ contact_phone }}</a>.
+          Please do not include sensitive information.
+        </p>
+      </article>
     </div>
   </section>
   {% else %}
@@ -230,7 +303,7 @@
     <div class="company-cta__inner">
       <h2>{{ page.cta_title }}</h2>
       <p>{{ page.cta_text }}</p>
-      <a class="button-link" href="{% url 'contact' %}">{{ page.cta_label }}</a>
+      <a class="button-link" href="{% if primary_cta_href %}{{ primary_cta_href }}{% else %}{% url 'contact' %}{% endif %}"{% if primary_cta_href %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ page.cta_label }}</a>
     </div>
   </section>
   {% endif %}

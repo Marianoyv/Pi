@@ -1,0 +1,107 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-sobreentrega-dv360",
+  "title": "Sobreentrega PG con DV360 | Pi Development",
+  "meta_description": "Google conciliará la sobreentrega de acuerdos PG con DV360 desde noviembre. Qué cambia en ingresos, reportes y controles para publishers en Ad Manager.",
+  "meta_keywords": "Google Ad Manager, Programmatic Guaranteed, DV360, sobreentrega, reporting",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Ad Manager ajustará la sobreentrega en acuerdos con DV360",
+  "description": "Desde el 2 de noviembre, Google extenderá su proceso de conciliación de sobreentrega a los acuerdos Programmatic Guaranteed con Display & Video 360. El cambio puede separar impresiones servidas de impresiones finalmente pagadas.",
+  "summary": "Google aplicará la conciliación de sobreentrega a acuerdos PG con DV360 y sumará una diferencia que publishers y AdOps deberían controlar al cierre mensual.",
+  "search_intent": "Entender cómo afectará la conciliación de sobreentrega a los acuerdos Programmatic Guaranteed con DV360 y qué revisar en ingresos y reportes.",
+  "business_relevance": "El cambio exige reconciliar delivery, contrato e ingresos en flujos de monetización programática; Pi puede ayudar a auditar reportes, automatizar controles y detectar diferencias operativas.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, finanzas publicitarias y operaciones programáticas"
+  ],
+  "published_at": "2026-10-10",
+  "updated_at": "2026-10-10",
+  "published_datetime": "2026-10-10T11:47:26-03:00",
+  "updated_datetime": "2026-10-10T11:47:26-03:00",
+  "image": "web/img/insights/google-ad-manager-sobreentrega-dv360.webp",
+  "image_alt": "Flujo de impresiones publicitarias que separa la sobreentrega antes de la conciliación mensual.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google Ad Manager anunció en sus notas de versión del 5 de octubre de 2026 que, a partir del 2 de noviembre, extenderá su proceso de conciliación de sobreentrega de Programmatic Guaranteed a los acuerdos realizados con Display & Video 360. La actualización tiene un efecto concreto: ciertas impresiones que superen el objetivo contratado podrán quedar identificadas como sobreentrega antes de que Google finalice los ingresos del mes.",
+    "El anuncio no modifica el objetivo de impresiones ni describe una nueva forma de servir campañas. Cambia el alcance del proceso con el que Ad Manager revisa, al cierre mensual, qué parte del delivery excedió el compromiso y debe excluirse de la facturación al comprador y del pago al publisher. Por eso conviene leer el dato de entrega junto con el dato conciliado, y no asumir que toda impresión servida terminará generando ingreso reconocido."
+  ],
+  "key_takeaways": [
+    "Desde el 2 de noviembre de 2026, la conciliación de sobreentrega incluirá acuerdos Programmatic Guaranteed con DV360.",
+    "Las impresiones identificadas como sobreentrega no serán pagadas al publisher y podrán verse con la métrica Total overdelivered impressions.",
+    "AdOps y finanzas deberían comparar objetivo, delivery, sobreentrega e ingreso final por acuerdo una vez cerrado el mes."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Según Google, Ad Manager identifica al final de cada mes, antes de finalizar los ingresos, las impresiones entregadas por encima del objetivo acordado. Desde el 2 de noviembre de 2026, ese proceso también abarcará los acuerdos Programmatic Guaranteed cuyo comprador opere mediante Display & Video 360.",
+        "Cuando el sistema clasifica impresiones como sobreentrega, el comprador no paga por ellas y el publisher tampoco recibe ese ingreso. Ad Manager permite seguirlas en reporting mediante la métrica Total overdelivered impressions. El dato es relevante porque el volumen servido puede ser mayor que el volumen finalmente reconocido para pago."
+      ]
+    },
+    {
+      "title": "Qué cubre y cuáles son los límites",
+      "paragraphs": [
+        "La documentación aclara que el sistema solo identifica la sobreentrega en acuerdos que ya terminaron. Si un acuerdo supera ampliamente su objetivo antes de la fecha de finalización, esa diferencia no necesariamente se detectará en ese momento. Tampoco queda garantizada la captura de impresiones que caigan fuera de la ventana de revisión del sistema.",
+        "Google advierte que una cantidad pequeña de sobreentrega situada fuera de esa ventana puede seguir siendo facturada y pagada. Por lo tanto, la nueva conciliación no debe interpretarse como un freno de delivery en tiempo real ni como una garantía de coincidencia absoluta entre todas las fuentes de datos. El anuncio tampoco cuantifica cuánto cambiarán los ingresos de cada publisher: el efecto dependerá del comportamiento de sus acuerdos y del volumen que exceda los objetivos."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "La actualización afecta directamente a publishers que venden inventario mediante acuerdos Programmatic Guaranteed con compradores en DV360. También importa a equipos de AdOps que controlan pacing y entrega, y a áreas financieras o de revenue operations que concilian lo servido con lo facturado y pagado.",
+        "Para un equipo que ya usa el delivery del line item como referencia operativa, la principal precaución es no confundir ese volumen con el resultado económico final. La métrica de sobreentrega agrega una capa necesaria para explicar diferencias entre reportes de campaña, estimaciones internas y transacciones cerradas."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "Análisis de Pi: el riesgo más probable no es una falla de serving, sino una discrepancia silenciosa entre tableros. Un dashboard que multiplica impresiones servidas por CPM puede sobreestimar ingresos si no descuenta las impresiones que Ad Manager termina marcando como sobreentrega. El problema se vuelve más visible cuando AdOps, ventas y finanzas usan extracciones distintas o cierran el mes en momentos diferentes.",
+        "También conviene separar dos preguntas: si el acuerdo entregó de más y si esa sobreentrega fue reconocida por el proceso de Google. La primera puede observarse comparando delivery contra el objetivo; la segunda requiere revisar la métrica específica después de que el acuerdo haya finalizado y el sistema haya ejecutado la conciliación."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "Antes del 2 de noviembre, una revisión útil consiste en identificar los acuerdos PG con DV360 que terminan cerca del cierre mensual y definir una conciliación repetible. La acción no es reducir delivery de forma indiscriminada, sino distinguir el monitoreo diario del cierre económico y documentar cuándo cada cifra se considera definitiva."
+      ],
+      "bullets": [
+        "Listar los acuerdos Programmatic Guaranteed con DV360, sus objetivos, fechas de finalización y responsables internos.",
+        "Incluir Total overdelivered impressions en el reporte de cierre y compararla con impresiones servidas y objetivo contratado.",
+        "Recalcular el ingreso esperado después de la conciliación y registrar cualquier diferencia frente al forecast previo.",
+        "Alinear el momento del cierre entre AdOps y finanzas para evitar comparar datos todavía provisionales con pagos finalizados."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La extensión a DV360 vuelve más importante tratar el cierre de Programmatic Guaranteed como un proceso de datos, no como una sola lectura de impresiones. El valor operativo está en conservar trazabilidad entre contrato, entrega, sobreentrega e ingreso final.",
+        "Una alerta temprana sobre pacing puede reducir excesos evitables, pero no reemplaza la conciliación posterior. Para Pi, la práctica más sólida es automatizar una comparación por acuerdo y dejar evidencia de la fecha de extracción, el estado del deal y la métrica usada. Eso permite detectar diferencias reales sin convertir una variación temporal del reporte en una falsa incidencia."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What's new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-10",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué cambia para los acuerdos Programmatic Guaranteed con DV360?",
+      "answer": "Desde el 2 de noviembre de 2026, Ad Manager incluirá esos acuerdos en su conciliación mensual de sobreentrega y excluirá del pago las impresiones que identifique por encima del objetivo contratado."
+    },
+    {
+      "question": "¿Cómo se ve la sobreentrega en Google Ad Manager?",
+      "answer": "Puede revisarse con la métrica Total overdelivered impressions. Google indica que la detección ocurre para acuerdos finalizados y que una pequeña cantidad fuera de la ventana del sistema puede seguir pagándose."
+    }
+  ]
+}

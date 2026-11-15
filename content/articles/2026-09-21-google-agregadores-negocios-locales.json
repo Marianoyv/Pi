@@ -1,0 +1,114 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-agregadores-negocios-locales",
+  "title": "Google amplía agregadores locales | Pi Development",
+  "meta_description": "Google sumó consultas de negocios locales a su unidad de agregadores en el EEE. Qué deben revisar los directorios sobre elegibilidad, feeds y calidad de datos.",
+  "meta_keywords": "Google Search, unidad de agregadores, negocios locales, EEE, feed local, directorios",
+  "eyebrow": "SEO técnico · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Google suma negocios locales a su unidad de agregadores",
+  "description": "Google actualizó la documentación de una función de Search para agregadores en el Espacio Económico Europeo. Los directorios elegibles tienen que revisar aprobación, integración de datos y calidad de sus fichas antes de participar.",
+  "summary": "La unidad de agregadores de Google Search incorpora consultas locales en el EEE y exige una integración de datos para los participantes elegibles.",
+  "search_intent": "Entender si un directorio de negocios locales puede participar en la unidad de agregadores de Google Search en el EEE y qué datos debe preparar.",
+  "business_relevance": "Un directorio o comparador que opera en el EEE puede necesitar diagnóstico técnico, normalización de entidades e integración de feeds para evaluar su participación.",
+  "target_audience": [
+    "Publishers y operadores de directorios o comparadores de negocios locales en el EEE",
+    "Equipos de SEO técnico, producto y datos que mantienen catálogos locales"
+  ],
+  "published_at": "2026-09-21",
+  "updated_at": "2026-09-21",
+  "published_datetime": "2026-09-21T11:05:00-03:00",
+  "updated_datetime": "2026-09-21T11:05:00-03:00",
+  "image": "web/img/insights/google-agregadores-negocios-locales.webp",
+  "image_alt": "Fichas de comercios locales conectadas por un flujo de datos con una interfaz de resultados de búsqueda.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "El 18 de septiembre de 2026, el registro de cambios de Google Search Central informó que la documentación de las unidades de agregadores y proveedores incorporó las consultas sobre negocios locales. La página específica de la unidad de agregadores, actualizada ese mismo día, confirma que la función puede mostrarse a usuarios del Espacio Económico Europeo (EEE) para búsquedas locales. Es una ampliación documentada de los tipos de consultas cubiertas, no una promesa de presencia para cualquier sitio.",
+    "El cambio interesa especialmente a servicios verticales de búsqueda: directorios, comparadores, metabuscadores y otros agregadores con fichas de establecimientos. Google describe una unidad que puede mostrar resultados aportados por proveedores aprobados y llevar el clic al sitio del agregador. Su disponibilidad se limita al EEE y la aparición depende de la consulta, la elegibilidad y la evaluación de Google."
+  ],
+  "key_takeaways": [
+    "Google incluyó consultas de negocios locales entre las categorías cubiertas por la unidad de agregadores para usuarios del EEE.",
+    "La participación requiere aprobación como servicio vertical de búsqueda, contenido pertinente y datos para alimentar la unidad; una página con marcado estructurado por sí sola no constituye la integración descrita.",
+    "Los directorios interesados deberían comprobar su elegibilidad y auditar la consistencia de sus fichas y su feed antes de solicitar participación."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en Google Search",
+      "paragraphs": [
+        "Google añadió los negocios locales a la lista de consultas que pueden activar la unidad de agregadores. La documentación ya incluía, entre otras categorías, hoteles, vuelos, transporte de larga distancia y productos. La novedad aparece en el registro oficial del 18 de septiembre y en la página de la función, también actualizada ese día.",
+        "Según Google, la unidad reúne resultados de servicios verticales de búsqueda aprobados. El proveedor mejor ubicado aparece expandido por defecto y el usuario puede seleccionar otro cuando lo hay. Un clic dentro de la unidad dirige al sitio del agregador. La descripción de la interfaz explica el mecanismo, pero no establece que todos los directorios sean admitidos ni que una consulta local siempre muestre ese módulo."
+      ]
+    },
+    {
+      "title": "A quién afecta y qué exige la participación",
+      "paragraphs": [
+        "El público directo son operadores que atienden usuarios del EEE y agregan información de comercios o servicios locales. Google pide aprobación como Vertical Search Service (VSS), contenido relevante, datos para poblar la unidad y cumplimiento de sus políticas de contenido. Para consultas locales, la documentación indica un formulario para expresar interés y remite a la integración de datos de puntos de interés locales.",
+        "La página técnica de Google sobre esa integración indica que el socio debe ser un agregador, y no una cadena individual, y mantener una relación contractual directa con los comercios. También describe etapas de configuración, feed en entorno de prueba, revisión, feed de producción y aprobación antes del lanzamiento. Esas condiciones acotan el alcance de la noticia: una empresa con una sola ficha local o una web corporativa común no debería interpretar esta actualización como una nueva vía automática de visibilidad."
+      ]
+    },
+    {
+      "title": "Impacto operativo y límites",
+      "paragraphs": [
+        "Para un directorio candidato, el trabajo no termina en el SEO de la página. Google explica que, en consultas locales, la unidad se alimenta mediante integraciones directas de datos. Recomienda fichas con atributos completos, títulos descriptivos, imágenes de calidad e información actualizada. También pide que precios y disponibilidad, cuando correspondan, coincidan con la página de destino. En la práctica, esto convierte la exactitud del catálogo y la sincronización del feed en cuestiones de producto y de ingeniería de datos.",
+        "No se debe confundir elegibilidad con exposición garantizada. Google decide cuándo la unidad resulta útil para la consulta y exige que el participante cumpla sus requisitos de calidad. Tampoco hay en el anuncio una cifra de tráfico, un cambio general de ranking orgánico ni un plazo universal de incorporación. El registro de cambios menciona también la unidad de proveedores; esta nota se concentra en la unidad de agregadores, para la que Google publica requisitos de integración concretos."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "Antes de iniciar una integración, conviene verificar si el negocio cumple el perfil de agregador y sirve a usuarios del EEE. Si la respuesta es afirmativa, el paso siguiente es contrastar el catálogo real con los datos requeridos por Google y registrar los problemas que impedirían sostener un feed confiable. Una solicitud de participación sin esa revisión puede adelantar trabajo comercial mientras deja pendientes fallas de identidad, cobertura o actualización de las fichas."
+      ],
+      "bullets": [
+        "Confirmar el tipo de servicio, los países atendidos y la relación con los comercios antes de completar el formulario de interés.",
+        "Tomar una muestra de fichas y comprobar identificadores, categorías, dirección, horarios, imágenes y URL de destino; documentar datos ausentes o contradictorios.",
+        "Definir cómo se generan, validan y actualizan los feeds, y medir la proporción de fichas completas, errores de envío y diferencias frente a la página pública."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "Nuestra lectura es que esta ampliación vuelve visible una dependencia que muchos directorios ya tienen: la calidad del dato de origen. Si un negocio aparece duplicado, cerrado o con atributos distintos entre el catálogo y la página pública, el problema no se resuelve agregando marcado a una plantilla. Primero hay que ordenar el modelo de entidades, las reglas de actualización y los controles del feed. Esa es una prioridad operativa razonable incluso si Google no aprueba la participación o si la unidad aparece en pocas consultas. Es análisis de Pi sobre los requisitos publicados, no una predicción de resultados de búsqueda."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Search Central",
+      "title": "Latest documentation updates",
+      "url": "https://developers.google.com/search/updates",
+      "published_at": "2026-09-18",
+      "accessed_at": "2026-09-21",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Search Central",
+      "title": "Aggregator unit in Google Search",
+      "url": "https://developers.google.com/search/docs/appearance/aggregator-unit",
+      "published_at": "2026-09-18",
+      "accessed_at": "2026-09-21",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Actions Center",
+      "title": "Overview",
+      "url": "https://developers.google.com/actions-center/verticals/local_vss/integration-steps/overview",
+      "published_at": "2026-04-13",
+      "accessed_at": "2026-09-21",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Cualquier negocio local puede aparecer en la unidad de agregadores?",
+      "answer": "No. La unidad está pensada para servicios verticales de búsqueda aprobados que agregan resultados. Google exige contenido relevante, datos para la integración y cumplimiento de sus políticas; la documentación técnica local distingue a los agregadores de las cadenas individuales."
+    },
+    {
+      "question": "¿Alcanza con agregar datos estructurados a las páginas del directorio?",
+      "answer": "La documentación de esta unidad describe una integración directa de datos para consultas locales y un proceso de aprobación. El marcado de una página no reemplaza los requisitos del feed ni garantiza que Google muestre el directorio."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+{% for article in articles %}<url>
+  <loc>{{ site_url }}{% url 'knowledge_page' slug=article.slug %}</loc>
+  <news:news>
+    <news:publication>
+      <news:name>Pi Development</news:name>
+      <news:language>es</news:language>
+    </news:publication>
+    <news:publication_date>{{ article.published_datetime }}</news:publication_date>
+    <news:title>{{ article.h1 }}</news:title>
+  </news:news>
+</url>
+{% endfor %}</urlset>

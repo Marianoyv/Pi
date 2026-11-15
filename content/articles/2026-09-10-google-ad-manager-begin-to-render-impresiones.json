@@ -1,0 +1,126 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-begin-to-render-impresiones",
+  "title": "Ad Manager cambia el conteo de impresiones | Pi Development",
+  "meta_description": "Google Ad Manager adoptará begin-to-render para display el 17 de febrero de 2027. Cómo estimar el impacto y revisar creatividades antes del cambio.",
+  "meta_keywords": "Google Ad Manager, begin-to-render, impresiones display, count-on-download",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager cambiará cómo cuenta impresiones display",
+  "description": "Desde el 17 de febrero de 2027, Google Ad Manager y AdSense contarán las impresiones display cuando la creatividad empiece a renderizarse, no cuando comience su descarga. Para publishers, la diferencia conviene medirla antes de que cambie la serie de reporting.",
+  "summary": "Ad Manager pasará a begin-to-render para display: qué cambia y cómo estimar la brecha antes de febrero de 2027.",
+  "search_intent": "Entender qué cambia con begin-to-render en Google Ad Manager y cómo estimar su impacto sobre las impresiones display.",
+  "business_relevance": "El cambio conecta medición, rendimiento de creatividades y calidad de implementación. Una brecha elevada entre impresiones descargadas y renderizadas puede requerir diagnóstico de tags, cadenas de suministro, lazy rendering o activos creativos antes de ajustar decisiones comerciales.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto, tecnología y operaciones"
+  ],
+  "published_at": "2026-09-10",
+  "updated_at": "2026-09-10",
+  "published_datetime": "2026-09-10T18:35:22-03:00",
+  "updated_datetime": "2026-09-10T18:35:22-03:00",
+  "image": "web/img/insights/google-ad-manager-begin-to-render.webp",
+  "image_alt": "Ilustración editorial de una creatividad display que cruza el umbral entre descarga e inicio de renderizado.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google anunció en las notas de versión de Ad Manager del 8 de septiembre de 2026 que cambiará el método de conteo de impresiones para inventario display web. La documentación técnica fija la fecha: desde el 17 de febrero de 2027, Ad Manager y AdSense pasarán de count-on-download (COD) a begin-to-render (BTR) para banners en desktop, mobile web, webviews y CTV.",
+    "El cambio no modifica la definición de viewability ni afirma que toda impresión BTR haya sido vista. Cambia el momento mínimo en que se registra la impresión: COD la cuenta cuando el anuncio empieza a descargarse; BTR exige que la creatividad haya cargado correctamente y haya comenzado a renderizarse en el dispositivo. Google advierte que, por ser un criterio más estricto, algunos publishers podrían observar menos impresiones display reportadas."
+  ],
+  "key_takeaways": [
+    "El 17 de febrero de 2027, los banners display en web, mobile web, webviews y CTV pasarán de count-on-download a begin-to-render en Ad Manager y AdSense.",
+    "Google no proyecta una caída universal: la diferencia dependerá de cuántos anuncios descargados no alcancen a empezar a renderizarse en cada inventario.",
+    "La acción útil ahora es construir una línea de base por canal, formato, dispositivo, creatividad y comprador, y diagnosticar las brechas antes de tocar márgenes de carga o renderizado."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hoy, los banners display alcanzados por el anuncio se contabilizan con COD cuando el activo comienza a descargarse. Con BTR, la impresión se registrará más tarde: cuando la creatividad haya cargado y empiece a dibujarse en pantalla. Google ya usa metodologías BTR o compatibles para inventario nativo, de aplicaciones y de video; la transición busca unificar el conteo y alinearlo con la metodología habitual del lado comprador.",
+        "El alcance publicado incluye display banner en desktop, mobile web y CTV. Los webviews se tratarán como mobile web. La fecha comunicada es el 17 de febrero de 2027 y Google indica que el cambio se aplicará automáticamente, sin una migración técnica obligatoria para activar el nuevo método."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "Afecta de forma directa a publishers y equipos de AdOps que utilizan las impresiones de Ad Manager o AdSense para pacing, forecasting, conciliación, facturación o análisis de revenue. También importa a quienes comparan datos del ad server con DSP, compradores o proveedores externos de medición, porque la base de conteo se acercará a un evento posterior en el ciclo de carga.",
+        "La incidencia será desigual. Una página donde los anuncios comienzan a renderizarse casi siempre después de descargarse debería mostrar una brecha pequeña. En cambio, salidas rápidas, creatividades lentas, scripts sincrónicos, múltiples saltos en la cadena publicitaria o configuraciones de lazy rendering pueden ampliar la diferencia entre ambos eventos."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "Google recomienda estimar el impacto con Interactive reports. El análisis puede cruzar Demand channel, Inventory format, Inventory type (expanded) y Device category, y comparar Ad server impressions con Ad server begin to render impressions. La documentación aconseja usar una fecha inicial posterior al 12 de agosto de 2026. También anticipa métricas BTR adicionales para Ad Exchange, yield groups y totales, por lo que la cobertura disponible puede ampliarse durante la preparación.",
+        "Análisis de Pi: la comparación no debería quedar en un porcentaje agregado de toda la red. Conviene segmentar la brecha para distinguir un cambio metodológico normal de una señal técnica concentrada. Si la diferencia aparece sobre todo en un dispositivo, buyer, formato o creative ID, el hallazgo puede orientar una revisión precisa de carga, renderizado y supply path sin convertir una variación de reporting en una conclusión apresurada sobre demanda."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "BTR no es sinónimo de impresión viewable. Indica que la creatividad empezó a renderizarse, mientras que la viewability aplica criterios adicionales de superficie visible y tiempo. Tampoco permite anticipar por sí solo el efecto sobre ingresos: Google no publicó una reducción porcentual general y cada implementación tendrá una relación distinta entre impresiones descargadas y renderizadas.",
+        "Modificar inmediatamente fetchMarginPercent o renderMarginPercent para forzar un render más temprano puede desplazar consumo de red y trabajo del navegador. Google señala ese intercambio y recomienda considerar los costos antes de ajustar. Sus heurísticas seguirán evolucionando durante los próximos meses, de modo que una brecha inicial debe observarse y diagnosticarse antes de promover cambios extensos."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La preparación razonable es convertir la transición en una medición controlada: guardar una línea de base, localizar segmentos con diferencias relevantes y comprobar que las creatividades efectivamente empiezan a renderizarse. Si una caída está concentrada en un creative ID o comprador y la creatividad sí se muestra, la guía de Google recomienda escalar el caso al account manager o al soporte.",
+        "Para conservar comparabilidad histórica, documentá la fecha del cambio en dashboards, alertas y modelos de forecasting. Cuando llegue febrero, una discontinuidad en impresiones display no debería interpretarse automáticamente como pérdida de tráfico o fill rate sin revisar la metodología y las métricas BTR."
+      ],
+      "bullets": [
+        "Crear en Interactive reports una comparación histórica entre Ad server impressions y Ad server begin to render impressions, con inicio posterior al 12 de agosto de 2026.",
+        "Segmentar por canal de demanda, formato, tipo de inventario y dispositivo; profundizar luego por creatividad o comprador cuando la brecha esté concentrada.",
+        "Revisar peso y cantidad de activos, scripts sincrónicos, saltos de terceros, errores de renderizado y configuración de lazy loading o lazy rendering.",
+        "Registrar la brecha actual y anotar el 17 de febrero de 2027 en tableros, conciliaciones y pronósticos que consuman impresiones display."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "Análisis de Pi: el valor de BTR no está solo en una definición más exigente, sino en hacer visible el tramo entre descargar una creatividad y lograr que empiece a renderizarse. Ese tramo reúne decisiones de trafficking, calidad creativa, performance, arquitectura de tags y supply path que antes podían quedar diluidas dentro del total de impresiones COD.",
+        "La oportunidad es usar los meses previos para separar una diferencia esperable de un problema corregible. Un publisher que llegue al cambio con una línea de base segmentada podrá explicar mejor cualquier discontinuidad, priorizar los casos de mayor impacto y evitar optimizaciones que adelanten el render a costa de la experiencia del usuario sin evidencia suficiente."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-10",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Begin-to-render impression counting for display ads",
+      "url": "https://support.google.com/admanager/answer/16896667?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-10",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [
+    "creative-preview-lab"
+  ],
+  "related_seo_page_slugs": [
+    "debug-anuncios-web",
+    "errores-creatividades-display",
+    "como-validar-tags-publicitarios"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Cuándo cambia Google Ad Manager a begin-to-render?",
+      "answer": "El 17 de febrero de 2027 para impresiones display banner en desktop, mobile web, webviews y CTV de Google Ad Manager y AdSense. Google indica que el cambio será automático."
+    },
+    {
+      "question": "¿Begin-to-render significa que una impresión fue viewable?",
+      "answer": "No. BTR confirma que la creatividad cargó y empezó a renderizarse; la viewability exige además criterios de área visible y tiempo. Son eventos y métricas diferentes."
+    },
+    {
+      "question": "¿Cómo puede un publisher estimar el impacto del cambio?",
+      "answer": "Puede comparar Ad server impressions con Ad server begin to render impressions en Interactive reports y segmentar la diferencia por demanda, formato, inventario y dispositivo antes de investigar creatividades o compradores concretos."
+    }
+  ]
+}

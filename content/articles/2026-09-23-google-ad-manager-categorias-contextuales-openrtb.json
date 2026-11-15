@@ -1,0 +1,112 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-categorias-contextuales-openrtb",
+  "title": "Ad Manager: categorías contextuales en OpenRTB | Pi",
+  "meta_description": "Google Ad Manager enviará categorías contextuales estándar en OpenRTB. Qué campos cambian, qué regiones quedan fuera y qué deberían auditar los publishers.",
+  "meta_keywords": "Google Ad Manager, OpenRTB, categorías contextuales, señales contextuales",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Ad Manager compartirá categorías contextuales en OpenRTB",
+  "description": "Desde el 15 de octubre, Google Ad Manager completará campos contextuales estándar en solicitudes OpenRTB fuera del EEE, Reino Unido y Suiza. Publishers y equipos de AdOps deberían revisar el alcance, la clasificación y el control disponible antes del despliegue.",
+  "summary": "Google sumará categorías contextuales estándar a solicitudes OpenRTB y permitirá desactivar su envío desde la configuración de red.",
+  "search_intent": "Entender qué categorías contextuales enviará Google Ad Manager en OpenRTB, a qué tráfico aplica y qué debe revisar un publisher antes del 15 de octubre de 2026.",
+  "business_relevance": "El cambio afecta la señalización que reciben compradores programáticos y requiere una revisión técnica de inventario, taxonomía, privacidad y medición; es un caso directo para auditorías AdTech y automatización de controles operativos.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto, tecnología y operaciones"
+  ],
+  "published_at": "2026-09-23",
+  "updated_at": "2026-09-23",
+  "published_datetime": "2026-09-23T11:27:42-03:00",
+  "updated_datetime": "2026-09-23T11:27:42-03:00",
+  "image": "web/img/insights/google-ad-manager-categorias-contextuales-openrtb.webp",
+  "image_alt": "Flujo de contenido web y de apps que se clasifica por contexto antes de entrar a una subasta, con un filtro para categorías sensibles.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google anunció en las notas de versión de Ad Manager del 21 de septiembre de 2026 que, a partir del 15 de octubre, comenzará a completar campos de categorías contextuales estándar en solicitudes de puja OpenRTB. La señal llegará a Authorized Buyers, Open Bidders y SDK Bidders, pero no se enviará cuando la solicitud se origine en el Espacio Económico Europeo, Reino Unido o Suiza.",
+    "El cambio no incorpora por sí mismo una nueva fuente de datos sobre usuarios. La documentación lo describe como una clasificación general del contenido del sitio, la app o la página mediante taxonomías reconocidas por IAB. Google también afirma que excluirá categorías que puedan relacionarse directamente con datos sensibles del artículo 9 del GDPR y ofrece un control de red para desactivar el envío."
+  ],
+  "key_takeaways": [
+    "Desde el 15 de octubre de 2026, Ad Manager completará campos como site.cat, site.pagecat, app.cat y app.pagecat en solicitudes OpenRTB elegibles.",
+    "El envío excluye tráfico del EEE, Reino Unido y Suiza, y Google indica que filtrará categorías vinculadas directamente con datos sensibles del GDPR.",
+    "Los publishers deberían auditar la clasificación contextual y establecer una línea base de demanda y rendimiento antes de atribuirle efectos comerciales al cambio."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambia en las solicitudes OpenRTB",
+      "paragraphs": [
+        "Ad Manager pasará a completar campos estándar de OpenRTB que describen el contexto general del inventario: site.cat y site.pagecat para sitios y páginas, y app.cat y app.pagecat para aplicaciones y sus pantallas o contenidos. Según Google, estos valores usan taxonomías contextuales reconocidas por la industria y se enviarán a Authorized Buyers, Open Bidders y SDK Bidders.",
+        "La fecha anunciada es el 15 de octubre de 2026. No hace falta activar la función para que las categorías se compartan: la documentación indica que el envío queda habilitado de forma predeterminada en las solicitudes que cumplen las condiciones. El control Share contextual category signals aparece en Admin, Global settings, dentro de Ad preference settings, y permite desactivarlo a nivel de red."
+      ]
+    },
+    {
+      "title": "Alcance y límites confirmados",
+      "paragraphs": [
+        "El alcance geográfico tiene una exclusión explícita. Ad Manager no completará estas señales cuando la solicitud provenga del EEE, Reino Unido o Suiza. Esto implica que una misma red puede generar solicitudes con distinto nivel de contexto según la ubicación del usuario, aun cuando el contenido y el inventario sean equivalentes.",
+        "Google también señala que no compartirá categorías contextuales que puedan relacionarse directamente con categorías especiales de datos definidas en el artículo 9 del GDPR. La documentación pública no detalla el clasificador, la versión exacta de la taxonomía ni la precisión esperada para cada página. Tampoco promete un aumento cuantificado de CPM, fill rate o ingresos: solo plantea que la estandarización puede ayudar a los compradores a reconocer mejor el inventario y generar más demanda.",
+        "Esos límites importan para la interpretación. La presencia de un campo no demuestra que la categoría sea correcta, y la ausencia de señal puede responder a región, sensibilidad o a la lógica de clasificación. Por eso no conviene usar un único request como prueba de funcionamiento general ni tratar la taxonomía como una descripción editorial exhaustiva del contenido."
+      ]
+    },
+    {
+      "title": "Qué significa para publishers y equipos de AdOps",
+      "paragraphs": [
+        "Análisis de Pi: el cambio reduce una fricción de interoperabilidad, porque compradores que ya procesan los campos estándar de OpenRTB podrán recibir contexto sin depender de una integración propietaria adicional. Para inventario con poco historial o con señales de usuario limitadas, una categoría contextual consistente puede facilitar la evaluación de la oportunidad de puja.",
+        "El beneficio, sin embargo, depende de la calidad de clasificación y de cómo cada comprador use esos campos. Una etiqueta demasiado amplia puede aportar poco; una etiqueta incorrecta puede atraer demanda no pertinente o alterar controles del lado comprador. La decisión operativa no debería limitarse a dejar encendido o apagar el control: requiere observar qué se envía, en qué tráfico y con qué resultados."
+      ]
+    },
+    {
+      "title": "Qué revisar antes del 15 de octubre",
+      "paragraphs": [
+        "La acción recomendada es preparar una auditoría pequeña y reproducible antes del despliegue. Primero hay que identificar inventario representativo por dominio, app, sección, formato y región. Después conviene conservar una línea base previa al cambio y repetir la observación cuando las señales estén disponibles, separando el análisis por canal de demanda.",
+        "Las pruebas deberían documentar requests reales y resultados agregados, sin capturar identificadores personales. También es prudente involucrar a privacidad y a responsables editoriales si el contenido incluye salud, religión, orientación política u otras áreas sensibles, aunque Google indique que aplica filtros específicos."
+      ],
+      "bullets": [
+        "Confirmar si Share contextual category signals está disponible y cuál es su estado en Admin > Global settings > Ad preference settings.",
+        "Inspeccionar muestras de site.cat, site.pagecat, app.cat y app.pagecat por sección, app y región, distinguiendo tráfico excluido.",
+        "Comparar bid rate, participación de compradores, fill rate, CPM y errores antes y después, sin atribuir causalidad hasta controlar otros cambios de demanda."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La novedad más relevante no es que Ad Manager conozca el contexto, sino que lo exponga en campos OpenRTB comunes y con un control explícito para el publisher. Esa combinación mejora la observabilidad del intercambio, pero traslada parte del trabajo a la operación: validar categorías, entender exclusiones y medir si los compradores realmente responden a la nueva señal.",
+        "Pi recomienda tratar el 15 de octubre como el inicio de un período de verificación, no como una promesa de mejora automática. Un tablero segmentado y un registro de muestras permiten detectar diferencias por región o inventario, conversar con los SSP con evidencia y decidir si mantener el envío activo en función de resultados y criterios de privacidad propios."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-09-21",
+      "accessed_at": "2026-09-23",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Standard OpenRTB contextual signal sharing",
+      "url": "https://support.google.com/admanager/answer/18081962?hl=en",
+      "published_at": "2026-09-21",
+      "accessed_at": "2026-09-23",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [
+    "debug-gpt-ads",
+    "herramientas-adtech"
+  ],
+  "faqs": [
+    {
+      "question": "¿Qué campos contextuales enviará Google Ad Manager en OpenRTB?",
+      "answer": "Google menciona site.cat, site.pagecat, app.cat y app.pagecat. Los campos describen categorías generales del sitio, la página, la app o su contenido mediante taxonomías estándar de la industria."
+    },
+    {
+      "question": "¿Se pueden desactivar las categorías contextuales en Ad Manager?",
+      "answer": "Sí. La red puede desactivar Share contextual category signals en Admin > Global settings > Ad preference settings. Si permanece activo, no hace falta otra acción para que Ad Manager comparta las categorías en requests elegibles."
+    }
+  ]
+}

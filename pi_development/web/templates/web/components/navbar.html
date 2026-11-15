@@ -3,20 +3,27 @@
 <nav class="topnav" id="Topnav">
   <div class="nav-container">
     <a class="logo" href="{% url 'index' %}" aria-label="Go to Pi Development home">
-      <img src="{% static 'web/img/piw.png' %}" alt="Pi Development" width="30" height="30">
+      <svg class="logo-mark" viewBox="0 0 150 150" aria-hidden="true">
+        <circle cx="75" cy="75" r="74" fill="#050505"/>
+        <circle cx="75" cy="75" r="68" fill="none" stroke="#deded9" stroke-width="0.9"/>
+        <path d="M47 61 54 54Q60 48 70 48H106L94 60H79L61 92Q56 101 45 100L67 61Z" fill="#fff"/>
+        <path d="M80 61H91V86Q91 97 104 97 99 103 92 103 80 103 80 90Z" fill="#fff"/>
+      </svg>
       <span>Pi Development</span>
     </a>
     <div class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a class="{% if request.path == '/soluciones-para-negocios/' %}is-active{% endif %}" {% if request.path == '/soluciones-para-negocios/' %}aria-current="page"{% endif %} href="{% url 'business_solutions' %}">For Businesses</a>
       <a class="{% if request.path == '/solutions/' %}is-active{% endif %}" {% if request.path == '/solutions/' %}aria-current="page"{% endif %} href="{% url 'solutions' %}">Solutions</a>
       <a class="{% if request.path == '/adtech/' %}is-active{% endif %}" {% if request.path == '/adtech/' %}aria-current="page"{% endif %} href="{% url 'adtech' %}">AdTech</a>
-      <a class="{% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'tools' or request.resolver_match.url_name == 'tool_detail' %}is-active{% endif %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'tools' or request.resolver_match.url_name == 'tool_detail' %}aria-current="page"{% endif %} href="{% url 'products' %}">Products</a>
+      <a class="{% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'product_detail' %}is-active{% endif %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'product_detail' %}aria-current="page"{% endif %} href="{% url 'products' %}">Products</a>
       <a class="{% if request.path == '/work/' %}is-active{% endif %}" {% if request.path == '/work/' %}aria-current="page"{% endif %} href="{% url 'work' %}">Work</a>
       <a class="{% if request.resolver_match.url_name == 'insights' or request.resolver_match.url_name == 'knowledge_page' or request.resolver_match.url_name == 'seo_page' %}is-active{% endif %}" {% if request.resolver_match.url_name == 'insights' or request.resolver_match.url_name == 'knowledge_page' or request.resolver_match.url_name == 'seo_page' %}aria-current="page"{% endif %} href="{% url 'insights' %}">Insights</a>
       <a class="{% if request.path == '/company/' %}is-active{% endif %}" {% if request.path == '/company/' %}aria-current="page"{% endif %} href="{% url 'company' %}">Company</a>
-      <a class="{% if request.path == '/contact/' %}is-active{% endif %}" {% if request.path == '/contact/' %}aria-current="page"{% endif %} href="{% url 'contact' %}">Contact</a>
+      <a class="nav-contact{% if request.path == '/contact/' %} is-active{% endif %}" {% if request.path == '/contact/' %}aria-current="page"{% endif %} href="{% url 'contact' %}">Contact</a>
     </div>
     <button type="button" class="menu-icon" aria-label="Open navigation" aria-controls="navLinks" aria-expanded="false">
-      <i class="fa fa-bars" aria-hidden="true"></i>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
   </div>
 </nav>

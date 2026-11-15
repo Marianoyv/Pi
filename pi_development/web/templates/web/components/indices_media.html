@@ -1,0 +1,13 @@
+{% load static %}
+{% if interactive %}
+<div class="pi-indices-shot pi-indices-shot--interactive" aria-label="Current Argentine Indices interface">
+  <img data-preview-image="desktop" data-preview-image-src="{% static 'web/img/indices-desktop.webp' %}" width="1901" height="912" alt="Argentine Indices desktop interface" loading="lazy" decoding="async">
+  <img data-preview-image="mobile" data-preview-image-src="{% static 'web/img/indices-mobile.webp' %}" width="398" height="818" alt="Argentine Indices mobile interface" loading="lazy" decoding="async">
+  <noscript><img src="{% static 'web/img/indices-desktop.webp' %}" width="1901" height="912" alt="Argentine Indices desktop interface"></noscript>
+</div>
+{% else %}
+<picture class="pi-indices-shot">
+  <source media="(max-width: 620px)" srcset="{% static 'web/img/indices-mobile.webp' %}" width="398" height="818">
+  <img src="{% static 'web/img/indices-desktop.webp' %}" width="1901" height="912" alt="Current Argentine Indices interface" loading="lazy" decoding="async">
+</picture>
+{% endif %}

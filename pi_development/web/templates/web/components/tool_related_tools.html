@@ -1,13 +1,13 @@
 {% if related_tools %}
 <article class="tool-panel tool-panel--aside">
-  <p class="tools-label">Herramientas relacionadas</p>
-  <h3>Que puedes revisar despues</h3>
+  <p class="tools-label">Related products</p>
+  <h3>What you can review next</h3>
   {% if tool.related_context %}
   <p class="tool-panel__note">{{ tool.related_context }}</p>
   {% endif %}
   <div class="tool-related-list">
     {% for item in related_tools %}
-    <a href="{% url 'tool_detail' slug=item.slug %}">
+    <a href="{% url 'product_detail' slug=item.slug %}">
       <strong>{{ item.name }}</strong>
       <span>{{ item.summary }}</span>
     </a>
@@ -18,9 +18,9 @@
 
 {% if related_seo_pages %}
 <article class="tool-panel tool-panel--aside">
-  <p class="tools-label">Guias relacionadas</p>
-  <h3>Lecturas utiles para esta herramienta</h3>
-  <p class="tool-panel__note">Estas guias conectan la herramienta con la capa editorial SEO del sitio.</p>
+  <p class="tools-label">Related Guides</p>
+  <h3>Useful readings for this tool</h3>
+  <p class="tool-panel__note">These guides connect the tool with the site's SEO editorial layer.</p>
   <div class="tool-related-list">
     {% for page in related_seo_pages %}
     <a href="{% url 'seo_page' slug=page.slug %}">
@@ -34,13 +34,17 @@
 
 {% if topic_cluster %}
 <article class="tool-panel tool-panel--aside">
-  <p class="tools-label">Grupo tematico</p>
+  <p class="tools-label">Thematic group</p>
   <h3>{{ topic_cluster.title }}</h3>
   <p>{{ topic_cluster.description }}</p>
   <ul class="tool-inline-list">
-    <li>{{ topic_cluster.tool_count }} tools</li>
-    <li>{{ topic_cluster.seo_page_count }} guias</li>
+    <li>{{ topic_cluster.tool_count }} products</li>
+    <li>{{ topic_cluster.seo_page_count }} guides</li>
   </ul>
-  <a class="button-link button-link--dark" href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }}</a>
+  {% if topic_cluster.catalog_available %}
+  <a class="button-link button-link--dark" href="{% url 'products' %}#{{ topic_cluster.catalog_anchor }}">View block {{ topic_cluster.catalog_label|lower }}</a>
+  {% else %}
+  <a class="button-link button-link--dark" href="{% url 'products' %}">See available products</a>
+  {% endif %}
 </article>
 {% endif %}

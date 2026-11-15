@@ -5,6 +5,7 @@
   border-top: 1px solid rgba(var(--rgb-border), 0.72);
 }
 
+
 .footer-columns {
   width: min(1200px, 100%);
   margin: 0 auto;

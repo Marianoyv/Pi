@@ -1,0 +1,154 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ home_page.seo_title }}{% endblock %}
+{% block og_title %}{{ home_page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ home_page.seo_title }}{% endblock %}
+{% block meta_description %}{{ home_page.meta_description }}{% endblock %}
+{% block og_description %}{{ home_page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ home_page.meta_description }}{% endblock %}
+{% block body_class %}home-page company-home pi-editorial-home{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/product-stage.css' %}?v=20261025-36">
+<link rel="stylesheet" href="{% static 'web/css/home-next.css' %}?v=20261025-2">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="pi-home-hero" aria-labelledby="home-title">
+    {% include 'web/components/fibonacci_field.html' %}
+    <div class="pi-home-shell pi-home-hero__grid">
+      <div class="pi-home-hero__copy">
+        <h1 id="home-title"><span>Think clearly.</span><span>Build what matters.</span></h1>
+        <p class="pi-home-lead">{{ home_page.hero.title }}</p>
+        <div class="pi-home-actions">
+          <a class="button-link" href="{{ home_page.hero.primary_cta.href }}">{{ home_page.hero.primary_cta.label }} <span aria-hidden="true">↗</span></a>
+          <a class="pi-text-link" href="{{ home_page.hero.secondary_cta.href }}">{{ home_page.hero.secondary_cta.label }} <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {% include 'web/components/product_stage.html' %}
+
+  <aside class="pi-audience" aria-label="Who Pi Development works with">
+    <div class="pi-home-shell pi-audience__inner">
+      {% for item in home_page.audience %}<span data-cascade-item><b>{{ item }}</b></span>{% endfor %}
+    </div>
+  </aside>
+
+
+  {% if latest_articles %}
+  <section class="pi-home-section pi-latest-insights" aria-labelledby="latest-insights-title" lang="en">
+    <div class="pi-home-shell">
+      <header class="pi-section-head pi-section-head--split">
+        <div>
+          <p class="company-card__label">Latest publications</p>
+          <h2 id="latest-insights-title">Technical news from Pi.</h2>
+        </div>
+        <p>Recent notes on AdTech, product, performance and artificial intelligence.</p>
+      </header>
+      <div class="pi-latest-insights__grid">
+        {% for article in latest_articles %}
+        <a class="pi-latest-insight" href="{% url 'knowledge_page' slug=article.slug %}">
+          <img src="{% static article.image %}" width="1536" height="864" alt="" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" decoding="async">
+          <div lang="{{ article.language|default:'es' }}">
+            <p>{{ article.eyebrow }} · <time datetime="{{ article.published_datetime }}">{{ article.published_at }}</time></p>
+            <h3>{{ article.h1 }}</h3>
+            <span lang="en">Read analysis <b aria-hidden="true">↗</b></span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+      <a class="pi-text-link pi-section-link" href="{% url 'insights' %}">See all insights <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  {% endif %}
+
+  <div class="pi-next">
+    <section class="pi-next-section pi-next-services" aria-labelledby="what-we-solve-title">
+      <div class="pi-home-shell">
+        <header class="pi-next-heading">
+          <p class="pi-next-kicker">What we solve</p>
+          <h2 id="what-we-solve-title">Different problems.<br><em>The same standard.</em></h2>
+          <p>{{ home_page.what_we_solve.description }}</p>
+        </header>
+        <div class="pi-next-service-grid">
+          {% for item in home_page.what_we_solve.items %}
+          <a class="pi-next-service" href="{{ item.href }}">
+            <span class="pi-next-service__top"><span>0{{ forloop.counter }}</span><span class="pi-next-arrow" aria-hidden="true">↗</span></span>
+            <div class="pi-next-service__body"><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div>
+            <span class="pi-next-service__link">{% if forloop.first %}From idea to launch{% elif forloop.counter == 2 %}Make work flow{% else %}Built for publishers{% endif %}</span>
+          </a>
+          {% endfor %}
+        </div>
+        <a class="pi-next-link" href="{{ home_page.what_we_solve.cta.href }}">{{ home_page.what_we_solve.cta.label }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    {% if home_page.selected_work.items %}
+    <section class="pi-next-section pi-next-work" aria-labelledby="selected-work-title">
+      <div class="pi-home-shell">
+        <header class="pi-next-heading pi-next-heading--split">
+          <div><p class="pi-next-kicker">Selected work</p><h2 id="selected-work-title">Real problems.<br><em>Working software.</em></h2></div>
+          <a class="pi-next-link" href="{{ home_page.selected_work.cta.href }}">{{ home_page.selected_work.cta.label }} <span aria-hidden="true">↗</span></a>
+        </header>
+        <div class="pi-next-projects">
+          {% for item in home_page.selected_work.items %}
+          <article class="pi-next-project">
+            <a class="pi-next-project__image" href="{{ item.href }}" aria-label="Read {{ item.title }} case study">
+              <picture>
+                {% if item.slug == 'indices-argentinos' %}<source media="(max-width: 620px)" srcset="{% static 'web/img/indices-mobile.webp' %}">{% endif %}
+                <img src="{% static item.image %}" alt="{{ item.title }} website interface" loading="lazy" decoding="async" width="1600" height="900">
+              </picture>
+              <span class="pi-next-project__open">Explore project <span aria-hidden="true">↗</span></span>
+            </a>
+            <div class="pi-next-project__copy"><div><p class="pi-next-kicker">{{ item.project_type }}</p><h3><a href="{{ item.href }}">{{ item.title }}</a></h3></div><p>{{ item.text }}</p></div>
+            {% if item.metrics %}<dl class="pi-next-results" data-metric-board>{% for metric in item.metrics %}<div><dt>{{ metric.label }}</dt><dd>{{ metric.value }}</dd></div>{% endfor %}</dl>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="pi-next-section pi-next-method" aria-labelledby="how-we-build-title">
+      <div class="pi-home-shell pi-next-method__layout">
+        <header class="pi-next-heading"><p class="pi-next-kicker">How we build</p><h2 id="how-we-build-title">Clear thinking.<br><em>At every step.</em></h2><p>{{ home_page.how_we_build.description }}</p></header>
+        <ol class="pi-next-steps">
+          {% for item in home_page.how_we_build.items %}
+          <li><span class="pi-next-step-number">0{{ forloop.counter }}</span><div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+
+    {% if home_page.tools.items %}
+    <section class="pi-next-section pi-next-tools" aria-labelledby="tools-title">
+      <div class="pi-home-shell">
+        <header class="pi-next-heading pi-next-heading--split"><div><p class="pi-next-kicker">Made to be useful</p><h2 id="tools-title">Less busywork.<br><em>More headspace.</em></h2></div><p>{{ home_page.tools.description }}</p></header>
+        <div class="pi-next-tool-grid">
+          {% for item in home_page.tools.items %}
+          <a class="pi-next-tool" href="{{ item.href }}"><div class="pi-next-tool__icon" aria-hidden="true">{% if forloop.first %}↗{% elif forloop.counter == 2 %}✓{% else %}⤢{% endif %}</div><h3>{{ item.title }}</h3><p>{{ item.text }}</p><span class="pi-next-tool__link">{{ item.cta }} <span aria-hidden="true">↗</span></span></a>
+          {% endfor %}
+        </div>
+        <a class="pi-next-link" href="{{ home_page.tools.cta.href }}">{{ home_page.tools.cta.label }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="pi-next-contact" aria-labelledby="pi-next-contact-title">
+      <div class="pi-home-shell"><p class="pi-next-kicker">Something in mind?</p><h2 id="pi-next-contact-title">{{ home_page.contact.title }}</h2><a class="pi-next-contact__button" href="{{ home_page.contact.cta.href }}">{{ home_page.contact.cta.label }} <span aria-hidden="true">↗</span></a><p>Buenos Aires. Working everywhere.</p></div>
+    </section>
+  </div>
+
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'web/js/genesis-field.js' %}?v=20261024-1"></script>
+<script defer src="{% static 'web/js/product-stage.js' %}?v=20261025-36"></script>
+{% endblock %}

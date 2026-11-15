@@ -1,0 +1,112 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-rewarded-web-7-segundos",
+  "title": "Rewarded web exige 7 segundos | Pi Development",
+  "meta_description": "Google Ad Manager eleva a 7 segundos la vista mínima para otorgar recompensas web. Qué cambia en eventos, experiencia, QA y medición operativa.",
+  "meta_keywords": "Google Ad Manager, rewarded web, rewardedSlotGranted, anuncios recompensados",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager exige 7 segundos para otorgar recompensas web",
+  "description": "Los anuncios rewarded para web deben permanecer visibles durante al menos siete segundos antes de conceder la recompensa. El cambio separa con más claridad el momento de la impresión, la posibilidad de omitir el anuncio y la entrega efectiva del beneficio.",
+  "summary": "Ad Manager sube de cinco a siete segundos el tiempo visible requerido para conceder una recompensa en anuncios web.",
+  "search_intent": "Entender cuándo Google Ad Manager concede ahora una recompensa en rewarded web y qué debe validar un publisher en su implementación.",
+  "business_relevance": "Publishers y equipos de AdOps pueden necesitar revisar eventos, mensajes de interfaz, analítica y pruebas de QA para evitar conceder beneficios antes de que Ad Manager confirme la recompensa.",
+  "target_audience": [
+    "Publishers digitales con inventario rewarded web",
+    "Equipos de AdOps, producto, desarrollo y monetización"
+  ],
+  "published_at": "2026-10-20",
+  "updated_at": "2026-10-20",
+  "published_datetime": "2026-10-20T11:06:48-03:00",
+  "updated_datetime": "2026-10-20T11:06:48-03:00",
+  "image": "web/img/insights/google-ad-manager-rewarded-web-7-segundos.webp",
+  "image_alt": "Ilustración de un anuncio web que atraviesa siete controles de tiempo antes de liberar una recompensa digital.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google Ad Manager informó el 19 de octubre de 2026 un cambio ya vigente para los anuncios rewarded en la web: el anuncio debe permanecer visible durante al menos siete segundos para que se conceda la recompensa. El requisito anterior era de cinco segundos.",
+    "El ajuste no mueve todos los hitos de la experiencia al mismo punto. Google aclara que el usuario todavía puede omitir el anuncio después de cinco segundos o abandonarlo en cualquier momento, mientras que la impresión continúa contabilizándose cuando el anuncio se muestra. Por eso, impresión, disponibilidad del skip y concesión de la recompensa deben tratarse como estados diferentes."
+  ],
+  "key_takeaways": [
+    "La visibilidad mínima para conceder la recompensa en rewarded web pasa de cinco a siete segundos.",
+    "El anuncio puede seguir omitiéndose a los cinco segundos y la impresión se cuenta al mostrarse; esas señales no equivalen a una recompensa concedida.",
+    "La implementación debe entregar el beneficio únicamente cuando reciba `rewardedSlotGranted` y debe probar cierres entre los segundos cinco y siete."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "La actualización afecta al formato rewarded web de Google Ad Manager. Para que el sistema conceda la recompensa, el display debe estar a la vista durante siete segundos como mínimo. Antes alcanzaban cinco segundos. La nota de versión no anuncia un nuevo evento ni un cambio de firma en la API: modifica la condición temporal que debe cumplirse para que la experiencia llegue al estado de recompensa.",
+        "Google mantiene dos comportamientos que conviene distinguir. La impresión se registra cuando el anuncio se muestra, sin esperar los siete segundos. Además, el usuario puede omitir el anuncio desde el segundo cinco. En consecuencia, puede existir una impresión válida y una salida habilitada sin que se haya ganado la recompensa."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuál es el impacto operativo",
+      "paragraphs": [
+        "El cambio importa a publishers que ofrecen acceso a artículos, monedas virtuales, vidas, conectividad u otro beneficio a cambio de ver publicidad en sitios de escritorio, móvil o tablet. También afecta a los equipos que diseñan el modal de consentimiento, entregan el beneficio, registran conversiones o comparan el rendimiento del formato.",
+        "El principal riesgo no es de trafficking, sino de sincronización. Una interfaz que prometa la recompensa al llegar a cinco segundos, un temporizador propio que desbloquee contenido o una medición que confunda impresión con recompensa puede quedar desalineada respecto de Ad Manager. El resultado posible es una experiencia en la que el usuario ve el botón para omitir, sale del anuncio y no recibe un beneficio que la interfaz parecía anticipar.",
+        "La documentación operativa de rewarded web indica que la entrega debe basarse en el evento `rewardedSlotGranted`. Como algunas demandas pueden conceder la recompensa antes de que termine la creatividad, esperar a la finalización del video tampoco es una regla universal segura. La señal relevante es el evento de concesión, no un cronómetro implementado por el publisher."
+      ]
+    },
+    {
+      "title": "Límites del anuncio",
+      "paragraphs": [
+        "Google describe el nuevo mínimo y los hitos de skip e impresión, pero no publica en esta nota datos sobre impacto en completion rate, ingresos o tasa de abandono. Tampoco afirma que todas las creatividades duren lo mismo ni que el cambio aplique al formato rewarded para apps. Cualquier efecto comercial debe medirse en el inventario propio y no inferirse del aumento de dos segundos.",
+        "Que la impresión se contabilice al mostrarse no significa que el usuario haya completado la experiencia. Para analizar el formato hace falta separar, como mínimo, solicitudes y fill, impresiones, concesiones de recompensa, cierres y el resultado posterior dentro del producto."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La prioridad es verificar que la experiencia visible y la lógica de negocio respondan a los eventos reales de GPT. El QA debería incluir el intervalo nuevo entre el momento en que aparece el skip y el momento en que la recompensa puede concederse."
+      ],
+      "bullets": [
+        "Confirmar que el beneficio se entrega solo después de `rewardedSlotGranted`, sin depender de un temporizador propio ni de la impresión.",
+        "Probar cierres antes de cinco segundos, entre los segundos cinco y siete y después de la concesión; documentar qué mensaje ve el usuario en cada caso.",
+        "Revisar textos de consentimiento, paywalls y estados de carga para que no prometan una recompensa a los cinco segundos.",
+        "Comparar la proporción entre impresiones, recompensas concedidas y cierres antes y después del cambio, segmentada por dispositivo y tipo de demanda.",
+        "Destruir el slot al recibir `rewardedSlotClosed` y validar que no queden overlays, estados o beneficios duplicados."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "El cambio parece pequeño, pero expone una distinción que muchas implementaciones simplifican: servir una impresión, permitir una salida y cumplir la condición de recompensa son eventos separados. La integración más robusta es la que modela esos estados de forma explícita y deja que la señal de Ad Manager gobierne la entrega del beneficio.",
+        "Para Pi, la prueba más útil no es confirmar que el anuncio abre, sino observar la transición completa: opt-in, render, skip habilitado, concesión, cierre y persistencia del beneficio. Esa secuencia permite detectar desajustes entre la interfaz, GPT y el backend antes de que se conviertan en reclamos de usuarios o en métricas difíciles de reconciliar."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-19",
+      "accessed_at": "2026-10-20",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Traffic rewarded ads for web",
+      "url": "https://support.google.com/admanager/answer/9116812?hl=en",
+      "published_at": "2026-10-19",
+      "accessed_at": "2026-10-20",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Cuántos segundos debe verse un rewarded web para recibir la recompensa?",
+      "answer": "Desde la actualización del 19 de octubre de 2026, el anuncio debe permanecer visible al menos siete segundos para que Google Ad Manager conceda la recompensa."
+    },
+    {
+      "question": "¿El usuario puede omitir el anuncio antes de recibir la recompensa?",
+      "answer": "Sí. El skip sigue disponible después de cinco segundos, pero la recompensa requiere siete segundos de visibilidad. La implementación debe esperar `rewardedSlotGranted` antes de entregar el beneficio."
+    }
+  ]
+}

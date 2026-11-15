@@ -1,0 +1,109 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "gpt-correlator-navegaciones-spa",
+  "title": "GPT renueva el correlator en SPA | Pi Development",
+  "meta_description": "Google Publisher Tag ya renueva el correlator al navegar una SPA. Qué cambia, qué código revisar y cómo validar las solicitudes de anuncios.",
+  "meta_keywords": "Google Publisher Tag, correlator, SPA, Ad Manager, navegación cliente",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "GPT renueva el correlator al navegar una SPA",
+  "description": "Google Publisher Tag ahora actualiza automáticamente el correlator cuando detecta una navegación del lado del cliente. El cambio simplifica integraciones SPA, pero conviene revisar llamadas manuales y validar cómo se agrupan las solicitudes publicitarias.",
+  "summary": "GPT automatiza el cambio de correlator entre vistas de una SPA y obliga a revisar la lógica manual existente.",
+  "search_intent": "Entender cómo cambia el correlator de Google Publisher Tag en una SPA y qué revisar en una implementación que ya lo actualiza manualmente.",
+  "business_relevance": "Los publishers con sitios React, Next.js, Vue, Angular u otras SPA pueden necesitar una auditoría de su integración publicitaria para evitar lógica redundante y comprobar que cada transición se mida y monetice como corresponde.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto y desarrollo web"
+  ],
+  "published_at": "2026-10-22",
+  "updated_at": "2026-10-22",
+  "published_datetime": "2026-10-22T11:01:04-03:00",
+  "updated_datetime": "2026-10-22T11:01:04-03:00",
+  "image": "web/img/insights/gpt-correlator-navegaciones-spa.webp",
+  "image_alt": "Tres vistas de una aplicación web conectadas por solicitudes publicitarias que cambian de estado en cada navegación.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google Publisher Tag (GPT) informó en sus notas de la semana del 19 de octubre de 2026 que ahora actualiza automáticamente el correlator cuando ocurre una navegación del lado del cliente en una single-page application (SPA). Según Google, las solicitudes de anuncios posteriores a la transición pasan a tratarse como parte de una nueva vista de página, sin que el publisher tenga que llamar manualmente a `PubAdsService.updateCorrelator()`.",
+    "El cambio ya completó su despliegue gradual, pero la nota no detalla qué APIs de navegación o routers reconoce ni promete que toda arquitectura SPA quede cubierta de la misma manera. Tampoco redefine la vista de página persistente que GPT mantiene para administrar los anuncios presentes en el documento. Por eso, la automatización reduce trabajo de integración, pero no reemplaza una validación sobre el sitio real."
+  ],
+  "key_takeaways": [
+    "GPT genera automáticamente un nuevo correlator después de una navegación del lado del cliente en una SPA.",
+    "El correlator de las solicitudes no es lo mismo que la vista de página persistente de GPT, que conserva el estado de los anuncios presentes en el documento.",
+    "Conviene auditar llamadas manuales a `updateCorrelator()`, recorrer rutas reales y confirmar en red cuándo cambia el valor antes de retirar código."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta ahora, una integración SPA podía llamar a `googletag.pubads().updateCorrelator()` cuando su router cambiaba de vista sin recargar el documento. La referencia de GPT define ese método como una forma de cambiar el correlator enviado con las solicitudes y, en la práctica, iniciar una nueva vista de página para el ad server. El correlator es común a las solicitudes de una misma vista y distinto entre vistas.",
+        "Con la actualización de octubre, GPT realiza esa renovación de forma automática en navegaciones del lado del cliente. El alcance confirmado es específico: las solicitudes posteriores a la transición se asocian con un nuevo correlator. Google no anunció que el cambio cree slots, actualice targeting, dispare nuevos pedidos ni destruya anuncios anteriores; esas decisiones siguen dependiendo del ciclo de vida implementado por el sitio."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuál es el límite",
+      "paragraphs": [
+        "El cambio importa a publishers que conservan el mismo documento mientras cambian de ruta y cargan nuevos contenidos, algo habitual en aplicaciones construidas con React, Next.js, Vue, Angular y routers propios. También afecta a equipos que incorporaron una llamada manual a `updateCorrelator()` dentro de eventos del router, gestores de etiquetas o capas compartidas de monetización.",
+        "El límite técnico central es que el correlator no equivale a la vista de página persistente de GPT. La documentación aclara que cambiarlo no altera ese estado de larga duración, que refleja los anuncios que continúan presentes y no tiene vencimiento. En una SPA, destruir los slots retirados de la interfaz y crear o configurar correctamente los nuevos sigue siendo necesario para evitar estados inconsistentes y para que exclusiones competitivas o roadblocks operen sobre el inventario realmente visible.",
+        "Además, la nota de versión no explica si una llamada manual adicional queda neutralizada. La lectura prudente de Pi es que mantener automatismos duplicados sin medirlos puede introducir más cambios de correlator de los previstos. Eso es un riesgo a comprobar, no un efecto documentado por Google."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción recomendada es observar primero y simplificar después. En un entorno de prueba, conviene recorrer transiciones representativas —incluidas navegación hacia atrás, reemplazo de URL, rutas con carga diferida y cambios que no solicitan anuncios— mientras se inspeccionan las llamadas a `gampad/ads`. La comparación debe mostrar si el correlator cambia una vez en el momento esperado y si el targeting, la URL de página y los slots corresponden al contenido nuevo.",
+        "Si la implementación contiene `updateCorrelator()`, no conviene eliminarlo solo porque apareció la automatización. Primero hay que comprobar qué navegación detecta GPT en ese framework y qué otras tareas ejecutaba el mismo handler. Un bloque que también destruye slots, limpia targeting o coordina refresh no puede retirarse como una unidad sin separar responsabilidades."
+      ],
+      "bullets": [
+        "Buscar llamadas directas e indirectas a `updateCorrelator()` en el router, el tag manager y los módulos publicitarios.",
+        "Registrar ruta, instante de transición, correlator y slots incluidos en cada solicitud antes y después del cambio.",
+        "Verificar que los slots retirados se destruyan y que los nuevos reciban targeting y tamaños correctos antes de pedir anuncios.",
+        "Comparar cantidad de solicitudes, impresiones y errores por vista virtual para detectar duplicaciones o rutas sin monetización."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La mejora resuelve una diferencia histórica entre la navegación del navegador y la noción publicitaria de página: en una SPA, la URL y el contenido podían cambiar sin que GPT recibiera una señal equivalente. Automatizar el correlator acerca el comportamiento por defecto al modelo que esperan AdOps y reporting, pero solo para esa señal.",
+        "El resultado útil no es tener menos líneas de código, sino poder explicar con evidencia cuándo comienza una nueva vista publicitaria. Pi recomienda conservar una prueba de integración que recorra rutas y examine solicitudes, porque un cambio automático de plataforma puede convivir durante meses con lógica propia, gestores de etiquetas y distintos ciclos de vida de componentes. Esa observabilidad permite simplificar sin perder control sobre monetización y medición."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Publisher Tag",
+      "title": "GPT release notes — Week of October 19, 2026",
+      "url": "https://developers.google.com/publisher-tag/release-notes",
+      "published_at": "2026-10-19",
+      "accessed_at": "2026-10-22",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Publisher Tag",
+      "title": "GPT Reference — PubAdsService.updateCorrelator()",
+      "url": "https://developers.google.com/publisher-tag/reference#googletag.PubAdsService_updateCorrelator",
+      "published_at": "2026-10-21",
+      "accessed_at": "2026-10-22",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads",
+    "auditoria-tecnica-web"
+  ],
+  "related_knowledge_slugs": [
+    "google-publisher-tag-fetch-priority-refresh-bfcache",
+    "errores-comunes-en-implementaciones-con-google-publisher-tag"
+  ],
+  "faqs": [
+    {
+      "question": "¿Hay que seguir llamando a updateCorrelator en una SPA?",
+      "answer": "GPT ya renueva el correlator automáticamente en navegaciones del lado del cliente. Antes de quitar una llamada manual, verificá en las rutas reales que el cambio ocurra una sola vez y separá cualquier otra tarea que ejecute el mismo handler."
+    },
+    {
+      "question": "¿Cambiar el correlator reinicia toda la vista de página de GPT?",
+      "answer": "No. El correlator agrupa solicitudes como una nueva vista para el ad server, pero no reinicia la vista de página persistente de GPT. Los slots que dejan de existir deben destruirse de acuerdo con el ciclo de vida de la aplicación."
+    }
+  ]
+}

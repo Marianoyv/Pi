@@ -2,12 +2,57 @@ from copy import deepcopy
 
 
 TOPIC_CLUSTERS = {
+    "ia": {
+        "key": "ia",
+        "title": "AI, work and people",
+        "description": "How artificial intelligence changes jobs, decisions, creativity, power and everyday life.",
+        "catalog_anchor": "",
+        "catalog_label": "AI, work and people",
+        "tool_slugs": [],
+        "seo_page_slugs": [],
+    },
+    "web-actual": {
+        "key": "web-actual",
+        "title": "The current website",
+        "description": "Design, trust, accessibility, performance, and the decisions that make a site feel human.",
+        "catalog_anchor": "",
+        "catalog_label": "The current website",
+        "tool_slugs": [],
+        "seo_page_slugs": [],
+    },
+    "tecnologia-vida": {
+        "key": "tecnologia-vida",
+        "title": "Technology and everyday life",
+        "description": "Algorithms, privacy, habits, scams and digital changes explained from their human consequences.",
+        "catalog_anchor": "",
+        "catalog_label": "Technology and everyday life",
+        "tool_slugs": [],
+        "seo_page_slugs": [],
+    },
+    "producto": {
+        "key": "producto",
+        "title": "Build products",
+        "description": "Decisions, errors, costs and real learnings behind digital products and systems.",
+        "catalog_anchor": "",
+        "catalog_label": "Build products",
+        "tool_slugs": [],
+        "seo_page_slugs": [],
+    },
+    "carrera": {
+        "key": "carrera",
+        "title": "Technology career and culture",
+        "description": "Work, learning, burnout, specialization and craft within the technology industry.",
+        "catalog_anchor": "",
+        "catalog_label": "Technology career and culture",
+        "tool_slugs": [],
+        "seo_page_slugs": [],
+    },
     "creatividades": {
         "key": "creatividades",
-        "title": "Grupo Creatividades",
-        "description": "Validacion, preview y QA tecnico para creatividades HTML, display y tags publicitarios.",
+        "title": "Creatividades Group",
+        "description": "Validation, preview and technical QA for HTML creatives, display and advertising tags.",
         "catalog_anchor": "qa_preview",
-        "catalog_label": "QA y vista previa",
+        "catalog_label": "QA and preview",
         "tool_slugs": ["creative-preview-lab", "creative-qa-checklist"],
         "seo_page_slugs": [
             "validar-creatividad-html",
@@ -18,10 +63,10 @@ TOPIC_CLUSTERS = {
     },
     "adtech": {
         "key": "adtech",
-        "title": "Grupo AdTech",
-        "description": "Diagnostico de monetizacion visible, GPT, stack publicitario y lecturas iniciales de implementacion.",
+        "title": "AdTech and digital operations",
+        "description": "Digital advertising and monetization explained by its consequences for readers, teams and businesses.",
         "catalog_anchor": "diagnostics",
-        "catalog_label": "Diagnostico tecnico",
+        "catalog_label": "Technical diagnostics",
         "tool_slugs": ["adtech-debug-tool"],
         "seo_page_slugs": [
             "debug-anuncios-web",
@@ -31,10 +76,10 @@ TOPIC_CLUSTERS = {
     },
     "seo-performance": {
         "key": "seo-performance",
-        "title": "Grupo SEO / Performance",
-        "description": "Auditoria tecnica de URLs, SEO on-page visible y snapshots cortos de respuesta y metadata.",
+        "title": "SEO / Performance Group",
+        "description": "Technical audit of URLs, visible on-page SEO and short response and metadata snapshots.",
         "catalog_anchor": "diagnostics",
-        "catalog_label": "Diagnostico tecnico",
+        "catalog_label": "Technical diagnostics",
         "tool_slugs": ["ai-auditor", "landing-performance-snapshot"],
         "seo_page_slugs": [
             "auditoria-tecnica-web",
@@ -44,9 +89,9 @@ TOPIC_CLUSTERS = {
     "tracking": {
         "key": "tracking",
         "title": "Grupo Tracking",
-        "description": "Etiquetado UTM, control de URLs de campana y orden operativo para tracking.",
+        "description": "UTM tagging, control of campaign URLs and operational order for tracking.",
         "catalog_anchor": "operations",
-        "catalog_label": "Operacion y etiquetado",
+        "catalog_label": "Operation and labeling",
         "tool_slugs": ["utm-builder"],
         "seo_page_slugs": [
             "como-crear-utms",
@@ -124,11 +169,15 @@ def get_discovery_seo_hub_pages():
 
 
 def _build_cluster_context(cluster, current_tool_slug=None, current_seo_slug=None):
+    from .tool_catalog import get_tool_groups
+
     cluster_copy = deepcopy(cluster)
     cluster_copy["tools"] = _get_tools(cluster_copy["tool_slugs"], current_slug=current_tool_slug)
     cluster_copy["seo_pages"] = _get_seo_pages(cluster_copy["seo_page_slugs"], current_slug=current_seo_slug)
     cluster_copy["tool_count"] = len(cluster_copy["tools"])
     cluster_copy["seo_page_count"] = len(cluster_copy["seo_page_slugs"])
+    available_catalog_anchors = {group["key"] for group in get_tool_groups()}
+    cluster_copy["catalog_available"] = cluster_copy["catalog_anchor"] in available_catalog_anchors
     return cluster_copy
 
 
@@ -140,7 +189,7 @@ def _get_tools(slugs, current_slug=None):
         if slug == current_slug:
             continue
         tool = get_tool(slug)
-        if tool:
+        if tool and tool.get("public_visibility"):
             tools.append(tool)
     return tools
 

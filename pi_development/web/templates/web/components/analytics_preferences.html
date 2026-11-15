@@ -1,0 +1,12 @@
+{% if google_analytics_id %}
+<section class="analytics-preferences-panel" data-analytics-preferences role="dialog" aria-label="Analytics preferences" hidden>
+  <p>Analytics preferences</p>
+  <p>Cookieless measurement is active by default. You can allow analytics storage for fuller measurement or turn measurement off. Form contents and contact details are never included.</p>
+  <div>
+    <button type="button" data-analytics-consent="granted">Allow analytics storage</button>
+    <button type="button" data-analytics-consent="denied">Use cookieless measurement</button>
+    <button type="button" data-analytics-consent="disabled">Turn measurement off</button>
+    <a href="{% url 'policies' %}">Privacy policy</a>
+  </div>
+</section>
+{% endif %}

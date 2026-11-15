@@ -1,0 +1,162 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ page.seo_title }}{% endblock %}
+{% block og_title %}{{ page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ page.seo_title }}{% endblock %}
+{% block meta_description %}{{ page.meta_description }}{% endblock %}
+{% block og_description %}{{ page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ page.meta_description }}{% endblock %}
+{% block body_class %}business-route business-service-route{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/business.css' %}?v=20261024-1">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="business-hero" aria-labelledby="business-title">
+    <div class="business-shell business-hero__grid">
+      <div>
+        <p class="business-eyebrow">{{ page.eyebrow }}</p>
+        <h1 id="business-title">{{ page.title }}</h1>
+        <p class="business-lead">{{ page.description }}</p>
+        <div class="business-actions">
+          <a class="button-link" href="#servicio">{{ page.hero_primary_label }}</a>
+          <a class="business-text-link" href="{% url 'web_plans' %}">{{ page.hero_secondary_label }} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div class="business-hero__system" aria-label="Journey from business to consultation">
+        <p>BUSINESS / SIGNAL</p>
+        <ol>
+          <li><span>01</span><strong>To understand</strong><small>people · offer · context</small></li>
+          <li><span>02</span><strong>Order</strong><small>content · journey · decision</small></li>
+          <li><span>03</span><strong>Build</strong><small>design · technology · measurement</small></li>
+          <li><span>04</span><strong>convert</strong><small>interest · trust · consultation</small></li>
+        </ol>
+      </div>
+    </div>
+    <div class="business-shell business-proofline" aria-label="Service Features">
+      <span>Personal support</span><span>Responsive design</span><span>SEO and measurement</span><span>Published delivery</span>
+    </div>
+  </section>
+
+  <section class="business-section" aria-labelledby="outcomes-title">
+    <div class="business-shell">
+      <header class="business-section__head">
+        <p class="business-eyebrow">Expected result</p>
+        <h2 id="outcomes-title">{{ page.outcomes_title }}</h2>
+      </header>
+      <div class="business-outcome-grid">
+        {% for item in page.outcomes %}
+        <article class="business-outcome">
+          <span>{{ item.number }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="business-inline-cta">
+        <div><strong>Do you already know what type of solution you need?</strong><span>Compare scopes, times and reference prices.</span></div>
+        <a class="button-link" href="{% url 'web_plans' %}">See plans and prices</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="business-section business-section--soft" id="servicio" aria-labelledby="service-title">
+    <div class="business-shell">
+      <header class="business-section__head business-section__head--split">
+        <div><p class="business-eyebrow">The service</p><h2 id="service-title">{{ page.service_title }}</h2></div>
+        <p>{{ page.service_intro }}</p>
+      </header>
+      <div class="business-service-grid">
+        {% for item in page.service_items %}
+        <article><span>0{{ forloop.counter }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="business-section business-ai" aria-labelledby="ai-title">
+    <div class="business-shell">
+      <header class="business-section__head">
+        <p class="business-eyebrow">People + technology</p>
+        <h2 id="ai-title">{{ page.ai_title }}</h2>
+        <p>{{ page.ai_intro }}</p>
+      </header>
+      <div class="business-ai__grid">
+        {% for column in page.ai_columns %}
+        <article class="{% if forloop.last %}is-human{% endif %}">
+          <p class="business-ai__label">{{ column.label }}</p>
+          <ul>{% for item in column.items %}<li>{{ item }}</li>{% endfor %}</ul>
+        </article>
+        {% endfor %}
+      </div>
+      <div class="business-dual-cta">
+        <a class="button-link" href="{% url 'web_plans' %}">Compare plans</a>
+        <a class="business-text-link" href="{{ primary_cta_href }}" target="_blank" rel="noopener noreferrer">Talk to Mariano <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="business-section business-section--soft" aria-labelledby="marketing-title">
+    <div class="business-shell business-marketing">
+      <header class="business-section__head">
+        <p class="business-eyebrow">Connected marketing</p>
+        <h2 id="marketing-title">{{ page.marketing_title }}</h2>
+        <p>{{ page.marketing_intro }}</p>
+      </header>
+      <div class="business-marketing__grid">
+        {% for item in page.marketing_items %}
+        <article><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+        {% endfor %}
+      </div>
+      <a class="business-text-link business-section-link" href="{% url 'web_plans' %}">See what each plan includes <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="business-section" aria-labelledby="cases-title">
+    <div class="business-shell">
+      <header class="business-section__head business-section__head--split">
+        <div><p class="business-eyebrow">Published work</p><h2 id="cases-title">Two businesses, two different solutions.</h2></div>
+        <p>I do not apply an identical template to everyone. The journey changes depending on the offer, the decision and the consultation you must facilitate.</p>
+      </header>
+      <div class="business-case-grid">
+        {% for case in business_cases %}
+        <a class="business-case" href="{{ case.internal_url }}">
+          <div class="business-case__image"><img src="{% static case.poster %}" alt="Public interface for {{ case.name }}" loading="lazy" decoding="async"></div>
+          <div><p>{% if case.slug == "juno-metales" %}Commercial site SEO and measurement{% else %}Catalog · recommendation and consultation{% endif %}</p><h3>{{ case.name }}</h3><span>See full case <b aria-hidden="true">→</b></span></div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="business-section business-section--soft" aria-labelledby="process-title">
+    <div class="business-shell business-process">
+      <header class="business-section__head"><p class="business-eyebrow">Direct process</p><h2 id="process-title">{{ page.process.title }}</h2></header>
+      <ol>{% for item in page.process.items %}<li><span>0{{ forloop.counter }}</span><div><h3>{{ item.title }}</h3><p>{{ item.text }}</p></div></li>{% endfor %}</ol>
+    </div>
+  </section>
+
+  <section class="business-section" aria-labelledby="faq-title">
+    <div class="business-shell business-faq-layout">
+      <header class="business-section__head"><p class="business-eyebrow">Frequently asked questions</p><h2 id="faq-title">{{ page.faq_title }}</h2></header>
+      <div class="business-faq-list">{% for item in page.faqs %}<article><h3>{{ item.question }}</h3><p>{{ item.answer }}</p></article>{% endfor %}</div>
+    </div>
+  </section>
+
+  <section class="business-final-cta">
+    <div class="business-shell">
+      <p class="business-eyebrow">Next step</p>
+      <h2>{{ page.cta_title }}</h2>
+      <p>{{ page.cta_text }}</p>
+      <div class="business-actions">
+        <a class="button-link" href="{% url 'web_plans' %}">{{ page.cta_label }}</a>
+        <a class="business-text-link" href="{{ primary_cta_href }}" target="_blank" rel="noopener noreferrer">I prefer to talk first <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}
+

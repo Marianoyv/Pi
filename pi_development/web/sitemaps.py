@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date, datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
@@ -6,9 +7,14 @@ from django.contrib.sitemaps import Sitemap
 from django.template.response import TemplateResponse
 from django.urls import reverse
 
-from pi_development.web.knowledge_pages import get_public_knowledge_slugs
+from pi_development.web.knowledge_pages import (
+    get_knowledge_page,
+    get_public_knowledge_slugs,
+    get_recent_news_articles,
+)
 from pi_development.web.seo_pages import get_public_seo_page_slugs
 from pi_development.web.tool_catalog import get_public_tool_slugs
+from pi_development.web.work_content import get_indexable_work_case_slugs
 
 
 @dataclass
@@ -36,11 +42,12 @@ class CorePageSitemap(BaseContentSitemap):
     def items(self):
         return [
             "index",
+            "business_solutions",
+            "web_plans",
             "solutions",
-            "products",
             "adtech",
             "insights",
-            "tools",
+            "products",
             "work",
             "company",
             "contact",
@@ -58,7 +65,18 @@ class ToolPageSitemap(BaseContentSitemap):
         return get_public_tool_slugs()
 
     def location(self, item):
-        return reverse("tool_detail", kwargs={"slug": item})
+        return reverse("product_detail", kwargs={"slug": item})
+
+
+class WorkCaseSitemap(BaseContentSitemap):
+    priority = 0.8
+    changefreq = "monthly"
+
+    def items(self):
+        return get_indexable_work_case_slugs()
+
+    def location(self, item):
+        return reverse("work_case", kwargs={"slug": item})
 
 
 class SeoPageSitemap(BaseContentSitemap):
@@ -74,13 +92,17 @@ class SeoPageSitemap(BaseContentSitemap):
 
 class KnowledgePageSitemap(BaseContentSitemap):
     priority = 0.7
-    changefreq = "monthly"
+    changefreq = "daily"
 
     def items(self):
-        return get_public_knowledge_slugs()
+        return [get_knowledge_page(slug) for slug in get_public_knowledge_slugs()]
 
     def location(self, item):
-        return reverse("knowledge_page", kwargs={"slug": item})
+        return reverse("knowledge_page", kwargs={"slug": item["slug"]})
+
+    def lastmod(self, item):
+        value = item.get("updated_at") or item.get("published_at")
+        return date.fromisoformat(value) if value else None
 
 
 def sitemap_index(request, sitemaps):
@@ -98,9 +120,26 @@ def sitemap_index(request, sitemaps):
         for page in range(2, site.paginator.num_pages + 1):
             sitemap_items.append(SitemapIndexItem(f"{sitemap_url}?p={page}", site_lastmod))
 
+    news_articles = get_recent_news_articles()
+    news_lastmod = None
+    if news_articles:
+        latest = news_articles[0].get("updated_datetime") or news_articles[0]["published_datetime"]
+        news_lastmod = datetime.fromisoformat(latest)
+    sitemap_items.append(SitemapIndexItem(f"{base_url}{reverse('sitemap_news')}", news_lastmod))
+
     return TemplateResponse(
         request,
         "sitemap_index.xml",
         {"sitemaps": sitemap_items},
+        content_type="application/xml",
+    )
+
+
+def news_sitemap(request):
+    site_url = getattr(settings, "SITE_URL", "").rstrip("/")
+    return TemplateResponse(
+        request,
+        "news_sitemap.xml",
+        {"articles": get_recent_news_articles(), "site_url": site_url},
         content_type="application/xml",
     )

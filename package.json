@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "aos": "^2.3.4",
-    "firebase": "^12.10.0",
-    "vanilla-tilt": "^1.8.1"
-  }
-}

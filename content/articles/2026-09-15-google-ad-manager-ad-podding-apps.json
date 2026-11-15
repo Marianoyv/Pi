@@ -1,0 +1,113 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-ad-podding-apps",
+  "title": "Ad podding en apps: qué cambia | Pi Development",
+  "meta_description": "Google Ad Manager prepara ad podding para apps móviles. Qué cambia en impresiones, eCPM, pisos, facturación y qué deberían revisar los publishers.",
+  "meta_keywords": "Google Ad Manager, ad podding, apps móviles, rewarded ads, monetización",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager llevará ad podding al inventario de apps",
+  "description": "Google anunció un próximo despliegue de ad podding para inventario de aplicaciones móviles con High Engagement Ads. El cambio puede sumar competencia e impresiones, pero exige leer las métricas y los pisos a nivel de pod.",
+  "summary": "Ad Manager prepara pods de anuncios para apps y nuevas métricas para medirlos sin confundir eCPM por impresión con rendimiento del placement.",
+  "search_intent": "Entender cómo funcionará el ad podding de Google Ad Manager en apps móviles y qué métricas, reglas y costos revisar antes de su activación.",
+  "business_relevance": "Los publishers con inventario rewarded pueden necesitar auditar reglas de formato, reporting y economics antes del rollout; Pi puede ayudar a validar la configuración, automatizar comparaciones y detectar lecturas engañosas de rendimiento.",
+  "target_audience": [
+    "Publishers de aplicaciones móviles con inventario rewarded",
+    "Equipos de AdOps, monetización, producto y analítica"
+  ],
+  "published_at": "2026-09-15",
+  "updated_at": "2026-09-15",
+  "published_datetime": "2026-09-15T11:03:49-03:00",
+  "updated_datetime": "2026-09-15T11:03:49-03:00",
+  "image": "web/img/insights/google-ad-manager-ad-podding-apps.webp",
+  "image_alt": "Dos anuncios agrupados dentro de un placement en una aplicación móvil, rodeados por indicadores abstractos de medición.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google Ad Manager anunció el 8 de septiembre de 2026 que prepara ad podding para inventario de aplicaciones móviles. La optimización permite combinar varios anuncios para que compitan colectivamente por un único placement y, según la documentación oficial, actualmente se aplica al tráfico rewarded en apps.",
+    "El anuncio aparece como “Coming soon” y no fija una fecha universal de activación. Google indica que se habilitará automáticamente en el inventario donde High Engagement Ads ya esté activo, aunque los publishers podrán administrar la preferencia por segmentos desde las reglas de formato. Por eso el cambio merece preparación, pero no permite asumir que todos los inventarios ya lo reciben ni proyectar un incremento de ingresos garantizado."
+  ],
+  "key_takeaways": [
+    "Cada anuncio dentro de un pod se contará como una impresión separada, mientras que las nuevas métricas Total pod views y Total pod eCPM permitirán evaluar el placement como una unidad.",
+    "Los pisos de las pricing rules se aplicarán al valor combinado del pod, por lo que el eCPM promedio informado por anuncio puede quedar por debajo del piso sin implicar necesariamente un incumplimiento.",
+    "Antes del rollout, conviene inventariar las reglas con High Engagement Ads, definir qué segmentos aceptarán pods y preparar reportes que comparen pods con respuestas de un solo anuncio."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Ad podding agrupa más de un anuncio dentro de una misma oportunidad de visualización. En lugar de seleccionar una única creatividad para el placement, Ad Manager puede permitir que varios anuncios compitan en conjunto y se muestren como un pod. Google presenta la función como una optimización destinada a aumentar la competencia y los ingresos del inventario móvil.",
+        "La configuración vive en Inventory, Inventory rules y Format settings. En una regla nueva, el podding queda habilitado por defecto; el publisher puede desactivarlo o limitar el tamaño a dos anuncios. El anuncio de lanzamiento también dice que el despliegue alcanzará por defecto al inventario donde High Engagement Ads ya esté activo. Esa combinación vuelve importante revisar reglas existentes, no solo las que se creen después del lanzamiento."
+      ]
+    },
+    {
+      "title": "Cómo cambia la medición",
+      "paragraphs": [
+        "Google documenta que cada anuncio del pod se registra como una impresión independiente. Como consecuencia, el volumen de impresiones puede subir y métricas como Ad Exchange average eCPM o Total average eCPM pueden parecer más bajas, porque expresan el CPM de cada anuncio individual y no el valor efectivo de toda la oportunidad.",
+        "Para resolver esa diferencia de unidad, Ad Manager incorpora Total pod views y Total pod eCPM. La primera cuenta un pod completo como una vista, incluso cuando contiene dos anuncios. La segunda divide los ingresos totales por las vistas de pod y multiplica el resultado por mil. También habrá una dimensión Number of ads in pod para separar respuestas con uno o varios anuncios, mientras Position in pod permitirá estudiar el orden de cada creatividad."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuáles son los límites",
+      "paragraphs": [
+        "El alcance comunicado se concentra en inventario rewarded de aplicaciones móviles. No es correcto extender el anuncio a display web, video in-stream u otros formatos sin una confirmación específica. Tampoco hay una promesa cuantificada de uplift: Google afirma que los publishers podrían observar más ingresos e impresiones, pero el resultado dependerá de demanda, fill, experiencia del usuario, tamaño del pod y configuración comercial.",
+        "Hay además dos límites económicos concretos. Primero, las pricing rules se evalúan sobre el pod completo, no sobre cada anuncio. Un eCPM individual inferior al floor puede ser compatible con un pod cuyo valor combinado sí lo supera. Segundo, la facturación usa el mismo rate card que el tráfico sin pods y los cargos aplicables dependen del número de impresiones; un pod de dos anuncios puede generar dos unidades facturables."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción inmediata no es activar o desactivar a ciegas, sino establecer una línea de base y preparar una comparación consistente. El análisis debería separar el valor por placement del valor por impresión para evitar que una baja aparente del eCPM individual o un aumento mecánico de impresiones se interpreten como una pérdida o una mejora por sí solos."
+      ],
+      "bullets": [
+        "Identificar las Inventory rules y los segmentos rewarded donde High Engagement Ads está activo, junto con países, versiones de app y placements alcanzados.",
+        "Definir si el pod quedará habilitado, deshabilitado o limitado a dos anuncios en cada segmento, considerando duración, frecuencia y experiencia del usuario.",
+        "Crear un reporte con Total pod views, Total pod eCPM, Number of ads in pod, Position in pod, ingresos, impresiones y costos de serving para comparar antes y después.",
+        "Validar los floors con el valor combinado del pod y documentar por separado cualquier KPI calculado por impresión para evitar falsas alertas.",
+        "Monitorear retención, finalización del rewarded flow, errores y latencia además de revenue; la documentación oficial no demuestra por sí sola el efecto sobre experiencia o engagement."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La novedad no es solo que puedan mostrarse dos anuncios donde antes se veía uno. El cambio relevante es que la unidad comercial, la unidad de facturación y la unidad de reporting dejan de coincidir de manera intuitiva: el placement se evalúa como pod, mientras cada anuncio sigue sumando una impresión y puede generar costo de serving.",
+        "Nuestra lectura es que el principal riesgo inicial será analítico. Si un dashboard conserva únicamente impresiones, revenue y eCPM promedio, puede atribuir al rendimiento lo que en realidad es un cambio de denominador. La comparación útil debería poner Total pod eCPM y Total pod views al lado de métricas de experiencia y costo. Solo después de aislar ese efecto conviene decidir si ampliar, limitar o apagar el podding por segmento."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-15",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Ad podding",
+      "url": "https://support.google.com/admanager/answer/16531745?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-15",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué es ad podding en Google Ad Manager?",
+      "answer": "Es una optimización que permite combinar varios anuncios para que compitan colectivamente por un único placement. El alcance documentado actualmente corresponde a tráfico rewarded en aplicaciones móviles."
+    },
+    {
+      "question": "¿Por qué puede bajar el eCPM promedio con ad podding?",
+      "answer": "Porque Ad Manager registra cada anuncio del pod como una impresión y calcula ciertos eCPM por anuncio, aunque el piso se aplique al valor combinado del pod. Total pod eCPM permite medir la oportunidad completa."
+    },
+    {
+      "question": "¿Se puede desactivar el ad podding?",
+      "answer": "Sí. Google indica que puede desactivarse desde Inventory rules y Format settings; también se puede limitar el pod a dos anuncios para los segmentos definidos en cada regla."
+    }
+  ]
+}

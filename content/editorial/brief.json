@@ -1,0 +1,81 @@
+{
+  "version": 2,
+  "status": "pilot_planning",
+  "purpose": "Base compacta del sistema heredado. La estrategia activa está en docs/editorial-strategy.md.",
+  "objective": "Construir una audiencia recurrente y monetizable con contenido original, útil y centrado en personas.",
+  "language": "es",
+  "market": "Internacional, con perspectiva independiente desde Buenos Aires.",
+  "audiences": [
+    "Personas que construyen software, sitios y productos digitales",
+    "Responsables de producto, operaciones y negocios digitales",
+    "Dueños de negocios que necesitan comprender decisiones web o de software",
+    "Lectores interesados en cómo la tecnología cambia el trabajo y la vida cotidiana"
+  ],
+  "priority_topics": [
+    "IA, trabajo y personas",
+    "La web actual",
+    "Tecnología y vida cotidiana",
+    "Construir productos",
+    "Carrera y cultura tecnológica",
+    "AdTech y operaciones digitales"
+  ],
+  "selection_score": {
+    "publish_threshold": 75,
+    "weights": {
+      "human_consequence": 20,
+      "curiosity_or_tension": 15,
+      "decision_utility": 15,
+      "original_pi_perspective": 15,
+      "evidence_quality": 15,
+      "audience_breadth": 10,
+      "timeliness": 5,
+      "truthful_visual_potential": 5
+    },
+    "hard_rejections": [
+      "Solo resume el anuncio de una empresa",
+      "No puede explicar por qué debería importarle a una persona",
+      "Depende de una afirmación importante sin evidencia suficiente",
+      "Duplica una pieza sin aportar una pregunta nueva",
+      "La relación con Pi o con la audiencia es artificial",
+      "Necesita jerga o clickbait para parecer importante"
+    ]
+  },
+  "editorial_contract": {
+    "target_articles_per_week": 3,
+    "quota_is_mandatory": false,
+    "pilot_duration_weeks": 8,
+    "word_count_min": 500,
+    "word_count_max": 1800,
+    "required_primary_sources": 1,
+    "required_takeaways": 3,
+    "required_faqs": 2,
+    "required_original_image": true,
+    "allowed_article_types": ["analysis", "case-study", "essay", "guide", "interview", "news"],
+    "required_publication_timezone": "America/Buenos_Aires",
+    "tone": "Claro, humano, preciso y curioso; sin voz corporativa, clickbait ni sobreoptimización.",
+    "structure": [
+      "Pregunta o tensión humana",
+      "Contexto verificable",
+      "Consecuencia concreta",
+      "Mirada original de Pi",
+      "Límites o incertidumbre",
+      "Conclusión que recompensa la lectura"
+    ]
+  },
+  "paths": {
+    "strategy": "docs/editorial-strategy.md",
+    "experiment": "content/editorial/experiment.json",
+    "topic_bank": "content/editorial/topic-bank.json",
+    "article_template": "content/templates/article.template.json",
+    "source_registry": "content/editorial/sources.json",
+    "coverage_index": "content/editorial/index.json",
+    "article_directory": "content/articles",
+    "image_directory": "static/web/img/insights"
+  },
+  "commands": {
+    "quality_gate": ".\\.venv\\Scripts\\python.exe manage.py validate_editorial --settings=pi_development.settings.static_export",
+    "build": ".\\build-static.ps1",
+    "deploy": ".\\deploy-static.ps1"
+  },
+  "operating_rule": "La automatización diaria está pausada. Ningún artículo piloto se publica sin hipótesis, puntaje, medición, distribución y revisión final."
+}

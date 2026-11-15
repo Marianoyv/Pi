@@ -1,0 +1,350 @@
+/* A native, resolution-independent product film, driven by scroll. */
+.pi-product{position:relative;background:#0e1a24;color:#f4f1e8;isolation:isolate}
+.pi-product.is-scrollable{height:850vh}
+.pi-product__sticky{position:relative;height:900px;min-height:740px;overflow:hidden}
+.is-scrollable .pi-product__sticky{position:sticky;top:0;height:100svh;min-height:600px}
+.pi-product__field{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 80%,#324c67 0,transparent 65%)}
+.pi-product__orb{position:absolute;width:75vw;height:75vw;left:25%;top:10%;border-radius:50%;background:radial-gradient(circle,#536d9b88,transparent 65%);filter:blur(40px);transform:translate3d(calc(var(--progress,0) * -20vw),calc(var(--progress,0) * -25vh),0)}
+.pi-product__grid{position:absolute;inset:-50%;opacity:.13;background-image:linear-gradient(#9caccb 1px,transparent 1px),linear-gradient(90deg,#9caccb 1px,transparent 1px);background-size:90px 90px;transform:perspective(600px) rotateX(65deg) translateY(calc(var(--progress,0) * 180px));mask-image:linear-gradient(transparent,#000,transparent)}
+.pi-product__ring{position:absolute;left:50%;top:58%;width:70vw;height:70vw;border:1px solid #a5b9d533;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 90px #a5b9d509,0 0 0 180px #a5b9d506}
+.pi-product__intro{position:absolute;z-index:2;top:8%;left:var(--pi-gutter);opacity:var(--intro-opacity,1);transform:translateY(var(--intro-y,0px))}
+.pi-product__eyebrow,.pi-product__caption,.pi-product__outro>p{font:10px 'IBM Plex Mono',monospace;letter-spacing:.15em}
+.pi-product__intro h2{font-size:clamp(2.2rem,4vw,4.6rem);line-height:1.05;letter-spacing:-.055em;margin:22px 0 16px;color:inherit}
+.pi-product__intro h2 em{font-style:normal;color:#a0b3ce}
+.pi-product__intro>p:last-child{color:#bac4ce;font-size:14px}
+.pi-product__scene{position:absolute;inset:0;perspective:1600px;pointer-events:none;opacity:var(--scene-opacity,1)}
+.pi-laptop{position:absolute;width:min(65vw,1000px);left:50%;top:52%;transform:translate(-50%,var(--screen-anchor,-32%)) translate3d(0,var(--laptop-y,0px),0) rotateX(var(--rx,10deg)) rotateY(var(--ry,-18deg)) rotateZ(var(--rz,-5deg)) scale(var(--scale,1));transform-style:preserve-3d;will-change:transform}
+.pi-laptop__lid{position:relative;padding:15px 12px 20px;background:linear-gradient(135deg,#97a3af,#262f39 18%,#131a21 75%,#7f8c99);border:1px solid #afbdc9;border-radius:18px;box-shadow:0 45px 90px #0009;}
+.pi-laptop__camera{position:absolute;top:6px;left:50%;width:4px;height:4px;border-radius:50%;background:#536d9b}
+.pi-laptop__screen{aspect-ratio:1.6;background:#f4f1e8;color:#151716;overflow:hidden;border-radius:5px;position:relative;container-type:inline-size}
+.pi-screen__nav{height:12%;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #15171630;font-size:1.15cqw}
+.pi-screen__nav b{font-size:3.3cqw;display:flex;align-items:center;gap:1cqw;color:#536d9b}.pi-screen__nav b span{font-size:1.1cqw;letter-spacing:.07em;color:#151716}
+.pi-screen__body{height:78%;display:grid;grid-template-columns:1.1fr 1fr;align-items:center;padding:3% 5%;gap:3%}
+.pi-screen__copy>span:first-child{font: .85cqw 'IBM Plex Mono',monospace;letter-spacing:.08em}
+.pi-screen__copy strong{display:block;font-size:7cqw;line-height:.98;letter-spacing:-.06em;font-weight:600;margin:2.8cqw 0 1.8cqw}.pi-screen__copy em{font-style:normal;color:#536d9b}
+.pi-screen__copy p{font-size:1.4cqw;line-height:1.5;margin-bottom:2.5cqw}.pi-screen__button{background:#151716;color:#f4f1e8;padding:1.1cqw 1.6cqw;font-size:1.1cqw}
+.pi-screen__art{color:#536d9b;text-align:center}.pi-screen__art svg{width:100%;stroke-width:.8;transform:rotate(calc(var(--progress,0) * 60deg))}.pi-screen__art span{font:.75cqw 'IBM Plex Mono',monospace;letter-spacing:.15em}
+.pi-screen__footer{height:10%;display:flex;align-items:center;justify-content:space-between;margin:0 5%;border-top:1px solid #15171630;font:.8cqw 'IBM Plex Mono',monospace}
+.pi-product__caption{position:absolute;bottom:30px;left:var(--pi-gutter);right:var(--pi-gutter);display:flex;justify-content:space-between;align-items:center;color:#a9b7c6;gap:20px;z-index:4}.pi-product__track{height:2px;width:100px;background:#ffffff24}.pi-product__track i{display:block;height:100%;background:#e1532d;width:calc(var(--progress,0) * 100%)}
+.pi-product__outro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:3;background:#0e1a24ed;opacity:var(--outro-opacity,0);visibility:hidden;text-align:center}.pi-product.is-complete .pi-product__outro{visibility:visible}.pi-product__outro h3{font-size:clamp(4rem,10vw,10rem);letter-spacing:-.07em;color:#f4f1e8;margin:16px 0 35px}.pi-product__outro .button-link{background:#f4f1e8;color:#151716}
+@media(max-width:700px){.pi-product.is-scrollable{height:760vh}.is-scrollable .pi-product__sticky{min-height:560px}.pi-product__intro{top:10%;right:20px}.pi-product__intro h2{font-size:clamp(2rem,7.5vw,3rem)}.pi-product__intro>p:last-child{font-size:12px}.pi-laptop{width:88vw;top:55%}.pi-laptop__lid{padding:10px 6px 12px;border-radius:11px}.pi-laptop__camera{top:3px}.pi-product__tag{font-size:11px;padding:12px;top:76%;left:6%}.pi-product__tag--two{top:43%;left:auto;right:5%}.pi-product__caption{font-size:8px;bottom:24px}.pi-product__caption>span:first-child{display:none}.pi-product__ring{width:130vw;height:130vw}}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-product.is-scrollable{height:auto}html:not(.pi-motion-enabled) .is-scrollable .pi-product__sticky{position:relative;height:850px}html:not(.pi-motion-enabled) .pi-product__scene,html:not(.pi-motion-enabled) .pi-product__intro{opacity:1!important}html:not(.pi-motion-enabled) .pi-laptop{transform:translate(-50%,-32%)!important}html:not(.pi-motion-enabled) .pi-product__outro{display:none}html:not(.pi-motion-enabled) .pi-product__scroll{display:none}}
+
+body.pi-editorial-home{overflow-x:clip}
+
+
+/* Three scroll chapters: desktop, responsive transformation, final reveal. */
+.pi-laptop{width:var(--device-width,min(65vw,1000px));left:var(--device-left,50%);top:var(--device-top,52%);transform:translate(-50%,var(--screen-anchor,-32%)) translate3d(0,var(--laptop-y,0px),0) rotateX(var(--rx,12deg)) rotateY(var(--ry,-22deg)) rotateZ(var(--rz,-6deg)) scale(.88)}
+.pi-laptop__screen{aspect-ratio:auto;height:var(--device-height,40vw);border-radius:var(--glass-radius,5px)}
+.pi-laptop__lid{border-radius:var(--device-radius,18px);padding:12px 10px}
+.pi-product__details{position:absolute;z-index:2;width:27%;top:36%;display:grid;gap:12px;opacity:var(--desktop-opacity,0);transform:translateY(calc((1 - var(--desktop-opacity,0)) * 35px));visibility:hidden;pointer-events:none}
+.pi-product__details--desktop{right:5%}.pi-product__details--mobile{left:8%;top:30%;width:34%;opacity:var(--mobile-opacity,0);transform:translateY(calc((1 - var(--mobile-opacity,0)) * 35px))}
+.is-desktop-chapter .pi-product__details--desktop,.is-mobile-chapter .pi-product__details--mobile{visibility:visible}
+.pi-product__detail-label{font:10px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#a0b3ce;margin:0 0 4px}
+.pi-product__details article{padding:17px 20px;background:linear-gradient(125deg,#25394be6,#152735e6);border:1px solid #a0b3ce38;border-radius:5px;box-shadow:0 14px 35px #0002}
+.pi-product__details article>span{font:9px 'IBM Plex Mono',monospace;letter-spacing:.09em;color:#a0b3ce}.pi-product__details h3{font-size:clamp(1.1rem,1.5vw,1.6rem);line-height:1.15;letter-spacing:-.035em;color:#f4f1e8;margin:8px 0}.pi-product__details article p{font-size:clamp(11px,.95vw,14px);line-height:1.5;color:#c1ccd5;margin:0}
+.pi-product.is-phone .pi-laptop__camera{top:15px;width:25%;height:10px;background:#131a21;border-radius:20px;transform:translateX(-50%);z-index:2}
+.is-phone .pi-screen__nav{height:10%;padding:5% 7% 0}.is-phone .pi-screen__nav b{font-size:9cqw}.is-phone .pi-screen__nav b span{font-size:3cqw}.is-phone .pi-screen__nav>span{font-size:0}.is-phone .pi-screen__nav>span:after{content:'☰';font-size:5cqw}
+.is-phone .pi-screen__body{height:81%;display:flex;flex-direction:column;align-items:stretch;padding:10% 7% 3%;gap:5%}.is-phone .pi-screen__copy>span:first-child{font-size:2.1cqw}.is-phone .pi-screen__copy strong{font-size:14cqw;margin:6cqw 0 4cqw}.is-phone .pi-screen__copy p{font-size:3.5cqw;margin-bottom:5cqw}.is-phone .pi-screen__button{font-size:3cqw;padding:3cqw}.is-phone .pi-screen__art{align-self:center;width:74%;min-height:0}.is-phone .pi-screen__art svg{max-height:100%}.is-phone .pi-screen__art span{font-size:1.8cqw}.is-phone .pi-screen__footer{font-size:1.8cqw;height:9%}.is-phone .pi-screen__footer>span:last-child{display:none}
+.pi-product__outro{background:transparent;transform:translateY(calc((1 - var(--outro-opacity,0)) * 45px))}
+@media(max-width:700px){.pi-product__intro{top:7%}.pi-product__intro h2{font-size:clamp(1.8rem,7vw,3rem)}.pi-product__details{top:64%;left:6%;right:6%;width:auto;gap:7px}.pi-product__details--mobile{top:28%;left:5%;right:auto;width:43%}.pi-product__details article{padding:10px 12px}.pi-product__details h3{font-size:14px;margin:4px 0}.pi-product__details article p{font-size:10px;line-height:1.4}.pi-product__details article>span,.pi-product__detail-label{font-size:7px}.pi-product__details--desktop{grid-template-columns:repeat(3,1fr);gap:6px}.pi-product__details--desktop .pi-product__detail-label{grid-column:1/-1}.pi-product__details--desktop article{padding:9px}.pi-product__details--desktop h3{font-size:12px}.pi-product__details--desktop article p{font-size:9px}}
+.pi-product.is-still .pi-product__sticky{height:auto;min-height:0;padding:50px var(--pi-gutter)}
+.pi-product.is-still .pi-product__intro{position:relative;inset:auto;transform:none;opacity:1}
+.pi-product.is-still .pi-product__scene{position:relative;height:360px}
+.pi-product.is-still .pi-laptop{width:min(90%,620px);top:50%;left:50%;transform:translate(-50%,-50%)}
+.pi-product.is-still .pi-laptop__screen{height:auto;aspect-ratio:1.6}
+.pi-product.is-still .pi-product__details{position:relative;inset:auto;width:100%;opacity:1;visibility:visible;transform:none;margin:30px 0;grid-template-columns:1fr}
+.pi-product.is-still .pi-product__outro{position:relative;inset:auto;visibility:visible;opacity:1;transform:none;display:flex;padding:40px 0}.pi-product.is-still .pi-product__caption{display:none}
+
+/* The two opaque faces share the same animated silhouette. */
+.pi-laptop__lid{backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(1px)}
+.pi-laptop__back{position:absolute;inset:0;border:1px solid #a5b4c5;border-radius:var(--device-radius,18px);background:radial-gradient(ellipse at 28% 20%,#72839855,transparent 60%),linear-gradient(135deg,#364757,#172330 58%,#46596b);transform:rotateY(180deg) translateZ(1px);backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center;box-shadow:inset 0 0 0 3px #ffffff09}
+.pi-laptop__back>span{font-size:clamp(30px,5vw,65px);color:#a8b8c9;font-weight:500;text-shadow:0 1px 1px #ffffff40}
+.pi-laptop__back>i{position:absolute;left:18px;top:18px;width:var(--rear-camera,0px);height:var(--rear-camera,0px);border-radius:50%;background:radial-gradient(circle,#52677d 0 20%,#0b1420 24% 57%,#6c7c8c 60% 70%,#162433 75%);box-shadow:0 1px 5px #0007}
+.pi-product__scene{opacity:var(--device-opacity,1);filter:blur(var(--device-blur,0px))}
+.pi-product.is-still .pi-product__scene{opacity:1;filter:none}
+
+.pi-product__intro{width:max-content;max-width:calc(100% - var(--pi-gutter) * 2);transform:translate3d(var(--intro-x,0px),var(--intro-y,0px),0);will-change:transform,opacity}
+.pi-product.is-still .pi-product__intro{transform:none;will-change:auto}
+
+/* A larger opening statement settles into the existing editorial position. */
+.pi-product__intro{transform:translate3d(var(--intro-x,0px),var(--intro-y,0px),0) scale(var(--intro-scale,1));transform-origin:center center}
+.pi-product__intro h2{font-weight:650;line-height:1.03;letter-spacing:-.055em}
+.pi-product__intro h2 em{color:#b5c6de}
+.pi-product.is-still .pi-product__intro{transform:none}
+
+/* Center the visible composition, including the information panels. */
+.pi-product__scene{transform:translate3d(0,var(--composition-y,0px),0)}
+.pi-product__details--desktop{transform:translateY(calc(var(--composition-y,0px) + (1 - var(--desktop-opacity,0)) * 35px))}
+.pi-product__details--mobile{transform:translateY(calc(var(--composition-y,0px) + (1 - var(--mobile-opacity,0)) * 35px))}
+.pi-product.is-still .pi-product__scene,.pi-product.is-still .pi-product__details{transform:none}
+/* Safe framing: keep the statement below the fixed navigation. */
+.pi-product__intro{top:max(8%,calc(var(--nav-height) + 24px))}
+.pi-product__intro h2{font-size:clamp(2rem,3.1vw,3.65rem);font-weight:600;line-height:1.08}
+.pi-product.is-scrollable{height:1050vh}
+.pi-product__details--backend-left,.pi-product__details--backend-right{top:50%;width:24%;opacity:var(--backend-opacity,0);transform:translateY(calc(-50% + (1 - var(--backend-opacity,0)) * 25px));gap:14px}
+.pi-product__details--backend-left{left:5%}.pi-product__details--backend-right{right:5%}
+.is-backend-chapter .pi-product__details--backend-left,.is-backend-chapter .pi-product__details--backend-right{visibility:visible}
+.pi-laptop__back{overflow:hidden}
+.pi-ai-circuits{position:absolute;inset:0;width:100%;height:100%}
+.pi-ai-traces{stroke:#83addc44;stroke-width:2}
+.pi-ai-energy{stroke:#b6dcff;stroke-width:2.5;stroke-dasharray:22 150;animation:pi-circuit-flow 3.5s linear infinite;filter:drop-shadow(0 0 5px #79b7ff)}
+.pi-ai-chip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:23%;aspect-ratio:1;border:2px solid #b6d7ff;border-radius:12px;background:linear-gradient(135deg,#344d6a,#0c1929);display:flex;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 0 0 5px #536d9b55,0 0 40px #8fc6ff66;animation:pi-chip-pulse 2.4s ease-in-out infinite}
+.pi-ai-chip span{font-size:clamp(22px,3.3vw,54px);font-weight:600;color:#e0efff;line-height:1.1}.pi-ai-chip small{font:clamp(4px,.45vw,8px) 'IBM Plex Mono',monospace;letter-spacing:.06em;color:#aac9e9;margin-top:8px}
+@keyframes pi-circuit-flow{to{stroke-dashoffset:-344}}
+@keyframes pi-chip-pulse{50%{box-shadow:0 0 0 5px #536d9b88,0 0 65px #8fc6ff99}}
+.pi-client-dashboard{display:none}
+.is-phone .pi-client-dashboard{display:flex;flex-direction:column;height:100%;padding:14% 7% 5%;color:#15212b;background:#f4f1e8;font-size:3.5cqw}
+.is-phone .pi-laptop__screen> :not(.pi-client-dashboard){display:none}
+.pi-client-dashboard header{display:flex;justify-content:space-between;align-items:center;font-size:2.1cqw;border-bottom:1px solid #c8cdc7;padding-bottom:5cqw}.pi-client-dashboard header span{font-size:1.9cqw;color:#496959}
+.pi-dashboard-label{font:2.2cqw 'IBM Plex Mono',monospace;color:#5a605d;margin:7cqw 0 3cqw}.pi-client-dashboard h4{font-size:10cqw;line-height:1.05;letter-spacing:-.05em;margin:0 0 6cqw}
+.pi-dashboard-health{display:flex;align-items:center;gap:3cqw;border:1px solid #c8cdc7;padding:4cqw;border-radius:3cqw;background:#fffefa}.pi-dashboard-health i{width:2cqw;height:2cqw;background:#628c74;border-radius:50%}.pi-dashboard-health div{font-size:2.8cqw;flex:1}.pi-dashboard-health strong{display:block;font-size:3.5cqw}.pi-dashboard-health>span{font-size:6cqw;color:#536d9b}
+.pi-dashboard-chart{padding:5cqw 0}.pi-dashboard-chart>span{font:2.3cqw 'IBM Plex Mono',monospace}.pi-dashboard-chart svg{width:100%;margin:4cqw 0}.pi-dashboard-chart small{font-size:2.6cqw;color:#5a605d}
+.pi-dashboard-row{display:flex;justify-content:space-between;padding:4cqw 0;border-bottom:1px solid #c8cdc7;font-size:3cqw}.pi-dashboard-row b{font-weight:500;color:#536d9b}.pi-client-dashboard footer{font:2cqw 'IBM Plex Mono',monospace;margin-top:auto;padding-top:5cqw;color:#536d9b}
+@media(max-width:700px){.pi-product.is-scrollable{height:1000vh}.pi-product__intro{top:calc(var(--nav-height) + 18px)}.pi-product__intro h2{font-size:clamp(1.7rem,6.5vw,2.5rem)}.pi-product__details--backend-left,.pi-product__details--backend-right{top:68%;width:43%;transform:translateY(calc((1 - var(--backend-opacity,0)) * 25px))}.pi-product__details--backend-left{left:5%;right:auto}.pi-product__details--backend-right{right:5%;left:auto}.pi-product__details--backend-left article,.pi-product__details--backend-right article{padding:9px}.pi-ai-chip{border-radius:6px}.pi-ai-chip small{font-size:4px;margin-top:3px}}
+.pi-motion-disabled .pi-ai-energy,.pi-motion-disabled .pi-ai-chip{animation:none}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-ai-energy,html:not(.pi-motion-enabled) .pi-ai-chip{animation:none}}
+.pi-product.is-still .pi-product__intro{top:auto}
+.pi-product.is-still .pi-product__details--backend-left,.pi-product.is-still .pi-product__details--backend-right{position:relative;inset:auto;width:100%;opacity:1;transform:none}
+
+@media(min-width:701px){
+  .pi-product__details--desktop{top:32%}
+}
+
+/* A machined processor package and a dense, layered circuit board. */
+.pi-laptop__back{background:linear-gradient(115deg,#a5b0b519 0,transparent 34% 65%,#a5b0b512),radial-gradient(ellipse at 50% 50%,#27383e,#111e27 72%);box-shadow:inset 0 0 0 3px #89979e55,inset 0 0 0 7px #0a111ab3}
+.pi-ai-trace-shadow{stroke:#02090e;stroke-width:4;transform:translate(0,1px)}
+.pi-ai-traces{stroke:#8fa8ad;stroke-opacity:.55;stroke-width:1.15;stroke-linejoin:bevel}
+.pi-ai-energy{animation:none;filter:drop-shadow(0 0 2px #c4f5ff);stroke:#dcf5ff;stroke-width:1.65;stroke-dasharray:12 500;stroke-linecap:round}
+.pi-ai-energy path{animation:pi-pcb-current var(--flow-time,4s) linear infinite;animation-delay:var(--flow-delay,0s)}
+@keyframes pi-pcb-current{from{stroke-dashoffset:0}to{stroke-dashoffset:-512}}
+.pi-ai-chip{width:26%;border:1px solid #c0c7c8;border-radius:5px;background:linear-gradient(135deg,#b3bbbd,#647177 12%,#233037 14% 85%,#10181c 88%,#9aa7aa);box-shadow:0 9px 10px #000b,0 2px 0 3px #111e27,inset 0 1px 2px #f5ffffaa;animation:pi-package-pulse 3.6s ease-in-out infinite}
+.pi-ai-chip:before{content:'';position:absolute;inset:-8px;z-index:-1;background:repeating-linear-gradient(90deg,transparent 0 7px,#a6a083 7px 10px,transparent 10px 14px) top/100% 8px no-repeat,repeating-linear-gradient(90deg,transparent 0 7px,#a6a083 7px 10px,transparent 10px 14px) bottom/100% 8px no-repeat,repeating-linear-gradient(0deg,transparent 0 7px,#a6a083 7px 10px,transparent 10px 14px) left/8px 100% no-repeat,repeating-linear-gradient(0deg,transparent 0 7px,#a6a083 7px 10px,transparent 10px 14px) right/8px 100% no-repeat;filter:drop-shadow(0 1px 1px #000)}
+.pi-ai-die{position:absolute;inset:12%;border:1px solid #71858f;border-radius:2px;background:linear-gradient(120deg,#d8edf733,transparent 45%),repeating-linear-gradient(90deg,#52687322 0 1px,transparent 1px 5px),repeating-linear-gradient(#52687333 0 1px,transparent 1px 5px),linear-gradient(135deg,#2d414e,#122632);box-shadow:inset 0 0 0 3px #0c1720,0 1px 3px #0009}
+.pi-ai-chip span{z-index:1;font-size:clamp(22px,2.3vw,40px);letter-spacing:-.06em;color:#deedf1;text-shadow:0 1px 2px #000,0 0 12px #b4e6f644}
+.pi-ai-chip small{z-index:1;font-size:clamp(4px,.36vw,6px);margin-top:5px;color:#9fb8c4;letter-spacing:.08em}
+@keyframes pi-package-pulse{50%{box-shadow:0 9px 10px #000b,0 2px 0 3px #111e27,inset 0 1px 2px #f5ffffaa,0 0 22px #b3e1eb44}}
+
+.pi-motion-disabled .pi-ai-energy path,.pi-motion-disabled .pi-ai-chip{animation:none}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-ai-energy path,html:not(.pi-motion-enabled) .pi-ai-chip{animation:none}}
+@media(max-width:700px){.pi-ai-chip{border-radius:4px}.pi-ai-chip:before{inset:-5px;background-size:100% 5px,100% 5px,5px 100%,5px 100%}.pi-ai-chip small{font-size:3px}.pi-ai-chip span{font-size:20px}}
+
+/* Broad luminous charges radiate out of the processor instead of dotted dashes. */
+.pi-ai-energy{stroke:#d7f5ff;stroke-width:2.3;stroke-dasharray:none;filter:drop-shadow(0 0 3px #9de2ff) drop-shadow(0 0 8px #74bfe999)}
+.pi-ai-energy path{animation:none;stroke-dasharray:none}
+.pi-energy-wave{animation:pi-energy-radiate 4.8s linear infinite}
+.pi-energy-wave--two{animation-delay:-1.6s}.pi-energy-wave--three{animation-delay:-3.2s}
+@keyframes pi-energy-radiate{0%{r:10px;opacity:0}12%{opacity:.95}75%{opacity:.8}100%{r:650px;opacity:0}}
+.pi-motion-disabled .pi-energy-wave{animation:none}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-energy-wave{animation:none}}
+
+/* Fine gold traces on graphite: etched metal with restrained neon highlights. */
+.pi-laptop__back{background:linear-gradient(118deg,#b9b2a812,transparent 37% 68%,#b9b2a80d),radial-gradient(ellipse at 50% 50%,#262720,#10181c 76%);box-shadow:inset 0 0 0 2px #89908d66,inset 0 0 0 6px #080f15cc}
+.pi-ai-trace-shadow{stroke:#020506;stroke-width:2.5}
+.pi-ai-traces{stroke:#b8a271;stroke-opacity:.44;stroke-width:.7;stroke-linejoin:bevel}
+.pi-ai-energy{stroke:#ffe4a1;stroke-width:1.15;filter:drop-shadow(0 0 1.5px #f7c765) drop-shadow(0 0 5px #d6a44588);stroke-linecap:butt}
+.pi-pcb-terminals{fill:#1a1d19;stroke:#bca374;stroke-width:.8}.pi-pcb-terminals .pi-pcb-pad-core{fill:#e5c98c;stroke:none}
+.pi-pcb-components{opacity:.8}
+.pi-ai-chip{width:24%;border-color:#c2b18b;border-radius:3px;background:linear-gradient(135deg,#afa58d,#5d5c53 6%,#242928 8% 91%,#0a0f13 94%,#958d78);box-shadow:0 7px 12px #000c,0 1px 0 2px #080e13,inset 0 1px 1px #e9dfbf88}
+.pi-ai-chip:before{opacity:.85}
+.pi-ai-die{inset:10%;border-color:#a58d5c88;border-radius:1px;background:linear-gradient(125deg,#e4d9b51a,transparent 42%),repeating-linear-gradient(90deg,#bba47214 0 1px,transparent 1px 3px),repeating-linear-gradient(#bba4721a 0 1px,transparent 1px 4px),linear-gradient(135deg,#242a25,#101c20);box-shadow:inset 0 0 0 2px #101418,inset 0 0 12px #0008}
+.pi-ai-die:before,.pi-ai-die:after{content:'';position:absolute;border:1px solid #bba47233;inset:8%;background:repeating-linear-gradient(90deg,transparent 0 7px,#bba47222 7px 8px)}
+.pi-ai-die:after{inset:17%;transform:rotate(90deg)}
+.pi-ai-chip span{font-family:'IBM Plex Mono',monospace;font-size:clamp(17px,1.65vw,28px);font-weight:500;letter-spacing:.06em;color:#f3dfb2;text-shadow:0 1px 1px #000,0 0 8px #d5a34733}
+.pi-ai-chip small{font-size:clamp(3px,.3vw,5px);letter-spacing:.13em;color:#bcae8b}
+@keyframes pi-package-pulse{50%{box-shadow:0 7px 12px #000c,0 1px 0 2px #080e13,inset 0 1px 1px #e9dfbf88,0 0 18px #e8b94c30}}
+@media(max-width:700px){.pi-ai-chip span{font-size:16px}.pi-ai-chip small{font-size:3px}}
+
+/* Smoked cover: transparent over the processor, shaded at its perimeter. */
+.pi-laptop__back:after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;border-radius:inherit;border:1px solid #c2bda94d;background:radial-gradient(ellipse at 50% 48%,transparent 35%,#03080c18 59%,#020609b8 100%),linear-gradient(135deg,#f1e4c51a,transparent 14% 85%,#0009);box-shadow:inset 0 0 0 2px #b5b4a31c,inset 0 0 18px 7px #010509a6,inset 0 1px 1px #f2e8ce33}
+.pi-ai-energy path{stroke-dasharray:var(--route-tail,28) var(--route-gap,172);animation:pi-energy-route var(--route-time,6s) linear infinite;animation-delay:var(--route-delay,0s)}
+@keyframes pi-energy-route{0%{stroke-dashoffset:45;opacity:0}13%{opacity:var(--route-strength,.9)}72%{opacity:var(--route-strength,.9)}100%{stroke-dashoffset:-155;opacity:0}}
+.pi-motion-disabled .pi-ai-energy path{animation:none;stroke-dasharray:none;opacity:.35}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-ai-energy path{animation:none;stroke-dasharray:none;opacity:.35}}
+
+/* A solid rounded chassis between the front glass and rear cover. */
+.pi-product{--device-depth:16px}
+.pi-laptop{transform-style:preserve-3d}
+.pi-laptop__lid{transform:translateZ(calc(var(--device-depth) / 2));box-shadow:0 35px 70px #0007,inset 0 1px 1px #f0f6fb88}
+.pi-laptop__back{transform:rotateY(180deg) translateZ(calc(var(--device-depth) / 2))}
+.pi-device__slice{position:absolute;inset:0;border-radius:var(--device-radius,18px);background:linear-gradient(110deg,#49545d,#a0a9af 22%,#68747e 55%,#26313b 88%,#89959e);border:1px solid #7e8b9588;transform:translateZ(calc(var(--device-depth) * var(--slice-z)));pointer-events:none}
+.pi-device__side{position:absolute;backface-visibility:visible;background:linear-gradient(90deg,#26313d,#9ba7b1 28%,#55636f 48%,#192630 58%,#74828d 80%,#c0c8cd);border:1px solid #b0bcc555;pointer-events:none}
+.pi-device__side--left,.pi-device__side--right{width:var(--device-depth);height:calc(100% - var(--device-radius,18px) * 2);top:50%;transform:translate(-50%,-50%) rotateY(90deg)}
+.pi-device__side--left{left:0}.pi-device__side--right{left:100%}
+.pi-device__side--top,.pi-device__side--bottom{width:calc(100% - var(--device-radius,18px) * 2);height:var(--device-depth);left:50%;transform:translate(-50%,-50%) rotateX(90deg)}
+.pi-device__side--top{top:0}.pi-device__side--bottom{top:100%}
+.pi-device__button{position:absolute;left:20%;width:60%;border:1px solid #b4c0c666;background:linear-gradient(90deg,#1b2730,#8c9aa5,#36434f);border-radius:3px;box-shadow:0 1px 2px #0009}
+.pi-device__button--power{top:22%;height:8%}.pi-device__button--volume{top:38%;height:14%}
+.pi-device__port{position:absolute;left:44%;width:12%;top:30%;height:40%;border-radius:4px;background:#091219;box-shadow:inset 0 1px 2px #000,0 0 0 1px #a1adb566}
+
+/* Platinum processor: brushed metal, a machined bevel and an emissive mark. */
+.pi-ai-chip{border-color:#e7ebeb;background:linear-gradient(135deg,#f1f3f1 0%,#8d9699 5%,#d6dcdc 8%,#707b80 11%,#c6cece 88%,#485359 93%,#edf0ee 100%);box-shadow:0 8px 12px #000b,0 1px 0 2px #081015,inset 0 1px 1px #fff}
+.pi-ai-die{border-color:#b5bfc1;background:linear-gradient(120deg,#ffffff88,transparent 40% 65%,#f4f7f526),repeating-linear-gradient(0deg,#ffffff09 0 1px,#18242e0c 1px 2px,transparent 2px 4px),linear-gradient(135deg,#c7cfce,#87969b 48%,#bbc6c7 75%,#707f87);box-shadow:inset 0 0 0 1px #f6ffff66,inset 0 1px 3px #ffffffbb,inset 0 -2px 4px #263b4855,0 1px 2px #0009}
+.pi-ai-die:before,.pi-ai-die:after{border-color:#334e5c33;background:repeating-linear-gradient(90deg,transparent 0 7px,#31475318 7px 8px)}
+.pi-ai-chip span{color:#fffdf4;font-weight:600;text-shadow:0 1px 2px #1c344ecc,0 0 3px #fff,0 0 9px #fff2c5,0 0 19px #e9c269aa;animation:pi-core-glow 3.6s ease-in-out infinite}
+.pi-ai-chip small{color:#283e4b;text-shadow:0 1px 0 #ffffff77}
+@keyframes pi-core-glow{50%{text-shadow:0 1px 2px #1c344ecc,0 0 5px #fff,0 0 13px #fff2c5,0 0 25px #e9c269cc}}
+@keyframes pi-package-pulse{50%{box-shadow:0 8px 12px #000b,0 1px 0 2px #081015,inset 0 1px 1px #fff,0 0 18px #e8c77a33}}
+/* Narrow edge highlights and contact shadows give the shell a machined finish. */
+.pi-laptop__lid{border-color:#a9b3bb;background:linear-gradient(135deg,#d7dddf 0%,#78858e 2%,#303c47 8%,#101923 78%,#61707c 97%,#c3cdd2);box-shadow:0 28px 48px #0006,0 7px 15px #0004,inset 0 1px 0 #ffffffb3,inset 1px 0 0 #dfe8ee55,inset -1px -1px 0 #030c17aa}
+.pi-laptop__screen{box-shadow:0 0 0 1px #07121bcc,inset 0 1px 2px #0005}
+.pi-device__slice{border-color:#58667366;background:linear-gradient(115deg,#24333f,#9ba6ae 20%,#5d6c78 47%,#283846 74%,#b0b9bd)}
+.pi-device__side{background:linear-gradient(90deg,#13212e 0%,#5b6b78 12%,#c5cdd0 23%,#71818c 30%,#384956 46%,#12212e 51%,#61717d 68%,#a5b1b8 84%,#dce1e2 94%,#435563);border-color:#a0adb555;box-shadow:inset 1px 0 0 #f4f9fa44,inset -1px 0 0 #06111caa}
+.pi-device__button{border-color:#c4ced255;background:linear-gradient(90deg,#243542,#9aabb5 35%,#617584 65%,#142837);box-shadow:0 0 0 1px #06121b88,inset 0 1px 1px #f1f7f966}
+.pi-laptop__back:after{border-color:#a8b2b86b;box-shadow:inset 0 0 0 1px #e0e6e84d,inset 0 0 0 3px #17253099,inset 0 0 18px 7px #010509a6,inset 0 1px 1px #f2e8ce55}
+.pi-motion-disabled .pi-ai-chip span{animation:none}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-ai-chip span{animation:none}}
+
+/* The circuit board sits in a recessed pocket beneath the outer enclosure. */
+.pi-ai-circuits{inset:12px 10px;width:calc(100% - 20px);height:calc(100% - 24px);box-shadow:inset 0 4px 16px #000b;border-radius:calc(var(--device-radius,18px) - 6px)}
+.pi-laptop__back:before{content:'';position:absolute;inset:6px;z-index:2;border-radius:calc(var(--device-radius,18px) - 5px);pointer-events:none;border:1px solid #080e14e6;box-shadow:inset 0 9px 19px 2px #000c,inset 9px 0 16px #0008,inset -7px -5px 14px #0008,0 1px 0 #e1e8ec33}
+.pi-laptop__back:after{background:radial-gradient(ellipse at 50% 48%,transparent 30%,#02070c12 54%,#01050ad9 100%),linear-gradient(180deg,#e6edf112,transparent 9% 88%,#000a);box-shadow:inset 0 0 0 1px #d9e3e655,inset 0 0 0 5px #21303bd9,inset 0 0 0 7px #060c13e6,inset 0 14px 24px 5px #000b,inset 0 -8px 18px 3px #0008}
+.pi-ai-return-traces{stroke:#7197b4;stroke-opacity:.25;stroke-width:.7;fill:none}
+.pi-ai-return{stroke:#a3ddff;stroke-width:1.15;fill:none;filter:drop-shadow(0 0 1.5px #73c4ff) drop-shadow(0 0 5px #3399ff77)}
+.pi-ai-return path{stroke-dasharray:32 168;animation:pi-energy-return var(--route-time,7s) linear infinite;animation-delay:var(--route-delay,0s)}
+@keyframes pi-energy-return{0%{stroke-dashoffset:-155;opacity:0}15%{opacity:var(--route-strength,.85)}78%{opacity:var(--route-strength,.85)}100%{stroke-dashoffset:45;opacity:0}}
+.pi-motion-disabled .pi-ai-return path{animation:none;stroke-dasharray:none;opacity:.35}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-ai-return path{animation:none;stroke-dasharray:none;opacity:.35}}
+
+/* Silver enclosure around the recessed board, with the central window clear. */
+.pi-laptop__back:before{border-color:#bbc2c799;box-shadow:inset 0 7px 15px 1px #65727d99,inset 6px 0 14px #8c979f66,inset -5px -4px 12px #78848d77,0 1px 0 #edf0f2aa}
+.pi-laptop__back:after{border-color:#d2d8dc;background:radial-gradient(ellipse at 50% 48%,transparent 37%,#8b959d0d 58%,#a1abb366 80%,#bac2c9cc 96%,#d5dadd 100%),linear-gradient(135deg,#f0f3f52e,transparent 12% 86%,#65748044);box-shadow:inset 0 0 0 1px #f7f9facc,inset 0 0 0 4px #abb5beaa,inset 0 0 0 6px #69798599,inset 0 10px 20px 3px #8c99a288,inset 0 -6px 14px 2px #78868f66}
+
+/* Mobile front-end chapter: lift the device, then reveal one card at a time. */
+.pi-product__copy-mobile{display:none}
+@media(max-width:700px){
+  .pi-product__copy-desktop{display:none}
+  .pi-product__copy-mobile{display:inline}
+  .pi-product__intro h2{font-size:clamp(2rem,8vw,3rem)}
+  .pi-product.is-scrollable .pi-product__details--desktop{top:var(--front-cards-top,58%);left:20px;right:20px;width:auto;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+  .pi-product.is-scrollable .pi-product__details--desktop .pi-product__detail-label{grid-column:1;grid-row:1;font-size:9px;line-height:1.5;letter-spacing:.06em;margin:0}
+  .pi-product.is-scrollable .pi-product__details--desktop article{grid-column:1;grid-row:2;padding:22px;min-height:168px;opacity:var(--card-opacity,0);transform:translateY(var(--card-y,20px));will-change:opacity,transform}
+  .pi-product.is-scrollable .pi-product__details--desktop h3{font-size:clamp(1.3rem,5.5vw,1.65rem);margin:0 0 12px;line-height:1.12}
+  .pi-product.is-scrollable .pi-product__details--desktop article p{font-size:14px;line-height:1.6;margin:0}
+  .pi-product.is-still .pi-product__details--desktop{grid-template-columns:minmax(0,1fr)}
+  .pi-product.is-still .pi-product__details--desktop article{padding:20px}
+  .pi-product.is-still .pi-product__details--desktop h3{font-size:22px}
+  .pi-product.is-still .pi-product__details--desktop article p{font-size:14px}
+}
+
+/* Mobile accordion: every title remains present as its detail folds in or out. */
+@media(max-width:700px){
+  .pi-product.is-scrollable .pi-product__details--desktop{left:18px;right:18px;gap:9px}
+  .pi-product.is-scrollable .pi-product__details--desktop .pi-product__detail-label{grid-row:auto;margin:0 2px 3px;font-size:8px;letter-spacing:.09em}
+  .pi-product.is-scrollable .pi-product__details--desktop article{grid-row:auto;min-height:0;padding:16px 18px;opacity:1;transform:none;will-change:auto;border-color:rgba(170,193,215,calc(.14 + var(--card-open,0)*.23));background:linear-gradient(125deg,rgba(37,57,75,calc(.76 + var(--card-open,0)*.2)),#152735ed);box-shadow:0 9px 24px #0002}
+  .pi-product.is-scrollable .pi-product__details--desktop h3{font-size:clamp(1.08rem,4.7vw,1.35rem);line-height:1.2;margin:0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .pi-product.is-scrollable .pi-product__details--desktop h3:after{content:'+';font-size:18px;font-weight:400;color:#b5c6de;transform:rotate(calc(var(--card-open,0)*45deg));flex-shrink:0}
+  .pi-product.is-scrollable .pi-product__details--desktop article p{font-size:13px;line-height:1.55;max-height:var(--card-body-height,0px);opacity:var(--card-open,0);overflow:hidden;margin:calc(var(--card-open,0)*11px) 0 0}
+}
+@media(max-width:700px) and (max-height:700px){
+  .pi-product.is-scrollable .pi-product__details--desktop{gap:7px}
+  .pi-product.is-scrollable .pi-product__details--desktop article{padding:12px 16px}
+  .pi-product.is-scrollable .pi-product__details--desktop article p{font-size:12px;line-height:1.5}
+}
+
+/* Mobile backend: one clear message above the board and one below. */
+.pi-product__details .pi-backend-mobile-card{display:none}
+@media(max-width:700px){
+  .pi-product__details--backend-left,.pi-product__details--backend-right{left:18px;right:18px;width:auto;gap:0;transform:translateY(calc((1 - var(--backend-opacity,0))*18px))}
+  .pi-product__details--backend-left{top:var(--backend-top-card,18%)}
+  .pi-product__details--backend-right{top:var(--backend-bottom-card,72%)}
+  .pi-product__details--backend-left .pi-product__detail-label,.pi-product__details--backend-right .pi-product__detail-label,.pi-product__details .pi-backend-desktop-card{display:none}
+  .pi-product__details .pi-backend-mobile-card{display:block;padding:18px 20px}
+  .pi-product__details .pi-backend-mobile-card h3{font-size:clamp(1.15rem,4.8vw,1.45rem);line-height:1.15;margin:0 0 9px}
+  .pi-product__details .pi-backend-mobile-card p{font-size:13px;line-height:1.55;margin:0}
+}
+@media(max-width:700px) and (max-height:700px){.pi-product__details .pi-backend-mobile-card{padding:14px 17px}.pi-product__details .pi-backend-mobile-card h3{font-size:18px;margin-bottom:7px}.pi-product__details .pi-backend-mobile-card p{font-size:12px;line-height:1.5}}
+
+/* Zoom into the processor during the existing mobile backend hold. */
+@media(max-width:700px){
+  .pi-laptop{transform:translate(-50%,var(--screen-anchor,-32%)) translate3d(0,var(--laptop-y,0px),0) rotateX(var(--rx,12deg)) rotateY(var(--ry,-22deg)) rotateZ(var(--rz,-6deg)) scale(calc(.88 * var(--chip-zoom,1)))}
+  .pi-product.is-backend-chapter .pi-product__scene{clip-path:inset(var(--chip-window-top,0px) 0 var(--chip-window-bottom,0px))}
+  .pi-product.is-still .pi-product__scene{clip-path:none}
+}
+
+/* A sharp diagonal glint crosses the recessed board during the mobile zoom. */
+.pi-device__shine{display:none;pointer-events:none}
+@media(max-width:700px){
+  .pi-device__shine{display:block;position:absolute;inset:-50%;z-index:4;opacity:var(--chip-shine-opacity,0);transform:translate3d(var(--chip-shine-x,-110%),0,0);background:linear-gradient(120deg,transparent 43%,#ffe8a80a 46%,#fff4d64d 48.6%,#ffffffed 49.8%,#ffffff 50%,#fff4d67a 50.4%,#ffe4a82b 52%,transparent 56%);mix-blend-mode:screen;filter:drop-shadow(0 0 3px #fff7da);will-change:transform,opacity}
+  .pi-product.is-still .pi-device__shine{display:none}
+}
+@media(prefers-reduced-motion:reduce){html:not(.pi-motion-enabled) .pi-device__shine{display:none}}
+
+/* Two straight parallel reflection bands, with crisp translucent edges. */
+@media(max-width:700px){
+  .pi-device__shine{background:linear-gradient(120deg,transparent 0 43%,rgba(255,246,221,.12) 43% 44%,rgba(255,255,249,.48) 44% 49%,rgba(255,247,226,.16) 49% 50%,transparent 50% 53%,rgba(255,255,249,.30) 53% 54%,transparent 54% 100%);filter:none;mix-blend-mode:screen}
+}
+
+/* Carry the same chip close-up and twin reflection onto desktop. */
+@media(min-width:701px){
+  .pi-laptop{transform:translate(-50%,var(--screen-anchor,-32%)) translate3d(0,var(--laptop-y,0px),0) rotateX(var(--rx,12deg)) rotateY(var(--ry,-22deg)) rotateZ(var(--rz,-6deg)) scale(calc(.88 * var(--chip-zoom,1)))}
+  .pi-product.is-backend-chapter .pi-product__scene{clip-path:inset(calc(var(--nav-height) + 16px) calc(29% + 18px) 20px calc(29% + 18px))}
+  .pi-device__shine{display:block;position:absolute;inset:-50%;z-index:4;opacity:var(--chip-shine-opacity,0);transform:translate3d(var(--chip-shine-x,-110%),0,0);background:linear-gradient(120deg,transparent 0 43%,rgba(255,246,221,.12) 43% 44%,rgba(255,255,249,.48) 44% 49%,rgba(255,247,226,.16) 49% 50%,transparent 50% 53%,rgba(255,255,249,.30) 53% 54%,transparent 54% 100%);mix-blend-mode:screen;filter:none;will-change:transform,opacity}
+  .pi-product.is-still .pi-device__shine{display:none}
+  .pi-product.is-still .pi-product__scene{clip-path:none}
+}
+
+/* Mobile client view: full-width cards frame a phone-width companion card. */
+@media(max-width:700px){
+  .pi-product.is-scrollable .pi-product__details--mobile{inset:0;width:auto;display:block;transform:translateY(calc((1 - var(--mobile-opacity,0))*18px));pointer-events:none}
+  .pi-product.is-scrollable .pi-product__details--mobile>.pi-product__detail-label{display:none}
+  .pi-product.is-scrollable .pi-product__details--mobile article{position:absolute;left:18px;right:18px;padding:16px 18px}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(1){top:var(--phone-top-card,15%)}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2){top:var(--phone-middle-card,35%);left:var(--phone-row-left,18px);right:auto;width:var(--phone-card-width,40%);height:var(--phone-row-height,290px);padding:16px 13px;display:flex;flex-direction:column;justify-content:center}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(3){top:var(--phone-bottom-card,75%)}
+  .pi-product.is-scrollable .pi-product__details--mobile h3{font-size:clamp(1.1rem,4.7vw,1.4rem);line-height:1.15;margin:0 0 8px}
+  .pi-product.is-scrollable .pi-product__details--mobile article p{font-size:13px;line-height:1.5;margin:0}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2) h3{font-size:clamp(1rem,4.3vw,1.25rem)}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2) p{font-size:12px}
+}
+@media(max-width:700px) and (max-height:700px){
+  .pi-product.is-scrollable .pi-product__details--mobile article{padding:13px 16px}
+  .pi-product.is-scrollable .pi-product__details--mobile article p{font-size:12px}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2){padding:12px 10px}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2) p{font-size:11px}
+}
+
+/* A shared two-column grid frames the client dashboard on compact screens. */
+@media(max-width:700px){
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(1),
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(3){left:var(--phone-grid-left,28px);right:auto;width:var(--phone-grid-width,calc(100% - 56px));padding:15px 17px}
+  .pi-product.is-scrollable .pi-product__details--mobile article{border-radius:6px}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2){padding:16px 14px}
+}
+@media(max-width:360px){
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(1),
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(3){padding:11px 13px}
+  .pi-product.is-scrollable .pi-product__details--mobile h3{font-size:15px;line-height:1.15;margin-bottom:6px}
+  .pi-product.is-scrollable .pi-product__details--mobile article p{font-size:11px;line-height:1.45}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2){padding:12px 10px}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2) h3{font-size:15px}
+}
+
+/* Three directional entries converge on the mobile dashboard grid. */
+@media(max-width:700px){
+  .pi-product.is-scrollable .pi-product__details--mobile{transform:none}
+  .pi-product.is-scrollable .pi-product__details--mobile article{opacity:var(--phone-card-entry,0);will-change:transform,opacity}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(1){transform:translate3d(0,var(--phone-card-top-y,-90px),0)}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(2){transform:translate3d(var(--phone-card-middle-x,-65vw),0,0)}
+  .pi-product.is-scrollable .pi-product__details--mobile article:nth-of-type(3){transform:translate3d(0,var(--phone-card-bottom-y,90px),0)}
+}
+
+/* Extend only the closing hold; previous chapters retain their scroll distances. */
+.pi-product.is-scrollable{height:1110vh}
+@media(max-width:700px){.pi-product.is-scrollable{height:1060vh}}
+.pi-product__outro .button-link{background:rgba(244,241,232,var(--outro-button-fill,1));color:rgb(calc(244 - 223 * var(--outro-button-fill,1)),calc(241 - 218 * var(--outro-button-fill,1)),calc(232 - 210 * var(--outro-button-fill,1)));border:1px solid rgba(244,241,232,.6)}
+
+/* Let the mobile accordion fill the space below the pinned screen. */
+@media(max-width:700px){
+  .pi-product__details--desktop>.pi-product__detail-label{display:none}
+  .pi-product.is-scrollable .pi-product__details--desktop{display:flex;flex-direction:column;height:calc(100% - var(--front-cards-top,58%) - 24px);gap:10px}
+  .pi-product.is-scrollable .pi-product__details--desktop article{flex:var(--card-open,0) 0 auto;display:flex;flex-direction:column;justify-content:center;padding:18px 21px}
+  .pi-product.is-scrollable .pi-product__details--desktop h3{font-size:clamp(1.15rem,5.1vw,1.5rem)}
+  .pi-product.is-scrollable .pi-product__details--desktop article p{font-size:clamp(14px,3.8vw,16px);line-height:1.6}
+}
+@media(max-width:700px) and (max-height:700px){
+  .pi-product.is-scrollable .pi-product__details--desktop{gap:8px;height:calc(100% - var(--front-cards-top,58%) - 18px)}
+  .pi-product.is-scrollable .pi-product__details--desktop article{padding:13px 17px}
+  .pi-product.is-scrollable .pi-product__details--desktop h3{font-size:17px}
+  .pi-product.is-scrollable .pi-product__details--desktop article p{font-size:13px;line-height:1.5}
+}

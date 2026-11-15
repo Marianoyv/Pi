@@ -86,6 +86,7 @@
   --measure-wide: 680px;
 }
 
+
 * {
   margin: 0;
   padding: 0;
@@ -372,9 +373,9 @@ a.button-link--dark:active {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  html:not(.pi-motion-enabled) *,
+  html:not(.pi-motion-enabled) *::before,
+  html:not(.pi-motion-enabled) *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;

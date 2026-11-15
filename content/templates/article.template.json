@@ -1,0 +1,99 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "slug-unico-en-minusculas",
+  "title": "Título SEO de hasta 60 caracteres | Pi Development",
+  "meta_description": "Resumen específico de entre 140 y 160 caracteres que explica el cambio y su utilidad.",
+  "meta_keywords": "tema principal, producto, problema operativo",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Título editorial claro, específico y sin clickbait",
+  "description": "Bajada de una o dos frases: qué ocurrió, a quién afecta y por qué merece atención.",
+  "summary": "Resumen corto para la tarjeta del índice de Insights.",
+  "search_intent": "Pregunta o necesidad concreta que esta nota responde.",
+  "business_relevance": "Por qué este lector puede necesitar un producto o servicio de Pi relacionado con el tema.",
+  "human_question": "Pregunta, tensión o preocupación humana que abre la pieza.",
+  "editorial_hypothesis": "Si publicamos esta historia para esta persona, esperamos que entre por esta pregunta y permanezca por esta consecuencia o utilidad.",
+  "distribution_hypothesis": "Canales, audiencia y formulación inicial que se probarán durante los primeros siete días.",
+  "target_audience": [
+    "Audiencia principal",
+    "Audiencia secundaria"
+  ],
+  "published_at": "AAAA-MM-DD",
+  "updated_at": "AAAA-MM-DD",
+  "published_datetime": "AAAA-MM-DDTHH:MM:SS-03:00",
+  "updated_datetime": "AAAA-MM-DDTHH:MM:SS-03:00",
+  "image": "web/img/insights/slug-unico-en-minusculas.webp",
+  "image_alt": "Descripción concreta y accesible de la ilustración editorial, sin repetir el título de forma mecánica.",
+  "image_record": {
+    "creator": "Pi Editorial",
+    "created_at": "AAAA-MM-DD",
+    "method": "photography|composition|diagram|screenshot|ai-assisted-illustration",
+    "source_files": [],
+    "disclosure": "Texto visible cuando la imagen requiera aclarar que es una ilustración o que recibió asistencia de IA."
+  },
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Contexto comprobable de la noticia y fuente primaria.",
+    "Alcance real del cambio, sin extrapolaciones ni afirmaciones de impacto no verificadas."
+  ],
+  "key_takeaways": [
+    "Conclusión verificable 1.",
+    "Conclusión verificable 2.",
+    "Acción recomendada y concreta."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Explicación precisa basada en la fuente primaria."
+      ]
+    },
+    {
+      "title": "Qué significa para equipos y publishers",
+      "paragraphs": [
+        "Interpretación editorial de Pi, identificada como análisis y no como hecho anunciado."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "Paso operativo que conecta la noticia con una implementación real."
+      ],
+      "bullets": [
+        "Comprobación 1.",
+        "Comprobación 2.",
+        "Métrica o evidencia esperada."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "Conclusión propia, prudente y útil."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Organización responsable",
+      "title": "Título exacto de la fuente",
+      "url": "https://fuente-primaria.example/documento",
+      "published_at": "AAAA-MM-DD",
+      "accessed_at": "AAAA-MM-DD",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "Pregunta que una persona realmente buscaría?",
+      "answer": "Respuesta breve, autosuficiente y respaldada por el artículo."
+    },
+    {
+      "question": "Segunda pregunta útil y específica?",
+      "answer": "Segunda respuesta breve, autosuficiente y respaldada por el artículo."
+    }
+  ]
+}

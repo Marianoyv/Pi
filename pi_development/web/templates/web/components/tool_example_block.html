@@ -1,19 +1,20 @@
 {% if tool_example %}
+{% if static_export %}{{ tool_example.form_data|json_script:"browser-tool-example" }}{% endif %}
 <div class="tool-example">
   <div class="tool-example__header">
     <div>
-      <p class="tools-label">Prueba rapida</p>
+      <p class="tools-label">Quick test</p>
       <h3>{{ tool_example.title }}</h3>
     </div>
     {% if tool_example_used %}
-    <span class="tool-example__badge">Ejemplo cargado</span>
+    <span class="tool-example__badge">Example loaded</span>
     {% endif %}
   </div>
   <div class="tool-example__body">
     <p>{{ tool_example.description }}</p>
     <div class="tool-example__actions">
-      <button type="submit" name="_use_example" value="1" class="button-link button-link--dark">{{ tool_example.button_label }}</button>
-      <span class="tool-example__hint">Carga un caso listo para entender la salida sin preparar datos manuales.</span>
+      <button type="submit" name="_use_example" value="1" class="button-link button-link--dark" formnovalidate>{{ tool_example.button_label }}</button>
+      <span class="tool-example__hint">Load a prepared case to understand the output.</span>
     </div>
   </div>
 </div>

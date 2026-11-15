@@ -1,0 +1,117 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "iab-practicas-programatica-duplicacion-bids",
+  "title": "IAB propone reglas para programática | Pi Development",
+  "meta_description": "IAB Tech Lab propone prácticas para reducir bid requests duplicadas, declarar refresh y preservar la integridad de la cadena programática digital.",
+  "meta_keywords": "IAB Tech Lab, programática, duplicación de bid requests, OpenRTB, schain",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "IAB propone reglas para ordenar la publicidad programática",
+  "description": "IAB Tech Lab abrió a comentario público una primera versión de prácticas comunes para compradores y vendedores. El borrador apunta a reducir solicitudes redundantes, hacer trazable la cadena y representar cada oportunidad publicitaria con mayor precisión.",
+  "summary": "Las nuevas prácticas de IAB Tech Lab ponen el foco en duplicación, refresh, trazabilidad e integridad de las solicitudes programáticas.",
+  "search_intent": "Entender qué propone IAB Tech Lab para reducir la duplicación de bid requests y qué deberían revisar publishers y equipos de AdOps.",
+  "business_relevance": "La propuesta convierte problemas habituales de arquitectura e integración programática en controles auditables sobre IDs, refresh, schain y volumen de solicitudes; esos controles pueden requerir instrumentación, automatización y diagnóstico técnico.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto, tecnología y operaciones programáticas"
+  ],
+  "published_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "published_datetime": "2026-09-17T20:08:43-03:00",
+  "updated_datetime": "2026-09-17T20:08:43-03:00",
+  "image": "web/img/insights/iab-practicas-programatica-duplicacion-bids.webp",
+  "image_alt": "Red programática con múltiples rutas de datos que se consolidan en conexiones verificadas hacia compradores.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "IAB Tech Lab publicó el 16 de septiembre de 2026 la primera versión de sus Programmatic Standard Practices y abrió un período de comentario público hasta el 16 de octubre. El documento fue preparado por el Programmatic Governance Council y busca establecer reglas y principios compartidos para el uso de estándares existentes en transacciones programáticas.",
+    "La propuesta no reemplaza OpenRTB, ads.txt, sellers.json ni SupplyChain Object. Su alcance es más operativo: describe cómo compradores y vendedores deberían usar esas piezas para que una solicitud represente una oportunidad publicitaria reconocible, con una cadena trazable, y para reducir la proliferación de auctions o requests redundantes. Por ahora es un borrador en consulta, no una certificación ni una obligación universal de implementación."
+  ],
+  "key_takeaways": [
+    "IAB Tech Lab propone que cada oportunidad pueda rastrearse mediante estándares vigentes, incluyendo schain, IDs de placement coherentes y campos actuales de OpenRTB.",
+    "El borrador distingue variación de replicación y recomienda no enviar clones ni multiplicar requests por arrays, formatos o deal IDs cuando la integración ya permite expresarlos juntos.",
+    "Publishers y plataformas pueden revisar ahora la relación entre oportunidades reales, auctions ejecutadas, IDs emitidos y refresh declarado antes de enviar comentarios hasta el 16 de octubre."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "El cambio verificable es la publicación de Programmatic Best Practices v1 para comentario público. Es el primer entregable del Programmatic Governance Council de IAB Tech Lab y reúne recomendaciones sobre siete áreas: soporte de estándares, contabilidad y cadena de suministro, bid caching y bid pooling, placements, ad refresh, duplicación de requests e integridad de las solicitudes.",
+        "El borrador pide soportar los campos y formatos de la versión de producción más reciente y ampliamente desplegada de OpenRTB, mantener actualizados ads.txt y sellers.json e incluir un objeto schain en cada bid request. La finalidad declarada es que el comprador pueda identificar quién inició la solicitud y el camino que recorrió, incluso cuando intervienen wrappers, subastas server-side u otros iniciadores.",
+        "En placements, recomienda usar un único identificador de placement o pod por oportunidad dentro de un contexto y no rotar IDs para representar distintos formatos en un mismo espacio. Cuando la integración lo permite, la práctica propuesta es usar una impresión multiformato en vez de convertir cada formato en una solicitud separada."
+      ]
+    },
+    {
+      "title": "A quién afecta y cuál es el impacto operativo",
+      "paragraphs": [
+        "La consulta importa a publishers, SSPs, DSPs, plataformas de header bidding, proveedores de subastas server-side y equipos que diseñan o auditan integraciones OpenRTB. Para un publisher, la pregunta práctica es si el volumen de bid requests guarda una relación explicable con las oportunidades de impresión que realmente existen en la página, la app o el pod de video.",
+        "IAB Tech Lab define la replicación como solicitudes clonadas o con diferencias no materiales, y recomienda no realizarla. También desaconseja el fan-out que transforma arrays, formatos o cada deal_id en requests separados cuando el receptor puede procesar multi-imp, multiformato o respuestas con múltiples bids. El documento acepta que puede existir variación legítima entre rutas, pero pide que sea acotada, incremental y observable para los sistemas posteriores.",
+        "En refresh, la recomendación es declarar la práctica mediante el objeto Refresh de OpenRTB y alinear la ejecución de auctions con el intervalo mínimo definido. Si un espacio cambia cada 30 segundos, por ejemplo, el borrador indica que no deberían lanzarse auctions cada cinco segundos hasta que cambie el anuncio. Esa diferencia es medible y puede revelar costos de procesamiento, telemetría ruidosa o incentivos desalineados."
+      ]
+    },
+    {
+      "title": "Riesgos y límites de la propuesta",
+      "paragraphs": [
+        "El documento está en consulta pública y puede cambiar. No establece por sí solo que una integración concreta sea fraudulenta, ni fija un número universal de requests aceptables: una misma oportunidad puede recorrer cadenas diferentes o incluir variaciones materiales por privacidad, transparencia o limitaciones actuales de OpenRTB.",
+        "Tampoco conviene inferir ahorro o mejora de ingresos sin medir cada stack. Reducir solicitudes innecesarias puede bajar procesamiento y simplificar el análisis, pero el resultado comercial depende de la arquitectura, los acuerdos con partners, la cobertura de demanda y la capacidad de compradores y vendedores para interpretar estructuras multi-imp o multiformato.",
+        "La sección de integridad agrega otro límite importante: salvo acuerdo previo, no se deberían eliminar ni sobrescribir objetos o atributos, alterar asociaciones entre IDs o realizar ID bridging silencioso. La propuesta exige declarar ese bridging con los atributos definidos en eids y respetar la guía de buyerUID."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "Una revisión útil debería partir de evidencia capturada en el navegador, el wrapper y los logs de las plataformas, no solo de configuraciones declaradas. El objetivo es reconstruir una muestra completa desde el placement hasta los requests y respuestas, y explicar cada multiplicación de rutas o identificadores.",
+        "También conviene separar hechos de hipótesis: el hecho es que IAB Tech Lab propone estas prácticas y recibe comentarios; la evaluación de si una implementación concreta duplica de más requiere comparar oportunidades reales, auctions, partners e IDs bajo el mismo contexto."
+      ],
+      "bullets": [
+        "Mapear cada slot o pod a su GPID, tagid o ad unit y detectar rotación de IDs o más identificadores generadores de requests que placements reales.",
+        "Verificar que schain esté presente y permita reconocer al iniciador y la ruta de cada solicitud a través de wrappers y conexiones server-side.",
+        "Comparar el intervalo declarado de refresh con la frecuencia real de auctions y con el momento en que cambia la exposición publicitaria.",
+        "Agrupar requests por oportunidad, usuario o audiencia, contenido, placement, TTL y partner para distinguir variación legítima de replicación.",
+        "Comprobar que caching, pooling, transaction IDs, eids y buyerUID conserven sus asociaciones y fechas de expiración."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "El aporte más útil del borrador no es una nueva sigla, sino una unidad de análisis: la oportunidad publicitaria subyacente. Cuando el monitoreo parte solo del total de requests, es difícil saber si un aumento proviene de más inventario, más partners, refresh anticipado, fan-out técnico o replicación sin valor material.",
+        "La lectura de Pi es que los equipos deberían incorporar una métrica de trazabilidad por oportunidad: cuántos IDs, auctions, rutas y requests produce cada exposición posible, y qué razón documentada justifica cada desvío. Esa capa convierte una discusión abstracta sobre eficiencia en un control repetible para QA, costos e integridad de datos.",
+        "La acción recomendada es auditar primero una muestra pequeña y representativa, documentar excepciones reales y enviar observaciones a IAB Tech Lab antes del 16 de octubre si las prácticas no reflejan un caso operativo relevante. Adoptar el borrador como si ya fuera una norma final sería prematuro; ignorar las señales que propone medir también perdería una oportunidad de diagnóstico."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "IAB Tech Lab",
+      "title": "IAB Tech Lab’s Programmatic Standard Practices Available for Public Comment",
+      "url": "https://iabtechlab.com/press-releases/iab-tech-labs-programmatic-standard-practices-available-for-public-comment/",
+      "published_at": "2026-09-16",
+      "accessed_at": "2026-09-17",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "IAB Tech Lab",
+      "title": "Programmatic Best Practices Version 1.0",
+      "url": "https://iabtechlab.com/wp-content/uploads/2026/09/Public-Comment-Programmatic-Best-Practices-v1-1.pdf",
+      "published_at": "2026-09-16",
+      "accessed_at": "2026-09-17",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads",
+    "herramientas-adtech"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué son las Programmatic Standard Practices de IAB Tech Lab?",
+      "answer": "Son un borrador de reglas y principios para usar estándares existentes —como OpenRTB, ads.txt, sellers.json y schain— con mayor consistencia, trazabilidad e integridad en transacciones programáticas. La versión 1 está abierta a comentarios hasta el 16 de octubre de 2026."
+    },
+    {
+      "question": "¿Cómo propone IAB reducir la duplicación de bid requests?",
+      "answer": "Recomienda enviar cada oportunidad una sola vez por partner y mecanismo de integración, evitar clones y fan-out innecesario, soportar requests multi-imp o multiformato y hacer observable cualquier variación que sea técnicamente necesaria."
+    }
+  ]
+}

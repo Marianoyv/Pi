@@ -1,5 +1,31 @@
 {% load static %}
-{% if item.media_type == "video" %}
+{% if item.media_type == "project_screenshots" %}
+<div class="pi-indices-shot pi-indices-shot--interactive" aria-label="Current {{ item.name }} interface">
+  <img data-preview-image="desktop" data-preview-image-src="{% static item.desktop_image %}" width="1600" height="1000" alt="{{ item.name }} desktop interface" loading="lazy" decoding="async">
+  <img data-preview-image="mobile" data-preview-image-src="{% static item.mobile_image %}" width="430" height="932" alt="{{ item.name }} mobile interface" loading="lazy" decoding="async">
+  <noscript><img src="{% static item.desktop_image %}" width="1600" height="1000" alt="{{ item.name }} desktop interface"></noscript>
+</div>
+{% elif item.media_type == "responsive_image" %}
+{% include 'web/components/indices_media.html' with interactive=interactive_preview %}
+{% elif item.media_type == "responsive_video" %}
+<div class="pi-indices-shot pi-indices-shot--interactive" aria-label="Current {{ item.name }} interface">
+  <video
+    data-preview-image="desktop"
+    src="{% static item.image %}"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    width="1200"
+    height="675"
+    {% if item.poster %}poster="{% static item.poster %}"{% endif %}
+    aria-label="{{ media_label }}"
+  ></video>
+  <img data-preview-image="mobile" data-preview-image-src="{% static item.mobile_image %}" width="430" height="932" alt="{{ item.name }} mobile interface" loading="lazy" decoding="async">
+  <noscript><img src="{% static item.mobile_image %}" width="430" height="932" alt="{{ item.name }} mobile interface"></noscript>
+</div>
+{% elif item.media_type == "video" %}
 <video
   class="{{ media_class|default:'portfolio-media' }}"
   autoplay

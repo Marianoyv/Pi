@@ -1,0 +1,110 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-bloqueos-private-auctions",
+  "title": "Google cambia bloqueos de Private Auctions | Pi Development",
+  "meta_description": "Google Ad Manager aplicará bloqueos del publisher por defecto en Private Auctions. Qué deals revisar antes del 17 de septiembre y cómo evitar cortes.",
+  "meta_keywords": "Google Ad Manager, Private Auctions, override blocks, protecciones",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google cambiará los bloqueos en Private Auctions",
+  "description": "Desde el 17 de septiembre de 2026, ciertas protecciones del publisher pasarán a aplicarse por defecto a las Private Auctions. Los equipos de AdOps deben revisar los deals que dependen de excepciones para evitar interrupciones involuntarias.",
+  "summary": "Ad Manager aplicará bloqueos del publisher por defecto a Private Auctions desde el 17 de septiembre.",
+  "search_intent": "Entender cómo cambia el comportamiento de los bloqueos en Private Auctions de Google Ad Manager y qué deals revisar antes del 17 de septiembre de 2026.",
+  "business_relevance": "El cambio exige cruzar configuración comercial, protecciones de marca y entrega real de deals; una auditoría técnica puede detectar excepciones implícitas y prevenir pérdida de demanda.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, programmatic y operaciones comerciales"
+  ],
+  "published_at": "2026-09-11",
+  "updated_at": "2026-09-11",
+  "published_datetime": "2026-09-11T11:03:15-03:00",
+  "updated_datetime": "2026-09-11T11:03:15-03:00",
+  "image": "web/img/insights/google-ad-manager-bloqueos-private-auctions.webp",
+  "image_alt": "Panel conceptual de Ad Manager con un deal de Private Auction y controles de bloqueo activados",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google Ad Manager anunció en sus notas de versión del 8 de septiembre de 2026 un cambio próximo para las Private Auctions. A partir del 17 de septiembre, estas subastas respetarán por defecto los bloqueos definidos por el publisher para anunciantes, marcas y compradores específicos.",
+    "La modificación no elimina la posibilidad de exceptuar un deal. Google indica que, cuando un acuerdo necesite permitir una entidad bloqueada a nivel publisher, el equipo deberá comprobar que la opción \"Override blocks\" esté habilitada en el Deal ID correspondiente. El alcance comunicado es puntual: afecta a Private Auctions y a esos bloqueos específicos; no implica que todas las protecciones de Ad Manager cambien de comportamiento ni que convenga habilitar excepciones de forma generalizada."
+  ],
+  "key_takeaways": [
+    "Desde el 17 de septiembre de 2026, las Private Auctions respetarán por defecto los bloqueos de anunciantes, marcas y compradores configurados por el publisher.",
+    "Un deal que hoy entrega gracias a una excepción implícita podría dejar de hacerlo si el bloqueo correspondiente existe y \"Override blocks\" no está habilitado.",
+    "La acción prioritaria es inventariar los deals activos, cruzarlos con las protecciones vigentes y validar únicamente las excepciones comerciales aprobadas."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta este anuncio, el comportamiento efectivo de ciertos bloqueos en Private Auctions podía no coincidir con lo que un equipo esperaba al mirar solamente la configuración general del publisher. Google ahora establece una regla predeterminada explícita: los bloqueos a nivel de red para anunciantes, marcas y compradores serán respetados por las Private Auctions desde la fecha indicada.",
+        "La excepción queda bajo control del deal. Google pide revisar Sales, luego Private Auctions, abrir el Deal ID relevante y confirmar que \"Override blocks\" esté habilitado cuando sea necesario permitir que una entidad bloqueada participe. Esto convierte una dependencia tácita en una decisión visible que debería tener dueño, justificación y evidencia."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El cambio importa principalmente a publishers que operan Private Auctions y mantienen protecciones a nivel de red. El riesgo aumenta cuando un acuerdo admite de manera intencional a un comprador, anunciante o marca que está bloqueado para el resto del inventario, o cuando distintas personas administran protecciones y deals sin un registro compartido.",
+        "No todos los publishers tendrán impacto. Si no hay Private Auctions activas, si los deals no entran en conflicto con bloqueos vigentes o si las excepciones necesarias ya están configuradas, la transición puede no modificar la entrega. La nota de Google tampoco afirma que vaya a caer el ingreso de forma general; señala un riesgo de interrupción en configuraciones concretas."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "El síntoma más probable de una configuración incompatible es una reducción o interrupción de entrega en uno o más deals después del 17 de septiembre. Esa variación podría confundirse con falta de puja, targeting, precio o disponibilidad de inventario si el equipo no conserva una línea de base previa al cambio.",
+        "Desde la perspectiva de Pi, la revisión debe separar intención comercial y seguridad de marca. Habilitar \"Override blocks\" puede recuperar elegibilidad para un deal, pero no debería utilizarse como arreglo automático: la excepción modifica el tratamiento de bloqueos para esa relación y necesita aprobación del responsable adecuado."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "La comunicación oficial describe el nuevo valor predeterminado y la acción necesaria para evitar interrupciones, pero no cuantifica cuántos deals serán afectados ni estima un impacto de ingresos. Cualquier proyección debe construirse con datos propios: lista de acuerdos, entidades bloqueadas, solicitudes elegibles, pujas, impresiones y revenue por Deal ID.",
+        "También conviene evitar una lectura demasiado amplia. El anuncio menciona bloqueos de anunciantes, marcas y compradores en Private Auctions. No demuestra que otras transacciones programáticas, otras clases de protección o la lógica de selección de ganadores cambien en la misma fecha."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La revisión puede completarse antes de la fecha efectiva si AdOps trabaja sobre un inventario acotado y documenta cada excepción. El objetivo no es activar overrides indiscriminadamente, sino confirmar que la entrega futura coincida con acuerdos aprobados y con la política de marca del publisher."
+      ],
+      "bullets": [
+        "Exportar o registrar las Private Auctions activas y sus Deal IDs, compradores, anunciantes y marcas asociados.",
+        "Comparar esas entidades con los bloqueos vigentes a nivel publisher y marcar solamente los conflictos reales.",
+        "Para cada conflicto aprobado, verificar \"Override blocks\" en el deal y guardar responsable, motivo y fecha de revisión.",
+        "Tomar una línea de base por Deal ID antes del 17 de septiembre y monitorear solicitudes, pujas, impresiones y revenue después del cambio.",
+        "Si cae la entrega, revisar primero protecciones y estado del override antes de atribuir el problema a demanda o pricing."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La señal relevante no es solo el cambio de un valor predeterminado. Google está haciendo más explícita la relación entre controles globales y excepciones comerciales por deal. Para operaciones maduras, eso favorece una configuración auditable: bloquear por defecto y permitir excepciones deliberadas, limitadas y trazables.",
+        "La oportunidad práctica es convertir la urgencia del 17 de septiembre en un control permanente. Un registro simple que conecte Deal ID, entidad exceptuada, aprobación y métricas reduce el tiempo de diagnóstico y evita que una solución de monetización termine debilitando protecciones sin que el equipo lo advierta."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What's new in Google Ad Manager — Release notes for September 8, 2026",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-11",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-anuncios-web"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué cambia en las Private Auctions de Google Ad Manager el 17 de septiembre de 2026?",
+      "answer": "Las Private Auctions comenzarán a respetar por defecto los bloqueos del publisher para anunciantes, marcas y compradores específicos. Los deals que necesiten una excepción deberán tener habilitada la opción \"Override blocks\"."
+    },
+    {
+      "question": "¿Hay que activar Override blocks en todas las Private Auctions?",
+      "answer": "No. Debe evaluarse deal por deal y solo cuando exista una excepción comercial aprobada frente a un bloqueo vigente. Activarlo de forma general puede contradecir las protecciones de marca del publisher."
+    }
+  ]
+}

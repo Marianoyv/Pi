@@ -7,6 +7,7 @@
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
 {% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block body_class %}tool-page tool-page--{{ tool.slug }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
 {% endblock %}
@@ -15,7 +16,7 @@
 <main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">Herramienta</p>
+      <p class="page-shell__eyebrow">Product</p>
       <h1>{{ tool.page_title }}</h1>
       <p class="page-shell__lead">{{ tool.page_description }}</p>
     </div>
@@ -25,11 +26,11 @@
       <div class="tool-detail__grid">
         <div class="tool-detail__main">
           <article class="tool-panel">
-            <p class="tools-label">Entrada</p>
-            <h2>Construir una URL con UTM consistentes</h2>
-            <p class="tool-panel__lead">La herramienta valida la URL de destino, preserva query params existentes y agrega solo los parametros UTM que completes.</p>
-            <form method="post" class="tool-form" data-analyze-form>
-              {% csrf_token %}
+            <p class="tools-label">Input</p>
+            <h2>Build a URL with consistent UTM parameters</h2>
+            <p class="tool-panel__lead">The tool validates the destination, preserves existing query parameters and adds only the UTM values you complete.</p>
+            <form method="post" class="tool-form" data-analyze-form{% if static_export %} data-browser-tool="utm-builder"{% endif %}>
+              {% if not static_export %}{% csrf_token %}{% endif %}
               <div class="tool-form__field">
                 {{ form.destination_url.label_tag }}
                 {{ form.destination_url }}
@@ -45,10 +46,26 @@
                 {% endif %}
               </div>
 
+              {% if static_export %}
+              <div class="tool-form__section tool-form__section--presets">
+                <div class="tool-form__section-header">
+                  <h3>Campaign presets</h3>
+                  <p>Choose a channel to apply a consistent source and medium. You can edit every value afterwards.</p>
+                </div>
+                <div class="utm-preset-grid" role="group" aria-label="Campaign presets">
+                  <button type="button" class="utm-preset" data-utm-preset="linkedin-organic" aria-pressed="false"><strong>LinkedIn organic</strong><span>linkedin / social</span></button>
+                  <button type="button" class="utm-preset" data-utm-preset="newsletter" aria-pressed="false"><strong>Email newsletter</strong><span>newsletter / email</span></button>
+                  <button type="button" class="utm-preset" data-utm-preset="google-paid" aria-pressed="false"><strong>Google paid</strong><span>google / cpc</span></button>
+                  <button type="button" class="utm-preset" data-utm-preset="meta-paid" aria-pressed="false"><strong>Meta paid</strong><span>meta / paid-social</span></button>
+                </div>
+                <p class="tool-form__help" data-utm-preset-feedback role="status">No preset selected. Manual values remain fully supported.</p>
+              </div>
+              {% endif %}
+
               <div class="tool-form__section">
                 <div class="tool-form__section-header">
-                  <h3>Parametros base</h3>
-                  <p>Empieza por source, medium y campaign para dejar la URL lista para reporting.</p>
+                  <h3>Base parameters</h3>
+                  <p>Start with source, medium and campaign to prepare the URL for reporting.</p>
                 </div>
                 <div class="tool-form__grid tool-form__grid--compact tool-form__grid--triple">
                   <div class="tool-form__field">
@@ -98,8 +115,8 @@
 
               <div class="tool-form__section">
                 <div class="tool-form__section-header">
-                  <h3>Parametros opcionales</h3>
-                  <p>Usa term y content solo si agregan contexto util para analisis o testing.</p>
+                  <h3>Optional parameters</h3>
+                  <p>Use term and content only when they add useful analysis or testing context.</p>
                 </div>
                 <div class="tool-form__grid tool-form__grid--compact">
                   <div class="tool-form__field">
@@ -128,34 +145,37 @@
               </div>
 
               <div class="tool-action-row">
-                <button type="submit" class="button-link tool-form__submit" data-loading-text="Construyendo URL...">Construir URL</button>
-                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Building URL...">Build URL</button>
+                <a class="button-link button-link--dark" href="{% url 'product_detail' slug=tool.slug %}">Reset</a>
               </div>
-              <p class="tool-panel__note">Source, medium y campaign no son obligatorios para generar la URL, pero la herramienta los marca como pendientes si faltan.</p>
+              <p class="tool-panel__note">Source, medium and campaign are not required to generate a URL, but missing values are clearly flagged.</p>
+              {% if static_export %}<p class="tool-panel__note">This tool runs entirely in your browser. The entered URLs and campaign values are not sent to a server.</p>{% endif %}
               {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 
+          {% if static_export %}<div data-browser-tool-result aria-live="polite"></div>{% endif %}
+
           {% if utm_result %}
           <section class="tool-result">
             <article class="tool-result__hero tool-result__hero--{{ utm_result.overview.tone }}">
-              <p class="tools-label">Estado general</p>
+              <p class="tools-label">Overall status</p>
               <h2>{{ utm_result.overview.label }}</h2>
               <p>{{ utm_result.overview.summary }}</p>
             </article>
 
             <article class="tool-panel">
-              <p class="tools-label">URL final</p>
-              <h3>URL construida</h3>
+              <p class="tools-label">Final URL</p>
+              <h3>Built URL</h3>
               <div class="tool-copy-meta">
-                <span class="tool-count-badge">Lista para copiar</span>
-                <span class="tool-count-badge">{{ utm_result.parameters|length }} parametros revisados</span>
+                <span class="tool-count-badge">Ready to copy</span>
+                <span class="tool-count-badge">{{ utm_result.parameters|length }} parameters reviewed</span>
               </div>
               <div class="tool-copy-stack">
                 <textarea id="utm-builder-output" class="tool-copy-output tool-copy-output--url" rows="4" readonly>{{ utm_result.final_url }}</textarea>
                 <div class="tool-copy-row">
-                  <button type="button" class="button-link" data-copy-button data-copy-target="utm-builder-output" data-copied-text="Copiado" data-copy-success="URL final copiada.">Copiar URL</button>
-                  <a class="button-link button-link--dark" href="{{ utm_result.final_url }}" target="_blank" rel="noopener noreferrer">Abrir URL</a>
+                  <button type="button" class="button-link" data-copy-button data-copy-target="utm-builder-output" data-copied-text="Copied" data-copy-success="Final URL copied.">Copy URL</button>
+                  <a class="button-link button-link--dark" href="{{ utm_result.final_url }}" target="_blank" rel="noopener noreferrer">Open URL</a>
                   <span class="tool-copy-feedback" data-copy-feedback></span>
                 </div>
               </div>
@@ -163,15 +183,15 @@
 
             <div class="tool-result__grid">
               <article class="tool-panel">
-                <p class="tools-label">Parametros</p>
-                <h3>Vista previa de parametros</h3>
+                <p class="tools-label">Parameters</p>
+                <h3>Parameter preview</h3>
                 <ul class="tool-checklist">
                   {% for item in utm_result.parameters %}
                   <li class="tool-checklist__item">
                     <div class="tool-checklist__top">
                       <strong>{{ item.label }}</strong>
                       <span class="tool-check-status tool-check-status--{{ item.status }}">
-                        {% if item.status == "ok" %}Listo{% elif item.status == "warn" %}Pendiente{% else %}Opcional{% endif %}
+                        {% if item.status == "ok" %}Ready{% elif item.status == "warn" %}Pending{% else %}Optional{% endif %}
                       </span>
                     </div>
                     <p>{{ item.value }}</p>
@@ -184,7 +204,7 @@
               <div class="tool-result__stack">
                 <article class="tool-panel tool-panel--soft">
                   <p class="tools-label">Query</p>
-                  <h3>Parametros preservados</h3>
+                  <h3>Preserved parameters</h3>
                   {% if utm_result.existing_query_params %}
                   <ul class="tool-inline-list">
                     {% for key, value in utm_result.existing_query_params %}
@@ -192,13 +212,13 @@
                     {% endfor %}
                   </ul>
                   {% else %}
-                  <p>No habia query params adicionales para preservar.</p>
+                  <p>There were no additional query parameters to preserve.</p>
                   {% endif %}
                 </article>
 
                 <article class="tool-panel tool-panel--soft">
-                  <p class="tools-label">Observaciones</p>
-                  <h3>Lectura de etiquetado</h3>
+                  <p class="tools-label">Observations</p>
+                  <h3>Tagging review</h3>
                   <ul class="tool-list">
                     {% for item in utm_result.observations %}
                     <li>{{ item }}</li>
@@ -207,8 +227,8 @@
                 </article>
 
                 <article class="tool-panel tool-panel--recommendation">
-                  <p class="tools-label">Recomendacion</p>
-                  <h3>Siguiente paso recomendado</h3>
+                  <p class="tools-label">Recommendation</p>
+                  <h3>Recommended next step</h3>
                   <p>{{ utm_result.recommendation }}</p>
                 </article>
               </div>
@@ -216,8 +236,8 @@
           </section>
           {% else %}
           <article class="tool-empty">
-            <p class="tools-label">Salida</p>
-            <h2>La salida deja visible la URL final y el estado del etiquetado sin agregar ruido.</h2>
+            <p class="tools-label">Output</p>
+            <h2>The output keeps the final URL and tagging status easy to review.</h2>
             <div class="tool-empty__grid">
               {% for item in tool.outputs %}
               <div class="tool-empty__item">
@@ -233,7 +253,7 @@
 
         <aside class="tool-detail__aside">
           <article class="tool-panel">
-            <p class="tools-label">Estado</p>
+            <p class="tools-label">Status</p>
             <div class="tool-panel__status">
               <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
             </div>
@@ -242,7 +262,7 @@
 
           {% for block in tool.detail_blocks %}
           <article class="tool-panel">
-            <p class="tools-label">Alcance</p>
+            <p class="tools-label">Scope</p>
             <h3>{{ block.title }}</h3>
             <ul class="tool-list">
               {% for item in block.items %}
@@ -253,12 +273,12 @@
           {% endfor %}
 
           <article class="tool-panel">
-            <p class="tools-label">Comportamiento</p>
-            <h3>Que valida esta version</h3>
+            <p class="tools-label">Behavior</p>
+            <h3>What this version validates</h3>
             <ul class="tool-list">
-              <li>URL de destino publica con http o https.</li>
-              <li>Preservacion de query params existentes.</li>
-              <li>Campos UTM base y opcionales, sin inventar claves vacias.</li>
+              <li>A public http or https destination URL.</li>
+              <li>Preservation of existing query parameters.</li>
+              <li>Base and optional UTM fields without invented empty keys.</li>
             </ul>
           </article>
 
@@ -269,4 +289,8 @@
   </section>
 </main>
 {% include 'web/components/footer.html' %}
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+{% if static_export %}<script src="{% static 'web/js/browser-tools.js' %}?v=20261009-2"></script>{% endif %}
 {% endblock %}

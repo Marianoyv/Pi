@@ -1,0 +1,111 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "chrome-155-jpeg-xl-imagenes-web",
+  "title": "JPEG XL llega a Chrome 155 | Pi Development",
+  "meta_description": "Chrome 155 incorpora JPEG XL. Qué mejora frente a JPEG, qué límites persisten y cómo probarlo con fallback antes de adoptarlo en producción.",
+  "meta_keywords": "JPEG XL, Chrome 155, optimización de imágenes, performance web",
+  "eyebrow": "Performance web · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Chrome 155 incorpora JPEG XL para imágenes web",
+  "description": "Chrome anunció soporte de decodificación para JPEG XL desde la versión 155. La oportunidad es reducir peso o preservar calidad, pero la adopción exige comparar formatos y mantener un fallback.",
+  "summary": "Chrome 155 suma JPEG XL: qué ofrece, qué límites conserva y cómo probarlo sin romper la entrega de imágenes.",
+  "search_intent": "Entender cuándo conviene usar JPEG XL en sitios web, qué compatibilidad tiene y cómo medirlo frente a JPEG y AVIF antes de adoptarlo.",
+  "business_relevance": "Equipos con sitios intensivos en imágenes pueden convertir el anuncio en una prueba concreta de performance, pipeline de medios y compatibilidad antes de invertir en una migración amplia.",
+  "target_audience": [
+    "Equipos de producto, tecnología y performance web",
+    "Publishers digitales y responsables de plataformas de contenido"
+  ],
+  "published_at": "2026-10-09",
+  "updated_at": "2026-10-09",
+  "published_datetime": "2026-10-09T12:00:37-03:00",
+  "updated_datetime": "2026-10-09T12:00:37-03:00",
+  "image": "web/img/insights/chrome-155-jpeg-xl-imagenes-web.webp",
+  "image_alt": "Flujo visual que comprime una fotografía y entrega variantes optimizadas a una ventana de navegador.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google anunció el 6 de octubre de 2026 que Chrome incorporará decodificación de imágenes JPEG XL, con extensión .jxl, a partir de Chrome 155. La publicación oficial presenta el formato como una alternativa moderna para fotografías y otros recursos visuales, con compresión con y sin pérdida, HDR, transcodificación sin pérdida desde JPEG y carga progresiva.",
+    "El anuncio abre una opción relevante para sitios donde las imágenes concentran una parte importante del peso transferido. No equivale, sin embargo, a recomendar una migración automática: Google aconseja probar tanto AVIF como JPEG XL y elegir según el material, la calidad buscada y el comportamiento medido en cada producto."
+  ],
+  "key_takeaways": [
+    "Chrome 155 suma decodificación de JPEG XL y Google informa una compresión entre 30% y 50% mejor que JPEG, según el caso.",
+    "El formato resulta especialmente interesante para fotografía de alta fidelidad, compresión sin pérdida, HDR y decodificación progresiva, pero todavía requiere una estrategia de compatibilidad.",
+    "Antes de adoptarlo, conviene comparar JPEG XL, AVIF y el formato actual con un corpus real, publicar fallback y medir bytes, tiempos de decodificación y LCP."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en Chrome 155",
+      "paragraphs": [
+        "El cambio concreto es la incorporación del decodificador JPEG XL en Chrome 155. Según Chrome for Developers, el formato puede ofrecer entre 30% y 50% mejor compresión que JPEG, además de soportar compresión sin pérdida, HDR, animación y transcodificación reversible de archivos JPEG existentes.",
+        "Chrome integró jxl-rs, una implementación escrita en Rust. Google explica que eligió este enfoque para reducir riesgos de seguridad de memoria en un componente que procesa archivos no confiables dentro del navegador, sin renunciar a optimizaciones SIMD necesarias para sostener la velocidad de decodificación."
+      ]
+    },
+    {
+      "title": "Dónde puede aportar valor",
+      "paragraphs": [
+        "La propia publicación sitúa a JPEG XL como una opción especialmente útil para imágenes fotográficas de alta fidelidad, flujos sin pérdida y casos donde la carga progresiva fina mejora la percepción de espera. La transcodificación sin pérdida también puede ser valiosa para archivos JPEG que deben conservarse sin volver a degradar la imagen durante una conversión.",
+        "Para un publisher o una plataforma con catálogos visuales, una reducción efectiva de bytes puede disminuir transferencia y acelerar la llegada del recurso principal. Ese beneficio es una posibilidad técnica, no un resultado garantizado: depende de la imagen, del encoder, del nivel de calidad, del dispositivo y de qué recurso determine el Largest Contentful Paint."
+      ]
+    },
+    {
+      "title": "Límites y riesgos de adopción",
+      "paragraphs": [
+        "El soporte en una versión nueva de Chrome no convierte a JPEG XL en un reemplazo universal. Safari ya incorporó el formato en la versión 17, mientras que la disponibilidad en otros navegadores, versiones antiguas y webviews debe comprobarse para la audiencia real del sitio. Servir un .jxl como única fuente puede dejar sin imagen a clientes incompatibles.",
+        "Tampoco conviene trasladar el rango de compresión anunciado a una proyección de negocio sin una prueba propia. Una comparación válida debe mantener una calidad visual equivalente y contemplar el costo de codificación, el tiempo de decodificación, la capacidad del CDN para negociar formatos y el comportamiento de caché. JPEG XL no corrige por sí solo imágenes sobredimensionadas, ausencia de width y height, prioridades de carga incorrectas ni lazy loading mal aplicado."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción prudente es ejecutar un piloto acotado, no reemplazar de inmediato toda la biblioteca. Conviene elegir fotografías representativas —incluida una imagen LCP—, generar variantes JPEG XL y AVIF con calidad visual comparable, y entregar el nuevo formato mediante picture o negociación en el CDN, conservando JPEG o WebP como respaldo.",
+        "El piloto debe observar datos de laboratorio y de usuarios reales. Si el ahorro de bytes no mejora tiempos de carga o agrega complejidad operativa desproporcionada, el formato puede reservarse para categorías concretas en lugar de adoptarse de manera global."
+      ],
+      "bullets": [
+        "Verificar que el encoder, el CMS y el CDN reconozcan .jxl y envíen el tipo MIME image/jxl sin alterar las claves de caché.",
+        "Publicar un fallback explícito y probar navegadores, webviews y dispositivos que representen tráfico real, incluyendo versiones anteriores.",
+        "Comparar peso, calidad perceptual, tiempo de decodificación, tasa de error, LCP y transferencia total frente a JPEG y AVIF."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La señal importante no es que haya aparecido otro formato, sino que Chrome vuelve a ampliar el espacio de decisión para imágenes de alta calidad y lo hace con una implementación orientada a seguridad. Para equipos web, eso desplaza la pregunta desde “qué formato gana” hacia “qué combinación entrega la mejor calidad y performance para cada tipo de activo”.",
+        "Nuestra lectura es que JPEG XL merece entrar en la matriz de pruebas de sitios con fotografía pesada, archivos maestros o requisitos HDR. La decisión de producción debería quedar automatizada en el pipeline de imágenes y respaldada por métricas; si depende de conversiones manuales o de supuestos generales sobre compresión, el ahorro potencial puede convertirse en deuda operativa."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Chrome for Developers",
+      "title": "Shipping JPEG XL in Chrome",
+      "url": "https://developer.chrome.com/blog/jpeg-xl-in-chrome",
+      "published_at": "2026-10-06",
+      "accessed_at": "2026-10-09",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "WebKit",
+      "title": "WebKit Features in Safari 17.0",
+      "url": "https://webkit.org/blog/14445/webkit-features-in-safari-17-0/",
+      "published_at": "2023-09-18",
+      "accessed_at": "2026-10-09",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "auditoria-tecnica-web",
+    "analizar-seo-pagina"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Desde qué versión Chrome soporta JPEG XL?",
+      "answer": "Chrome anunció soporte de decodificación para archivos .jxl a partir de Chrome 155. Las versiones anteriores y otros entornos deben tratarse como potencialmente incompatibles y recibir un formato alternativo."
+    },
+    {
+      "question": "¿Conviene reemplazar JPEG o AVIF por JPEG XL?",
+      "answer": "No de forma automática. Google recomienda comparar AVIF y JPEG XL; la elección debe basarse en calidad equivalente, ahorro real de bytes, decodificación, compatibilidad y métricas como LCP en la audiencia del sitio."
+    }
+  ]
+}

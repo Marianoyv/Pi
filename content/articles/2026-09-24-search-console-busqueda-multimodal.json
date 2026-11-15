@@ -1,0 +1,109 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "search-console-busqueda-multimodal",
+  "title": "Search Console mide la búsqueda multimodal | Pi Development",
+  "meta_description": "Google Search Console suma un filtro para medir búsquedas con imágenes. Qué tráfico incluye, qué límites tiene y cómo crear una línea base útil.",
+  "meta_keywords": "Search Console, búsqueda multimodal, Lens, SEO visual, medición orgánica",
+  "eyebrow": "SEO técnico · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Search Console separa la búsqueda multimodal",
+  "description": "Google incorporó un filtro para analizar por separado las búsquedas web que usan una imagen. El cambio permite medir este canal sin confundirlo con consultas de texto, aunque los datos solo aparecerán cuando la propiedad reciba impresiones multimodales.",
+  "summary": "Search Console permite aislar las búsquedas con imágenes y construir una línea base para el SEO visual.",
+  "search_intent": "Entender cómo medir las búsquedas con imágenes en Google Search Console y qué revisar para evaluar el rendimiento multimodal de un sitio.",
+  "business_relevance": "La nueva segmentación ayuda a publishers y equipos de marketing a detectar páginas visibles en búsquedas visuales, ordenar auditorías de imágenes y decidir dónde mejorar activos, metadatos y medición.",
+  "target_audience": [
+    "Publishers digitales y responsables de SEO, contenido y adquisición orgánica",
+    "Equipos de producto, analytics y tecnología que administran Search Console"
+  ],
+  "published_at": "2026-09-24",
+  "updated_at": "2026-09-24",
+  "published_datetime": "2026-09-24T13:14:36-03:00",
+  "updated_datetime": "2026-09-24T13:14:36-03:00",
+  "image": "web/img/insights/search-console-busqueda-multimodal.webp",
+  "image_alt": "Un teléfono captura una planta y convierte la imagen en resultados y gráficos de rendimiento.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google anunció el 24 de septiembre de 2026 un nuevo filtro de tipo de búsqueda en los reportes de rendimiento de Search Console. La opción, denominada Web: multimodal, separa las consultas en las que una imagen forma parte de la búsqueda y está disponible tanto en el reporte de resultados de búsqueda como en el reporte de funciones de IA generativa.",
+    "Según la publicación oficial, el conjunto incluye búsquedas realizadas con Lens, Circle to Search en Android, imágenes subidas a Google Search y la acción Buscar esta imagen disponible desde el menú contextual de Chrome. La integración comienza a desplegarse globalmente, pero una propiedad solo verá métricas cuando haya recibido tráfico o impresiones de esas experiencias."
+  ],
+  "key_takeaways": [
+    "Search Console ahora permite distinguir la búsqueda web basada en texto de la búsqueda web multimodal, en la que una imagen integra la consulta.",
+    "El filtro cubre varias superficies visuales, pero no garantiza que todas las propiedades muestren datos: depende de que exista actividad multimodal suficiente.",
+    "La acción recomendada es exportar una línea base por página, país, dispositivo y fecha antes de cambiar imágenes o plantillas."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en Search Console",
+      "paragraphs": [
+        "Hasta ahora, analizar la demanda visual desde los reportes estándar obligaba a trabajar con señales agregadas o con tipos de búsqueda que no describían con precisión si una imagen había sido usada como parte de la consulta. El nuevo filtro Web: multimodal introduce una separación explícita frente a Web: basada en texto dentro del reporte de rendimiento.",
+        "El dato se puede consultar en el reporte de resultados de búsqueda y también en el reporte de funciones de IA generativa. Google indica que es posible usar el botón Exportar para descargar la información y analizarla fuera de Search Console. Ese punto es relevante para equipos que combinan estos datos con inventarios de contenido, catálogos, analítica propia o registros de cambios técnicos."
+      ]
+    },
+    {
+      "title": "A quién afecta y qué permite medir",
+      "paragraphs": [
+        "El cambio es especialmente útil para sitios donde la imagen participa de la decisión: medios, ecommerce, directorios, turismo, decoración, recetas, moda, productos técnicos y documentación visual. También puede aportar evidencia a publishers que producen fotografías, ilustraciones o capturas originales y hasta ahora no podían aislar con claridad su exposición en búsquedas iniciadas con una imagen.",
+        "La novedad no implica un cambio de ranking ni una garantía de tráfico adicional. Es una mejora de observabilidad. Permite comparar impresiones y clics de la búsqueda multimodal con la búsqueda web tradicional, detectar qué URLs concentran visibilidad y observar diferencias por dispositivo, país o período. La interpretación correcta parte de esa distinción: Google está mostrando un segmento nuevo de medición, no anunciando una señal nueva de posicionamiento."
+      ]
+    },
+    {
+      "title": "Límites y riesgos de interpretación",
+      "paragraphs": [
+        "El primer límite es de disponibilidad. Google aclara que los datos aparecerán si el sitio recibe tráfico desde consultas multimodales; la ausencia del filtro con valores relevantes no demuestra por sí sola un problema técnico. Puede reflejar bajo volumen, un despliegue todavía en curso o falta de impresiones para la propiedad.",
+        "El segundo límite es metodológico: una tendencia corta no alcanza para atribuir resultados a un cambio de imágenes, datos estructurados o contenido. Estacionalidad, país, dispositivo y mezcla de páginas pueden alterar el total. Conviene evitar conclusiones causales basadas en pocos días y conservar la fecha de cada modificación para poder comparar períodos equivalentes.",
+        "También es importante no mezclar búsqueda multimodal con el tipo de búsqueda de imágenes. En el nuevo esquema, Web: multimodal describe resultados web obtenidos cuando una imagen fue parte de la consulta. El reporte de imágenes sigue siendo otro tipo de búsqueda. Esa diferencia debería quedar documentada en dashboards y análisis para no sumar segmentos incompatibles."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La recomendación práctica es construir una línea base antes de iniciar una optimización. Pi sugiere exportar el segmento multimodal y registrar qué páginas, dispositivos y países generan impresiones. Luego se puede cruzar ese inventario con la calidad del recurso visual, el contexto textual de la página y los cambios recientes de plantilla.",
+        "Si el volumen todavía es bajo, el objetivo no debería ser perseguir una cifra aislada, sino preparar una medición repetible. Una revisión mensual con el mismo rango, las mismas dimensiones y un registro de cambios ofrece más información que controles diarios sin contexto."
+      ],
+      "bullets": [
+        "Aplicar el filtro Web: multimodal en los reportes disponibles y exportar el período inicial sin mezclarlo con Web: basada en texto.",
+        "Separar páginas por tipo de contenido y revisar imágenes originales, nombres de archivo, texto alternativo, contexto visible y rastreabilidad.",
+        "Registrar fecha, plantilla y cambios visuales; comparar luego impresiones, clics y CTR por página, país y dispositivo.",
+        "Mantener aparte el reporte del tipo de búsqueda de imágenes para evitar dobles lecturas o sumas que no representen el mismo canal."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La señal más valiosa no es que la búsqueda visual exista, sino que ahora pueda aislarse en una herramienta operativa. Para un equipo técnico, esa separación convierte una hipótesis difusa —la gente encuentra este contenido usando imágenes— en un segmento que puede observarse, exportarse y relacionarse con páginas concretas.",
+        "El análisis de Pi es que la oportunidad inmediata está en la disciplina de medición. Antes de rediseñar galerías o producir activos en volumen, conviene identificar qué contenido ya participa del canal multimodal y qué patrones comparte. Esa evidencia permite priorizar pruebas pequeñas, controlar sus límites y decidir si una inversión mayor en SEO visual tiene fundamento."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Search Central",
+      "title": "Announcing web multimodal Search performance reporting in Search Console",
+      "url": "https://developers.google.com/search/blog/2026/09/web-multimodal-in-sc",
+      "published_at": "2026-09-24",
+      "accessed_at": "2026-09-24",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "analizar-seo-pagina",
+    "auditoria-tecnica-web"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "Qué incluye la búsqueda multimodal en Search Console?",
+      "answer": "Incluye resultados web donde una imagen formó parte de la consulta, como búsquedas con Lens, Circle to Search, imágenes subidas a Google Search y la opción de buscar una imagen desde Chrome."
+    },
+    {
+      "question": "Por qué no veo datos de búsqueda multimodal en mi propiedad?",
+      "answer": "El despliegue es global, pero los datos aparecen cuando la propiedad recibe impresiones desde consultas multimodales. Un volumen bajo o la implementación gradual pueden dejar el segmento sin valores relevantes al principio."
+    },
+    {
+      "question": "La búsqueda multimodal reemplaza el reporte de búsqueda de imágenes?",
+      "answer": "No. Web: multimodal identifica búsquedas web en las que se usó una imagen como parte de la consulta; el tipo de búsqueda de imágenes continúa siendo un segmento separado."
+    }
+  ]
+}

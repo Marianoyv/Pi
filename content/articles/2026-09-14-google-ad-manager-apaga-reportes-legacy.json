@@ -1,0 +1,118 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-apaga-reportes-legacy",
+  "title": "Ad Manager apaga los reportes legacy | Pi Development",
+  "meta_description": "Google Ad Manager dejó de ejecutar reportes legacy. Qué migrar a Interactive reports, qué límites revisar y cómo evitar cortes en tableros críticos.",
+  "meta_keywords": "Google Ad Manager, reportes legacy, Interactive reports, migración de reportes",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager apaga los reportes legacy",
+  "description": "Google informó que los reportes del módulo legacy dejarán de ejecutarse durante las próximas semanas. Los equipos que todavía dependen de esas salidas deben migrar o reconstruir sus consultas en Interactive reports.",
+  "summary": "El módulo Reports deja de generar resultados y obliga a revisar migraciones, campos obsoletos y ventanas históricas.",
+  "search_intent": "Entender qué deja de funcionar en los reportes legacy de Google Ad Manager y cómo migrar los flujos críticos a Interactive reports.",
+  "business_relevance": "La transición puede interrumpir tableros, conciliaciones y automatizaciones de monetización; una auditoría técnica permite identificar dependencias y validar equivalencias antes de perder continuidad operativa.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, datos, producto y operaciones"
+  ],
+  "published_at": "2026-09-14",
+  "updated_at": "2026-09-14",
+  "published_datetime": "2026-09-14T19:36:05-03:00",
+  "updated_datetime": "2026-09-14T19:36:05-03:00",
+  "image": "web/img/insights/google-ad-manager-apaga-reportes-legacy.webp",
+  "image_alt": "Paneles de reportes antiguos que se transforman en un tablero interactivo con gráficos y filtros",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google anunció en las notas de la versión de Ad Manager del 8 de septiembre de 2026 que, durante las próximas semanas, los reportes del módulo legacy dejarán de generarse. La página histórica seguirá disponible para consultar definiciones guardadas y lanzar la migración, pero ya no debe considerarse un motor de reporting operativo.",
+    "El alcance es específico: el cambio afecta al módulo web Reports. Google aclara que la continuidad de lectura, ejecución y exportación mediante la SOAP API se mantiene, mientras que Interactive reports pasa a ser la interfaz soportada en la plataforma web. No hay una fecha única anunciada para todas las redes, por lo que la ausencia de un corte visible hoy no garantiza que un reporte vuelva a ejecutarse mañana."
+  ],
+  "key_takeaways": [
+    "Los reportes legacy dejarán de ejecutarse aunque sus definiciones permanezcan visibles en la página Reports.",
+    "Los reportes con campos obsoletos o rangos mayores a tres años pueden requerir una reconstrucción manual en Interactive reports.",
+    "La acción prioritaria es inventariar las salidas que alimentan decisiones, tableros o conciliaciones y validar su reemplazo de punta a punta."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta ahora, muchos equipos conservaban reportes guardados en Reports aun después de que Google habilitó Interactive reports. La actualización del 8 de septiembre cambia el estado práctico de esa convivencia: Google indica que los reportes legacy dejarán de generar resultados durante las próximas semanas.",
+        "La definición del reporte no desaparece de inmediato. Desde la página Reports todavía se puede identificar una consulta existente y migrarla. Esa permanencia puede inducir a error: ver el nombre, la configuración o el historial no significa que el flujo siga activo ni que una entrega programada continúe llegando."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El riesgo principal recae sobre publishers y equipos de AdOps que usan exportaciones de Ad Manager para controlar ingresos, fill rate, entrega de campañas, discrepancias, inventario o viewability. También alcanza a operaciones de datos que reciben archivos programados, los transforman y los incorporan a hojas de cálculo, bases de datos o tableros internos.",
+        "No todos los usuarios tendrán el mismo impacto. Una persona que ya trabaja exclusivamente en Interactive reports puede no necesitar cambios. En cambio, un proceso que todavía espera un CSV enviado por el módulo anterior puede fallar sin que el problema sea visible dentro del tablero final: simplemente dejará de recibir datos nuevos."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "La migración no termina al hacer clic en Migrate. Un reemplazo operativo requiere comprobar que las dimensiones, métricas, filtros, moneda, zona horaria, formato de exportación, destinatarios y frecuencia producen una salida equivalente a la anterior. También conviene revisar los consumidores aguas abajo: nombres de columnas, orden, separadores, encabezados localizados y convenciones de fecha pueden afectar automatizaciones aunque el total visible parezca correcto.",
+        "Para los reportes compatibles, Google ofrece una acción de migración desde la tabla del módulo legacy. Si la interfaz marca Action needed, el equipo debe ajustar primero el rango temporal o retirar campos obsoletos. Si el reporte no puede migrarse, la definición anterior sirve como referencia para reconstruirlo manualmente en Interactive reports."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "Google no publicó en esta actualización un día y horario universal para el apagado. La expresión durante las próximas semanas describe un despliegue, no un plazo exacto por red. Por eso no corresponde afirmar que todos los reportes ya están inactivos ni prometer que seguirán disponibles hasta una fecha determinada.",
+        "Tampoco todos los históricos son migrables. La documentación señala dos límites concretos: rangos de más de tres años y métricas o dimensiones deprecadas pueden impedir una conversión directa. Además, la continuidad de la SOAP API no preserva automáticamente un proceso basado en la interfaz, una descarga manual o un correo programado; es una vía distinta que debe evaluarse según la integración existente."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La recomendación es tratar la transición como una prueba de continuidad de datos. Empezá por las salidas que intervienen en facturación, pacing, optimización diaria o compromisos con terceros; después avanzá sobre reportes exploratorios o de consulta ocasional."
+      ],
+      "bullets": [
+        "Inventariá reportes guardados y programados, junto con su propietario, destinatarios y proceso consumidor.",
+        "Migrá cada consulta compatible y documentá los campos que deban reemplazarse o eliminarse.",
+        "Ejecutá en paralelo una ventana comparable y verificá totales, moneda, zona horaria, filtros y granularidad.",
+        "Confirmá que archivos, correos, hojas y tableros aguas abajo reciben y procesan la nueva salida.",
+        "Registrá evidencia de la última ejecución correcta y un responsable para cualquier diferencia pendiente."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "Análisis de Pi: el riesgo más costoso no es perder una pantalla antigua, sino mantener una decisión de negocio apoyada en datos que dejaron de actualizarse. Un tablero puede seguir cargando, conservar números plausibles y aun así estar congelado. La validación debe incluir frescura y trazabilidad, no solo una comparación visual.",
+        "La transición también ofrece una oportunidad para retirar reportes duplicados y dependencias sin dueño. Antes de reconstruir todo, conviene clasificar cada salida por decisión soportada, frecuencia real de uso y costo de interrupción. Esa selección reduce trabajo y deja una arquitectura de reporting más explícita, con responsables y pruebas que pueden repetirse ante futuros cambios de plataforma."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager",
+      "title": "What’s new in Google Ad Manager — Release notes for September 8, 2026",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-14",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager",
+      "title": "About the migration to Interactive reports",
+      "url": "https://support.google.com/admanager/answer/16071282?hl=en",
+      "published_at": "2026-09-08",
+      "accessed_at": "2026-09-14",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "herramientas-adtech"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Cuándo dejan de funcionar los reportes legacy de Google Ad Manager?",
+      "answer": "Google informó el 8 de septiembre de 2026 que los reportes legacy dejarán de ejecutarse durante las próximas semanas. No anunció un día único de apagado para todas las redes."
+    },
+    {
+      "question": "¿Todos los reportes pueden migrarse a Interactive reports?",
+      "answer": "No necesariamente. Los reportes con rangos mayores a tres años o campos deprecados pueden exigir ajustes previos o una reconstrucción manual en Interactive reports."
+    }
+  ]
+}

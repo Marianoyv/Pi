@@ -7,6 +7,7 @@
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
 {% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block body_class %}tool-page tool-page--{{ tool.slug }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
 {% endblock %}
@@ -15,7 +16,7 @@
 <main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">Herramienta</p>
+      <p class="page-shell__eyebrow">Product</p>
       <h1>{{ tool.page_title }}</h1>
       <p class="page-shell__lead">{{ tool.page_description }}</p>
     </div>
@@ -25,11 +26,11 @@
       <div class="tool-detail__grid">
         <div class="tool-detail__main">
           <article class="tool-panel">
-            <p class="tools-label">Entrada</p>
-            <h2>Renderizar una vista previa controlada</h2>
-            <p class="tool-panel__lead">Pega una creatividad HTML o un tag de terceros, define dimensiones y renderiza una vista previa en sandbox con hallazgos técnicos básicos en la misma ejecución.</p>
-            <form method="post" class="tool-form" data-analyze-form>
-              {% csrf_token %}
+            <p class="tools-label">Input</p>
+            <h2>Render a constrained first-pass preview</h2>
+            <p class="tool-panel__lead">Paste HTML creative markup or a third-party tag, define dimensions and render it in a sandbox with basic structural observations.</p>
+            <form method="post" class="tool-form" data-analyze-form{% if static_export %} data-browser-tool="creative-preview-lab"{% endif %}>
+              {% if not static_export %}{% csrf_token %}{% endif %}
               <div class="tool-form__grid">
                 <div class="tool-form__field">
                   {{ form.creative_name.label_tag }}
@@ -128,19 +129,22 @@
                 </div>
               </div>
               <div class="tool-action-row">
-                <button type="submit" class="button-link tool-form__submit" data-loading-text="Renderizando vista previa...">Renderizar vista previa</button>
-                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Rendering preview...">Render preview</button>
+                <a class="button-link button-link--dark" href="{% url 'product_detail' slug=tool.slug %}">Reset</a>
               </div>
-              <p class="tool-panel__note">La vista previa es un sandbox controlado para revisión inicial. No replica un ad server real, SafeFrame ni una validación completa de tracking.</p>
+              <p class="tool-panel__note">This is a sandboxed first-pass preview. It does not reproduce a real ad server, SafeFrame or full tracking validation.</p>
+              {% if static_export %}<p class="tool-panel__note">The markup is rendered locally in this browser and is not uploaded to a server.</p>{% endif %}
               {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 
-          <section class="tool-result">
+          {% if static_export %}<div data-browser-tool-result aria-live="polite"></div>{% endif %}
+
+          <section class="tool-result"{% if static_export %} data-browser-tool-placeholder{% endif %}>
             <article class="tool-result__hero tool-result__hero--{% if preview_result %}{{ preview_result.preview.tone }}{% else %}warn{% endif %}">
-              <p class="tools-label">Estado de la vista previa</p>
-              <h2>{% if preview_result %}{{ preview_result.preview.label }}{% else %}Sandbox listo{% endif %}</h2>
-              <p>{% if preview_result %}{{ preview_result.preview.summary }}{% else %}Pega código, define dimensiones y renderiza una vista previa en pocos segundos.{% endif %}</p>
+              <p class="tools-label">Preview status</p>
+              <h2>{% if preview_result %}{{ preview_result.preview.label }}{% else %}Sandbox ready{% endif %}</h2>
+              <p>{% if preview_result %}{{ preview_result.preview.summary }}{% else %}Paste code, define dimensions and render a first-pass preview.{% endif %}</p>
             </article>
 
             {% if preview_result %}
@@ -149,19 +153,19 @@
             {% endif %}
 
             <article class="tool-panel">
-              <p class="tools-label">Vista previa</p>
-              <h3>Área de vista previa aislada</h3>
+              <p class="tools-label">Preview</p>
+              <h3>Isolated preview area</h3>
               <div class="tool-preview-shell">
                 <div class="tool-preview-meta">
                   <span>{% if preview_result %}{{ preview_result.preview.width }} x {{ preview_result.preview.height }} px{% else %}300 x 250 px{% endif %}</span>
-                  <span>{% if preview_result %}{{ preview_result.preview.input_mode }}{% else %}Creatividad HTML{% endif %}</span>
+                  <span>{% if preview_result %}{{ preview_result.preview.input_mode }}{% else %}HTML creative{% endif %}</span>
                   <span>{% if preview_result %}{{ preview_result.preview.creative_type }}{% else %}Display{% endif %}</span>
                 </div>
                 <div class="tool-preview-stage">
                   {% if preview_result and preview_result.preview.frame_document %}
                   <iframe
                     class="tool-preview-frame"
-                    title="Vista previa de creatividad"
+                    title="Creative preview"
                     width="{{ preview_result.preview.width }}"
                     height="{{ preview_result.preview.height }}"
                     sandbox="allow-scripts allow-forms"
@@ -170,20 +174,20 @@
                   ></iframe>
                   {% else %}
                   <div class="tool-preview-placeholder">
-                    <strong>Área de vista previa</strong>
-                    <span>Pega código y usa <em>Renderizar vista previa</em> para ver la pieza dentro de un sandbox contenido.</span>
+                    <strong>Preview area</strong>
+                    <span>Paste code and select <em>Render preview</em> to inspect it inside the constrained sandbox.</span>
                   </div>
                   {% endif %}
                 </div>
-                <p class="tool-panel__note">{% if preview_result %}{{ preview_result.preview.note }}{% else %}La vista previa se ejecuta en un iframe aislado para no romper el diseño principal.{% endif %}</p>
+                <p class="tool-panel__note">{% if preview_result %}{{ preview_result.preview.note }}{% else %}The preview runs in an isolated iframe to protect the main page.{% endif %}</p>
               </div>
             </article>
 
             {% if preview_result %}
             <div class="tool-result__grid">
               <article class="tool-panel">
-                <p class="tools-label">Elementos detectados</p>
-                <h3>Elementos detectados</h3>
+                <p class="tools-label">Detected elements</p>
+                <h3>Detected elements</h3>
                 <div class="tool-detected-grid">
                   {% for item in preview_result.detected_elements %}
                   <article class="tool-detected-item">
@@ -198,8 +202,8 @@
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Observaciones técnicas</p>
-                <h3>Observaciones y alertas</h3>
+                <p class="tools-label">Technical observations</p>
+                <h3>Observations and flags</h3>
                 <ul class="tool-list">
                   {% for item in preview_result.technical_flags %}
                   <li>{{ item }}</li>
@@ -211,8 +215,8 @@
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Limitaciones</p>
-                <h3>Limitaciones de la vista previa</h3>
+                <p class="tools-label">Limitations</p>
+                <h3>Preview limitations</h3>
                 <ul class="tool-list">
                   {% for item in preview_result.limitations %}
                   <li>{{ item }}</li>
@@ -222,19 +226,20 @@
             </div>
 
             <article class="tool-panel">
-              <p class="tools-label">Recomendación</p>
+              <p class="tools-label">Recommendation</p>
               <h3>{{ preview_result.recommendation.label }}</h3>
               <p>{{ preview_result.recommendation.text }}</p>
             </article>
             {% endif %}
 
-            {% include 'web/components/tool_editorial_content.html' with tool=tool %}
+            {% if not static_export %}{% include 'web/components/tool_editorial_content.html' with tool=tool %}{% endif %}
           </section>
+          {% if static_export %}{% include 'web/components/tool_editorial_content.html' with tool=tool %}{% endif %}
         </div>
 
         <aside class="tool-detail__aside">
           <article class="tool-panel">
-            <p class="tools-label">Estado</p>
+            <p class="tools-label">Status</p>
             <div class="tool-panel__status">
               <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
             </div>
@@ -243,7 +248,7 @@
 
           {% for block in tool.detail_blocks %}
           <article class="tool-panel">
-            <p class="tools-label">Alcance</p>
+            <p class="tools-label">Scope</p>
             <h3>{{ block.title }}</h3>
             <ul class="tool-list">
               {% for item in block.items %}
@@ -254,12 +259,12 @@
           {% endfor %}
 
           <article class="tool-panel">
-            <p class="tools-label">Reglas del sandbox</p>
-            <h3>Lo que queda contenido en esta versión</h3>
+            <p class="tools-label">Sandbox rules</p>
+            <h3>What this version constrains</h3>
             <ul class="tool-list">
-              <li>La vista previa corre dentro de un iframe con sandbox para aislar CSS y JS del diseño principal.</li>
-              <li>No valida tracking de red, clics reales ni comportamiento exacto de un ad server.</li>
-              <li>Si el código intenta salir del frame o depende demasiado del entorno, la vista previa puede quedar parcial o bloqueada.</li>
+              <li>The preview runs in a sandboxed iframe to isolate its CSS and JavaScript.</li>
+              <li>It does not validate network tracking, real clicks or exact ad-server behavior.</li>
+              <li>Markup that attempts to escape the frame or depends on an external environment may be partial or blocked.</li>
             </ul>
           </article>
 
@@ -270,4 +275,8 @@
   </section>
 </main>
 {% include 'web/components/footer.html' %}
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+{% if static_export %}<script src="{% static 'web/js/browser-tools.js' %}?v=20261009-2"></script>{% endif %}
 {% endblock %}

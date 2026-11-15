@@ -1,0 +1,25 @@
+{% extends 'web/base.html' %}
+{% block title %}Page not found | Pi Development{% endblock %}
+{% block meta_robots %}noindex, nofollow{% endblock %}
+{% block meta_description %}The requested page could not be found on Pi Development.{% endblock %}
+{% block canonical_url %}{{ site_url }}{% url 'index' %}{% endblock %}
+{% block og_title %}Page not found | Pi Development{% endblock %}
+{% block og_description %}The requested page could not be found on Pi Development.{% endblock %}
+{% block og_url %}{{ site_url }}{% url 'index' %}{% endblock %}
+{% block twitter_title %}Page not found | Pi Development{% endblock %}
+{% block twitter_description %}The requested page could not be found on Pi Development.{% endblock %}
+{% block body_class %}error-page{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="page-shell">
+    <div class="page-shell__inner">
+      <p class="page-shell__eyebrow">Error / 404</p>
+      <h1>That page could not be found.</h1>
+      <p class="page-shell__lead">The address may be incorrect, or the page may no longer be available.</p>
+      <a class="button-link" href="{% url 'index' %}">Return to the homepage</a>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}

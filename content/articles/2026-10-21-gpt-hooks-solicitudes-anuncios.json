@@ -1,0 +1,111 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "gpt-hooks-solicitudes-anuncios",
+  "title": "GPT suma hooks para solicitudes de anuncios | Pi Development",
+  "meta_description": "Google Publisher Tag prueba hooks asíncronos antes de cada solicitud. Qué permiten, qué riesgo agrega el timeout y cómo evaluarlos sin afectar ingresos.",
+  "meta_keywords": "Google Publisher Tag, request hooks, solicitudes de anuncios, targeting, latencia publicitaria",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "GPT suma hooks asíncronos antes de cada solicitud de anuncios",
+  "description": "Google Publisher Tag abrió una beta experimental para ejecutar funciones asíncronas antes de enviar cada solicitud publicitaria. La capacidad puede ordenar integraciones de último momento, pero incorpora una espera que debe medirse y limitarse.",
+  "summary": "GPT permite ejecutar lógica asíncrona antes de cada solicitud de anuncios, con hooks paralelos y un timeout configurable.",
+  "search_intent": "Entender cómo funcionan los request hooks de Google Publisher Tag y qué medir antes de usarlos en una implementación publicitaria.",
+  "business_relevance": "Los publishers y equipos de AdOps pueden necesitar auditoría, instrumentación y desarrollo a medida para incorporar lógica previa al request sin degradar latencia, cobertura ni ingresos.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto y desarrollo web"
+  ],
+  "published_at": "2026-10-21",
+  "updated_at": "2026-10-21",
+  "published_datetime": "2026-10-21T11:06:19-03:00",
+  "updated_datetime": "2026-10-21T11:06:19-03:00",
+  "image": "web/img/insights/gpt-hooks-solicitudes-anuncios.webp",
+  "image_alt": "Flujos de datos publicitarios atraviesan procesos paralelos y un control de tiempo antes de llegar a un espacio de anuncio.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google Publisher Tag (GPT) incorporó en la semana del 19 de octubre de 2026 soporte experimental, en beta abierta, para request hooks. La nueva API permite registrar funciones asíncronas que se ejecutan antes de cada solicitud de anuncios de la página.",
+    "La novedad no promete por sí sola más ingresos, mejor segmentación ni menor latencia. Su valor depende de qué tarea se ejecute, cuánto tarde y qué ocurre cuando falla o alcanza el límite de espera. Por eso conviene tratarla como una superficie de integración que requiere pruebas controladas, no como una optimización automática."
+  ],
+  "key_takeaways": [
+    "GPT puede ejecutar varios hooks asíncronos en paralelo antes de cada solicitud de anuncios.",
+    "El tiempo máximo de espera es global y configurable; una mala elección puede retrasar el envío del request.",
+    "La recomendación es probar un único caso de uso, instrumentar duración y errores, y conservar una reversión inmediata."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "La beta agrega el método `PubAdsService.registerRequestHook()`. Cada hook recibe la lista de slots incluidos en la solicitud y devuelve una promesa que se resuelve cuando termina su trabajo asíncrono. El registro también devuelve una función para quitar el hook, una vía útil para desactivar la integración sin reconstruir toda la configuración de GPT.",
+        "Cuando hay más de un hook registrado, GPT los ejecuta en paralelo antes del request. No se forma una cadena secuencial entre proveedores: todos comparten la misma ventana de espera global. La documentación muestra además que un hook puede ajustar la configuración del slot antes del envío; el ejemplo oficial agrega targeting mediante `slot.setConfig()`."
+      ]
+    },
+    {
+      "title": "Cómo funciona el límite de tiempo",
+      "paragraphs": [
+        "La propiedad experimental `PageSettingsConfig.requestHookTimeoutMs` define cuánto espera GPT a que terminen todos los hooks. Acepta un número positivo en milisegundos, el valor `auto` para usar un límite optimizado por Google o `null` para esperar indefinidamente.",
+        "Este comportamiento importa porque el timeout no pertenece a cada hook por separado. Es el techo del conjunto que corre en paralelo. Si una integración tarda más que las demás, puede ocupar toda la ventana previa al request; si no existe límite, una promesa que nunca se resuelve puede dejar la solicitud esperando sin una salida documentada."
+      ]
+    },
+    {
+      "title": "Límites que conviene mantener visibles",
+      "paragraphs": [
+        "Google identifica tanto el método como la propiedad de timeout como experimentales. La publicación anuncia una beta abierta, pero no ofrece métricas de impacto, garantías de estabilidad de la API ni una lista cerrada de usos recomendados. Tampoco publica un valor numérico para el modo `auto`.",
+        "La fecha de las release notes representa el inicio de la semana en que el cambio terminó de desplegarse, no un instante exacto de activación para cada sitio. Antes de diseñar una dependencia crítica alrededor de la API, cada equipo debe comprobar su disponibilidad en el entorno real y revisar nuevamente la referencia vigente."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción prudente es elegir una sola tarea asíncrona que hoy ocurra de forma frágil o dispersa antes del request y probarla sobre una porción pequeña del tráfico. El objetivo inicial no debería ser sumar lógica, sino demostrar que el hook vuelve más predecible una integración existente sin aumentar la demora ni perder solicitudes.",
+        "La prueba necesita comparar control y variante con la misma definición de slots, demanda y refresh. Además de las métricas comerciales, conviene registrar inicio, fin, error y timeout de cada ejecución usando un identificador estable para el hook."
+      ],
+      "bullets": [
+        "Definir qué dato o configuración debe estar listo antes del request y rechazar tareas que puedan resolverse antes en el ciclo de la página.",
+        "Empezar con `auto` o con un límite explícito y conservador; evitar `null` en producción mientras no exista una política propia de cancelación y recuperación.",
+        "Medir tiempo hasta el request, tasa de requests, fill rate, impresiones, latencia de render y errores del hook frente a un grupo de control.",
+        "Conservar la función de desregistro y una bandera de activación para retirar el hook si aparece una regresión."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "El aporte más interesante de los request hooks no es permitir más código antes de la publicidad, sino crear un punto explícito y observable para dependencias que ya existen. En una implementación madura, esa frontera puede reemplazar callbacks improvisados y carreras entre datos, targeting y el disparo de `display()` o `refresh()`.",
+        "El costo también queda más claro: toda dependencia ubicada en ese punto participa del camino crítico de monetización. La decisión correcta será reservar los hooks para información imprescindible, acotar su presupuesto de tiempo y sacar del request cualquier cálculo que pueda prepararse antes. La beta merece un laboratorio técnico; todavía no justifica una migración general sin evidencia propia."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google for Developers",
+      "title": "GPT release notes",
+      "url": "https://developers.google.com/publisher-tag/release-notes",
+      "published_at": "2026-10-19",
+      "accessed_at": "2026-10-21",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google for Developers",
+      "title": "GPT Reference",
+      "url": "https://developers.google.com/publisher-tag/reference",
+      "published_at": "2026-10-20",
+      "accessed_at": "2026-10-21",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué es un request hook en Google Publisher Tag?",
+      "answer": "Es una función asíncrona experimental que GPT ejecuta antes de una solicitud de anuncios. Recibe los slots solicitados y debe resolver una promesa para indicar que terminó."
+    },
+    {
+      "question": "¿Los request hooks pueden retrasar la carga de anuncios?",
+      "answer": "Sí. GPT espera a que terminen los hooks o se alcance el timeout global configurado. Por eso deben medirse, limitarse y probarse con una vía rápida de desactivación."
+    }
+  ]
+}

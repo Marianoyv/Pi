@@ -1,0 +1,109 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "chrome-scroll-un-solo-eje",
+  "title": "Chrome prueba scroll de un solo eje | Pi Development",
+  "meta_description": "Chrome 153 prueba contenedores de scroll de un solo eje. Qué cambia en overflow, sticky, Grid y Flex, y cómo detectar riesgos antes del despliegue.",
+  "meta_keywords": "Chrome 153, scroll de un solo eje, CSS overflow, sticky, Grid, Flex",
+  "eyebrow": "Web · Actualidad",
+  "cluster_key": "seo-performance",
+  "h1": "Chrome 153 prueba contenedores de scroll de un solo eje",
+  "description": "Chrome habilitó para pruebas una nueva interpretación de overflow que permite crear un contenedor desplazable en un solo eje. El cambio mejora casos de uso esperados, pero puede alterar scroll programático, sticky y tamaños mínimos en layouts existentes.",
+  "summary": "Qué probar ante el nuevo comportamiento de overflow de un solo eje en Chrome 153.",
+  "search_intent": "Entender qué cambia con los contenedores de scroll de un solo eje en Chrome 153 y cómo probar compatibilidad en sitios y aplicaciones web.",
+  "business_relevance": "Equipos que mantienen interfaces, sitios de contenido o productos web pueden necesitar una auditoría de compatibilidad y pruebas automatizadas antes de que este comportamiento llegue al canal estable.",
+  "target_audience": [
+    "Equipos de producto, frontend y tecnología",
+    "Publishers digitales con interfaces y layouts complejos"
+  ],
+  "published_at": "2026-09-07",
+  "updated_at": "2026-09-07",
+  "published_datetime": "2026-09-07T11:03:49-03:00",
+  "updated_datetime": "2026-09-07T11:03:49-03:00",
+  "image": "web/img/insights/chrome-single-axis-scroll.webp",
+  "image_alt": "Ilustración editorial de un contenedor web que se desplaza sobre un solo eje y recorta el eje perpendicular.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "El 4 de septiembre de 2026, Chrome for Developers anunció que los contenedores de scroll de un solo eje están disponibles para pruebas en Chrome 153, en los canales Beta, Dev y Canary. La función permite combinar un valor desplazable de CSS overflow, como auto, scroll o hidden, con clip en el otro eje. Por ejemplo, overflow: scroll clip crea un contexto desplazable horizontal sin convertir también el eje vertical en un eje de scroll.",
+    "La publicación es una convocatoria de prueba, no el anuncio de una disponibilidad estable definitiva. Chrome indica que no hace falta activar una bandera en esos canales y que el comportamiento coincide con Firefox y Safari. También advierte que cambiar la forma en que se determina un contenedor de scroll puede producir efectos secundarios en sitios existentes, por lo que conviene validar casos reales antes de asumir compatibilidad."
+  ],
+  "key_takeaways": [
+    "Chrome 153 permite probar combinaciones de overflow que crean un contenedor desplazable en un solo eje, sin bandera, en Beta, Dev y Canary.",
+    "El cambio puede modificar el scroll programático, el posicionamiento sticky y el tamaño mínimo automático de celdas Grid o Flex.",
+    "La acción recomendada es probar componentes con overflow mixto y verificar desplazamiento, geometría y navegación en una versión no estable de Chrome."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta ahora, ciertas combinaciones de overflow podían provocar que ambos ejes se comportaran como parte de un contenedor de scroll, incluso cuando el diseño buscaba recortar uno de ellos. La nueva capacidad reconoce combinaciones como overflow: auto clip o overflow: scroll clip para crear desplazamiento solo sobre el eje que usa el valor desplazable.",
+        "Según Chrome, esto habilita casos largamente solicitados, entre ellos un uso más preciso de elementos con position: sticky por eje. La implementación se ofrece para evaluación en Chrome 153 y busca alinear el comportamiento con otros navegadores. Esa alineación es un hecho informado por la fuente; que un componente particular quede corregido o se rompa depende de su CSS, su estructura y sus supuestos actuales."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El cambio merece atención en productos con tablas anchas, carruseles, paneles laterales, editores, dashboards, feeds, cabeceras fijas o módulos publicitarios dentro de contenedores recortados. También es relevante para publishers cuyos templates combinan Grid o Flex con overflow para controlar piezas que exceden el ancho disponible.",
+        "No toda página con overflow necesita cambios. El riesgo se concentra en componentes que combinan un valor desplazable en un eje con clip en el otro, o que dependen indirectamente de que el navegador trate ambos ejes como un contexto de scroll. Una búsqueda estática de CSS ayuda a localizar candidatos, pero no reemplaza una prueba de interacción y layout."
+      ]
+    },
+    {
+      "title": "Impacto operativo",
+      "paragraphs": [
+        "Chrome identifica dos efectos que deben probarse de forma explícita. Primero, las llamadas de scroll programático, como Element.scrollTo(), respetarán la restricción del eje definido como clip: el elemento rechazará el desplazamiento programático sobre ese eje. Un componente que hoy reposiciona contenido por JavaScript podría dejar de moverse en una dirección sin arrojar un error evidente.",
+        "Segundo, en layouts Grid y Flex puede reaparecer el tamaño mínimo automático de una celda cuando clip se aplica sobre el mismo eje. En términos prácticos, un min-width: auto que antes se ignoraba por tratarse de un contenedor desplazable puede volver a influir y hacer que el contenedor crezca. El síntoma puede ser un desborde, una columna más ancha o un cambio de alineación, no necesariamente una falla funcional visible de inmediato."
+      ]
+    },
+    {
+      "title": "Riesgos y límites de la prueba",
+      "paragraphs": [
+        "Chrome informa que evaluó el cambio en 190 sitios y no encontró roturas significativas, pero presenta esa observación como una muestra inicial y solicita pruebas más amplias. No permite concluir que el riesgo sea nulo para un sitio determinado, especialmente cuando existen componentes propios, librerías antiguas o estilos que dependen de efectos implícitos de overflow.",
+        "Tampoco corresponde tratar Chrome 153 Beta, Dev o Canary como evidencia del comportamiento final en producción. La función está en evaluación y puede ajustarse antes de un despliegue estable. Las decisiones de corrección deberían basarse en un caso reproducible y, cuando sea posible, contrastarse también con Firefox y Safari para evitar una solución exclusiva de un motor."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La revisión debería comenzar por componentes que usan overflow-x y overflow-y con valores diferentes. Conviene registrar el comportamiento actual en un navegador estable y compararlo con Chrome 153 Beta, Dev o Canary usando los mismos datos, tamaño de viewport y secuencia de interacción.",
+        "La fuente recomienda detectar la capacidad con @supports named-feature(single-axis-scroll-container) en CSS o CSS.supports(\"named-feature(single-axis-scroll-container)\") en JavaScript. Una consulta basada solo en @supports (overflow: scroll clip) comprueba que la sintaxis se puede analizar, pero no que el navegador aplique el nuevo comportamiento."
+      ],
+      "bullets": [
+        "Ejecutar scroll manual y programático en ambos ejes, incluidos botones, restauración de posición y navegación por teclado.",
+        "Comprobar elementos sticky, anchos y altos de celdas Grid/Flex, desbordes y cambios de layout en viewports representativos.",
+        "Guardar capturas, medidas de geometría y resultados de pruebas automatizadas para distinguir una regresión real de una diferencia esperada."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "El análisis de Pi es que este cambio parece pequeño en la sintaxis, pero toca una definición estructural del layout: qué elemento crea un contexto de scroll y sobre qué eje. Por eso una auditoría útil no debería limitarse a buscar la palabra overflow; necesita recorrer las dependencias del componente, desde sticky y tamaños mínimos hasta código que modifica la posición.",
+        "Para equipos con muchos templates, la mejor respuesta no es cambiar CSS de forma preventiva, sino construir un inventario corto de patrones de riesgo y convertirlo en pruebas repetibles. Si no aparece una diferencia, queda evidencia para seguir observando el despliegue. Si aparece, el equipo puede aislar el supuesto afectado y corregirlo antes de que el comportamiento llegue a usuarios del canal estable."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Chrome for Developers",
+      "title": "Ready for developer testing: Single-axis scroll containers",
+      "url": "https://developer.chrome.com/blog/single-axis-scroll-containers-ready-for-testing",
+      "published_at": "2026-09-04",
+      "accessed_at": "2026-09-07",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "auditoria-tecnica-web"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué es un contenedor de scroll de un solo eje en CSS?",
+      "answer": "Es un elemento que admite desplazamiento en un eje y recorta el contenido en el otro. En la prueba de Chrome 153 puede expresarse combinando un valor como auto o scroll con clip en la propiedad overflow."
+    },
+    {
+      "question": "¿Cómo detectar esta función sin confundir soporte de sintaxis con comportamiento?",
+      "answer": "Chrome recomienda usar @supports named-feature(single-axis-scroll-container) en CSS o CSS.supports con el mismo nombre en JavaScript. Consultar solo overflow: scroll clip puede confirmar el parseo, pero no el comportamiento revisado."
+    }
+  ]
+}

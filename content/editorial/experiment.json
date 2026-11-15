@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "status": "planning",
+  "duration_weeks": 8,
+  "target_frequency_per_week": 3,
+  "primary_goal": "Encontrar temas y formatos capaces de llevar la publicación desde la línea de base actual hacia 1.000 sesiones mensuales de calidad.",
+  "design_status": "pending_reference_screenshots",
+  "rules": [
+    "Cada territorio recibe cuatro oportunidades.",
+    "El orden puede cambiar por actualidad, pero no el equilibrio total.",
+    "Ninguna pieza se publica si no alcanza 75 puntos o si falla un rechazo obligatorio.",
+    "Cada resultado se compara durante sus primeros siete días.",
+    "Las tres primeras piezas forman también la prueba técnica de medición y distribución."
+  ],
+  "schedule": [
+    {
+      "week": 1,
+      "slot": 1,
+      "territory": "ia",
+      "format": "analysis",
+      "working_title": "Programar ya no empieza escribiendo código",
+      "human_question": "¿Qué parte del trabajo de un programador cambia cuando una IA puede producir la primera versión?",
+      "hypothesis": "La tensión entre velocidad y criterio atraerá a programadores y responsables de producto porque afecta su trabajo presente.",
+      "status": "candidate"
+    },
+    {
+      "week": 1,
+      "slot": 2,
+      "territory": "web-actual",
+      "format": "analysis",
+      "working_title": "Por qué tantos sitios modernos parecen el mismo sitio",
+      "human_question": "¿Qué perdemos cuando toda la web adopta la misma estética segura?",
+      "hypothesis": "Una experiencia visual cotidiana y reconocible puede atraer a lectores técnicos y no técnicos.",
+      "status": "candidate"
+    },
+    {
+      "week": 1,
+      "slot": 3,
+      "territory": "producto",
+      "format": "case-study",
+      "working_title": "La función que parecía pequeña y terminó cambiando todo el producto",
+      "human_question": "¿Por qué una decisión aparentemente menor puede multiplicar el costo de un producto?",
+      "hypothesis": "Una historia real de decisiones y consecuencias demostrará experiencia sin adoptar tono comercial.",
+      "status": "candidate"
+    },
+    {
+      "week": 2,
+      "slot": 1,
+      "territory": "tecnologia-vida",
+      "format": "guide",
+      "working_title": "La estafa digital que funciona porque parece demasiado normal",
+      "human_question": "¿Qué señales humanas usamos para confiar y cómo se aprovechan de ellas?",
+      "hypothesis": "Una guía basada en situaciones reconocibles puede ampliar la audiencia más allá del sector tecnológico.",
+      "status": "candidate"
+    },
+    {
+      "week": 2,
+      "slot": 2,
+      "territory": "carrera",
+      "format": "essay",
+      "working_title": "El problema de aprender programación mirando solamente respuestas",
+      "human_question": "¿Se puede aprender criterio cuando siempre vemos la solución terminada?",
+      "hypothesis": "La ansiedad por aprender y trabajar con IA puede generar identificación y conversación.",
+      "status": "candidate"
+    },
+    {
+      "week": 2,
+      "slot": 3,
+      "territory": "adtech",
+      "format": "analysis",
+      "working_title": "La publicidad que paga una impresión que quizá nadie vio",
+      "human_question": "¿Qué significa realmente una impresión para anunciantes, publishers y lectores?",
+      "hypothesis": "Traducir una métrica técnica a una consecuencia económica y humana hará AdTech comprensible.",
+      "status": "candidate"
+    },
+    {
+      "week": 3,
+      "slot": 1,
+      "territory": "ia",
+      "format": "essay",
+      "working_title": "La IA puede hacerte más rápido y menos capaz al mismo tiempo",
+      "human_question": "¿Qué habilidades dejamos de practicar cuando delegamos demasiado pronto?",
+      "hypothesis": "La contradicción entre productividad y pérdida de capacidad ofrece una tensión humana fuerte.",
+      "status": "candidate"
+    },
+    {
+      "week": 3,
+      "slot": 2,
+      "territory": "web-actual",
+      "format": "guide",
+      "working_title": "Cómo saber si un sitio transmite confianza antes de leer una palabra",
+      "human_question": "¿Qué detalles hacen que una persona confíe o abandone una página?",
+      "hypothesis": "Una lectura visual práctica puede servir a negocios, diseñadores y usuarios comunes.",
+      "status": "candidate"
+    },
+    {
+      "week": 3,
+      "slot": 3,
+      "territory": "producto",
+      "format": "guide",
+      "working_title": "Antes de construir una aplicación, probá si el problema existe",
+      "human_question": "¿Cómo evitar meses de desarrollo para resolver una necesidad imaginada?",
+      "hypothesis": "Una guía de decisión previa al código tendrá utilidad inmediata para emprendedores y equipos.",
+      "status": "candidate"
+    },
+    {
+      "week": 4,
+      "slot": 1,
+      "territory": "tecnologia-vida",
+      "format": "analysis",
+      "working_title": "Por qué una aplicación quiere que nunca termines de mirar",
+      "human_question": "¿Qué decisiones de producto convierten la atención en hábito?",
+      "hypothesis": "Explicar mecanismos cotidianos desde la experiencia del usuario puede aumentar alcance y retorno.",
+      "status": "candidate"
+    },
+    {
+      "week": 4,
+      "slot": 2,
+      "territory": "carrera",
+      "format": "analysis",
+      "working_title": "Ser generalista volvió a ser una ventaja",
+      "human_question": "¿Qué perfil profesional gana valor cuando producir código es cada vez más fácil?",
+      "hypothesis": "Una postura discutible pero argumentada puede generar conversación entre profesionales.",
+      "status": "candidate"
+    },
+    {
+      "week": 4,
+      "slot": 3,
+      "territory": "adtech",
+      "format": "guide",
+      "working_title": "Qué entrega realmente una persona cuando acepta publicidad personalizada",
+      "human_question": "¿Qué datos se intercambian detrás de un consentimiento aparentemente simple?",
+      "hypothesis": "Conectar privacidad, publicidad y decisiones cotidianas puede ampliar la audiencia de AdTech.",
+      "status": "candidate"
+    },
+    {
+      "week": 5,
+      "slot": 1,
+      "territory": "ia",
+      "format": "interview",
+      "working_title": "Un día de trabajo con IA, contado sin promesas",
+      "human_question": "¿Dónde ayuda de verdad y dónde crea trabajo nuevo?",
+      "hypothesis": "Una experiencia concreta resultará más creíble que una lista abstracta de capacidades.",
+      "status": "candidate"
+    },
+    {
+      "week": 5,
+      "slot": 2,
+      "territory": "web-actual",
+      "format": "analysis",
+      "working_title": "El costo invisible de una página lenta",
+      "human_question": "¿Qué siente y qué decide una persona durante cada segundo de espera?",
+      "hypothesis": "Traducir rendimiento a frustración, confianza y ventas unirá interés humano y técnico.",
+      "status": "candidate"
+    },
+    {
+      "week": 5,
+      "slot": 3,
+      "territory": "producto",
+      "format": "case-study",
+      "working_title": "Lo que ocurre después de lanzar es el verdadero producto",
+      "human_question": "¿Por qué mantenimiento, soporte y aprendizaje importan más que el día del lanzamiento?",
+      "hypothesis": "Una historia de operación posterior al lanzamiento diferenciará la mirada práctica de Pi.",
+      "status": "candidate"
+    },
+    {
+      "week": 6,
+      "slot": 1,
+      "territory": "tecnologia-vida",
+      "format": "essay",
+      "working_title": "La comodidad digital también nos vuelve dependientes",
+      "human_question": "¿Qué capacidades cedemos a cambio de evitar pequeños esfuerzos?",
+      "hypothesis": "Una tensión cotidiana y no moralista puede producir lectura y debate.",
+      "status": "candidate"
+    },
+    {
+      "week": 6,
+      "slot": 2,
+      "territory": "carrera",
+      "format": "guide",
+      "working_title": "Cómo mostrar que sabés construir cuando cualquiera puede generar una demo",
+      "human_question": "¿Qué evidencia profesional sigue siendo valiosa en la era de la IA?",
+      "hypothesis": "Una guía de portafolio responde a una preocupación inmediata de profesionales jóvenes y experimentados.",
+      "status": "candidate"
+    },
+    {
+      "week": 6,
+      "slot": 3,
+      "territory": "adtech",
+      "format": "analysis",
+      "working_title": "Cuando mejorar una métrica empeora la experiencia",
+      "human_question": "¿Qué ocurre cuando una optimización publicitaria olvida a la persona que usa el sitio?",
+      "hypothesis": "El conflicto entre ingreso y experiencia permitirá discutir AdTech sin escribir para especialistas solamente.",
+      "status": "candidate"
+    },
+    {
+      "week": 7,
+      "slot": 1,
+      "territory": "ia",
+      "format": "guide",
+      "working_title": "Qué tareas conviene delegar a una IA y cuáles conservar",
+      "human_question": "¿Cómo decidir sin caer en entusiasmo ni rechazo automático?",
+      "hypothesis": "Un marco práctico de decisión puede generar búsquedas, guardados y retorno.",
+      "status": "candidate"
+    },
+    {
+      "week": 7,
+      "slot": 2,
+      "territory": "web-actual",
+      "format": "essay",
+      "working_title": "Internet se volvió más pulido y menos memorable",
+      "human_question": "¿Por qué recordamos sitios imperfectos que tenían personalidad?",
+      "hypothesis": "Una postura estética con ejemplos concretos puede provocar emoción y compartidos.",
+      "status": "candidate"
+    },
+    {
+      "week": 7,
+      "slot": 3,
+      "territory": "producto",
+      "format": "analysis",
+      "working_title": "La automatización que nadie usa también es deuda",
+      "human_question": "¿Por qué algunos sistemas técnicamente correctos fracasan dentro de un equipo?",
+      "hypothesis": "Centrar el análisis en adopción y comportamiento mostrará que producto es más que código.",
+      "status": "candidate"
+    },
+    {
+      "week": 8,
+      "slot": 1,
+      "territory": "tecnologia-vida",
+      "format": "guide",
+      "working_title": "Qué puede saber una aplicación por detalles que parecen insignificantes",
+      "human_question": "¿Cuánto revela nuestro comportamiento incluso cuando no entregamos datos explícitos?",
+      "hypothesis": "La sorpresa verificable sobre inferencias digitales puede atraer y educar sin alarmismo.",
+      "status": "candidate"
+    },
+    {
+      "week": 8,
+      "slot": 2,
+      "territory": "carrera",
+      "format": "essay",
+      "working_title": "Trabajar rápido no siempre significa avanzar",
+      "human_question": "¿Cómo distinguimos producción visible de progreso real?",
+      "hypothesis": "Una experiencia común en equipos puede cerrar el piloto con una pieza ampliamente relatable.",
+      "status": "candidate"
+    },
+    {
+      "week": 8,
+      "slot": 3,
+      "territory": "adtech",
+      "format": "case-study",
+      "working_title": "Cómo una decisión publicitaria termina afectando toda una página",
+      "human_question": "¿Por qué monetización, rendimiento y diseño no pueden resolverse por separado?",
+      "hypothesis": "Un caso integral demostrará conocimiento de Pi sin convertir la publicación en una venta.",
+      "status": "candidate"
+    }
+  ]
+}

@@ -60,6 +60,89 @@
   margin-bottom: 0;
 }
 
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 22px;
+  color: var(--color-text-secondary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: var(--font-label);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.article-meta span + span::before {
+  content: "·";
+  margin-right: 18px;
+}
+
+.article-meta a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.article-hero-image {
+  width: 100%;
+  margin: clamp(28px, 4vw, 48px) 0 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--pi-radius, 18px);
+  background: var(--color-surface);
+}
+
+.article-hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.article-takeaways {
+  margin-top: 34px;
+  padding: 22px;
+  border: 1px solid rgba(var(--rgb-primary), 0.28);
+  border-radius: 18px;
+  background: rgba(var(--rgb-primary), 0.06);
+}
+
+.article-takeaways .content-page__list {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.article-sources ol {
+  display: grid;
+  gap: 12px;
+  padding-left: 0;
+}
+
+.article-sources li {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  list-style: none;
+  border-radius: 14px;
+  background: rgba(var(--rgb-surface-elevated), 0.88);
+}
+
+.article-sources a {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--rgb-primary), 0.5);
+  text-underline-offset: 3px;
+}
+
+.article-sources span {
+  color: var(--color-text-secondary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: var(--font-label);
+}
+
 .content-page__audience,
 .content-page__aside-list {
   display: grid;
@@ -216,5 +299,13 @@
 @media screen and (max-width: 769px) {
   .content-page {
     padding: var(--section-space-tight) 20px var(--section-space);
+  }
+
+  .article-meta {
+    display: grid;
+  }
+
+  .article-meta span + span::before {
+    content: none;
   }
 }

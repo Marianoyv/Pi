@@ -1,0 +1,116 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-publisher-tag-fetch-priority-refresh-bfcache",
+  "title": "Google Publisher Tag prioriza su carga y prepara refresh con bfcache | Pi Development",
+  "meta_description": "Google Publisher Tag suma fetchpriority=high para pubads_impl.js y activará refresh automático al volver mediante bfcache. Qué revisar en una implementación publisher.",
+  "meta_keywords": "Google Publisher Tag 2026, GPT fetchpriority, bfcache ads, refresh automático GPT, AdTech publishers",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Publisher Tag prioriza su carga y cambia el refresh al volver con bfcache",
+  "description": "Dos cambios recientes de GPT afectan la carga y el ciclo de vida de los slots: mayor prioridad para su script principal y refresh automático de espacios visibles cuando una persona regresa a una página restaurada desde bfcache.",
+  "summary": "Qué cambia en GPT, por qué importa para publishers y qué conviene medir antes de aceptar el nuevo comportamiento por defecto.",
+  "search_intent": "Entender los cambios de Google Publisher Tag sobre fetchpriority y refresh con bfcache, y saber qué revisar en una implementación publisher.",
+  "business_relevance": "Atrae a equipos de publishers y AdOps que pueden necesitar diagnóstico, implementación o QA especializado de su stack publicitario.",
+  "target_audience": [
+    "Publishers digitales",
+    "Equipos de AdOps y monetización",
+    "Responsables de producto y tecnología"
+  ],
+  "published_at": "2026-09-06",
+  "updated_at": "2026-09-06",
+  "published_datetime": "2026-09-06T23:40:14-03:00",
+  "updated_datetime": "2026-09-06T23:40:14-03:00",
+  "image": "web/img/insights/google-publisher-tag-bfcache.webp",
+  "image_alt": "Ilustración editorial del ciclo de carga de Google Publisher Tag y el regreso de una página desde bfcache.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google publicó dos cambios consecutivos en Google Publisher Tag que merecen una revisión conjunta. Durante la semana del 31 de agosto, GPT comenzó a solicitar pubads_impl.js con prioridad alta. Además, desde el 8 de septiembre de 2026 actualizará automáticamente los slots que estaban activamente visibles cuando una persona vuelva a la página mediante la caché de navegación atrás/adelante del navegador.",
+    "Ninguno de los dos cambios exige una migración general. Sí cambian supuestos habituales sobre el orden de carga y sobre cuándo puede producirse una nueva impresión, por lo que conviene verificar la implementación real antes de interpretar una variación de latencia, requests o revenue."
+  ],
+  "key_takeaways": [
+    "GPT ahora asigna prioridad alta a la descarga dinámica de pubads_impl.js, salvo que el publisher indique otra prioridad en el loader de gpt.js.",
+    "A partir del 8 de septiembre, volver a una página mediante bfcache puede refrescar automáticamente slots que estaban activamente visibles.",
+    "El control AutoRefreshConfig permite desactivar ese comportamiento cuando la política de refresh o la lógica de targeting del sitio requieren manejo propio.",
+    "La validación debería mirar requests duplicados, targeting vigente, viewability, latencia y consistencia de medición; no solo el total de impresiones."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió en la prioridad de carga",
+      "paragraphs": [
+        "GPT ahora agrega fetchpriority=\"high\" al solicitar dinámicamente pubads_impl.js. Esa señal le pide al navegador que priorice la biblioteca central dentro de su planificación de red y busca reducir la latencia publicitaria en la ruta crítica.",
+        "El comportamiento sigue siendo configurable. Si el loader de gpt.js declara fetchpriority=\"low\" o fetchpriority=\"auto\", el script interno hereda ese valor. Esto permite conservar una decisión de performance explícita en sitios donde el contenido editorial debe competir menos con la carga publicitaria."
+      ]
+    },
+    {
+      "title": "Qué cambia cuando una página vuelve desde bfcache",
+      "paragraphs": [
+        "La bfcache puede restaurar una página completa al navegar hacia atrás o hacia adelante, sin reconstruirla como una carga tradicional. Desde el 8 de septiembre, GPT refrescará automáticamente los slots que estaban activamente visibles antes de esa restauración.",
+        "Para un publisher, esto puede recuperar oportunidades de impresión que antes quedaban congeladas al volver a la página. También incorpora una nueva ruta de refresh que debe convivir con cualquier lógica propia basada en tiempo, visibilidad, navegación interna o eventos de la aplicación."
+      ]
+    },
+    {
+      "title": "Qué revisar antes de dejar el comportamiento por defecto",
+      "paragraphs": [
+        "El punto principal no es decidir si el cambio es bueno o malo en abstracto, sino comprobar que no duplica una automatización existente y que conserva el estado correcto de cada slot."
+      ],
+      "bullets": [
+        "Reproducir navegación hacia otra página y regreso con los controles atrás y adelante del navegador.",
+        "Confirmar que cada slot visible genera como máximo el refresh esperado.",
+        "Verificar si las key-values deben recalcularse antes de una nueva solicitud.",
+        "Separar en la medición los retornos por bfcache de una carga de página convencional.",
+        "Comparar latencia publicitaria, viewability, Core Web Vitals e impresiones antes y después del cambio."
+      ]
+    },
+    {
+      "title": "Cuándo considerar un opt-out",
+      "paragraphs": [
+        "Desactivar el refresh de bfcache puede tener sentido cuando el sitio ya administra esa transición, cuando una regla comercial limita la frecuencia o cuando el targeting debe actualizarse de forma obligatoria antes de cada request. GPT expone esa decisión mediante AutoRefreshConfig.backForwardCache.",
+        "Un opt-out no debería ser automático: primero conviene observar el comportamiento en un entorno controlado y documentar la razón. La configuración más simple es la que evita requests inesperados sin renunciar a una oportunidad válida de monetización."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "Estos cambios muestran por qué una integración de GPT no termina al insertar el loader. El navegador, la navegación y la política de refresh forman parte del sistema publicitario. Cuando cambia uno de esos componentes, el trabajo útil es traducir la nota de versión en una prueba pequeña, observable y repetible.",
+        "La recomendación operativa es registrar un baseline, probar el regreso por bfcache y revisar la secuencia de requests antes de modificar la configuración. Una mejora declarada por la plataforma no reemplaza la evidencia de la implementación propia."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google for Developers",
+      "title": "Google Publisher Tag release notes",
+      "url": "https://developers.google.com/publisher-tag/release-notes",
+      "published_at": "2026-08-31",
+      "accessed_at": "2026-09-06",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [
+    "adtech-debug-tool"
+  ],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads",
+    "debug-anuncios-web",
+    "herramientas-adtech"
+  ],
+  "related_knowledge_slugs": [
+    "errores-comunes-en-implementaciones-con-google-publisher-tag",
+    "como-validar-una-creatividad-html-antes-de-publicarla"
+  ],
+  "faqs": [
+    {
+      "question": "GPT va a refrescar todos los slots al volver con el botón Atrás?",
+      "answer": "La nota de Google especifica los slots que estaban activamente visibles al restaurarse la página desde bfcache. La implementación debe probarse en el sitio real porque el resultado depende de la navegación, la elegibilidad para bfcache y el estado de los slots."
+    },
+    {
+      "question": "Se puede desactivar el refresh automático por bfcache?",
+      "answer": "Sí. Google documenta la propiedad AutoRefreshConfig.backForwardCache para controlar ese comportamiento. Conviene desactivarlo solo cuando exista una política propia o un conflicto comprobado."
+    },
+    {
+      "question": "fetchpriority=high garantiza más revenue?",
+      "answer": "No. Es una señal de prioridad de red que puede reducir latencia de carga publicitaria, pero el impacto final depende del sitio, la competencia por recursos, la demanda y la medición. Debe validarse con datos propios."
+    }
+  ]
+}

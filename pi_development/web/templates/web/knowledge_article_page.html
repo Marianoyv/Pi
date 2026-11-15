@@ -1,13 +1,19 @@
 {% extends 'web/base.html' %}
 {% load static %}
 {% block title %}{{ knowledge_page.title }}{% endblock %}
+{% block meta_robots %}index, follow, max-image-preview:large{% endblock %}
 {% block og_type %}article{% endblock %}
 {% block og_title %}{{ knowledge_page.title }}{% endblock %}
 {% block twitter_title %}{{ knowledge_page.title }}{% endblock %}
 {% block meta_description %}{{ knowledge_page.meta_description }}{% endblock %}
 {% block og_description %}{{ knowledge_page.meta_description }}{% endblock %}
 {% block twitter_description %}{{ knowledge_page.meta_description }}{% endblock %}
+{% block og_image %}{{ site_url }}{% static knowledge_page.image %}{% endblock %}
+{% block og_image_alt %}{{ knowledge_page.image_alt }}{% endblock %}
+{% block twitter_image %}{{ site_url }}{% static knowledge_page.image %}{% endblock %}
+{% block twitter_image_alt %}{{ knowledge_page.image_alt }}{% endblock %}
 {% block meta_keywords %}{{ knowledge_page.meta_keywords }}{% endblock %}
+{% block body_class %}content-route insight-article-page{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/content_page.css' %}">
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
@@ -16,21 +22,53 @@
 {% include 'web/components/navbar.html' %}
 <main id="main-content">
   <section class="page-shell">
-    <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">{{ knowledge_page.eyebrow }}</p>
-      <h1>{{ knowledge_page.h1 }}</h1>
-      <p class="page-shell__lead">{{ knowledge_page.description }}</p>
+    <div class="page-shell__inner page-shell__inner--article">
+      <div class="article-hero-copy">
+        <p class="page-shell__eyebrow">{{ knowledge_page.eyebrow }}</p>
+        <h1>{{ knowledge_page.h1 }}</h1>
+        <p class="page-shell__lead">{{ knowledge_page.description }}</p>
+        {% if knowledge_page.published_at %}
+        <div class="article-meta" aria-label="{% if knowledge_page.language == 'en' %}Publication details{% else %}Publication details{% endif %}">
+          <span>{% if knowledge_page.language == "en" %}By{% else %}By{% endif %} <a href="{% url 'company' %}">Mariano Tami</a></span>
+          <span><time datetime="{{ knowledge_page.published_datetime }}">{% if knowledge_page.language == "en" %}Published{% else %}Published{% endif %} {{ knowledge_page.published_at }}{% if knowledge_page.published_datetime %} · {{ knowledge_page.published_datetime|slice:'11:16' }} ART{% endif %}</time></span>
+          {% if knowledge_page.reading_time_minutes %}<span>{{ knowledge_page.reading_time_minutes }} {% if knowledge_page.language == "en" %}min read{% else %}min reading{% endif %}</span>{% endif %}
+          {% if knowledge_page.updated_at and knowledge_page.updated_at != knowledge_page.published_at %}<span><time datetime="{{ knowledge_page.updated_datetime|default:knowledge_page.updated_at }}">{% if knowledge_page.language == "en" %}Updated{% else %}Updated{% endif %} {{ knowledge_page.updated_at }}</time></span>{% endif %}
+        </div>
+        {% endif %}
+      </div>
+      {% if knowledge_page.image %}
+      <figure class="article-hero-image">
+        <img src="{% static knowledge_page.image %}" width="1536" height="864" alt="{{ knowledge_page.image_alt }}" fetchpriority="high" decoding="async">
+      </figure>
+      {% endif %}
     </div>
   </section>
   <section class="content-page">
     <div class="content-page__grid">
-      <article class="content-page__main">
-        <h2>Introduccion</h2>
+      <article
+        class="content-page__main"
+        data-editorial-article
+        data-article-slug="{{ knowledge_page.slug }}"
+        data-article-type="{{ knowledge_page.article_type|default:'article' }}"
+        data-article-cluster="{{ knowledge_page.cluster_key|default:'uncategorized' }}"
+      >
+        <h2>{% if knowledge_page.language == "en" %}Introduction{% else %}Introduction{% endif %}</h2>
         <div class="content-page__copy">
           {% for paragraph in knowledge_page.intro_paragraphs %}
           <p>{{ paragraph }}</p>
           {% endfor %}
         </div>
+
+        {% if knowledge_page.key_takeaways %}
+        <div class="article-takeaways">
+          <p class="content-page__card-label">{% if knowledge_page.language == "en" %}Key takeaways{% else %}In summary{% endif %}</p>
+          <ul class="content-page__list">
+            {% for item in knowledge_page.key_takeaways %}
+            <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
 
         {% for section in knowledge_page.sections %}
         <div class="content-page__section">
@@ -50,9 +88,24 @@
         </div>
         {% endfor %}
 
+        {% if knowledge_page.sources %}
+        <div class="content-page__section article-sources">
+          <h2>{% if knowledge_page.language == "en" %}Sources{% else %}Fuentes{% endif %}</h2>
+          <p>{% if knowledge_page.language == "en" %}The factual information in this article was checked against the following sources.{% else %}The factual information in this note was verified in the following primary sources.{% endif %}</p>
+          <ol>
+            {% for source in knowledge_page.sources %}
+            <li>
+              <a href="{{ source.url }}" target="_blank" rel="noopener noreferrer">{{ source.title }}</a>
+              <span>{{ source.publisher }}{% if source.published_at %} · {{ source.published_at }}{% endif %}</span>
+            </li>
+            {% endfor %}
+          </ol>
+        </div>
+        {% endif %}
+
         {% if related_tools %}
         <div class="content-page__section">
-        <h2>Herramientas relacionadas</h2>
+        <h2>{% if knowledge_page.language == "en" %}Related products{% else %}Related products{% endif %}</h2>
           <div class="tools-card-grid">
             {% for tool in related_tools %}
             {% include 'web/components/tool_card.html' with tool=tool %}
@@ -63,7 +116,7 @@
 
         {% if related_seo_pages %}
         <div class="content-page__section">
-          <h2>Guias tecnicas relacionadas</h2>
+          <h2>{% if knowledge_page.language == "en" %}Related technical guides{% else %}Related technical guides{% endif %}</h2>
           <div class="content-page__chip-list">
             {% for page in related_seo_pages %}
             <a class="content-page__chip" href="{% url 'seo_page' slug=page.slug %}">
@@ -77,7 +130,7 @@
 
         {% if related_knowledge_pages %}
         <div class="content-page__section">
-          <h2>Lecturas relacionadas</h2>
+          <h2>{% if knowledge_page.language == "en" %}Related reading{% else %}Related readings{% endif %}</h2>
           <div class="content-page__chip-list">
             {% for page in related_knowledge_pages %}
             <a class="content-page__chip" href="{% url 'knowledge_page' slug=page.slug %}">
@@ -91,7 +144,7 @@
 
         {% if knowledge_page.faqs %}
         <div class="content-page__section">
-          <h2>Preguntas frecuentes</h2>
+          <h2>{% if knowledge_page.language == "en" %}Frequently asked questions{% else %}Frequently asked questions{% endif %}</h2>
           <div class="content-page__faq-list">
             {% for item in knowledge_page.faqs %}
             <article class="content-page__faq-item">
@@ -106,46 +159,48 @@
 
       <aside class="content-page__aside">
         <div class="content-page__card">
-          <p class="content-page__card-label">Contenido tecnico</p>
-          <h3>Capa editorial</h3>
-          <p>Esta pieza forma parte de la capa de conocimiento tecnico de Pi Development.</p>
-          <a class="button-link button-link--dark" href="{% url 'insights' %}">Ver todos los insights</a>
+          <p class="content-page__card-label">{% if knowledge_page.language == "en" %}Technical content{% else %}Technical content{% endif %}</p>
+          <h3>{% if knowledge_page.language == "en" %}Editorial library{% else %}Editorial layer{% endif %}</h3>
+          <p>{% if knowledge_page.language == "en" %}This article is part of Pi Development's technical knowledge library.{% else %}This piece is part of the Pi Development technical knowledge layer.{% endif %}</p>
+          <a class="button-link button-link--dark" href="{% url 'insights' %}">{% if knowledge_page.language == "en" %}View all insights{% else %}See all insights{% endif %}</a>
         </div>
 
         {% if topic_cluster %}
         <div class="content-page__card">
-          <p class="content-page__card-label">Grupo tematico</p>
-          <h3>{{ topic_cluster.title }}</h3>
-          <p>{{ topic_cluster.description }}</p>
+          <p class="content-page__card-label">{% if knowledge_page.language == "en" %}Topic{% else %}Thematic group{% endif %}</p>
+          <h3>{% if knowledge_page.language == "en" and topic_cluster.key == "ia" %}Artificial intelligence{% else %}{{ topic_cluster.title }}{% endif %}</h3>
+          <p>{% if knowledge_page.language == "en" and topic_cluster.key == "ia" %}AI, automation and human control: capabilities, limits and decisions for intelligent systems.{% else %}{{ topic_cluster.description }}{% endif %}</p>
           <ul class="content-page__aside-list">
-            <li><a href="{% url 'tools' %}#{{ topic_cluster.catalog_anchor }}">Ver bloque {{ topic_cluster.catalog_label|lower }} en el catalogo</a></li>
-            <li><a href="{% url 'seo_page' slug='herramientas-adtech' %}">Abrir hub de herramientas AdTech</a></li>
+            {% if topic_cluster.catalog_available %}
+            <li><a href="{% url 'products' %}#{{ topic_cluster.catalog_anchor }}">{% if knowledge_page.language == "en" %}View related products{% else %}View block {{ topic_cluster.catalog_label|lower }} in the catalog{% endif %}</a></li>
+            {% endif %}
+            {% if knowledge_page.language != "en" %}<li><a href="{% url 'seo_page' slug='herramientas-adtech' %}">Open AdTech product hub</a></li>{% endif %}
           </ul>
         </div>
         {% endif %}
 
         {% if related_tools %}
         <div class="content-page__card">
-          <p class="content-page__card-label">Tools principales</p>
-          <h3>Continuar con una herramienta relacionada</h3>
+          <p class="content-page__card-label">{% if knowledge_page.language == "en" %}Main products{% else %}Main products{% endif %}</p>
+          <h3>{% if knowledge_page.language == "en" %}Continue with a related product{% else %}Continue with a related product{% endif %}</h3>
           <ul class="content-page__aside-list">
             {% for tool in related_tools %}
-            <li><a href="{% url 'tool_detail' slug=tool.slug %}">{{ tool.name }}</a></li>
+            <li><a href="{% url 'product_detail' slug=tool.slug %}">{{ tool.name }}</a></li>
             {% endfor %}
           </ul>
         </div>
         {% endif %}
 
         <div class="content-page__card">
-          <p class="content-page__card-label">Aplicar este contenido</p>
+          <p class="content-page__card-label">{% if knowledge_page.language == "en" %}Apply this insight{% else %}Apply this content{% endif %}</p>
           {% if topic_cluster.key == "adtech" or topic_cluster.key == "creatividades" %}
-          <h3>AdTech engineering and publisher technology</h3>
-          <p>Connect this guide with implementation, diagnostics, creative QA or AdOps automation.</p>
-          <a class="button-link button-link--dark" href="{% url 'adtech' %}">Explore AdTech</a>
+          <h3>AdTech engineering and technology for publishers</h3>
+          <p>Connect this guide with AdOps implementation, diagnostics, creative QA or automation.</p>
+          <a class="button-link button-link--dark" href="{% url 'adtech' %}">Explorar AdTech</a>
           {% else %}
-          <h3>Custom software and technical workflows</h3>
-          <p>Turn a repeated technical task into a more reliable tool, integration or workflow.</p>
-          <a class="button-link button-link--dark" href="{% url 'solutions' %}">Explore solutions</a>
+          <h3>{% if knowledge_page.language == "en" %}Custom software and technical workflows{% else %}Custom software and technical flows{% endif %}</h3>
+          <p>{% if knowledge_page.language == "en" %}Turn a repetitive technical task into a product, integration or more reliable workflow.{% else %}I turned a repetitive technical task into a more reliable product, integration, or flow.{% endif %}</p>
+          <a class="button-link button-link--dark" href="{% url 'solutions' %}">{% if knowledge_page.language == "en" %}Explore solutions{% else %}Explore solutions{% endif %}</a>
           {% endif %}
         </div>
       </aside>

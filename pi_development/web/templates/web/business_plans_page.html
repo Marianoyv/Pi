@@ -1,0 +1,73 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% block title %}{{ page.seo_title }}{% endblock %}
+{% block og_title %}{{ page.seo_title }}{% endblock %}
+{% block twitter_title %}{{ page.seo_title }}{% endblock %}
+{% block meta_description %}{{ page.meta_description }}{% endblock %}
+{% block og_description %}{{ page.meta_description }}{% endblock %}
+{% block twitter_description %}{{ page.meta_description }}{% endblock %}
+{% block body_class %}business-route business-plans-route{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
+<link rel="stylesheet" href="{% static 'web/css/business.css' %}?v=20261024-1">
+{% endblock %}
+{% block content %}
+{% include 'web/components/navbar.html' %}
+<main id="main-content">
+  <section class="plans-hero">
+    <div class="business-shell">
+      <a class="business-back-link" href="{% url 'business_solutions' %}"><span aria-hidden="true">←</span> Get to know the service first</a>
+      <p class="business-eyebrow">{{ page.eyebrow }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="business-lead">{{ page.description }}</p>
+    </div>
+  </section>
+
+  <section class="plans-section" aria-label="Available plans">
+    <div class="business-shell plans-grid">
+      {% for plan in page.plans %}
+      <article class="plan-card{% if plan.featured %} plan-card--featured{% endif %}" data-plan="{{ plan.slug }}">
+        {% if plan.featured %}<p class="plan-card__badge">Recommended starting point</p>{% endif %}
+        <p class="plan-card__purpose">{{ plan.purpose }}</p>
+        <h2>{{ plan.name }}</h2>
+        <p class="plan-card__description">{{ plan.description }}</p>
+        <div class="plan-card__price"><span>{{ plan.price_note }}</span><strong>{{ plan.price }}</strong></div>
+        <p class="plan-card__timeline">Estimated delivery: {{ plan.timeline }}</p>
+        <a class="button-link" href="{{ plan.cta_href }}" target="_blank" rel="noopener noreferrer">Ask about {{ plan.name }}</a>
+        <ul>{% for feature in plan.features %}<li>{{ feature }}</li>{% endfor %}</ul>
+        <p class="plan-card__limit"><strong>Scope limit</strong>{{ plan.not_included }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="business-section business-section--soft" aria-labelledby="common-title">
+    <div class="business-shell">
+      <header class="business-section__head"><p class="business-eyebrow">Common base</p><h2 id="common-title">{{ page.common_title }}</h2></header>
+      <div class="plan-common-grid">{% for item in page.common_items %}<div><span aria-hidden="true">✓</span><p>{{ item }}</p></div>{% endfor %}</div>
+      <p class="plans-disclaimer">Prices are initial references in US dollars. The scope, final price, payment method and third-party costs are confirmed in a proposal before starting.</p>
+    </div>
+  </section>
+
+  <section class="business-section" aria-labelledby="plans-faq-title">
+    <div class="business-shell business-faq-layout">
+      <header class="business-section__head"><p class="business-eyebrow">Transparent reach</p><h2 id="plans-faq-title">{{ page.faq_title }}</h2></header>
+      <div class="business-faq-list">{% for item in page.faqs %}<article><h3>{{ item.question }}</h3><p>{{ item.answer }}</p></article>{% endfor %}</div>
+    </div>
+  </section>
+
+  <section class="business-final-cta">
+    <div class="business-shell">
+      <p class="business-eyebrow">Still don't know which one to choose?</p>
+      <h2>Tell me what you offer and how you receive inquiries today.</h2>
+      <p>A brief conversation is enough to identify the most reasonable starting point.</p>
+      <div class="business-actions">
+        <a class="button-link" href="{{ page.plans.1.cta_href }}" target="_blank" rel="noopener noreferrer">Chat via WhatsApp</a>
+        <a class="business-text-link" href="{% url 'business_solutions' %}">Return to service <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+{% include 'web/components/footer.html' %}
+{% endblock %}
+

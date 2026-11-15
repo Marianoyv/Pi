@@ -1,0 +1,119 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-optimiza-consentimiento",
+  "title": "Ad Manager optimiza el consentimiento | Pi Development",
+  "meta_description": "Google activa controles de cobertura y optimización de consentimiento en Ad Manager. Qué revisar en sitios, apps, TCF y mensajes de respaldo.",
+  "meta_keywords": "Google Ad Manager, consentimiento, CMP, TCF, Privacy & messaging",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Ad Manager activa la optimización del consentimiento",
+  "description": "Google habilitó controles que pueden ampliar la cobertura de mensajes de consentimiento y elegir automáticamente entre dos variantes. El cambio alcanza a publishers con tráfico del EEE, Reino Unido y Suiza y exige revisar configuración, implementación y métricas.",
+  "summary": "Qué hacen los nuevos controles de consentimiento de Ad Manager, cuáles son sus límites y cómo auditarlos sin confundir cobertura con cumplimiento.",
+  "search_intent": "Entender cómo funcionan la cobertura y la optimización de mensajes de consentimiento en Google Ad Manager y qué debe revisar un publisher antes de mantenerlas activas.",
+  "business_relevance": "Los controles afectan la experiencia de consentimiento, la monetización y la instrumentación técnica de sitios y apps; una auditoría puede detectar mensajes inesperados, señales TCF ausentes o configuraciones que no reflejan la política del publisher.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto, privacidad y tecnología"
+  ],
+  "published_at": "2026-10-07",
+  "updated_at": "2026-10-07",
+  "published_datetime": "2026-10-07T11:03:15-03:00",
+  "updated_datetime": "2026-10-07T11:03:15-03:00",
+  "image": "web/img/insights/google-ad-manager-optimiza-consentimiento.webp",
+  "image_alt": "Flujo de consentimiento que deriva usuarios hacia dos mensajes y protege solicitudes sin señal mediante una capa de respaldo.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google Ad Manager anunció el 5 de octubre de 2026 dos controles de Privacy & messaging: Maximize message coverage y Optimize my consent message. La documentación oficial indica que, en la mayoría de los casos, ambos están habilitados por defecto. El primero busca cubrir solicitudes sin una cadena de consentimiento TCF; el segundo selecciona automáticamente qué variante de mensaje mostrar en sitios web.",
+    "El anuncio no elimina la responsabilidad del publisher sobre su implementación ni garantiza cumplimiento normativo. Su alcance real depende de la región, del tipo de superficie, de la CMP y de la presencia de las señales esperadas. Por eso conviene tratarlo como un cambio operativo que debe probarse, no como una sustitución automática de la estrategia de consentimiento."
+  ],
+  "key_takeaways": [
+    "Maximize message coverage puede mostrar mensajes de respaldo en el EEE, Reino Unido y Suiza cuando falta una TC string, y se aplica a nivel de cuenta.",
+    "La optimización solo funciona en sitios web y puede alternar entre un mensaje estándar bloqueante y uno limitado no bloqueante según rendimiento previo y datos de sesión.",
+    "La acción recomendada es auditar la configuración efectiva, provocar escenarios sin TCF en un entorno controlado y medir consentimiento, rebote, cobertura y monetización por variante."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Maximize message coverage actúa como una red de respaldo para tráfico del Espacio Económico Europeo, Reino Unido y Suiza. Si una solicitud llega sin TC string, Google CMP puede intentar mostrar un mensaje. En sitios, el mensaje se sirve desde Google Publisher Tag cuando no se detecta una CMP TCF en la página. En apps, puede aparecer a través de una unidad publicitaria elegible.",
+        "El control también puede crear y publicar automáticamente un mensaje predeterminado para cada sitio o app nuevos de la cuenta. Google aclara que su alcance incluye propiedades administradas en AdSense o AdMob y que, en la mayoría de los casos, el control de cobertura y la optimización quedan activos por defecto."
+      ]
+    },
+    {
+      "title": "Cómo funciona la optimización",
+      "paragraphs": [
+        "Optimize my consent message está disponible únicamente para sitios. Ad Manager usa rendimiento histórico y datos de sesión, como ubicación o navegador, para decidir entre dos experiencias: un mensaje estándar que exige una decisión antes de acceder al contenido, o un mensaje limitado no bloqueante orientado a monetizar mediante anuncios limitados.",
+        "La variante limitada no se sirve si el publisher desactivó los controles de interés legítimo. Google permite gestionar la optimización por mensaje, pero documenta una excepción importante: cuando el mensaje se entrega mediante la cobertura de respaldo, no es posible desactivar la optimización para ese mensaje individual. Para excluirla por completo, también hay que desactivar Maximize message coverage."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "La cobertura de respaldo no corrige por sí sola una CMP rota ni reemplaza la evaluación legal del publisher. La documentación pide verificar que los mensajes se muestren correctamente y que el comportamiento coincida con los requisitos de procesamiento de datos. En apps, la optimización no está disponible y la creación automática de mensajes requiere el SDK UMP para mostrarlos como se espera; el fallback todavía no es compatible con Google Mobile Ads Next-Gen SDK.",
+        "También hay un límite de gobierno de cuenta: una configuración de nivel de red puede afectar propiedades nuevas y existentes. En relaciones Multiple Customer Management, padres o hijos podrían ser elegibles para mostrar mensajes; Google recomienda incluir el código de red deseado en el ad tag para definir qué cuenta controla el comportamiento."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La revisión debería empezar por un inventario de sitios, apps, CMP y responsables. Después conviene ejecutar pruebas regionales y escenarios controlados con TC string válida, ausente y demorada. El objetivo no es solo comprobar que aparece un banner, sino identificar qué cuenta lo origina, qué variante se muestra y qué señal llega finalmente al stack publicitario.",
+        "Separá las métricas de consentimiento de las de negocio. Una mejora de ingresos no demuestra por sí misma que el flujo sea correcto, y una mayor tasa de interacción puede esconder un mensaje inesperado o una falla de integración. Documentá la decisión de mantener o desactivar cada control y conservá evidencia del comportamiento observado."
+      ],
+      "bullets": [
+        "Verificar el estado efectivo de Maximize message coverage y de Optimize my consent message en cada mensaje europeo.",
+        "Probar web y apps por separado, incluyendo ausencia de CMP, error transitorio, nueva propiedad y relaciones MCM.",
+        "Comparar tasa de consentimiento, aparición de mensajes limitados, rebote, solicitudes sin TC string, cobertura publicitaria e ingresos por sesión."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "El valor del cambio está en reducir silencios operativos: una solicitud sin señal puede revelar una caída de la CMP y ahora existe una capa capaz de responder. Pero esa misma automatización amplía el número de decisiones implícitas dentro de Ad Manager. Para equipos con varias propiedades, el riesgo principal no es la existencia del fallback, sino desconocer dónde está activo y qué experiencia entrega.",
+        "La recomendación de Pi es tratar estos controles como parte del sistema de consentimiento, con dueño, pruebas y observabilidad propias. La configuración predeterminada puede ser un buen punto de partida, pero no debería convertirse en una política no revisada."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What’s new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-07",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Maximize message coverage",
+      "url": "https://support.google.com/admanager/answer/17340703?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-07",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "About consent optimization",
+      "url": "https://support.google.com/admanager/answer/17560841?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-07",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads",
+    "auditoria-tecnica-web"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué hace Maximize message coverage en Google Ad Manager?",
+      "answer": "Intenta mostrar un mensaje de consentimiento de respaldo cuando una solicitud del EEE, Reino Unido o Suiza llega sin TC string. Opera a nivel de cuenta y puede afectar sitios y apps existentes o nuevos."
+    },
+    {
+      "question": "¿Se puede desactivar la optimización de mensajes de consentimiento?",
+      "answer": "Sí, puede desactivarse por mensaje en sitios. Sin embargo, para excluirla completamente también hay que desactivar Maximize message coverage, porque los mensajes servidos como fallback no admiten desactivación individual de la optimización."
+    }
+  ]
+}

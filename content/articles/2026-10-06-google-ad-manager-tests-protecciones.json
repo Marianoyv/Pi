@@ -1,0 +1,119 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-ad-manager-tests-protecciones",
+  "title": "Ad Manager suma tests A/B de protecciones | Pi Development",
+  "meta_description": "Google Ad Manager permite probar protecciones publicitarias con tráfico real antes de aplicarlas. Qué medir, qué límites considerar y cómo empezar.",
+  "meta_keywords": "Google Ad Manager, Ad Content Protection, experimentos A/B, brand safety, monetización",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google Ad Manager habilita tests A/B para protecciones",
+  "description": "Los publishers ya pueden experimentar con cambios en Ad Content Protection sobre una parte del tráfico antes de extenderlos a toda la red. La novedad permite medir impacto, pero exige definir límites de marca y criterios de detención antes de comenzar.",
+  "summary": "Ad Manager suma experimentos A/B para evaluar protecciones publicitarias con tráfico real y un grupo de control.",
+  "search_intent": "Entender cómo probar protecciones publicitarias en Google Ad Manager, qué variables admite el experimento y qué medir antes de aplicar un cambio.",
+  "business_relevance": "La configuración de protecciones conecta brand safety, elegibilidad de demanda y rendimiento. Un diagnóstico técnico puede ayudar a diseñar el experimento, validar la segmentación y separar una mejora real de una variación de tráfico.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, revenue operations y brand safety"
+  ],
+  "published_at": "2026-10-06",
+  "updated_at": "2026-10-06",
+  "published_datetime": "2026-10-06T20:16:13-03:00",
+  "updated_datetime": "2026-10-06T20:16:13-03:00",
+  "image": "web/img/insights/google-ad-manager-tests-protecciones.webp",
+  "image_alt": "Dos flujos de inventario publicitario atraviesan filtros distintos y llegan a un panel comparativo.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google anunció el 5 de octubre de 2026 que Ad Manager ya permite crear experimentos sobre protecciones de contenido publicitario. La función divide tráfico real entre una configuración de control y una variación para comparar el efecto de cambios en entidades bloqueadas —como categorías, compradores, experiencias publicitarias, anunciantes y URLs— y en controles de activación.",
+    "La disponibilidad no implica que convenga flexibilizar bloqueos de forma automática. El cambio relevante es metodológico: una decisión que antes podía depender de una modificación global y una comparación temporal ahora puede evaluarse con grupos concurrentes. La política editorial y de marca sigue siendo el límite previo al experimento, no una variable que deba optimizarse únicamente por ingresos."
+  ],
+  "key_takeaways": [
+    "Ad Manager permite guardar cambios de Ad Content Protection como experimento y asignar tráfico real a una variación frente al control.",
+    "La documentación admite pruebas sobre entidades bloqueadas y controles de activación, con duración, asignación de impresiones y condiciones de pausa configurables.",
+    "Antes de iniciar, conviene definir qué bloqueo puede probarse, qué daño sería inaceptable y qué combinación de ingresos, cobertura y calidad decidirá el resultado."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "La actualización incorpora los experimentos a Ad Content Protection. Según las notas oficiales, el publisher puede probar de manera focalizada modificaciones en categorías, compradores, experiencias publicitarias, anunciantes, URLs y controles opt-in. El flujo documentado parte de Brand safety > Protections: se edita una protección, se guarda el cambio como experimento y luego se definen el nombre y las condiciones de entrega.",
+        "El anuncio describe una capacidad disponible, no una migración obligatoria ni un cambio automático de los bloqueos existentes. Tampoco afirma que una configuración más permisiva vaya a mejorar por sí sola el rendimiento. El resultado depende del inventario, la demanda, la composición del tráfico y las restricciones comerciales de cada publisher."
+      ]
+    },
+    {
+      "title": "Cómo funciona la comparación",
+      "paragraphs": [
+        "Los experimentos manuales de Ad Manager asignan un porcentaje de las impresiones a la variación y mantienen el resto con la configuración original. Google indica que cada prueba debe durar al menos siete días para aumentar la probabilidad de obtener resultados concluyentes y puede extenderse hasta 31 días. Los datos se actualizan diariamente y se pueden configurar hasta diez condiciones de pausa automática por pérdida de ingresos acumulada o diaria.",
+        "En el caso documentado de desbloquear una categoría, se elige una protección existente, la categoría que quedará habilitada durante la prueba, el período y la proporción de tráfico. Esa delimitación es importante: el test compara el cambio dentro del alcance definido, no demuestra que la misma decisión vaya a comportarse igual en todas las unidades, países, dispositivos o momentos de demanda."
+      ]
+    },
+    {
+      "title": "Riesgos y límites",
+      "paragraphs": [
+        "Una mejora de cobertura o ingresos no alcanza para aprobar una variante si introduce anuncios incompatibles con la marca, contratos comerciales o políticas internas. Conviene excluir de la prueba cualquier categoría o anunciante que sea inaceptable por definición y reservar el experimento para zonas donde exista una duda legítima sobre el costo del bloqueo.",
+        "También hay un límite estadístico y de mercado. Google advierte que una asignación pequeña reduce el riesgo, pero puede no generar una señal suficiente ni modificar el comportamiento de los compradores; además, los cambios pueden afectar tanto al grupo de variación como al de control. Por eso recomienda mirar el ingreso esperado en el contexto de toda la red y señala que el efecto sobre revenue puede tardar siete días o más en aparecer.",
+        "Las pausas automáticas tampoco son instantáneas: se evalúan una vez por día, no se activan durante las primeras 24 horas y dependen de resultados estadísticamente significativos. Un equipo debe conservar monitoreo operativo propio para detectar incidentes de calidad que no queden representados por una métrica de ingresos."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción recomendada es elegir una sola hipótesis de bajo riesgo y documentarla antes de tocar la protección. Un ejemplo sería evaluar si una categoría bloqueada por herencia histórica reduce cobertura sin aportar un beneficio observable de calidad. El control debe conservar la configuración actual y la variación cambiar únicamente esa condición.",
+        "El plan debería fijar por adelantado la ventana, el porcentaje inicial, las condiciones de pausa y la regla de decisión. Para evitar una conclusión sesgada, la revisión debe combinar métricas de monetización con evidencia de calidad publicitaria y registrar cualquier cambio externo —estacionalidad, campañas directas o variaciones de tráfico— que pueda contaminar la comparación."
+      ],
+      "bullets": [
+        "Inventariar categorías, compradores, anunciantes, URLs y opt-ins alcanzados por la protección elegida.",
+        "Definir un límite de pérdida y un criterio de brand safety que obliguen a detener la prueba.",
+        "Comparar ingresos, cobertura, eCPM, impresiones y reportes de calidad entre control y variación.",
+        "Escalar el porcentaje solo si la primera etapa mantiene calidad y produce una señal interpretable."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La mejora más valiosa no es la posibilidad de desbloquear más demanda, sino convertir una configuración sensible en una decisión reversible y medible. Para equipos de AdOps, eso reduce la dependencia de comparaciones antes/después, que suelen mezclar el efecto del cambio con variaciones de audiencia, demanda o calendario.",
+        "La contracara es que una interfaz de experimentación puede dar una falsa sensación de objetividad. El test responde cómo se comportó una variación bajo condiciones concretas; no decide qué experiencia publicitaria es aceptable ni qué riesgo reputacional puede asumir el negocio. La práctica sólida es separar esos límites no negociables de las variables que sí admiten optimización y conservar un registro replicable de hipótesis, alcance, métricas y decisión."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "What's new in Google Ad Manager",
+      "url": "https://support.google.com/admanager/answer/179039?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-06",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Run a manual experiment",
+      "url": "https://support.google.com/admanager/answer/9799933?hl=en",
+      "published_at": "2026-10-05",
+      "accessed_at": "2026-10-06",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [
+    "creative-qa-checklist"
+  ],
+  "related_seo_page_slugs": [
+    "herramientas-adtech",
+    "como-validar-tags-publicitarios"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Qué protecciones se pueden probar en Google Ad Manager?",
+      "answer": "Google indica que los experimentos de Ad Content Protection pueden evaluar cambios en entidades bloqueadas, incluidas categorías, compradores, experiencias publicitarias, anunciantes y URLs, además de controles opt-in. La disponibilidad concreta debe comprobarse en la protección de la red."
+    },
+    {
+      "question": "¿Cuánto debe durar un experimento de protecciones?",
+      "answer": "La guía de experimentos manuales exige al menos siete días y permite hasta 31 días por prueba. La duración útil depende del volumen y de la estabilidad de la demanda; una semana no garantiza por sí sola un resultado concluyente."
+    },
+    {
+      "question": "¿El resultado del test reemplaza una política de brand safety?",
+      "answer": "No. El experimento mide el comportamiento de una variación sobre tráfico real, pero la empresa debe definir previamente qué categorías, anunciantes o experiencias son inaceptables aunque generen más ingresos."
+    }
+  ]
+}

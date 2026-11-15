@@ -1,0 +1,114 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-flexibiliza-video-sticky",
+  "title": "Google flexibiliza reglas de video sticky | Pi Development",
+  "meta_description": "Google eliminó dos condiciones para Accompanying Content y video sticky. Qué cambia y qué controles técnicos deben mantener los publishers.",
+  "meta_keywords": "Google Ad Manager, video sticky, Accompanying Content, inventario de video",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google flexibiliza las reglas para video sticky",
+  "description": "Google retiró dos condiciones de sus restricciones para Accompanying Content y reproductores sticky. El cambio amplía las implementaciones posibles, pero no elimina los controles de clasificación, visibilidad, autoplay y cierre.",
+  "summary": "Google flexibilizó dos reglas de ubicación para video publicitario, aunque mantiene las salvaguardas técnicas principales.",
+  "search_intent": "Entender qué cambió en las restricciones de Google para Accompanying Content y video sticky, y qué debe auditar un publisher antes de modificar su implementación.",
+  "business_relevance": "Los publishers que monetizan video necesitan revisar player, señales VAST y comportamiento sticky para aprovechar el nuevo margen sin perder elegibilidad ni demanda.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto y tecnología que operan inventario de video"
+  ],
+  "published_at": "2026-10-23",
+  "updated_at": "2026-10-23",
+  "published_datetime": "2026-10-23T10:58:48-03:00",
+  "updated_datetime": "2026-10-23T10:58:48-03:00",
+  "image": "web/img/insights/google-flexibiliza-video-sticky.webp",
+  "image_alt": "Reproductor de video que pasa de una página editorial a una posición flotante mediante controles de cumplimiento.",
+  "reading_time_minutes": 5,
+  "intro_paragraphs": [
+    "Google actualizó el 22 de octubre de 2026 sus restricciones de inventario de video. La bitácora oficial indica que eliminó dos condiciones para Accompanying Content: ya no exige que ese contenido cargue dentro del cuerpo de la página ni que un reproductor sticky comience dentro del contenido principal y pase a una posición flotante únicamente después de que el usuario lo desplace fuera de pantalla.",
+    "La modificación abre más libertad de diseño para publishers con video que acompaña una visita editorial, pero no convierte cualquier unidad flotante en inventario apto. La política vigente conserva requisitos sobre la declaración del placement, la implementación técnica, la visibilidad, el autoplay, los controles y la posibilidad de cerrar el reproductor. Google también advierte que el inventario restringido puede recibir menos publicidad que el inventario no restringido."
+  ],
+  "key_takeaways": [
+    "Google retiró las condiciones de cargar Accompanying Content dentro del body y de iniciar un player sticky en el contenido principal antes de hacerlo flotar.",
+    "Siguen vigentes la clasificación correcta del placement, el mute por defecto para Accompanying Content, las implementaciones admitidas y las reglas de autoplay, visibilidad y cierre.",
+    "Antes de cambiar un player, conviene auditar señales VAST, estados visibles y sticky, controles del usuario y demanda por tipo de inventario."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió el 22 de octubre",
+      "paragraphs": [
+        "La bitácora de políticas de Google identifica dos eliminaciones concretas. Primero, Accompanying Content ya no debe cargar necesariamente dentro del cuerpo de la página. Segundo, un reproductor sticky ya no tiene que comenzar en el contenido principal y esperar a que el usuario haga scroll para pasar a la posición flotante.",
+        "El texto vigente define Accompanying Content como video que acompaña el contenido principal de la visita, sin ser el foco ni haber sido solicitado explícitamente por la persona. El ejemplo de Google incluye video con autoplay silencioso en una página principalmente editorial, incluso ubicado a un lado o en un player flotante. Ese tipo de placement debe permanecer silenciado por defecto."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El cambio interesa a publishers, plataformas de video y equipos de AdOps que diseñan players de acompañamiento en artículos, homepages u otras superficies editoriales. También afecta a producto y desarrollo cuando la posición inicial del reproductor, su transición a sticky o su ubicación fuera del flujo central estaban condicionadas por la regla anterior.",
+        "No modifica la diferencia entre In-stream, Accompanying Content, Interstitial y Standalone. Para inventario web con contenido de video, Google sigue exigiendo declarar con precisión si el placement es In-stream o Accompanying Content. En Ad Manager, esa información se transmite mediante señales como `plcmt`; la audibilidad se declara con señales como `vpmute`."
+      ]
+    },
+    {
+      "title": "Qué no habilita el cambio",
+      "paragraphs": [
+        "La actualización no promete que un player flotante vaya a recibir toda la demanda ni que mejore el ingreso. Tampoco elimina la obligación de usar implementaciones admitidas. Los placements In-stream o Accompanying Content deben usar Google Interactive Media Ads SDK o Google Programmatic Access Library en plataformas compatibles, salvo una beta oficial.",
+        "Las restricciones actuales mantienen otras salvaguardas. Los controles del video y del anuncio no pueden estar ocultos, bloqueados o sin funcionar. Solo un inventario de video puede reproducirse automáticamente con sonido a la vez y, para In-stream o Accompanying Content, solo un player puede hacer autoplay dentro de la vista. Además, el anuncio no debe comenzar automáticamente hasta que al menos el 50% de la unidad sea visible.",
+        "Fuera de CTV y digital out-of-home, donde el sticky no está admitido, un inventario de video puede ser sticky si ofrece una opción de cierre durante toda la reproducción del video o del anuncio. El botón no puede estar oculto, obstruido ni inactivo."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción prudente no es mover todos los players de inmediato, sino probar una implementación acotada y documentar su comportamiento. El objetivo es separar el nuevo margen de ubicación de los requisitos que continúan vigentes y de las decisiones comerciales de cada comprador."
+      ],
+      "bullets": [
+        "Verificar que cada solicitud declare de forma consistente el tipo de placement y el estado de audio, incluidos los cambios entre posiciones embebida y sticky.",
+        "Comprobar que el player use una implementación admitida, que el cierre esté disponible durante toda la experiencia y que ningún control quede tapado en distintos viewports.",
+        "Medir visibilidad, starts, completions, errores, latencia, abandono e ingreso por sesión antes y después del cambio, segmentando por placement y fuente de demanda.",
+        "Revisar que no haya más de un player con autoplay dentro de la vista y que el inicio del anuncio respete el umbral de visibilidad del 50%."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La lectura de Pi es que Google separó una decisión de layout de los controles que protegen la calidad del inventario. Quitar la obligación de comenzar en el contenido principal permite diseños menos dependientes del scroll, pero la elegibilidad sigue apoyándose en señales correctas, controles accesibles y una experiencia observable.",
+        "Para un publisher, el valor no está en hacer el player sticky antes, sino en poder elegir una posición que funcione para su producto y demostrar que la implementación conserva atención, control del usuario y calidad técnica. Un test pequeño, con evidencia por dispositivo y fuente de demanda, ofrece una base más segura que asumir que la flexibilización equivale a una mejora automática de monetización."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google Ad Manager Help",
+      "title": "Ad Manager policy change log",
+      "url": "https://support.google.com/admanager/answer/9385069?hl=en",
+      "published_at": "2026-10-22",
+      "accessed_at": "2026-10-23",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google Publisher Policies Help",
+      "title": "Video inventory restrictions",
+      "url": "https://support.google.com/publisherpolicies/answer/15208072",
+      "published_at": "2026-10-22",
+      "accessed_at": "2026-10-23",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [
+    "creative-preview-lab"
+  ],
+  "related_seo_page_slugs": [
+    "debug-anuncios-web",
+    "como-validar-tags-publicitarios"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Google permite ahora que cualquier reproductor de video sea sticky?",
+      "answer": "No. Google eliminó dos condiciones de ubicación, pero mantiene requisitos sobre clasificación, implementación, visibilidad, autoplay, controles y cierre. Además, el sticky no está admitido para inventario CTV y digital out-of-home."
+    },
+    {
+      "question": "¿Qué debe revisar un publisher antes de cambiar su player de video?",
+      "answer": "Debe validar las señales de placement y audio, la implementación admitida, el umbral de visibilidad, el comportamiento de autoplay, el cierre permanente y las métricas de calidad e ingreso por placement."
+    }
+  ]
+}

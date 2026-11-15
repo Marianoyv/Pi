@@ -7,6 +7,7 @@
 {% block og_description %}{{ tools_page.description }}{% endblock %}
 {% block twitter_description %}{{ tools_page.description }}{% endblock %}
 {% block meta_keywords %}{{ tools_page.meta_keywords }}{% endblock %}
+{% block body_class %}tools-index-page{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
 {% endblock %}
@@ -14,10 +15,20 @@
 {% include 'web/components/navbar.html' %}
 <main id="main-content">
   <section class="page-shell">
-    <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">{{ tools_page.eyebrow }}</p>
-      <h1>{{ tools_page.title }}</h1>
-      <p class="page-shell__lead">{{ tools_page.description }}</p>
+    <div class="page-shell__inner page-shell__inner--visual">
+      <div class="page-shell__copy">
+        <p class="page-shell__eyebrow">{{ tools_page.eyebrow }}</p>
+        <h1>{{ tools_page.title }}</h1>
+        <p class="page-shell__lead">{{ tools_page.description }}</p>
+      </div>
+      <div class="page-shell__visual" aria-hidden="true">
+        <div class="tools-hero-instrument">
+          <div class="tools-hero-instrument__top"><span>PUBLIC PRODUCT</span><span>DETERMINISTIC</span></div>
+          <div class="tools-hero-instrument__url"><span>DESTINATION</span><strong>pidevelopment.web.app/insights/</strong></div>
+          <div class="tools-hero-instrument__fields"><i>SOURCE</i><i>MEDIUM</i><i>CAMPAIGN</i></div>
+          <p>?utm_source=linkedin&amp;utm_medium=social</p>
+        </div>
+      </div>
     </div>
   </section>
   <section class="tools-index">
@@ -44,7 +55,7 @@
           </div>
           {% if featured_tool.recommended_for %}
           <div class="tools-feature__recommend">
-            <p class="tool-card__meta-label">Útil para</p>
+            <p class="tool-card__meta-label">Useful for</p>
             <ul class="tool-inline-list tool-inline-list--compact">
               {% for item in featured_tool.recommended_for %}
               <li>{{ item }}</li>
@@ -53,19 +64,19 @@
           </div>
           {% endif %}
           <div class="tools-feature__cta">
-            <a class="button-link" href="{% url 'tool_detail' slug=featured_tool.slug %}">{{ featured_tool.cta_label }}</a>
+            <a class="button-link" href="{% url 'product_detail' slug=featured_tool.slug %}">{{ featured_tool.cta_label }}</a>
           </div>
         </aside>
       </article>
 
       <div class="tools-index__header">
         <div class="tools-index__header-copy">
-          <p class="tools-label">Catálogo</p>
+          <p class="tools-label">Catalog</p>
           <h2>{{ tools_page.catalog_title }}</h2>
           <p>{{ tools_page.catalog_description }}</p>
         </div>
         <div class="tools-index__header-actions">
-          <p class="tool-card__meta-label">Explorar por grupo</p>
+          <p class="tool-card__meta-label">Explore by group</p>
           <div class="tools-anchor-list">
             {% for group in tool_groups %}
             <a href="#{{ group.key }}">{{ group.title }}</a>
@@ -77,8 +88,8 @@
       {% if topic_clusters %}
       <section class="tools-topic-section">
         <div class="tools-group__header">
-          <p class="tools-label">Grupos tematicos</p>
-          <h2>Conecta tools y guias segun el problema tecnico que necesitas resolver.</h2>
+          <p class="tools-label">Topic groups</p>
+          <h2>Connect products and guides around the technical problem you need to solve.</h2>
         </div>
         <div class="tools-topic-grid">
           {% for cluster in topic_clusters %}
@@ -89,15 +100,15 @@
                 <h3>{{ cluster.description }}</h3>
               </div>
               <div class="tools-topic-card__meta">
-                <span>{{ cluster.tool_count }} tools</span>
-                <span>{{ cluster.seo_page_count }} guias</span>
+                <span>{{ cluster.tool_count }} products</span>
+                <span>{{ cluster.seo_page_count }} guides</span>
               </div>
             </div>
             <div class="tools-topic-card__block">
-              <p class="tool-card__meta-label">Tools</p>
+              <p class="tool-card__meta-label">Products</p>
               <div class="tool-related-list">
                 {% for tool in cluster.tools %}
-                <a href="{% url 'tool_detail' slug=tool.slug %}">
+                <a href="{% url 'product_detail' slug=tool.slug %}">
                   <strong>{{ tool.name }}</strong>
                   <span>{{ tool.summary }}</span>
                 </a>
@@ -105,7 +116,7 @@
               </div>
             </div>
             <div class="tools-topic-card__block">
-              <p class="tool-card__meta-label">Guias SEO</p>
+              <p class="tool-card__meta-label">SEO guides</p>
               <div class="tool-related-list">
                 {% for page in cluster.seo_pages %}
                 <a href="{% url 'seo_page' slug=page.slug %}">
@@ -116,7 +127,9 @@
               </div>
             </div>
             <div class="tools-topic-card__actions">
-              <a class="button-link button-link--dark" href="{% url 'tools' %}#{{ cluster.catalog_anchor }}">Ver bloque {{ cluster.catalog_label|lower }}</a>
+              {% if cluster.catalog_available %}
+              <a class="button-link button-link--dark" href="{% url 'products' %}#{{ cluster.catalog_anchor }}">View {{ cluster.catalog_label|lower }} section</a>
+              {% endif %}
             </div>
           </article>
           {% endfor %}
@@ -129,7 +142,7 @@
         <div class="tools-group__header">
           <div class="tools-group__meta">
             <p class="tools-label">{{ group.title }}</p>
-            <span class="tools-group__count">{{ group.tools|length }} tools</span>
+            <span class="tools-group__count">{{ group.tools|length }} product{{ group.tools|length|pluralize }}</span>
           </div>
           <h2>{{ group.description }}</h2>
         </div>

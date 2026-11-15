@@ -1,0 +1,127 @@
+{
+  "status": "published",
+  "article_type": "news",
+  "slug": "google-errores-tcf-policy-center",
+  "title": "Google mueve errores TCF al Policy Center | Pi Development",
+  "meta_description": "Google retiró el reporte descargable de errores TCF y los trasladó al Policy Center. Qué cambia para publishers y cómo priorizar la remediación.",
+  "meta_keywords": "errores TCF, Policy Center, Google AdSense, CMP, consentimiento",
+  "eyebrow": "AdTech · Actualidad",
+  "cluster_key": "adtech",
+  "h1": "Google mueve los errores TCF al Policy Center",
+  "description": "Google retiró el reporte TCF independiente y concentró sus alertas en el Policy Center. El cambio obliga a ajustar el monitoreo de consentimiento en sitios y apps con tráfico europeo.",
+  "summary": "Los errores TCF ya no se revisan en un reporte separado: Google los muestra como problemas regulatorios en el Policy Center.",
+  "search_intent": "Entender dónde ver ahora los errores TCF de Google y cómo priorizar su corrección desde el Policy Center.",
+  "business_relevance": "El cambio afecta tareas de diagnóstico de consentimiento, monetización y calidad de implementación que suelen requerir auditoría técnica de CMP, tags y solicitudes publicitarias.",
+  "target_audience": [
+    "Publishers digitales y responsables de monetización",
+    "Equipos de AdOps, producto, tecnología y privacidad"
+  ],
+  "published_at": "2026-10-16",
+  "updated_at": "2026-10-16",
+  "published_datetime": "2026-10-16T10:59:57-03:00",
+  "updated_datetime": "2026-10-16T10:59:57-03:00",
+  "image": "web/img/insights/google-errores-tcf-policy-center.webp",
+  "image_alt": "Flujos de señales de consentimiento desde sitios y apps hacia un panel central de incidencias regulatorias.",
+  "reading_time_minutes": 6,
+  "intro_paragraphs": [
+    "Google anunció el 15 de octubre de 2026 que retiró el reporte descargable independiente de errores del Transparency and Consent Framework (TCF). Las incidencias detectadas en las TC strings asociadas con solicitudes publicitarias del Espacio Económico Europeo, Reino Unido y Suiza ahora aparecen en el Policy Center bajo la categoría Regulatory issue.",
+    "El cambio no modifica por sí mismo el estándar TCF ni demuestra que una implementación haya empezado a fallar. Sí cambia el lugar desde el que publishers y equipos de AdOps deben detectar, ordenar y seguir problemas de consentimiento que pueden afectar el serving en sitios y aplicaciones."
+  ],
+  "key_takeaways": [
+    "El reporte TCF independiente fue retirado y las incidencias pasan al Policy Center como problemas regulatorios.",
+    "La migración centraliza el diagnóstico, pero la documentación de troubleshooting todavía conserva instrucciones del flujo anterior.",
+    "Conviene actualizar alertas y runbooks, priorizar por volumen afectado y validar la corrección en solicitudes reales antes de cerrar una incidencia."
+  ],
+  "sections": [
+    {
+      "title": "Qué cambió",
+      "paragraphs": [
+        "Hasta ahora, Google ofrecía un reporte descargable específico dentro de los controles de regulación europea. Ese reporte permitía consultar errores detectados en las TC strings y relacionarlos con sitios, apps, unidades publicitarias y códigos de error. La publicación del 15 de octubre indica que ese archivo dejó de existir como reporte separado.",
+        "Desde esta migración, Google muestra los errores TCF dentro del Policy Center y los clasifica como Regulatory issue. En esa superficie, las incidencias regulatorias se presentan junto con otros problemas capaces de limitar la personalización o el serving, pero diferenciadas de una infracción de política editorial o de una preferencia de anunciantes."
+      ]
+    },
+    {
+      "title": "A quién afecta",
+      "paragraphs": [
+        "El cambio importa a publishers que monetizan tráfico del EEE, Reino Unido o Suiza mediante productos publicitarios de Google y dependen de una CMP compatible con IAB TCF. También afecta a equipos que administran varias propiedades, porque una alerta puede originarse en una integración compartida, una plantilla concreta, una app o una ruta que carga tags antes de que la CMP esté lista.",
+        "No todas las incidencias tienen el mismo efecto. La documentación de Google distingue errores de configuración, ausencia de señales, CMP no certificada y TC strings que no permiten determinadas bases de tratamiento. Según el caso, Google puede intentar servir anuncios limitados o restringir la personalización; por eso el código y el volumen observado deben evaluarse antes de decidir la urgencia."
+      ]
+    },
+    {
+      "title": "Límites de la información disponible",
+      "paragraphs": [
+        "El anuncio confirma el destino nuevo de las alertas, pero no detalla equivalencias de campos, retención histórica, frecuencia de actualización ni una API para automatizar la extracción. Tampoco afirma que toda incidencia requiera una solicitud de revisión manual después de corregirse.",
+        "Además, al momento de esta publicación, la guía oficial de troubleshooting todavía describe el reporte descargable anterior y sus rutas para Ad Manager, AdMob y AdSense. Esa inconsistencia documental obliga a tomar el anuncio más reciente como referencia para la ubicación del diagnóstico y a verificar el comportamiento real en cada cuenta, sin asumir que el archivo histórico seguirá disponible."
+      ]
+    },
+    {
+      "title": "Qué significa para publishers y equipos de AdOps",
+      "paragraphs": [
+        "Análisis de Pi: la migración convierte un control que podía tratarse como descarga periódica en una cola operativa más parecida a la gestión de incidencias. Eso puede mejorar la priorización si el Policy Center expone alcance y estado de serving, pero también puede romper procesos que dependían de bajar un CSV desde la sección de regulación europea y compararlo automáticamente entre semanas.",
+        "El riesgo principal no es el cambio de pantalla, sino perder continuidad de monitoreo. Una integración TCF puede funcionar en la mayoría del inventario y fallar solo en una plantilla, geografía, navegador o secuencia de carga. Si el equipo deja de revisar el punto correcto, el problema puede persistir mientras la métrica agregada de ingresos disimula el tráfico afectado."
+      ]
+    },
+    {
+      "title": "Qué revisar ahora",
+      "paragraphs": [
+        "La acción recomendada es actualizar el runbook de consentimiento y registrar una línea base antes de cerrar el flujo anterior. El objetivo no es corregir todos los avisos de la misma manera, sino identificar qué propiedad y qué patrón de solicitud explican el mayor volumen afectado."
+      ],
+      "bullets": [
+        "Abrir el Policy Center, filtrar por Regulatory issue y documentar sitios, apps, estado de serving y fecha de detección.",
+        "Relacionar cada código TCF con la guía vigente de Google y con la configuración de la CMP; revisar especialmente cobertura, certificación y momento de disponibilidad de la TC string.",
+        "Probar solicitudes reales desde geografías alcanzadas, incluyendo carga inicial, navegación SPA y refresh publicitario, para confirmar que el tag espera el estado correcto de consentimiento.",
+        "Comparar el volumen afectado antes y después del cambio y conservar evidencia de red, logs de CMP y versión desplegada.",
+        "Revisar scripts o automatizaciones que dependían del reporte descargable y evitar dar por resuelta una incidencia solo porque dejó de aparecer en una exportación antigua."
+      ]
+    },
+    {
+      "title": "Lectura de Pi",
+      "paragraphs": [
+        "La centralización es útil si conecta una señal técnica con su impacto operativo, pero no reemplaza la observabilidad del lado del publisher. El Policy Center muestra lo que Google detecta en sus solicitudes; no valida por sí solo que el consentimiento se haya recogido correctamente en toda la experiencia ni que otros vendors reciban señales consistentes.",
+        "Para equipos con inventario relevante en Europa, la mejor respuesta es tratar el cambio como una migración de monitoreo: reasignar responsables, actualizar rutas y alertas, y mantener pruebas de integración independientes. El resultado esperado no es solo una pantalla sin avisos, sino TC strings válidas, carga coordinada entre CMP y tags, y serving coherente con la elección del usuario."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Google AdSense Help",
+      "title": "TCF error report migration to Policy center",
+      "url": "https://support.google.com/adsense/answer/18766358",
+      "published_at": "2026-10-15",
+      "accessed_at": "2026-10-16",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google AdSense Help",
+      "title": "Troubleshooting IAB EU TCF v2.3 implementation",
+      "url": "https://support.google.com/adsense/answer/9999955?hl=en",
+      "published_at": "2026-10-16",
+      "accessed_at": "2026-10-16",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Google AdSense Help",
+      "title": "Overview of the Policy center",
+      "url": "https://support.google.com/adsense/answer/9485926",
+      "published_at": "2026-10-16",
+      "accessed_at": "2026-10-16",
+      "source_type": "primary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [
+    "debug-gpt-ads",
+    "herramientas-adtech"
+  ],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "¿Dónde se ven ahora los errores TCF de Google?",
+      "answer": "Google los muestra en el Policy Center bajo la categoría Regulatory issue; el reporte TCF descargable independiente fue retirado."
+    },
+    {
+      "question": "¿Un error TCF siempre bloquea todos los anuncios?",
+      "answer": "No. El efecto depende del error: puede limitar la personalización, provocar serving limitado o dejar solicitudes sin monetizar. Hay que revisar el código, el alcance y el estado informado."
+    }
+  ]
+}

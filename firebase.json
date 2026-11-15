@@ -1,12 +1,92 @@
 {
   "hosting": {
-    "rewrites": [
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "trailingSlash": true,
+    "redirects": [
       {
-        "source": "**",
-        "run": {
-          "serviceId": "pi-development",
-          "region": "us-central1"
-        }
+        "source": "/tools",
+        "destination": "/products/",
+        "type": 301
+      },
+      {
+        "source": "/tools/:slug*",
+        "destination": "/products/:slug",
+        "type": 301
+      },
+      {
+        "source": "/labs{,/**}",
+        "destination": "/products/",
+        "type": 301
+      },
+      {
+        "source": "/systems{,/**}",
+        "destination": "/solutions/",
+        "type": 301
+      },
+      {
+        "source": "/case-studies{,/**}",
+        "destination": "/work/",
+        "type": 301
+      },
+      {
+        "source": "/approach{,/**}",
+        "destination": "/solutions/#process",
+        "type": 301
+      },
+      {
+        "source": "/about{,/**}",
+        "destination": "/company/",
+        "type": 301
+      },
+      {
+        "source": "/blog",
+        "destination": "/insights/",
+        "type": 301
+      },
+      {
+        "source": "/services{,/**}",
+        "destination": "/solutions/",
+        "type": 301
+      },
+      {
+        "source": "/portfolio{,/**}",
+        "destination": "/work/",
+        "type": 301
+      },
+      {
+        "source": "/process{,/**}",
+        "destination": "/solutions/#process",
+        "type": 301
+      },
+      {
+        "source": "/resources{,/**}",
+        "destination": "/products/",
+        "type": 301
+      }
+    ],
+    "headers": [
+      {
+        "source": "/static/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=3600, s-maxage=86400"
+          }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
       }
     ]
   }

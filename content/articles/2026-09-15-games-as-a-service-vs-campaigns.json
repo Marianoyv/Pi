@@ -1,0 +1,133 @@
+{
+  "status": "published",
+  "language": "en",
+  "article_type": "guide",
+  "slug": "games-as-a-service-vs-campaigns",
+  "title": "Games as a Service vs. Campaigns | Pi Development",
+  "meta_description": "Why publishers keep expanding live games, where the model creates value and risk, and why self-contained campaigns still matter in 2026.",
+  "meta_keywords": "games as a service, live service games, traditional campaigns, game retention, creator ecosystems",
+  "eyebrow": "Technology · Gaming",
+  "cluster_key": "ia",
+  "h1": "Games as a Service vs. Traditional Campaigns: Why Expand a Game Instead of Building a New One?",
+  "description": "Live-service games turn launch into the beginning of an operating cycle. Their recurring revenue and community effects are attractive, but the model carries content, infrastructure and trust obligations that traditional campaigns avoid.",
+  "summary": "A balanced comparison of live-service economics and self-contained campaigns, including the operational costs hidden behind retention.",
+  "search_intent": "Understand why game companies invest in live-service updates instead of new standalone releases and compare the benefits and risks of both models.",
+  "business_relevance": "A live product needs analytics, release operations, moderation, scalable infrastructure and community feedback loops—systems Pi designs and improves for digital teams.",
+  "target_audience": [
+    "Players comparing live-service games with traditional campaigns",
+    "Game product teams evaluating retention and content strategies"
+  ],
+  "published_at": "2026-09-15",
+  "updated_at": "2026-09-15",
+  "published_datetime": "2026-09-15T12:48:00-03:00",
+  "updated_datetime": "2026-09-15T12:48:00-03:00",
+  "image": "web/img/insights/games-as-a-service-vs-campaigns.webp",
+  "image_alt": "A growing social game world is contrasted with a focused campaign path that has a clear destination.",
+  "reading_time_minutes": 7,
+  "intro_paragraphs": [
+    "A traditional campaign is sold as a largely complete experience: the player begins, progresses and reaches an ending. A game as a service is designed to continue operating through seasons, events, expansions, balance changes, social systems and recurring purchases. Both can receive updates, but their economic and production assumptions are different.",
+    "In 2026, established games continue to command a large share of attention, and publishers have strong reasons to deepen products that already have players. Yet live service is not an automatic upgrade. Every successful long-running game creates a visible survivor bias around a model that also produces cancellations, shutdowns and exhausted teams."
+  ],
+  "key_takeaways": [
+    "Publishers favor expansion when an existing audience lowers discovery costs and recurring content can extend revenue over time.",
+    "Live service transfers risk from a single launch into continuous obligations: infrastructure, moderation, cadence, balance and community trust.",
+    "Traditional campaigns remain valuable because they can offer authored pacing, completion, offline resilience and a clearer purchase proposition."
+  ],
+  "sections": [
+    {
+      "title": "Why an existing game is economically attractive",
+      "paragraphs": [
+        "A new release must earn awareness, teach its systems and persuade players to leave experiences where they already have friends and progress. An established game begins with known behavior, live telemetry and a reachable community. A well-designed expansion can reuse core technology and bring lapsed players back without rebuilding the entire acquisition funnel.",
+        "Recurring models also create more ways to monetize: subscriptions, cosmetic items, passes, expansions and marketplace transactions. Revenue can become less dependent on one launch week. That predictability is attractive to companies funding large teams, online infrastructure and long production cycles—but only when retention and spending remain healthy."
+      ]
+    },
+    {
+      "title": "Community and creators become part of the product",
+      "paragraphs": [
+        "A live game can function as a social place rather than a sequence of levels. Events create shared moments, while Twitch, YouTube and short-form video turn updates into distribution. Creator tools go further by letting players build experiences inside the platform. Epic’s Fortnite developer program, for example, allocates part of eligible ecosystem revenue to engagement payouts and supports creator-made islands and transactions.",
+        "This creates a feedback loop: creators make content, content attracts or retains players, and the larger audience gives creators a reason to keep building. The platform gains variety that no internal content team could produce alone. The difficult part is governance—discovery, moderation, intellectual property, payouts and transparent rules now become product features."
+      ]
+    },
+    {
+      "title": "The operational bill behind “more depth”",
+      "paragraphs": [
+        "A service game needs reliable servers, release pipelines, fraud prevention, customer support, moderation, analytics and on-call response. Design teams must balance new items against old ones, prevent progression from becoming incomprehensible and maintain fair matchmaking. Content cannot simply be good; it must also arrive on a cadence the audience understands.",
+        "This can create creative and organizational pressure. A delayed standalone game disappoints once. A delayed live season interrupts a habit, a commercial calendar and creator plans simultaneously. The need to protect retention can also discourage decisive endings or radical changes, producing breadth without meaningful direction."
+      ]
+    },
+    {
+      "title": "Why traditional campaigns still matter",
+      "paragraphs": [
+        "A self-contained campaign can control pacing, difficulty and emotional payoff without preserving an endless economy. Players can finish it, discuss the ending and move on. The purchase can be easier to understand, and offline play reduces dependence on servers that may eventually close.",
+        "Campaigns also concentrate development attention. Instead of maintaining years of compatibility and content, a team can build a deliberate experience around one set of mechanics. Post-launch patches and expansions do not erase that identity. The most useful distinction is not online versus offline, but whether continuation is optional enrichment or the central business requirement."
+      ]
+    },
+    {
+      "title": "How to judge the model as a player or studio",
+      "paragraphs": [
+        "Players should ask whether the core game is enjoyable before the reward schedule appears, whether purchases are cosmetic or power-affecting, and what remains accessible if support ends. Studios should model the cost of operation under ordinary retention—not only a hit scenario—and define an end-of-life plan before launch."
+      ],
+      "bullets": [
+        "Define the audience promise: a complete journey, an evolving hobby or a creator platform.",
+        "Measure satisfaction and return behavior separately from time pressure and compulsive engagement.",
+        "Budget moderation, support, infrastructure and content tools as permanent product costs.",
+        "Publish clear rules for paid content, creator compensation, data use and service shutdowns."
+      ]
+    },
+    {
+      "title": "Pi’s view",
+      "paragraphs": [
+        "The industry does not prefer expansion because creating new games has become unnecessary. It prefers expansion when an existing relationship makes the next unit of content less risky than starting from zero. The model succeeds when the service produces genuine shared value; it fails when retention mechanics substitute for a reason to stay. A campaign respects the player’s time through completion. A good service must respect it through continuity."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "publisher": "Globant",
+      "title": "Globant’s Game On Report Reveals Five Forces Redefining Gaming’s Digital Future in 2026",
+      "url": "https://www.globant.com/news/globant-report-gaming-2026-game-on",
+      "published_at": "2025-11-18",
+      "accessed_at": "2026-09-15",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Newzoo",
+      "title": "Newzoo’s Global Games Market Report 2026",
+      "url": "https://newzoo.com/reports/newzoo-s-global-games-market-report-2026",
+      "accessed_at": "2026-09-15",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "Epic Games Developer Community",
+      "title": "Fortnite Developer Program FAQs",
+      "url": "https://dev.epicgames.com/documentation/fortnite/fortnite-developer-program-faqs-in-fortnite",
+      "accessed_at": "2026-09-15",
+      "source_type": "primary"
+    },
+    {
+      "publisher": "La Tercera",
+      "title": "Las 5 tendencias que marcan el gaming en 2026",
+      "url": "https://www.latercera.com/tecnologia/noticia/las-5-tendencias-que-marcan-el-gaming-en-2026-el-fin-de-la-consola-fija-ia-y-menos-estrenos-pero-con-mayor-profundidad/",
+      "published_at": "2026-02-12",
+      "accessed_at": "2026-09-15",
+      "source_type": "secondary"
+    }
+  ],
+  "related_tool_slugs": [],
+  "related_seo_page_slugs": [],
+  "related_knowledge_slugs": [],
+  "faqs": [
+    {
+      "question": "What makes a game a live-service game?",
+      "answer": "Its design and business depend on continued operation through updates, events, online systems and often recurring monetization rather than a primarily complete launch package."
+    },
+    {
+      "question": "Are games as a service cheaper to develop than new games?",
+      "answer": "Not necessarily. They can reuse an audience and technology, but ongoing content, servers, moderation, support, analytics and live operations create substantial permanent costs."
+    },
+    {
+      "question": "Can a game combine a traditional campaign and live service?",
+      "answer": "Yes. Many games pair a self-contained campaign with evolving multiplayer or optional expansions. The key question is whether the original purchase remains coherent without continuous participation."
+    }
+  ]
+}

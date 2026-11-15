@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "purpose": "Puntos de partida oficiales y de alta señal. Verificar siempre la publicación concreta antes de citarla.",
+  "sources": [
+    {
+      "id": "google-gpt-releases",
+      "name": "Google Publisher Tag release notes",
+      "url": "https://developers.google.com/publisher-tag/release-notes",
+      "topics": ["adtech", "gpt", "performance"],
+      "authority": "primary",
+      "priority": 1
+    },
+    {
+      "id": "google-ad-manager-releases",
+      "name": "Google Ad Manager release notes",
+      "url": "https://support.google.com/admanager/answer/179039",
+      "topics": ["adtech", "ad-manager", "monetization"],
+      "authority": "primary",
+      "priority": 1
+    },
+    {
+      "id": "google-ad-manager-policy",
+      "name": "Google Ad Manager policy change log",
+      "url": "https://support.google.com/admanager/answer/9385069",
+      "topics": ["adtech", "policy", "creative-qa"],
+      "authority": "primary",
+      "priority": 1
+    },
+    {
+      "id": "google-search-central",
+      "name": "Google Search Central Blog",
+      "url": "https://developers.google.com/search/blog",
+      "topics": ["seo", "search", "structured-data"],
+      "authority": "primary",
+      "priority": 1
+    },
+    {
+      "id": "chrome-releases",
+      "name": "Chrome for Developers release notes",
+      "url": "https://developer.chrome.com/release-notes",
+      "topics": ["browser", "performance", "privacy"],
+      "authority": "primary",
+      "priority": 1
+    },
+    {
+      "id": "iab-tech-lab-news",
+      "name": "IAB Tech Lab News",
+      "url": "https://iabtechlab.com/iab-tech-lab-news/",
+      "topics": ["adtech", "standards", "programmatic", "measurement"],
+      "authority": "primary_for_iab_announcements",
+      "priority": 2
+    },
+    {
+      "id": "web-dev",
+      "name": "web.dev",
+      "url": "https://web.dev/blog/",
+      "topics": ["performance", "core-web-vitals", "browser"],
+      "authority": "primary_for_google_web_guidance",
+      "priority": 2
+    }
+  ],
+  "usage": [
+    "Revisar primero fuentes de prioridad 1 relacionadas con el tema.",
+    "La página índice nunca reemplaza la lectura de la publicación concreta.",
+    "Para temas legales, regulatorios o de plataforma, confirmar con el organismo o proveedor responsable.",
+    "No usar un agregador como única evidencia."
+  ]
+}

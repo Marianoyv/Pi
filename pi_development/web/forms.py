@@ -1,357 +1,189 @@
-import re
+"""Build-time form definitions for the three browser-only tools."""
 
 from django import forms
-from django.core.exceptions import ValidationError
-from django.core.validators import URLValidator
 
 
 URL_WIDGET_ATTRS = {
-    "placeholder": "https://ejemplo.com",
+    "placeholder": "https://example.com",
     "autocomplete": "url",
     "inputmode": "url",
     "spellcheck": "false",
     "autocapitalize": "none",
 }
-
-YES_NO_CHOICES = (
-    ("yes", "Sí"),
-    ("no", "No"),
-)
-
+YES_NO_CHOICES = (("yes", "Yes"), ("no", "No"))
 FORMAT_TYPE_CHOICES = (
     ("html5", "Display HTML5"),
-    ("static", "Imagen estática"),
+    ("static", "Static image"),
     ("video", "Video"),
-    ("native", "Nativo / social"),
-    ("other", "Otro"),
+    ("native", "Native / social"),
+    ("other", "Other"),
 )
-
-DEVICE_TARGET_CHOICES = (
-    ("desktop", "Escritorio"),
-    ("mobile", "Móvil"),
-    ("both", "Ambos"),
-)
-
+DEVICE_TARGET_CHOICES = (("desktop", "Desktop"), ("mobile", "Mobile"), ("both", "Both"))
 SOUND_BEHAVIOR_CHOICES = (
-    ("none", "Sin sonido"),
-    ("user_action", "Sonido por interacción"),
-    ("load", "Sonido al cargar"),
+    ("none", "No sound"),
+    ("user_action", "Sound after user interaction"),
+    ("load", "Sound on load"),
 )
-
 AUTOPLAY_BEHAVIOR_CHOICES = (
-    ("none", "Sin reproducción automática"),
-    ("muted", "Reproducción automática en silencio"),
-    ("sound_on", "Reproducción automática con sonido"),
+    ("none", "No autoplay"),
+    ("muted", "Muted autoplay"),
+    ("sound_on", "Autoplay with sound"),
 )
-
 SERVING_CONTEXT_CHOICES = (
     ("safeframe", "SafeFrame"),
-    ("friendly_iframe", "Iframe amigable"),
-    ("unknown", "Sin definir"),
+    ("friendly_iframe", "Friendly iframe"),
+    ("unknown", "Not defined"),
 )
-
-CREATIVE_INPUT_MODE_CHOICES = (
-    ("html", "Creatividad HTML"),
-    ("third_party", "Tag de terceros"),
-)
-
+CREATIVE_INPUT_MODE_CHOICES = (("html", "HTML creative"), ("third_party", "Third-party tag"))
 CREATIVE_PREVIEW_TYPE_CHOICES = (
     ("display", "Display"),
-    ("third_party", "Tag de terceros"),
+    ("third_party", "Third-party tag"),
     ("rich_media", "Rich media"),
-    ("other", "Otro"),
+    ("other", "Other"),
 )
-
-
-def normalize_public_url(raw_value, required=True):
-    value = (raw_value or "").strip()
-    if not value:
-        if required:
-            raise forms.ValidationError("Ingresa una URL válida con dominio público.")
-        return ""
-
-    normalized_value = value
-    if not value.startswith(("http://", "https://")):
-        normalized_value = f"https://{value}"
-
-    validator = URLValidator(schemes=["http", "https"])
-    try:
-        validator(normalized_value)
-    except ValidationError as exc:
-        raise forms.ValidationError("Ingresa una URL válida con dominio público.") from exc
-
-    return normalized_value
-
-
-def normalize_utm_value(raw_value):
-    value = (raw_value or "").strip().lower()
-    if not value:
-        return ""
-    return re.sub(r"\s+", "-", value)
-
-
-class UrlToolForm(forms.Form):
-    url = forms.CharField(
-        label="URL a analizar",
-        max_length=500,
-        widget=forms.TextInput(attrs=URL_WIDGET_ATTRS),
-    )
-
-    def clean_url(self):
-        return normalize_public_url(self.cleaned_data.get("url"))
-
-
-class AiAuditorForm(UrlToolForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["url"].label = "URL publica"
-        self.fields["url"].help_text = "Usa una URL accesible sin login para obtener una lectura tecnica real."
-        self.fields["url"].widget.attrs.update(
-            {
-                "placeholder": "https://www.tusitio.com/landing",
-            }
-        )
-
-
-class AdTechDebugForm(UrlToolForm):
-    pass
-
-
-class LandingPerformanceSnapshotForm(UrlToolForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["url"].label = "URL publica"
-        self.fields["url"].help_text = "Ideal para una landing o pagina de campana que quieras revisar rapido."
-        self.fields["url"].widget.attrs.update(
-            {
-                "placeholder": "https://www.tusitio.com/campana",
-            }
-        )
 
 
 class CreativePreviewLabForm(forms.Form):
     creative_name = forms.CharField(
-        label="Nombre de la pieza",
+        label="Creative name",
         max_length=180,
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "Promoción primavera 300x250"}),
-        help_text="Opcional. Sirve para dejar contexto en la revisión.",
+        widget=forms.TextInput(attrs={"placeholder": "Spring promotion 300x250"}),
+        help_text="Optional context for the review.",
     )
     creative_type = forms.ChoiceField(
-        label="Tipo de pieza",
-        choices=CREATIVE_PREVIEW_TYPE_CHOICES,
-        initial="display",
+        label="Creative type", choices=CREATIVE_PREVIEW_TYPE_CHOICES, initial="display"
     )
     width = forms.IntegerField(
-        label="Ancho",
+        label="Width",
         min_value=1,
         max_value=4000,
         initial=300,
         widget=forms.NumberInput(attrs={"inputmode": "numeric"}),
-        help_text="En píxeles.",
+        help_text="In pixels.",
     )
     height = forms.IntegerField(
-        label="Alto",
+        label="Height",
         min_value=1,
         max_value=4000,
         initial=250,
         widget=forms.NumberInput(attrs={"inputmode": "numeric"}),
-        help_text="En píxeles.",
+        help_text="In pixels.",
     )
     input_mode = forms.ChoiceField(
-        label="Modo de entrada",
+        label="Input mode",
         choices=CREATIVE_INPUT_MODE_CHOICES,
         initial="html",
-        help_text="Usa Creatividad HTML para markup directo y Tag de terceros para wrappers o etiquetas externas.",
+        help_text="Use HTML creative for direct markup and Third-party tag for wrappers or external tags.",
     )
     code = forms.CharField(
-        label="Código de la pieza",
+        label="Creative code",
         required=False,
         max_length=50000,
         widget=forms.Textarea(
             attrs={
                 "rows": 12,
-                "placeholder": "<div class=\"creative\">Pega aquí una creatividad HTML o un tag de terceros.</div>",
+                "placeholder": '<div class="creative">Paste HTML creative markup or a third-party tag here.</div>',
             }
         ),
-        help_text="Pega el markup o el tag completo. La vista previa corre dentro de un sandbox aislado.",
+        help_text="Paste the complete markup or tag. The preview runs in an isolated sandbox.",
     )
     click_url = forms.CharField(
-        label="URL de clic",
+        label="Click URL",
         required=False,
         max_length=500,
         widget=forms.TextInput(attrs=URL_WIDGET_ATTRS),
-        help_text="Opcional. No reescribe el markup; sirve como referencia para QA.",
+        help_text="Optional. Used only as QA context; it does not rewrite the markup.",
     )
     notes = forms.CharField(
-        label="Notas",
+        label="Notes",
         required=False,
         widget=forms.Textarea(
-            attrs={
-                "rows": 3,
-                "placeholder": "Notas breves sobre el contexto, el placement o dudas técnicas.",
-            }
+            attrs={"rows": 3, "placeholder": "Brief context about the placement or technical questions."}
         ),
-        help_text="Opcional. Puede ayudarte a dejar contexto operativo para la revisión.",
+        help_text="Optional operational context for the review.",
     )
-
-    def clean_code(self):
-        return (self.cleaned_data.get("code") or "").strip()
-
-    def clean_click_url(self):
-        return normalize_public_url(self.cleaned_data.get("click_url"), required=False)
-
-    def clean_creative_name(self):
-        return (self.cleaned_data.get("creative_name") or "").strip()
-
-    def clean_notes(self):
-        return (self.cleaned_data.get("notes") or "").strip()
 
 
 class UTMBuilderForm(forms.Form):
     destination_url = forms.CharField(
-        label="URL de destino",
+        label="Destination URL",
         max_length=500,
         widget=forms.TextInput(
-            attrs={
-                **URL_WIDGET_ATTRS,
-                "placeholder": "https://www.tusitio.com/landing",
-            }
+            attrs={**URL_WIDGET_ATTRS, "placeholder": "https://www.example.com/landing"}
         ),
-        help_text="Se preservan query params existentes antes de agregar UTM.",
+        help_text="Existing query parameters are preserved before UTM values are added.",
     )
     utm_source = forms.CharField(
         label="utm_source",
         max_length=120,
         required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "google",
-                "spellcheck": "false",
-                "autocapitalize": "none",
-            }
-        ),
-        help_text="Origen del trafico, por ejemplo google, linkedin o newsletter.",
+        widget=forms.TextInput(attrs={"placeholder": "google", "spellcheck": "false", "autocapitalize": "none"}),
+        help_text="Traffic source, such as google, linkedin or newsletter.",
     )
     utm_medium = forms.CharField(
         label="utm_medium",
         max_length=120,
         required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "cpc",
-                "spellcheck": "false",
-                "autocapitalize": "none",
-            }
-        ),
-        help_text="Canal o tipo de medio, por ejemplo cpc, email o social.",
+        widget=forms.TextInput(attrs={"placeholder": "cpc", "spellcheck": "false", "autocapitalize": "none"}),
+        help_text="Channel or medium, such as cpc, email or social.",
     )
     utm_campaign = forms.CharField(
         label="utm_campaign",
         max_length=160,
         required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "lanzamiento_q2",
-                "spellcheck": "false",
-                "autocapitalize": "none",
-            }
-        ),
-        help_text="Nombre consistente de la campana o iniciativa.",
+        widget=forms.TextInput(attrs={"placeholder": "q2_launch", "spellcheck": "false", "autocapitalize": "none"}),
+        help_text="A consistent campaign or initiative name.",
     )
     utm_term = forms.CharField(
         label="utm_term",
         max_length=160,
         required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "keyword_principal",
-                "spellcheck": "false",
-                "autocapitalize": "none",
-            }
-        ),
+        widget=forms.TextInput(attrs={"placeholder": "primary_keyword", "spellcheck": "false", "autocapitalize": "none"}),
     )
     utm_content = forms.CharField(
         label="utm_content",
         max_length=160,
         required=False,
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "hero_a",
-                "spellcheck": "false",
-                "autocapitalize": "none",
-            }
-        ),
+        widget=forms.TextInput(attrs={"placeholder": "hero_a", "spellcheck": "false", "autocapitalize": "none"}),
     )
-
-    def clean_destination_url(self):
-        return normalize_public_url(self.cleaned_data.get("destination_url"))
-
-    def clean(self):
-        cleaned_data = super().clean()
-        for field_name in (
-            "utm_source",
-            "utm_medium",
-            "utm_campaign",
-            "utm_term",
-            "utm_content",
-        ):
-            cleaned_data[field_name] = normalize_utm_value(cleaned_data.get(field_name))
-        return cleaned_data
 
 
 class CreativeQAChecklistForm(forms.Form):
     creative_name = forms.CharField(
-        label="Nombre de la pieza",
+        label="Creative name",
         max_length=180,
-        widget=forms.TextInput(attrs={"placeholder": "Promoción principal 728x90"}),
+        widget=forms.TextInput(attrs={"placeholder": "Main promotion 728x90"}),
     )
-    format_type = forms.ChoiceField(label="Formato", choices=FORMAT_TYPE_CHOICES)
+    format_type = forms.ChoiceField(label="Format", choices=FORMAT_TYPE_CHOICES)
     dimensions = forms.CharField(
-        label="Dimensiones",
+        label="Dimensions",
         max_length=40,
         required=False,
         widget=forms.TextInput(attrs={"placeholder": "300x250"}),
     )
     destination_url = forms.CharField(
-        label="URL de destino",
+        label="Destination URL",
         max_length=500,
         required=False,
         widget=forms.TextInput(attrs=URL_WIDGET_ATTRS),
     )
-    click_tag_present = forms.ChoiceField(label="¿Tiene click tag?", choices=YES_NO_CHOICES)
-    tracking_urls_included = forms.ChoiceField(label="¿Incluye URLs de tracking?", choices=YES_NO_CHOICES)
+    click_tag_present = forms.ChoiceField(label="Click tag present?", choices=YES_NO_CHOICES)
+    tracking_urls_included = forms.ChoiceField(label="Tracking URLs included?", choices=YES_NO_CHOICES)
     weight_kb = forms.IntegerField(
-        label="Peso (KB)",
+        label="Weight (KB)",
         required=False,
         min_value=0,
         widget=forms.NumberInput(attrs={"placeholder": "150", "inputmode": "numeric"}),
     )
-    device_target = forms.ChoiceField(label="Dispositivo objetivo", choices=DEVICE_TARGET_CHOICES)
-    sound_behavior = forms.ChoiceField(label="Comportamiento del sonido", choices=SOUND_BEHAVIOR_CHOICES)
-    autoplay_behavior = forms.ChoiceField(label="Reproducción automática", choices=AUTOPLAY_BEHAVIOR_CHOICES)
-    serving_context = forms.ChoiceField(label="Contexto de serving", choices=SERVING_CONTEXT_CHOICES)
+    device_target = forms.ChoiceField(label="Target device", choices=DEVICE_TARGET_CHOICES)
+    sound_behavior = forms.ChoiceField(label="Sound behavior", choices=SOUND_BEHAVIOR_CHOICES)
+    autoplay_behavior = forms.ChoiceField(label="Autoplay behavior", choices=AUTOPLAY_BEHAVIOR_CHOICES)
+    serving_context = forms.ChoiceField(label="Serving context", choices=SERVING_CONTEXT_CHOICES)
     extra_notes = forms.CharField(
-        label="Notas adicionales",
+        label="Additional notes",
         required=False,
         widget=forms.Textarea(
-            attrs={
-                "rows": 4,
-                "placeholder": "Notas de implementación, excepciones o aclaraciones.",
-            }
+            attrs={"rows": 4, "placeholder": "Implementation notes, exceptions or clarifications."}
         ),
     )
-
-    def clean_dimensions(self):
-        value = (self.cleaned_data.get("dimensions") or "").strip()
-        if not value:
-            return ""
-        if not re.fullmatch(r"\d{2,5}\s*[xX]\s*\d{2,5}", value):
-            raise forms.ValidationError("Usa un formato de dimensiones válido, por ejemplo 300x250.")
-        return re.sub(r"\s+", "", value).lower().replace("x", "x")
-
-    def clean_destination_url(self):
-        return normalize_public_url(self.cleaned_data.get("destination_url"), required=False)
-
-    def clean_extra_notes(self):
-        return (self.cleaned_data.get("extra_notes") or "").strip()

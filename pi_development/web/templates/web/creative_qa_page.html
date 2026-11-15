@@ -7,6 +7,7 @@
 {% block og_description %}{{ tool.meta_description }}{% endblock %}
 {% block twitter_description %}{{ tool.meta_description }}{% endblock %}
 {% block meta_keywords %}{{ tool.meta_keywords }}{% endblock %}
+{% block body_class %}tool-page tool-page--{{ tool.slug }}{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/tools.css' %}">
 {% endblock %}
@@ -15,7 +16,7 @@
 <main id="main-content">
   <section class="page-shell">
     <div class="page-shell__inner">
-      <p class="page-shell__eyebrow">Herramienta</p>
+      <p class="page-shell__eyebrow">Product</p>
       <h1>{{ tool.page_title }}</h1>
       <p class="page-shell__lead">{{ tool.page_description }}</p>
     </div>
@@ -25,11 +26,11 @@
       <div class="tool-detail__grid">
         <div class="tool-detail__main">
           <article class="tool-panel">
-            <p class="tools-label">Entrada</p>
-            <h2>Revisar una creatividad con criterios técnicos básicos</h2>
-            <p class="tool-panel__lead">La herramienta toma datos manuales y devuelve una lectura inicial con checklist, observaciones, alertas y estado final. No inspecciona binarios ni manifiestos en esta versión.</p>
-            <form method="post" class="tool-form" data-analyze-form>
-              {% csrf_token %}
+            <p class="tools-label">Input</p>
+            <h2>Review a creative against common first-pass criteria</h2>
+            <p class="tool-panel__lead">This guided self-assessment applies transparent rules to information you enter. It does not inspect assets, manifests or network behavior.</p>
+            <form method="post" class="tool-form" data-analyze-form{% if static_export %} data-browser-tool="creative-qa-checklist"{% endif %}>
+              {% if not static_export %}{% csrf_token %}{% endif %}
               <div class="tool-form__grid">
                 {% for field in form %}
                 <div class="tool-form__field {% if field.name == 'extra_notes' %}tool-form__field--full{% endif %}">
@@ -46,18 +47,21 @@
                 {% endfor %}
               </div>
               <div class="tool-action-row">
-                <button type="submit" class="button-link tool-form__submit" data-loading-text="Corriendo checklist...">Evaluar creatividad</button>
-                <a class="button-link button-link--dark" href="{% url 'tool_detail' slug=tool.slug %}">Reiniciar</a>
+                <button type="submit" class="button-link tool-form__submit" data-loading-text="Running checklist...">Evaluate creative</button>
+                <a class="button-link button-link--dark" href="{% url 'product_detail' slug=tool.slug %}">Reset</a>
               </div>
-              <p class="tool-panel__note">La salida es transparente: si falta contexto o metadatos, la checklist lo muestra como observación o alerta y no simula aprobaciones.</p>
+              <p class="tool-panel__note">The result is transparent: missing context appears as a caution or flag and the tool does not simulate approval.</p>
+              {% if static_export %}<p class="tool-panel__note">This checklist runs entirely in your browser. The information entered is not sent to a server.</p>{% endif %}
               {% include 'web/components/tool_example_block.html' %}
             </form>
           </article>
 
+          {% if static_export %}<div data-browser-tool-result aria-live="polite"></div>{% endif %}
+
           {% if qa_result %}
           <section class="tool-result">
             <article class="tool-result__hero tool-result__hero--{{ qa_result.overview.tone }}">
-              <p class="tools-label">Estado final</p>
+              <p class="tools-label">Final status</p>
               <h2>{{ qa_result.overview.state }}</h2>
               <p>{{ qa_result.overview.summary }}</p>
             </article>
@@ -67,19 +71,19 @@
             {% include 'web/components/tool_exports.html' with exports=qa_result.exports export_prefix='creative-qa-export' %}
 
             <article class="tool-panel">
-              <p class="tools-label">Resumen</p>
-              <h3>Resumen de checklist</h3>
+              <p class="tools-label">Summary</p>
+              <h3>Checklist summary</h3>
               <div class="tool-metric-grid tool-metric-grid--triple">
                 <div class="tool-metric">
-                  <span>Puntos correctos</span>
+                  <span>Passed checks</span>
                   <strong>{{ qa_result.overview.counts.ok }}</strong>
                 </div>
                 <div class="tool-metric">
-                  <span>Observaciones</span>
+                  <span>Observations</span>
                   <strong>{{ qa_result.overview.counts.warn }}</strong>
                 </div>
                 <div class="tool-metric">
-                  <span>Alertas</span>
+                  <span>Flags</span>
                   <strong>{{ qa_result.overview.counts.fail }}</strong>
                 </div>
               </div>
@@ -88,14 +92,14 @@
             <div class="tool-result__grid">
               <article class="tool-panel">
                 <p class="tools-label">Checklist</p>
-                <h3>Revisión estructurada</h3>
+                <h3>Structured review</h3>
                 <ul class="tool-checklist">
                   {% for item in qa_result.checklist_items %}
                   <li class="tool-checklist__item">
                     <div class="tool-checklist__top">
                       <strong>{{ item.label }}</strong>
                       <span class="tool-check-status tool-check-status--{{ item.status }}">
-                        {% if item.status == "ok" %}OK{% elif item.status == "warn" %}Revisar{% elif item.status == "fail" %}Alerta{% else %}Info{% endif %}
+                        {% if item.status == "ok" %}OK{% elif item.status == "warn" %}Review{% elif item.status == "fail" %}Flag{% else %}Info{% endif %}
                       </span>
                     </div>
                     <p>{{ item.detail }}</p>
@@ -105,52 +109,52 @@
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Puntos correctos</p>
-                <h3>Puntos correctos</h3>
+                <p class="tools-label">Passed checks</p>
+                <h3>Passed checks</h3>
                 <ul class="tool-list">
                   {% for item in qa_result.correct_points %}
                   <li>{{ item }}</li>
                   {% empty %}
-                  <li>No hubo checks positivos claros en esta corrida.</li>
+                  <li>No clear passed checks were recorded.</li>
                   {% endfor %}
                 </ul>
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Observaciones</p>
-                <h3>Observaciones</h3>
+                <p class="tools-label">Observations</p>
+                <h3>Observations</h3>
                 <ul class="tool-list">
                   {% for item in qa_result.observations %}
                   <li>{{ item }}</li>
                   {% empty %}
-                  <li>No quedaron observaciones en esta corrida.</li>
+                  <li>No observations were recorded.</li>
                   {% endfor %}
                 </ul>
               </article>
 
               <article class="tool-panel">
-                <p class="tools-label">Alertas</p>
-                <h3>Alertas de revisión</h3>
+                <p class="tools-label">Flags</p>
+                <h3>Review flags</h3>
                 <ul class="tool-list">
                   {% for item in qa_result.flags %}
                   <li>{{ item }}</li>
                   {% empty %}
-                  <li>No se detectaron flags fuertes en esta corrida.</li>
+                  <li>No strong flags were recorded.</li>
                   {% endfor %}
                 </ul>
               </article>
             </div>
 
             <article class="tool-panel">
-              <p class="tools-label">Recomendación</p>
-              <h3>Siguiente paso recomendado</h3>
+              <p class="tools-label">Recommendation</p>
+              <h3>Recommended next step</h3>
               <p>{{ qa_result.recommendation }}</p>
             </article>
           </section>
           {% else %}
           <article class="tool-empty">
-            <p class="tools-label">Salida</p>
-            <h2>La salida separa checklist, observaciones y alertas para que la decisión sea legible.</h2>
+            <p class="tools-label">Output</p>
+            <h2>The output separates checks, observations and flags for a readable decision.</h2>
             <div class="tool-empty__grid">
               {% for item in tool.outputs %}
               <div class="tool-empty__item">
@@ -166,7 +170,7 @@
 
         <aside class="tool-detail__aside">
           <article class="tool-panel">
-            <p class="tools-label">Estado</p>
+            <p class="tools-label">Status</p>
             <div class="tool-panel__status">
               <span class="tool-status tool-status--{{ tool.status_tone }}">{{ tool.status_label }}</span>
             </div>
@@ -175,7 +179,7 @@
 
           {% for block in tool.detail_blocks %}
           <article class="tool-panel">
-            <p class="tools-label">Alcance</p>
+            <p class="tools-label">Scope</p>
             <h3>{{ block.title }}</h3>
             <ul class="tool-list">
               {% for item in block.items %}
@@ -186,13 +190,13 @@
           {% endfor %}
 
           <article class="tool-panel">
-            <p class="tools-label">Reglas</p>
-            <h3>Reglas activas en esta versión</h3>
+            <p class="tools-label">Rules</p>
+            <h3>Rules active in this version</h3>
             <ul class="tool-list">
-              <li>Sin click path claro puede terminar en necesita revisión o bloqueada según el contexto.</li>
-              <li>Un peso por encima del umbral genera observación o alerta.</li>
-              <li>La reproducción automática con sonido o el sonido al cargar bloquean la pieza.</li>
-              <li>Un contexto de serving sin definir y tracking ausente quedan marcados para revisión.</li>
+              <li>A missing click path is marked for review or as a blocker according to context.</li>
+              <li>Weight above the rule threshold creates a caution or flag.</li>
+              <li>Autoplay with sound or sound on load is treated as a blocker.</li>
+              <li>Undefined serving context and missing tracking are marked for review.</li>
             </ul>
           </article>
 
@@ -203,4 +207,8 @@
   </section>
 </main>
 {% include 'web/components/footer.html' %}
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+{% if static_export %}<script src="{% static 'web/js/browser-tools.js' %}?v=20261009-2"></script>{% endif %}
 {% endblock %}
