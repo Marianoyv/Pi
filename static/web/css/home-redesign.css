@@ -1,0 +1,649 @@
+/* Home commercial narrative: proof, products, product journey, business value. */
+
+.pi-editorial-home {
+  --home-night: #0e1a24;
+  --home-night-soft: #182a38;
+  --home-blue: #45678d;
+  --home-orange: #e1532d;
+  --home-paper: #f3f0e8;
+}
+
+.pi-editorial-home .pi-home-eyebrow {
+  margin: 0;
+  font: 600 .72rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-hero {
+  position: relative;
+  display: flex;
+  height: auto;
+  min-height: max(820px, 100svh);
+  overflow: hidden;
+  color: #172635;
+  background:
+    radial-gradient(circle at 82% 32%, rgba(81, 111, 143, .18), transparent 27rem),
+    linear-gradient(145deg, #f8f5ee 0%, var(--home-paper) 62%, #e8e7e2 100%);
+}
+
+.pi-editorial-home .pi-home-hero::after {
+  position: absolute;
+  right: -11rem;
+  bottom: -13rem;
+  width: 35rem;
+  height: 35rem;
+  border: 1px solid rgba(69, 103, 141, .18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5rem rgba(69, 103, 141, .035), 0 0 0 10rem rgba(69, 103, 141, .025);
+  content: "";
+  pointer-events: none;
+}
+
+.pi-editorial-home .pi-home-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(460px, .92fr);
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: center;
+  width: min(var(--pi-shell), calc(100% - (var(--pi-gutter) * 2)));
+  padding-top: clamp(9rem, 14vh, 12rem);
+  padding-bottom: clamp(5rem, 9vh, 8rem);
+}
+
+.pi-editorial-home .pi-home-hero__copy {
+  max-width: 48rem;
+}
+
+.pi-editorial-home .pi-home-hero__copy .pi-home-eyebrow {
+  margin-bottom: 1.5rem;
+  color: var(--home-blue);
+}
+
+.pi-editorial-home .pi-home-hero h1 {
+  max-width: none;
+  margin: 0;
+  color: #111f2b;
+  font-size: clamp(3.55rem, 5.5vw, 6.8rem);
+  font-weight: 520;
+  letter-spacing: -.075em;
+  line-height: .87;
+}
+
+.pi-editorial-home .pi-home-hero h1 span {
+  display: block;
+}
+
+.pi-editorial-home .pi-home-hero h1 span:last-child {
+  color: var(--home-blue);
+  font-style: italic;
+  font-weight: 420;
+}
+
+.pi-editorial-home .pi-home-lead {
+  max-width: 42rem;
+  margin: 2.35rem 0 0;
+  color: #172635;
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+  font-weight: 530;
+  letter-spacing: -.025em;
+  line-height: 1.34;
+}
+
+.pi-editorial-home .pi-home-hero__description {
+  max-width: 39rem;
+  margin: 1rem 0 0;
+  color: #50606e;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.pi-editorial-home .pi-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.35rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.pi-editorial-home .pi-home-actions .button-link {
+  min-height: 3.25rem;
+  padding: .9rem 1.35rem;
+  border: 1px solid #172635;
+  border-radius: 0;
+  background: #172635;
+  color: #fff;
+  font-size: .94rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pi-editorial-home .pi-home-actions .button-link:hover,
+.pi-editorial-home .pi-home-actions .button-link:focus-visible {
+  border-color: var(--home-blue);
+  background: var(--home-blue);
+  color: #fff;
+}
+
+.pi-editorial-home .pi-home-actions .pi-text-link {
+  color: #172635;
+  font-size: .94rem;
+  font-weight: 600;
+}
+
+.pi-editorial-home .pi-home-hero__audience {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1.25rem;
+  margin: 2.2rem 0 0;
+  color: #6a747c;
+  font: 500 .69rem/1.5 "IBM Plex Mono", monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-hero__audience span + span::before {
+  margin-right: 1.25rem;
+  color: var(--home-orange);
+  content: "/";
+}
+
+.pi-editorial-home .pi-home-hero__visual {
+  position: relative;
+  width: min(100%, 48rem);
+  margin: 1rem 0 0;
+  justify-self: end;
+  transform: perspective(1000px) rotateY(-4deg) rotateZ(1deg);
+}
+
+.pi-editorial-home .pi-home-hero__screen {
+  overflow: hidden;
+  padding: .7rem;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: #142331;
+  box-shadow: 0 2.3rem 5rem rgba(23, 38, 53, .24), 0 .8rem 1.8rem rgba(23, 38, 53, .16);
+}
+
+.pi-editorial-home .pi-home-hero__screen-top {
+  display: flex;
+  justify-content: space-between;
+  padding: .2rem .15rem .8rem;
+  color: #cdd8df;
+  font: 500 .62rem/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-hero__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(219, 229, 234, .25);
+}
+
+.pi-editorial-home .pi-home-hero__visual figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: .9rem .8rem 0;
+  color: #455767;
+  font: 500 .66rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: .04em;
+}
+
+.pi-editorial-home .pi-home-hero__visual figcaption span {
+  color: #73808b;
+  text-align: right;
+}
+
+.pi-editorial-home .pi-home-signal {
+  position: absolute;
+  display: grid;
+  gap: .22rem;
+  min-width: 13rem;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .72);
+  background: rgba(246, 243, 235, .94);
+  color: #172635;
+  box-shadow: 0 .9rem 2rem rgba(23, 38, 53, .15);
+  backdrop-filter: blur(12px);
+  transform: rotateZ(-1deg);
+}
+
+.pi-editorial-home .pi-home-signal span {
+  color: var(--home-orange);
+  font: 600 .61rem/1.2 "IBM Plex Mono", monospace;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-signal strong {
+  font-size: .86rem;
+  font-weight: 600;
+}
+
+.pi-editorial-home .pi-home-signal--revenue { top: -2.8rem; right: 2.2rem; }
+.pi-editorial-home .pi-home-signal--work { right: -2.2rem; bottom: 7.5rem; }
+.pi-editorial-home .pi-home-signal--clarity { bottom: -2.6rem; left: 2.4rem; }
+
+.pi-editorial-home .pi-home-products {
+  position: relative;
+  z-index: 2;
+  background: var(--home-paper);
+}
+
+.pi-editorial-home .pi-home-products__intro {
+  display: grid;
+  grid-template-columns: minmax(10rem, .55fr) minmax(0, 1.45fr);
+  gap: 3rem;
+  padding-top: clamp(6rem, 10vw, 9rem);
+  padding-bottom: clamp(4rem, 7vw, 6.5rem);
+}
+
+.pi-editorial-home .pi-home-products__intro > .pi-home-eyebrow {
+  color: var(--home-blue);
+}
+
+.pi-editorial-home .pi-home-products__intro > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(15rem, .7fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+
+.pi-editorial-home .pi-home-products__intro h2 {
+  max-width: 52rem;
+  margin: 0;
+  color: #142331;
+  font-size: clamp(2.6rem, 4.7vw, 5rem);
+  font-weight: 520;
+  letter-spacing: -.06em;
+  line-height: .98;
+}
+
+.pi-editorial-home .pi-home-products__intro h2 em,
+.pi-editorial-home .pi-home-outcomes h2 em {
+  color: var(--home-blue);
+  font-style: italic;
+  font-weight: 420;
+}
+
+.pi-editorial-home .pi-home-products__intro > div > p {
+  margin: 0;
+  color: #52616d;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.pi-editorial-home .pi-home-products__deck {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(4.5rem, 7vw, 7rem);
+  border-radius: clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem) 0 0;
+  background:
+    radial-gradient(circle at 78% 12%, rgba(90, 122, 154, .3), transparent 30rem),
+    linear-gradient(155deg, #284054 0%, #142534 52%, var(--home-night) 100%);
+  color: #f3f0e8;
+}
+
+.pi-editorial-home .pi-home-products__deck::before {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, .026) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .026) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  content: "";
+  pointer-events: none;
+}
+
+.pi-editorial-home .pi-home-products__deck .pi-home-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.pi-editorial-home .pi-home-product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pi-editorial-home .pi-home-product {
+  position: relative;
+  display: flex;
+  min-height: 24rem;
+  flex-direction: column;
+  padding: 1.4rem;
+  border: 1px solid rgba(215, 226, 232, .18);
+  background: rgba(255, 255, 255, .045);
+  color: #f3f0e8;
+  text-decoration: none;
+  transition: border-color .25s ease, background .25s ease, transform .25s ease;
+}
+
+.pi-editorial-home .pi-home-product:hover,
+.pi-editorial-home .pi-home-product:focus-visible {
+  border-color: rgba(232, 239, 242, .58);
+  background: rgba(255, 255, 255, .085);
+  color: #fff;
+  transform: translateY(-.35rem);
+}
+
+.pi-editorial-home .pi-home-product__number {
+  color: #9bb1c1;
+  font: 500 .69rem/1 "IBM Plex Mono", monospace;
+}
+
+.pi-editorial-home .pi-home-product__status {
+  position: absolute;
+  top: 1.35rem;
+  right: 1.35rem;
+  display: flex;
+  gap: .45rem;
+  align-items: center;
+  color: #b9c9d2;
+  font: 500 .63rem/1 "IBM Plex Mono", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-product__status i {
+  width: .42rem;
+  height: .42rem;
+  border-radius: 50%;
+  background: #86c7a6;
+  box-shadow: 0 0 0 .25rem rgba(134, 199, 166, .09);
+}
+
+.pi-editorial-home .pi-home-product h3 {
+  max-width: 18rem;
+  margin: auto 0 1rem;
+  color: #fff;
+  font-size: clamp(1.75rem, 2.8vw, 2.65rem);
+  font-weight: 520;
+  letter-spacing: -.045em;
+  line-height: 1;
+}
+
+.pi-editorial-home .pi-home-product p {
+  min-height: 5.1rem;
+  margin: 0;
+  color: #bdcbd3;
+  font-size: 1rem;
+  line-height: 1.58;
+}
+
+.pi-editorial-home .pi-home-product__link {
+  width: fit-content;
+  margin-top: 1.6rem;
+  padding-bottom: .2rem;
+  border-bottom: 1px solid rgba(243, 240, 232, .45);
+  color: #fff;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.pi-editorial-home .pi-home-products__handoff {
+  display: grid;
+  grid-template-columns: minmax(10rem, .55fr) minmax(0, 1.45fr);
+  gap: 3rem;
+  align-items: end;
+  margin-top: clamp(5rem, 9vw, 9rem);
+  padding-top: 2rem;
+  border-top: 1px solid rgba(215, 226, 232, .18);
+}
+
+.pi-editorial-home .pi-home-products__handoff > p {
+  margin: 0;
+  color: #91a8b7;
+  font: 500 .68rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-products__handoff > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, .6fr);
+  gap: 2rem;
+  align-items: end;
+}
+
+.pi-editorial-home .pi-home-products__handoff h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2rem, 3.6vw, 3.7rem);
+  font-weight: 500;
+  letter-spacing: -.05em;
+  line-height: 1;
+}
+
+.pi-editorial-home .pi-home-products__handoff span {
+  color: #b9c8d0;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.pi-editorial-home .pi-product {
+  margin-top: -1px;
+}
+
+.pi-editorial-home .pi-product__journey-label {
+  display: block;
+  margin-bottom: 1.35rem;
+  color: #9fb5c2;
+  font: 600 .68rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.pi-editorial-home .pi-home-outcomes {
+  position: relative;
+  z-index: 1;
+  margin-top: -1px;
+  overflow: hidden;
+  padding: clamp(6rem, 10vw, 10rem) 0 clamp(13rem, 19vw, 20rem);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(72, 104, 136, .26), transparent 32rem),
+    linear-gradient(180deg, var(--home-night) 0%, #172a39 66%, var(--home-paper) 100%);
+  color: #f3f0e8;
+}
+
+.pi-editorial-home .pi-home-outcomes::before {
+  position: absolute;
+  inset: 0 0 30%;
+  background-image: linear-gradient(rgba(255, 255, 255, .024) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .024) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  content: "";
+  pointer-events: none;
+}
+
+.pi-editorial-home .pi-home-outcomes__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.pi-editorial-home .pi-home-outcomes header {
+  display: grid;
+  grid-template-columns: minmax(10rem, .45fr) minmax(0, 1.2fr) minmax(14rem, .55fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.pi-editorial-home .pi-home-outcomes header .pi-home-eyebrow {
+  align-self: start;
+  color: #9db2c0;
+}
+
+.pi-editorial-home .pi-home-outcomes h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.8rem, 5.1vw, 5.4rem);
+  font-weight: 500;
+  letter-spacing: -.065em;
+  line-height: .96;
+}
+
+.pi-editorial-home .pi-home-outcomes h2 em {
+  color: #a7bfd0;
+}
+
+.pi-editorial-home .pi-home-outcomes header > p:last-child {
+  margin: 0;
+  color: #bdcbd3;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.pi-editorial-home .pi-home-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: clamp(4rem, 7vw, 7rem);
+  border: 1px solid rgba(218, 229, 235, .17);
+  background: rgba(218, 229, 235, .17);
+}
+
+.pi-editorial-home .pi-home-outcome-grid article {
+  min-height: 19rem;
+  padding: 1.5rem;
+  background: rgba(14, 26, 36, .83);
+}
+
+.pi-editorial-home .pi-home-outcome-grid article > span {
+  color: #8da4b4;
+  font: 500 .68rem/1 "IBM Plex Mono", monospace;
+}
+
+.pi-editorial-home .pi-home-outcome-grid h3 {
+  margin: 5.5rem 0 1rem;
+  color: #fff;
+  font-size: clamp(1.55rem, 2.3vw, 2.25rem);
+  font-weight: 520;
+  letter-spacing: -.04em;
+}
+
+.pi-editorial-home .pi-home-outcome-grid p {
+  max-width: 25rem;
+  margin: 0;
+  color: #b8c7cf;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.pi-editorial-home .pi-latest-insights {
+  margin-top: -5rem;
+  background: var(--home-paper);
+}
+
+@media (max-width: 1120px) {
+  .pi-editorial-home .pi-home-hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, .9fr);
+    gap: 3rem;
+  }
+
+  .pi-editorial-home .pi-home-hero h1 { font-size: clamp(3.4rem, 6vw, 5.2rem); }
+  .pi-editorial-home .pi-home-signal { min-width: 11rem; padding: .75rem; }
+  .pi-editorial-home .pi-home-signal--work { right: -1rem; }
+
+  .pi-editorial-home .pi-home-products__intro > div,
+  .pi-editorial-home .pi-home-products__handoff > div {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-editorial-home .pi-home-outcomes header {
+    grid-template-columns: minmax(9rem, .35fr) minmax(0, 1fr);
+  }
+
+  .pi-editorial-home .pi-home-outcomes header > p:last-child {
+    grid-column: 2;
+    max-width: 36rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .pi-editorial-home .pi-home-hero { min-height: auto; }
+
+  .pi-editorial-home .pi-home-hero__grid {
+    grid-template-columns: 1fr;
+    padding-top: 8.5rem;
+    padding-bottom: 7rem;
+  }
+
+  .pi-editorial-home .pi-home-hero__visual {
+    width: calc(100% - 1.5rem);
+    margin: 2rem auto 0;
+    justify-self: center;
+    transform: rotateZ(1deg);
+  }
+
+  .pi-editorial-home .pi-home-products__intro,
+  .pi-editorial-home .pi-home-products__handoff,
+  .pi-editorial-home .pi-home-outcomes header {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pi-editorial-home .pi-home-product-grid,
+  .pi-editorial-home .pi-home-outcome-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-editorial-home .pi-home-product { min-height: 20rem; }
+  .pi-editorial-home .pi-home-product p { min-height: 0; }
+  .pi-editorial-home .pi-home-products__handoff > div { grid-template-columns: 1fr; }
+  .pi-editorial-home .pi-home-outcomes header > p:last-child { grid-column: auto; }
+  .pi-editorial-home .pi-home-outcome-grid article { min-height: 16rem; }
+  .pi-editorial-home .pi-home-outcome-grid h3 { margin-top: 3.5rem; }
+}
+
+@media (max-width: 560px) {
+  .pi-editorial-home .pi-home-hero__grid {
+    padding-top: 7.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .pi-editorial-home .pi-home-hero h1 {
+    font-size: clamp(3.05rem, 15vw, 4.35rem);
+    letter-spacing: -.07em;
+  }
+
+  .pi-editorial-home .pi-home-lead { margin-top: 1.8rem; font-size: 1.15rem; }
+  .pi-editorial-home .pi-home-hero__audience { display: grid; gap: .45rem; }
+  .pi-editorial-home .pi-home-hero__audience span + span::before { display: none; }
+
+  .pi-editorial-home .pi-home-hero__visual {
+    width: calc(100% - .5rem);
+    margin-top: 4.5rem;
+  }
+
+  .pi-editorial-home .pi-home-hero__visual figcaption span { display: none; }
+  .pi-editorial-home .pi-home-signal { min-width: 9.5rem; }
+  .pi-editorial-home .pi-home-signal strong { font-size: .74rem; }
+  .pi-editorial-home .pi-home-signal--revenue { top: -3.4rem; right: -.3rem; }
+  .pi-editorial-home .pi-home-signal--work { right: -.4rem; bottom: -3rem; }
+  .pi-editorial-home .pi-home-signal--clarity { display: none; }
+
+  .pi-editorial-home .pi-home-products__intro {
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+  }
+
+  .pi-editorial-home .pi-home-products__intro h2 { font-size: 2.65rem; }
+  .pi-editorial-home .pi-home-products__deck { border-radius: 2rem 2rem 0 0; }
+  .pi-editorial-home .pi-home-product { min-height: 18.5rem; }
+  .pi-editorial-home .pi-home-products__handoff { margin-top: 5rem; }
+  .pi-editorial-home .pi-home-products__handoff h3 { font-size: 2.45rem; }
+
+  .pi-editorial-home .pi-product__journey-label { margin-bottom: 1rem; }
+
+  .pi-editorial-home .pi-home-outcomes {
+    padding-top: 5rem;
+    padding-bottom: 13rem;
+  }
+
+  .pi-editorial-home .pi-home-outcomes h2 { font-size: 2.75rem; }
+  .pi-editorial-home .pi-home-outcome-grid { margin-top: 3.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pi-editorial-home .pi-home-product { transition: none; }
+}

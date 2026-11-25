@@ -101,6 +101,14 @@
   object-fit: cover;
 }
 
+.article-hero-image figcaption {
+  padding: 10px 14px 12px;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  border-top: 1px solid var(--color-border);
+}
+
 .article-takeaways {
   margin-top: 34px;
   padding: 22px;

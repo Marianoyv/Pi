@@ -1,76 +1,92 @@
-# Sistema editorial automático de Pi
+# Sistema editorial medido de Pi
 
-> **Estado: pausado desde el 23 de octubre de 2026.** Este documento conserva el flujo diario anterior como referencia. La estrategia activa, los seis territorios y el piloto de ocho semanas están definidos en `docs/editorial-strategy.md`, `content/editorial/experiment.json` y `content/editorial/topic-bank.json`. No reactivar ni ejecutar este ciclo diario sin una decisión explícita posterior al piloto.
+> **Estado: activo desde el 29 de noviembre de 2026.** El sistema recopila evidencia los domingos y puede publicar una pieza los lunes, miércoles y viernes a las 08:00, hora de Buenos Aires. La cadencia es un máximo, no una cuota.
 
 ## Objetivo
 
-Publicar una noticia diaria de extrema calidad para atraer tráfico orgánico calificado y convertir parte de esa atención en consultas para los servicios y productos de Pi Development.
+Construir audiencia recurrente con contenido original que explique una consecuencia humana, ayude a tomar una decisión y demuestre criterio propio. El sistema usa datos para formular mejores hipótesis; no convierte una muestra pequeña en una orden ni optimiza únicamente por visitas.
 
-La automatización no debe llenar una cuota a cualquier costo. Si no encuentra una noticia reciente, verificable, relevante y con una lectura propia útil, debe omitir la publicación del día. La confianza editorial vale más que la frecuencia.
+Cada nota vive en `content/articles/` y su portada en `static/web/img/insights/`. Django incorpora automáticamente las piezas publicadas al índice, sus URLs, datos estructurados, enlaces internos y sitemaps. El contrato canónico está en `content/templates/article.template.json`.
 
-Cada nota es un archivo JSON en `content/articles/` acompañado por una portada WebP original en `static/web/img/insights/`. Django la incorpora automáticamente al índice de Insights, la portada, su URL, los datos estructurados, los enlaces internos, el sitemap general y el sitemap de noticias durante sus primeras 48 horas. El formato canónico está en `content/templates/article.template.json`.
+## Bucle semanal
 
-## Memoria compacta para Codex
+### Domingo: evidencia y planificación
 
-Codex no debe volver a analizar todo el repositorio en cada ejecución. Antes de investigar lee solamente:
+1. Ejecutar `scripts/collect-weekly-analytics.ps1` para importar GA4 y Search Console con acceso de solo lectura para los últimos 7 días y el contexto de 28 días.
+2. Comparar la semana con el período anterior sin mezclar tráfico propio, despliegues o errores de medición con interés editorial. Si Search Console no tiene acceso, continuar con GA4 y declarar la limitación en vez de inventar demanda de búsqueda.
+3. Revisar piezas a las 48 horas, 7 días y 28 días cuando exista muestra suficiente.
+4. Escribir `analytics/weekly/latest.md` con el formato de `content/templates/weekly-editorial-brief.template.md`.
+5. Proponer una hipótesis distinta para lunes, miércoles y viernes. El brief no autoriza una publicación por sí solo.
 
-- `content/editorial/brief.json`: objetivo, audiencia, temas, puntaje de selección y contrato editorial.
-- `content/editorial/sources.json`: fuentes oficiales de alta señal para iniciar la búsqueda.
-- `content/editorial/index.json`: cobertura reciente y enlaces internos válidos.
-- `content/templates/article.template.json`: estructura exacta del artículo.
+`analytics/weekly/` es local, está fuera de Git y nunca se publica en Firebase.
 
-`build-static.ps1` regenera el índice automáticamente después de cada publicación. Solo se abre un artículo anterior completo cuando el índice indica una posible duplicación que necesita comparación.
+### Lunes, miércoles y viernes: investigación y publicación
 
-## Temas con intención de adquisición
+1. Leer `content/editorial/brief.json`, `content/editorial/sources.json`, `content/editorial/index.json`, `content/templates/article.template.json` y el brief semanal si tiene menos de ocho días.
+2. Investigar temas recientes y piezas durables dentro de los seis territorios editoriales.
+3. Puntuar cada candidato. Solo producir el mejor si supera 75/100 y no activa un rechazo obligatorio.
+4. Mantener el artículo como borrador lógico durante investigación, redacción, verificación factual y producción visual.
+5. Ejecutar validación editorial, pruebas, build y deploy. Si cualquier control falla, no publicar.
+6. Comprobar por HTTP la URL, el título, la imagen y la declaración visual.
 
-La selección debe estar alineada con problemas por los que una empresa podría contratar a Pi:
+Si no existe una historia sólida, el espacio queda vacío y la ejecución informa por qué.
 
-- Cambios en Google Publisher Tag, Google Ad Manager, serving, refresh, viewability y monetización.
-- Creative QA, formatos publicitarios, políticas técnicas y rendimiento de anuncios.
-- Tracking, analytics, medición, atribución y calidad de datos.
-- SEO técnico, Core Web Vitals, performance y comportamiento del navegador.
-- Automatización, IA aplicada y software operativo cuando exista una conexión concreta con los servicios de Pi.
+## Contrato de noticia
 
-No se publican noticias generales de tecnología, resúmenes de tendencias ni novedades populares sin relación con una decisión técnica o comercial de la audiencia objetivo.
+La fórmula adoptada del sistema de Arcade World se expresa así para Pi:
 
-## Estándar editorial obligatorio
+1. **Qué pasó:** dato principal, responsable, fecha y alcance confirmado.
+2. **Por qué importa:** consecuencia concreta para una persona, equipo o negocio.
+3. **Lectura de Pi:** contexto o conclusión original, claramente separada de los hechos.
+4. **Qué conviene hacer:** prueba, decisión o señal que el lector puede revisar.
+5. **Qué sigue abierto:** límites, desacuerdos y próximos hitos.
 
-1. La noticia debe haber sido publicada o actualizada durante las últimas 72 horas. Se puede ampliar hasta siete días únicamente cuando el cambio siga siendo oportuno y todavía no exista una nota equivalente en Pi.
-2. Debe existir al menos una fuente primaria accesible de la organización responsable y una confirmación independiente fiable cuando la afirmación sea controvertida, ambigua o tenga impacto legal o comercial relevante.
-3. El título debe ser factual, específico y sin clickbait.
-4. El artículo debe separar hechos confirmados, alcance no confirmado, análisis de Pi y acciones recomendadas.
-5. Debe ofrecer una lectura original: impacto técnico, riesgos, prueba sugerida o decisión concreta. Un resumen de la fuente no alcanza.
-6. Debe responder una intención de búsqueda real sin repetir mecánicamente palabras clave.
-7. Debe enlazar únicamente productos, servicios o artículos de Pi que sean verdaderamente pertinentes.
-8. No se inventan cifras, fechas, compatibilidad, citas, impacto, fuentes ni URLs.
-9. No se copian párrafos de terceros.
-10. Si la evidencia no alcanza, no se publica.
-11. Toda noticia debe tener fecha y hora completas con zona horaria de Buenos Aires, firma editorial visible y una imagen original 16:9 de al menos 1200 píxeles de ancho.
-12. La portada debe representar el tema concreto, funcionar como miniatura y evitar texto, logotipos, marcas de terceros, marcas de agua y estética genérica de stock.
+`summary` funciona como lectura rápida; `description` explica la consecuencia; `key_takeaways` debe incluir al menos una acción. Las noticias y los análisis nuevos requieren una fuente primaria y otra fuente independiente. Para afirmaciones sensibles se añaden tantas confirmaciones como sean necesarias.
 
-## Prompt canónico para Codex
+## Política visual: apariencia de noticia, origen transparente
 
-Ejecutá de forma autónoma el ciclo editorial diario de Pi Development en este proyecto. El objetivo es atraer tráfico orgánico calificado y generar oportunidades comerciales mediante una única noticia técnica, reciente y excepcionalmente útil. Leé y cumplí `docs/editorial-automation.md` antes de actuar y usá `content/templates/article.template.json` como contrato de contenido.
+La portada predeterminada debe parecer producida para una publicación profesional: composición editorial realista, luz natural o físicamente creíble, materiales reconocibles, profundidad sobria y relación directa con el hecho. Debe evitar la estética genérica de “tecnología”: isometría 3D, neón, hologramas, circuitos decorativos, dashboards inventados o símbolos sin relación concreta.
 
-Investigá noticias publicadas o actualizadas durante las últimas 72 horas sobre AdTech, Google Publisher Tag o Ad Manager, creative QA, tracking y analytics, SEO o performance web, automatización, IA aplicada y software operativo. Elegí como máximo una historia. Priorizá cambios que afecten decisiones, riesgos, ingresos, calidad de implementación o trabajo operativo de publishers, AdOps, producto y tecnología. Evitá noticias generales, rumores, agregadores como fuente principal, contenido patrocinado sin valor técnico y temas ya cubiertos en `content/articles/`.
+Prioridad visual:
 
-Exigí al menos una fuente primaria oficial y accesible. Sumá una confirmación independiente fiable si el tema es ambiguo, controvertido o tiene impacto legal o comercial importante. Contrastá fechas, versión, alcance y disponibilidad. Separá hechos confirmados, declaraciones del proveedor, inferencias y análisis de Pi. Si no existe una noticia suficientemente sólida, no publiques nada y explicá brevemente por qué se omitió la ejecución.
+1. Fotografía propia o captura propia verificable, cuando exista y sea pertinente.
+2. Composición editorial basada en materiales propios o con licencia.
+3. Diagrama original cuando explica mejor el cambio.
+4. Ilustración realista asistida por IA cuando no existe una imagen documental legítima.
 
-Cuando exista una historia válida, creá exactamente un archivo nuevo en `content/articles/` con el nombre `AAAA-MM-DD-slug.json` y una portada original en `static/web/img/insights/slug.webp`. Usá la generación de imágenes integrada para producir una ilustración editorial 16:9, de al menos 1200 píxeles de ancho, coherente con la paleta de Pi —marfil, cobalto, grafito y naranja señal—, sin texto, logotipos, marcas de terceros ni marcas de agua. Optimizala como WebP e incorporá una descripción accesible específica en `image_alt`. Si no podés producir una portada original válida, omití la publicación. No modifiques artículos anteriores, Python, HTML, CSS, JavaScript, rutas, dependencias, configuración, scripts ni el template. Si ya existe una publicación con la fecha local de hoy, verificála y no crees otra.
+Una imagen generada puede tener lenguaje fotográfico, pero nunca debe presentarse como registro documental de un hecho real. No recrea a una persona identificable realizando una acción que no ocurrió. Toda imagen asistida por IA incluye debajo de la portada: **“Ilustración editorial generada con IA. No es una fotografía documental del hecho.”**
 
-Escribí en español claro y profesional, con voz sobria, precisa y práctica. El artículo debe tener entre 500 y 1.800 palabras y contener: contexto verificable, qué cambió, a quién afecta, qué significa en una implementación real, riesgos o límites, qué revisar ahora, una lectura original de Pi, al menos tres conclusiones, al menos dos preguntas frecuentes y fuentes completas. El título y la descripción deben responder una intención de búsqueda real sin clickbait ni sobreoptimización. La nota debe ayudar a un lector técnico o decisor a comprender un cambio y reconocer que Pi puede diagnosticar, implementar o mejorar ese tipo de sistema, sin convertir el artículo en publicidad explícita.
+Requisitos técnicos:
 
-Completá todos los campos del template. Usá `article_type: news`, registrá `published_datetime` y `updated_datetime` en ISO 8601 con offset `-03:00`, y usá `status: published` solamente después de terminar la revisión. Marcá al menos una fuente con `source_type: primary`. Usá únicamente slugs internos que ya existan y sean relevantes.
+- Formato WebP, 16:9 y objetivo mínimo de 1536 × 864.
+- Sin texto incrustado, logos, marcas de agua ni interfaces inventadas.
+- Un sujeto o situación principal legible como miniatura.
+- Color realista y edición sobria; la paleta de Pi puede aparecer como acento, no como filtro dominante.
+- `image_alt` describe lo visible y `image_record` conserva creador, fecha, método, archivos de origen y declaración.
 
-Antes de publicar, revisá precisión factual, coherencia de fechas, unicidad del slug y del tema, calidad de la fuente, ortografía, claridad, utilidad, enlaces y ausencia de afirmaciones sin respaldo. Ejecutá `manage.py check`, `manage.py validate_editorial`, las pruebas de `pi_development.web.test_static_export` y `build-static.ps1`. Si cualquier comprobación falla, corregí solamente el archivo creado hoy. No modifiques ni reviertas cambios ajenos.
+## Memoria compacta
 
-Cuando todas las comprobaciones pasen, publicá automáticamente con `deploy-static.ps1`. Después comprobá por HTTP que la URL pública responda correctamente y contenga el título esperado. Al finalizar informá título, URL, intención de búsqueda, fuente principal, razón editorial para elegir el tema, validaciones y resultado del deploy. Si se omitió la publicación, informá la causa sin generar contenido de relleno.
+Las ejecuciones no recorren todo el repositorio. Antes de investigar leen solamente los archivos compactos indicados arriba. Solo abren un artículo anterior completo si `index.json` señala una posible duplicación.
+
+El domingo puede leer los archivos de `analytics/weekly/` y los datasets recién importados. Ninguna credencial, dato crudo o informe privado entra en `dist/`.
+
+## Controles obligatorios
+
+- Título factual, específico y sin clickbait.
+- Hipótesis editorial y de distribución antes de producir.
+- Hechos, declaraciones, inferencias y análisis separados.
+- Fecha, zona horaria, autoría, fuentes y correcciones visibles.
+- Entre 500 y 1.800 palabras; al menos tres conclusiones y dos preguntas frecuentes.
+- Enlaces internos únicamente cuando sean pertinentes.
+- Imagen original con procedencia documentada.
+- `manage.py check`, `validate_editorial`, pruebas Django y JavaScript, exportación estática y verificación final aprobadas.
+- Deploy automático únicamente después de superar todos los controles.
 
 ## Operación
 
-- Frecuencia: todos los días a las 08:00, hora de Buenos Aires.
-- Volumen máximo: una noticia por día.
-- Entorno: proyecto local de Pi Development.
+- Revisión semanal: domingo 20:00, hora de Buenos Aires.
+- Producción: lunes, miércoles y viernes a las 08:00, hora de Buenos Aires.
+- Volumen máximo: una pieza por ejecución.
 - Publicación: Firebase Hosting mediante `deploy-static.ps1`.
-- Condición: la computadora debe estar encendida, Codex abierto, Firebase CLI autenticado y `.venv` disponible.
-- Seguridad: la validación editorial forma parte de `build-static.ps1`; un artículo que no cumple el contrato bloquea automáticamente el build y el deploy.
+- Entorno: computadora encendida, Codex abierto, Firebase CLI autenticado, `.venv` y credencial de analítica disponibles.
+- Supervisión: toda ejecución deja un resumen; una falla de datos, validación o despliegue bloquea la publicación.

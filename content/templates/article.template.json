@@ -28,9 +28,9 @@
   "image_record": {
     "creator": "Pi Editorial",
     "created_at": "AAAA-MM-DD",
-    "method": "photography|composition|diagram|screenshot|ai-assisted-illustration",
+    "method": "photography|photo-composite|diagram|verified-screenshot|ai-assisted-editorial-illustration",
     "source_files": [],
-    "disclosure": "Texto visible cuando la imagen requiera aclarar que es una ilustración o que recibió asistencia de IA."
+    "disclosure": "Ilustración editorial generada con IA. No es una fotografía documental del hecho."
   },
   "reading_time_minutes": 5,
   "intro_paragraphs": [

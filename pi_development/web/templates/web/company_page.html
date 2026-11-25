@@ -280,9 +280,58 @@
           <p class="company-form__help">Submitting this form does not create a contract or guarantee project availability.</p>
         </form>
         {% else %}
-        <div class="company-form__errors" role="status">
-          <p>To discuss a project, email <a href="mailto:{{ contact_email }}">{{ contact_email }}</a> or use WhatsApp below.</p>
-        </div>
+        <form class="company-form" data-contact-brief data-analytics-name="project_brief" data-whatsapp-url="{{ contact_whatsapp_base_url }}" data-contact-email="{{ contact_email }}">
+          <div class="company-form__field">
+            <label for="contact-project-type">What do you need?<span aria-hidden="true"> *</span></label>
+            <select id="contact-project-type" name="project_type" required>
+              <option value="">Choose the closest option</option>
+              <option>Website or digital catalog</option>
+              <option>Product or MVP</option>
+              <option>Internal tool or automation</option>
+              <option>Improve existing software</option>
+              <option>AdTech or monetization</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="company-form__field">
+            <label for="contact-current-stage">Where are you now?<span aria-hidden="true"> *</span></label>
+            <select id="contact-current-stage" name="current_stage" required>
+              <option value="">Choose the current stage</option>
+              <option>Exploring an idea</option>
+              <option>Replacing a manual workflow</option>
+              <option>An existing system needs improvement</option>
+              <option>Ready with a defined scope</option>
+            </select>
+          </div>
+          <div class="company-form__field">
+            <label for="contact-outcome">What happens today, and what should work better?<span aria-hidden="true"> *</span></label>
+            <textarea id="contact-outcome" name="outcome" maxlength="1200" required placeholder="A short description is enough. Do not include passwords, private data or confidential information."></textarea>
+          </div>
+          <div class="company-form__field">
+            <label for="contact-timeline">When would you like to move?<span aria-hidden="true"> *</span></label>
+            <select id="contact-timeline" name="timeline" required>
+              <option value="">Choose a timeframe</option>
+              <option>As soon as practical</option>
+              <option>Within 1–3 months</option>
+              <option>Within 3–6 months</option>
+              <option>Still exploring</option>
+            </select>
+          </div>
+          <button class="button-link" type="submit" data-analytics-label="prepare_project_brief">Prepare project brief</button>
+          <p class="company-form__help">Nothing is sent or stored when you prepare the brief.</p>
+        </form>
+        <section class="contact-brief-result" data-contact-brief-result hidden tabindex="-1" aria-live="polite" aria-labelledby="contact-brief-result-title">
+          <p class="contact-brief-result__eyebrow">Ready to share</p>
+          <h3 id="contact-brief-result-title">Your project brief</h3>
+          <pre data-contact-brief-preview></pre>
+          <div class="contact-brief-result__actions">
+            <a class="button-link" data-contact-brief-whatsapp target="_blank" rel="noopener noreferrer">Open in WhatsApp</a>
+            <a class="button-link" data-contact-brief-email>Open in email</a>
+            <button class="contact-brief-result__copy" type="button" data-contact-brief-copy data-analytics-label="copy_project_brief">Copy brief</button>
+          </div>
+          <p class="company-form__help">Opening WhatsApp or email shares the prepared text with that service. You remain in control of the final send.</p>
+          <p class="contact-brief-result__status" data-contact-brief-status aria-live="polite"></p>
+        </section>
         {% endif %}
       </div>
     </div>
@@ -309,4 +358,8 @@
   {% endif %}
 </main>
 {% include 'web/components/footer.html' %}
+{% endblock %}
+{% block scripts %}
+{{ block.super }}
+{% if page.slug == "contact" %}<script src="{% static 'web/js/contact-brief.js' %}?v=20261114-1"></script>{% endif %}
 {% endblock %}

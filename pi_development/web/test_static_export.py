@@ -10,6 +10,7 @@ from pi_development.web.management.commands.export_static import (
     get_public_html_routes,
 )
 from pi_development.web.management.commands.import_analytics import Command as ImportAnalyticsCommand
+from pi_development.web.management.commands.validate_editorial import Command as EditorialValidationCommand
 from pi_development.web.knowledge_pages import (
     get_latest_knowledge_pages,
     get_public_knowledge_slugs,
@@ -116,6 +117,44 @@ class StaticExportConfigurationTests(SimpleTestCase):
 
         call_command("validate_editorial", verbosity=0)
 
+    def test_measured_editorial_contract_requires_independent_evidence_and_ai_disclosure(self):
+        article_path = Path(settings.BASE_DIR) / "content" / "articles" / "2026-10-23-google-flexibiliza-video-sticky.json"
+        article = json.loads(article_path.read_text(encoding="utf-8"))
+        article.update(
+            {
+                "published_at": "2026-11-24",
+                "updated_at": "2026-11-24",
+                "published_datetime": "2026-11-24T08:00:00-03:00",
+                "updated_datetime": "2026-11-24T08:00:00-03:00",
+                "human_question": "¿Qué cambia para una persona cuando una regla técnica modifica el video que ve?",
+                "editorial_hypothesis": "Una consecuencia concreta sostendrá mejor la lectura que una lista de cambios.",
+                "distribution_hypothesis": "La pieza se probará con lectores de producto y operaciones en el canal propio.",
+                "image_record": {
+                    "creator": "Pi Editorial",
+                    "created_at": "2026-11-24",
+                    "method": "ai-assisted-editorial-illustration",
+                    "source_files": [],
+                    "disclosure": "Ilustración editorial generada con IA. No es una fotografía documental del hecho.",
+                },
+            }
+        )
+        article["sources"][1]["source_type"] = "independent"
+
+        self.assertEqual(EditorialValidationCommand._validate_article(article), [])
+
+        article["image_record"]["disclosure"] = "Imagen editorial realista."
+        errors = EditorialValidationCommand._validate_article(article)
+        self.assertIn("AI-assisted images must disclose the use of IA or inteligencia artificial", errors)
+        self.assertIn("AI-assisted images must state that they are not documentary photography", errors)
+
+    def test_article_template_exposes_image_disclosure_below_the_hero(self):
+        template = (
+            Path(settings.BASE_DIR) / "pi_development" / "web" / "templates" / "web" / "knowledge_article_page.html"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("knowledge_page.image_record.disclosure", template)
+        self.assertIn("<figcaption>", template)
+
     def test_editorial_index_is_compact_and_uses_real_internal_routes(self):
         from django.core.management import call_command
 
@@ -153,6 +192,39 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertNotIn("rewrites", hosting)
         self.assertTrue(hosting["redirects"])
 
+    def test_firebase_headers_keep_html_fresh_and_protect_every_response(self):
+        config = json.loads((Path(settings.BASE_DIR) / "firebase.json").read_text(encoding="utf-8"))
+        headers = config["hosting"]["headers"]
+        global_rule = headers[0]
+        static_rule = headers[1]
+        global_values = {item["key"]: item["value"] for item in global_rule["headers"]}
+
+        self.assertEqual(global_rule["source"], "**")
+        self.assertEqual(global_values["Cache-Control"], "no-cache")
+        self.assertEqual(global_values["X-Content-Type-Options"], "nosniff")
+        self.assertEqual(global_values["X-Frame-Options"], "SAMEORIGIN")
+        self.assertEqual(global_values["Referrer-Policy"], "strict-origin-when-cross-origin")
+        self.assertIn("frame-ancestors", global_values["Content-Security-Policy"])
+        self.assertEqual(static_rule["source"], "/static/**")
+        self.assertIn("max-age", static_rule["headers"][0]["value"])
+
+    @override_settings(STATIC_EXPORT=True, CONTACT_FORM_ENABLED=False)
+    def test_static_contact_page_prepares_a_local_brief_without_a_backend(self):
+        response = self.client.get("/contact/")
+        contact_script = (Path(settings.BASE_DIR) / "static" / "web" / "js" / "contact-brief.js").read_text(
+            encoding="utf-8"
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "data-contact-brief")
+        self.assertContains(response, "Prepare project brief")
+        self.assertContains(response, "Nothing is sent or stored")
+        self.assertContains(response, "contact-brief.js?v=20261114-1")
+        self.assertContains(response, 'data-whatsapp-url="https://wa.me/5491170619703"')
+        self.assertNotContains(response, 'method="post"')
+        self.assertNotContains(response, "csrfmiddlewaretoken")
+        self.assertNotIn("fetch(", contact_script)
+
     @override_settings(STATIC_EXPORT=True, CONTACT_FORM_ENABLED=False)
     def test_static_tool_page_uses_browser_runtime_without_csrf_or_network_fetch(self):
         response = self.client.get("/products/utm-builder/")
@@ -182,6 +254,24 @@ class StaticExportConfigurationTests(SimpleTestCase):
             self.assertContains(response, f'/blog/{article["slug"]}/')
             self.assertContains(response, article["image"])
         self.assertNotContains(response, "PI BUENOS AIRES")
+
+    def test_homepage_leads_from_clear_offer_to_products_and_product_journey(self):
+        response = self.client.get("/")
+        html = response.content.decode()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "I build software that helps businesses find new revenue opportunities")
+        self.assertContains(response, 'fetchpriority="high"')
+        self.assertContains(response, 'data-home-products')
+        self.assertEqual(html.count('data-home-product href='), 3)
+        self.assertContains(response, "UTM Builder")
+        self.assertContains(response, "Creative QA Checklist")
+        self.assertContains(response, "Creative Preview Lab")
+        self.assertContains(response, 'data-section-name="product-journey"')
+        self.assertContains(response, 'id="business-value"')
+        self.assertLess(html.index('class="pi-home-hero"'), html.index('data-home-products'))
+        self.assertLess(html.index('data-home-products'), html.index('data-product-stage'))
+        self.assertLess(html.index('data-product-stage'), html.index('id="business-value"'))
 
     def test_base_template_loads_first_party_analytics_events(self):
         response = self.client.get("/")
@@ -251,6 +341,9 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertContains(response, 'data-preview-src="https://taitet.com/"')
         self.assertContains(response, 'data-preview-image="desktop"', count=5)
         self.assertContains(response, 'data-preview-image="mobile"', count=5)
+        self.assertContains(response, 'preload="none"')
+        self.assertContains(response, "controls")
+        self.assertNotContains(response, "autoplay")
         self.assertNotContains(response, "pi-indices-mock")
 
     def test_english_gaming_article_localizes_article_chrome_and_metadata(self):

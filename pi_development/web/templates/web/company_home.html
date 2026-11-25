@@ -12,31 +12,83 @@
 <link rel="stylesheet" href="{% static 'web/css/product-stage.css' %}?v=20261026-2">
 <link rel="stylesheet" href="{% static 'web/css/home-next.css' %}?v=20261025-2">
 {% endblock %}
+{% block late_head %}
+<link rel="stylesheet" href="{% static 'web/css/home-redesign.css' %}?v=20261118-2">
+{% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
 <main id="main-content">
   <section class="pi-home-hero" aria-labelledby="home-title">
-    {% include 'web/components/fibonacci_field.html' %}
     <div class="pi-home-shell pi-home-hero__grid">
       <div class="pi-home-hero__copy">
+        <p class="pi-home-eyebrow">{{ home_page.hero.eyebrow }}</p>
         <h1 id="home-title"><span>Think clearly.</span><span>Build what matters.</span></h1>
         <p class="pi-home-lead">{{ home_page.hero.title }}</p>
+        <p class="pi-home-hero__description">{{ home_page.hero.description }}</p>
         <div class="pi-home-actions">
-          <a class="button-link" href="{{ home_page.hero.primary_cta.href }}">{{ home_page.hero.primary_cta.label }} <span aria-hidden="true">↗</span></a>
-          <a class="pi-text-link" href="{{ home_page.hero.secondary_cta.href }}">{{ home_page.hero.secondary_cta.label }} <span aria-hidden="true">↗</span></a>
+          <a class="button-link" href="{{ home_page.hero.primary_cta.href }}">{{ home_page.hero.primary_cta.label }}</a>
+          <a class="pi-text-link" href="{{ home_page.hero.secondary_cta.href }}">{{ home_page.hero.secondary_cta.label }}</a>
+        </div>
+        <p class="pi-home-hero__audience">{% for item in home_page.audience %}<span>{{ item }}</span>{% endfor %}</p>
+      </div>
+      <figure class="pi-home-hero__visual">
+        <div class="pi-home-hero__screen">
+          <div class="pi-home-hero__screen-top"><span>Working software</span><span>01 / 03</span></div>
+          <img src="{% static 'web/img/indices-desktop.webp' %}" width="1901" height="912" alt="Índices Argentinos financial software interface created by Pi Development" fetchpriority="high" decoding="async">
+        </div>
+        <figcaption><strong>Índices Argentinos</strong><span>A real product, not a concept image.</span></figcaption>
+        <div class="pi-home-signal pi-home-signal--revenue"><span>Opportunity</span><strong>New paths to revenue</strong></div>
+        <div class="pi-home-signal pi-home-signal--work"><span>Efficiency</span><strong>Less repeated work</strong></div>
+        <div class="pi-home-signal pi-home-signal--clarity"><span>Visibility</span><strong>Weak points made visible</strong></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pi-home-products" id="products" data-home-products aria-labelledby="home-products-title">
+    <div class="pi-home-shell pi-home-products__intro">
+      <p class="pi-home-eyebrow">Products / available now</p>
+      <div>
+        <h2 id="home-products-title">Three focused products.<br><em>One less recurring problem each.</em></h2>
+        <p>Start with a working tool for campaign tagging or creative quality. When the problem is larger, the same thinking can become a custom system.</p>
+      </div>
+    </div>
+    <div class="pi-home-products__deck">
+      <div class="pi-home-shell">
+        <div class="pi-home-product-grid">
+          {% for item in home_page.tools.items|slice:":3" %}
+          <a class="pi-home-product" data-home-product href="{{ item.href }}">
+            <span class="pi-home-product__number">0{{ forloop.counter }}</span>
+            <span class="pi-home-product__status"><i aria-hidden="true"></i> Available</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+            <span class="pi-home-product__link">Open product</span>
+          </a>
+          {% endfor %}
+        </div>
+        <div class="pi-home-products__handoff">
+          <p>Next / Product Journey</p>
+          <div><h3>Tools are the smallest form of the work.</h3><span>A complete product connects business logic, interface, automation and measurement.</span></div>
         </div>
       </div>
-
     </div>
   </section>
 
   {% include 'web/components/product_stage.html' %}
 
-  <aside class="pi-audience" aria-label="Who Pi Development works with">
-    <div class="pi-home-shell pi-audience__inner">
-      {% for item in home_page.audience %}<span data-cascade-item><b>{{ item }}</b></span>{% endfor %}
+  <section class="pi-home-outcomes" id="business-value" aria-labelledby="business-value-title">
+    <div class="pi-home-shell pi-home-outcomes__inner">
+      <header>
+        <p class="pi-home-eyebrow">Business value</p>
+        <h2 id="business-value-title">Software should make the business easier to understand—<em>and easier to grow.</em></h2>
+        <p>The goal is not more technology. It is more room to act: find opportunities, remove avoidable work and see problems earlier.</p>
+      </header>
+      <div class="pi-home-outcome-grid">
+        {% for item in home_page.business_value.items %}
+        <article><span>0{{ forloop.counter }}</span><h3>{{ item.title }}</h3><p>{{ item.text }}</p></article>
+        {% endfor %}
+      </div>
     </div>
-  </aside>
+  </section>
 
 
   {% if latest_articles %}
@@ -124,20 +176,6 @@
       </div>
     </section>
 
-    {% if home_page.tools.items %}
-    <section class="pi-next-section pi-next-tools" aria-labelledby="tools-title">
-      <div class="pi-home-shell">
-        <header class="pi-next-heading pi-next-heading--split"><div><p class="pi-next-kicker">Made to be useful</p><h2 id="tools-title">Less busywork.<br><em>More headspace.</em></h2></div><p>{{ home_page.tools.description }}</p></header>
-        <div class="pi-next-tool-grid">
-          {% for item in home_page.tools.items %}
-          <a class="pi-next-tool" href="{{ item.href }}"><div class="pi-next-tool__icon" aria-hidden="true">{% if forloop.first %}↗{% elif forloop.counter == 2 %}✓{% else %}⤢{% endif %}</div><h3>{{ item.title }}</h3><p>{{ item.text }}</p><span class="pi-next-tool__link">{{ item.cta }} <span aria-hidden="true">↗</span></span></a>
-          {% endfor %}
-        </div>
-        <a class="pi-next-link" href="{{ home_page.tools.cta.href }}">{{ home_page.tools.cta.label }} <span aria-hidden="true">↗</span></a>
-      </div>
-    </section>
-    {% endif %}
-
     <section class="pi-next-contact" aria-labelledby="pi-next-contact-title">
       <div class="pi-home-shell"><p class="pi-next-kicker">Something in mind?</p><h2 id="pi-next-contact-title">{{ home_page.contact.title }}</h2><a class="pi-next-contact__button" href="{{ home_page.contact.cta.href }}">{{ home_page.contact.cta.label }} <span aria-hidden="true">↗</span></a><p>Buenos Aires. Working everywhere.</p></div>
     </section>
@@ -150,6 +188,5 @@
 
 {% block scripts %}
 {{ block.super }}
-<script src="{% static 'web/js/genesis-field.js' %}?v=20261026-2"></script>
 <script defer src="{% static 'web/js/product-stage.js' %}?v=20261026-5"></script>
 {% endblock %}

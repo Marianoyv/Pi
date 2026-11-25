@@ -39,6 +39,7 @@
       {% if knowledge_page.image %}
       <figure class="article-hero-image">
         <img src="{% static knowledge_page.image %}" width="1536" height="864" alt="{{ knowledge_page.image_alt }}" fetchpriority="high" decoding="async">
+        {% if knowledge_page.image_record.disclosure %}<figcaption>{{ knowledge_page.image_record.disclosure }}</figcaption>{% endif %}
       </figure>
       {% endif %}
     </div>

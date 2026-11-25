@@ -274,6 +274,7 @@ def contact(request):
         {
             "page": CONTACT_PAGE,
             "contact_form_enabled": False,
+            "contact_whatsapp_base_url": f"https://wa.me/{phone}" if phone else "",
             "contact_whatsapp_url": f"https://wa.me/{phone}?text={message}" if phone else "",
             "contact_phone": settings.CONTACT_PHONE,
         },

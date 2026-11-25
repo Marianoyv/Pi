@@ -67,9 +67,11 @@ node --check static\web\js\browser-tools.js
 
 El sitio registra clics de contacto y uso de herramientas en GA4. El comando `import_analytics` descarga datos de GA4 y Search Console mediante APIs de solo lectura, compara períodos equivalentes y genera CSV, JSON y un resumen Markdown local.
 
-La medición usa Consent Mode avanzado sin banner automático: envía señales sin cookies por defecto, permite almacenamiento sólo por elección explícita y ofrece apagado total desde el footer. Incluye embudos comerciales, lectura, formularios sin contenidos, controles, descargas, herramientas y Core Web Vitals. Las visitas locales quedan fuera de GA4. La configuración de la cuenta se aplicó el 24/10/2026: dimensiones, métricas, audiencias, intención de contacto, retención y embudo. Falta validar la nueva versión en producción después del deploy.
+La medición usa Google Analytics sin banner automático y con almacenamiento analítico activo por defecto. Publicidad, Google Signals y personalización permanecen desactivados; el footer permite cambiar a medición sin cookies o apagarla. Incluye embudos comerciales, lectura, formularios sin contenidos, controles, descargas, herramientas y Core Web Vitals. Las visitas locales quedan fuera de GA4. La configuración de la cuenta se aplicó el 24/10/2026: dimensiones, métricas, audiencias, intención de contacto, retención y embudo. Falta validar la nueva versión en producción después del deploy.
 
 Configuración y uso: [docs/analytics.md](docs/analytics.md). Inventario de la cuenta: [docs/analytics-ga4-setup.json](docs/analytics-ga4-setup.json).
+
+El sistema editorial actualiza su evidencia de GA4 y Search Console los domingos y puede publicar una pieza los lunes, miércoles y viernes. La operación, los controles de fuentes y la política visual están documentados en [docs/editorial-automation.md](docs/editorial-automation.md).
 
 La generación ejecuta pruebas y verifica que la salida incluya todas las dependencias de analítica y excluya archivos privados antes de permitir el deploy.
 

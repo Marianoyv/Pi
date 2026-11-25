@@ -42,6 +42,14 @@ ALLOWED_CLUSTERS = {
     "web-actual",
 }
 ALLOWED_ARTICLE_TYPES = {"analysis", "case-study", "essay", "guide", "interview", "news"}
+AUTOMATED_QUALITY_CUTOFF = date(2026, 11, 24)
+ALLOWED_IMAGE_METHODS = {
+    "photography",
+    "photo-composite",
+    "diagram",
+    "verified-screenshot",
+    "ai-assisted-editorial-illustration",
+}
 
 
 class Command(BaseCommand):
@@ -120,14 +128,22 @@ class Command(BaseCommand):
         if isinstance(summary, str) and not 80 <= len(summary.strip()) <= 260:
             errors.append("summary must contain between 80 and 260 characters")
 
+        parsed_dates = {}
         for field in ("published_at", "updated_at"):
             value = article.get(field)
             try:
                 parsed_date = date.fromisoformat(value)
+                parsed_dates[field] = parsed_date
                 if parsed_date > date.today():
                     errors.append(f"{field} cannot be in the future")
             except (TypeError, ValueError):
                 errors.append(f"{field} must use YYYY-MM-DD")
+
+        quality_contract_applies = parsed_dates.get("published_at", date.min) >= AUTOMATED_QUALITY_CUTOFF
+        if quality_contract_applies:
+            for field in ("human_question", "editorial_hypothesis", "distribution_hypothesis"):
+                if not isinstance(article.get(field), str) or not article[field].strip():
+                    errors.append(f"{field} is required for articles published by the measured workflow")
 
         published_at = article.get("published_at", "")
         updated_at = article.get("updated_at", "")
@@ -164,6 +180,31 @@ class Command(BaseCommand):
         image_alt = article.get("image_alt", "")
         if isinstance(image_alt, str) and not 50 <= len(image_alt.strip()) <= 180:
             errors.append("image_alt must contain between 50 and 180 characters")
+
+        image_record = article.get("image_record")
+        if quality_contract_applies or image_record is not None:
+            if not isinstance(image_record, dict):
+                errors.append("image_record must document the origin and disclosure of the image")
+            else:
+                for field in ("creator", "created_at", "method", "disclosure"):
+                    if not isinstance(image_record.get(field), str) or not image_record[field].strip():
+                        errors.append(f"image_record requires {field}")
+                if image_record.get("method") not in ALLOWED_IMAGE_METHODS:
+                    errors.append(f"image_record method must be one of: {', '.join(sorted(ALLOWED_IMAGE_METHODS))}")
+                if not isinstance(image_record.get("source_files"), list):
+                    errors.append("image_record source_files must be a list")
+                try:
+                    image_created_at = date.fromisoformat(image_record.get("created_at", ""))
+                    if image_created_at > date.today():
+                        errors.append("image_record created_at cannot be in the future")
+                except (TypeError, ValueError):
+                    errors.append("image_record created_at must use YYYY-MM-DD")
+                if image_record.get("method") == "ai-assisted-editorial-illustration":
+                    disclosure = image_record.get("disclosure", "").casefold()
+                    if " ia" not in f" {disclosure}" and "inteligencia artificial" not in disclosure:
+                        errors.append("AI-assisted images must disclose the use of IA or inteligencia artificial")
+                    if "fotografía documental" not in disclosure and "fotografia documental" not in disclosure:
+                        errors.append("AI-assisted images must state that they are not documentary photography")
 
         reading_time = article.get("reading_time_minutes")
         if not isinstance(reading_time, int) or not 3 <= reading_time <= 15:
@@ -215,6 +256,11 @@ class Command(BaseCommand):
                         date.fromisoformat(source.get(field, ""))
                     except ValueError:
                         errors.append(f"source {index} {field} must use YYYY-MM-DD")
+            if quality_contract_applies and article.get("article_type") in {"news", "analysis"}:
+                if len(sources) < 2:
+                    errors.append("news and analysis require at least two sources")
+                if not any(source.get("source_type") == "independent" for source in sources if isinstance(source, dict)):
+                    errors.append("news and analysis require at least one independent source")
 
         faqs = article.get("faqs")
         if not isinstance(faqs, list) or len(faqs) < 2:

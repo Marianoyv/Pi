@@ -9,7 +9,7 @@
 {% block body_class %}business-route business-service-route{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'web/css/company.css' %}?v=20260717">
-<link rel="stylesheet" href="{% static 'web/css/business.css' %}?v=20261024-1">
+<link rel="stylesheet" href="{% static 'web/css/business.css' %}?v=20261118-1">
 {% endblock %}
 {% block content %}
 {% include 'web/components/navbar.html' %}
@@ -123,7 +123,7 @@
       <div class="business-case-grid">
         {% for case in business_cases %}
         <a class="business-case" href="{{ case.internal_url }}">
-          <div class="business-case__image"><img src="{% static case.poster %}" alt="Public interface for {{ case.name }}" loading="lazy" decoding="async"></div>
+          <div class="business-case__image"><img src="{% static case.poster %}" alt="Public interface for {{ case.name }}" width="1600" height="900" loading="lazy" decoding="async"></div>
           <div><p>{% if case.slug == "juno-metales" %}Commercial site SEO and measurement{% else %}Catalog · recommendation and consultation{% endif %}</p><h3>{{ case.name }}</h3><span>See full case <b aria-hidden="true">→</b></span></div>
         </a>
         {% endfor %}

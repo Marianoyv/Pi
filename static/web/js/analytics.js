@@ -1,4 +1,4 @@
-/* First-party GA4 boundary: advanced consent mode, safe parameters and preview isolation. */
+/* First-party GA4 boundary: analytics enabled by default, safe parameters and preview isolation. */
 (() => {
   'use strict';
   const script = document.currentScript;
@@ -12,6 +12,7 @@
   const collect = !local;
   const consentKey = 'pi-analytics-consent-v1';
   const denied = { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' };
+  const analyticsGranted = { ...denied, analytics_storage: 'granted' };
   const events = new Set(['contact_cta_click', 'contact_start', 'tool_use', 'tool_error', 'tool_result_copy', 'outbound_click', 'project_preview_open', 'utm_preset_select', 'editorial_article_view', 'editorial_read_progress', 'editorial_engaged_time', 'editorial_to_pi', 'section_view', 'page_read_progress', 'page_engaged_time', 'plan_view', 'plan_select', 'navigation_click', 'case_study_open', 'product_open', 'section_jump', 'web_vital', 'video_start', 'video_progress', 'video_complete', 'control_click', 'form_start', 'form_submit', 'form_error', 'file_download', 'details_open']);
   const fields = new Set(['contact_method', 'link_location', 'link_text', 'tool_name', 'error_type', 'link_domain', 'project_name', 'preset_name', 'article_slug', 'article_type', 'article_cluster', 'returning_reader', 'read_percent', 'milestone_seconds', 'destination_section', 'origin_article_slug', 'origin_article_cluster', 'section_id', 'plan_name', 'case_name', 'metric_name', 'metric_value', 'metric_delta', 'metric_rating', 'metric_id', 'navigation_type', 'video_title', 'video_percent', 'video_provider', 'control_name', 'control_location', 'form_name', 'file_name', 'file_extension', 'details_id']);
   let consent = 'unknown';
@@ -119,7 +120,7 @@
   }
   window.PiAnalytics = { track, isEnabled: enabled, isMeasuring: measuring, setConsent, debug, collect, openSettings() { if (available && preferences) preferences.hidden = false; } };
   if (!available) return;
-  window.gtag('consent', 'default', { ...denied, wait_for_update: 500 });
+  window.gtag('consent', 'default', analyticsGranted);
   settingsButtons.forEach(button => {
     button.hidden = false;
     button.addEventListener('click', () => window.PiAnalytics.openSettings());
@@ -127,7 +128,7 @@
   document.querySelectorAll('[data-analytics-consent]').forEach(button => button.addEventListener('click', () => setConsent(button.dataset.analyticsConsent)));
   const stored = readChoice();
   if (stored === 'unknown') {
-    consent = 'denied';
+    consent = 'granted';
     start();
   } else setConsent(stored, false);
 

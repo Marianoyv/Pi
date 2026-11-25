@@ -31,7 +31,7 @@
 <title>{% block title %}Pi Development{% endblock %}</title>
 {% if google_analytics_id %}
   <link rel="stylesheet" href="{% static 'web/css/analytics.css' %}?v=20261112-1">
-  <script defer src="{% static 'web/js/analytics.js' %}?v=20261112-1" data-measurement-id="{{ google_analytics_id }}" data-production-origin="{{ site_url }}" data-production-hosts="{{ analytics_allowed_hosts }}" data-page-type="{{ analytics_page_type }}"></script>
+  <script defer src="{% static 'web/js/analytics.js' %}?v=20261118-1" data-measurement-id="{{ google_analytics_id }}" data-production-origin="{{ site_url }}" data-production-hosts="{{ analytics_allowed_hosts }}" data-page-type="{{ analytics_page_type }}"></script>
 {% endif %}
 {% for item in global_structured_data_json %}
 <script type="application/ld+json">{{ item|safe }}</script>
@@ -57,6 +57,7 @@
 <script src="https://kit.fontawesome.com/70dc13288a.js" crossorigin="anonymous" defer></script>
 {% block head %}{% endblock %}
 <link rel="stylesheet" href="{% static 'web/css/pi-editorial.css' %}?v=20261026-2">
+{% block late_head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
 <a class="skip-link" href="#main-content">Skip to main content</a>

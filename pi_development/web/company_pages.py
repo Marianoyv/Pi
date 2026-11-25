@@ -23,6 +23,22 @@ HOME_PAGE = {
         "location": "Based in Buenos Aires. Available for remote work.",
     },
     "audience": ["For founders", "Operational teams", "Digital publishers"],
+    "business_value": {
+        "items": [
+            {
+                "title": "More paths to revenue",
+                "text": "Build a better way to sell, serve, package or monetize what the business already knows.",
+            },
+            {
+                "title": "Less repeated work",
+                "text": "Turn recurring checks and handoffs into software people can understand and control.",
+            },
+            {
+                "title": "Earlier signals",
+                "text": "Make delays, errors and weak points visible before they become the normal way of working.",
+            },
+        ],
+    },
     "what_we_solve": {
         "eyebrow": "What we solve",
         "title": "Different problems. The same standard.",
@@ -897,8 +913,8 @@ CONTACT_PAGE = {
     "form_title": "Tell Mariano what needs to work better.",
     "response_time": "Normally within 2–3 business days",
     "contact_reassurance": (
-        "The first response will clarify fit and the appropriate next step. Submitting the form does not create a "
-        "contract or guarantee project availability."
+        "Use the short project brief to organize the essentials. It is prepared in your browser and is only shared "
+        "if you choose WhatsApp or email."
     ),
 }
 
@@ -930,11 +946,17 @@ def get_home_page(language="en"):
     )
     page["hero"].update(
         {
-            "eyebrow": "Product Development · Operational Software · AdTech Engineering",
-            "description": (
-                "Founder-led product and engineering work for useful software, real business operations and "
-                "publisher monetization workflows."
+            "eyebrow": "Custom software for business growth",
+            "title": (
+                "I build software that helps businesses find new revenue opportunities, reduce repeated work "
+                "and expose operational blind spots."
             ),
+            "description": (
+                "Product development, operational software and AdTech engineering—led directly from the business "
+                "problem through implementation and measurement."
+            ),
+            "primary_cta": {"label": "Explore the products", "href": "#products"},
+            "secondary_cta": {"label": "Discuss a business problem", "href": "/contact/"},
             "location": "Based in Buenos Aires. Available for remote work.",
         }
     )

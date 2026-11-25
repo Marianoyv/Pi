@@ -16,8 +16,8 @@ try {
         node --check $script.FullName
         if ($LASTEXITCODE -ne 0) { throw "JavaScript invalido: $($script.Name)" }
     }
-    node --test tests/analytics.test.cjs
-    if ($LASTEXITCODE -ne 0) { throw "Las pruebas de analitica fallaron." }
+    node --test tests/*.test.cjs
+    if ($LASTEXITCODE -ne 0) { throw "Las pruebas de JavaScript fallaron." }
     & $pythonPath manage.py test pi_development.web.test_static_export --settings=pi_development.settings.static_export
     if ($LASTEXITCODE -ne 0) { throw "Las pruebas del sitio fallaron." }
     & $pythonPath manage.py validate_editorial --settings=pi_development.settings.static_export

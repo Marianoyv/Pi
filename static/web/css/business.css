@@ -147,6 +147,16 @@
   background: var(--color-surface);
 }
 
+.business-route .business-section--soft {
+  color: #fffefa;
+}
+
+.business-route .business-section--soft .business-section__head > p:last-child,
+.business-route .business-section--soft .business-section__head--split > p,
+.business-route .business-section--soft .business-process p {
+  color: #cbd5e1;
+}
+
 .business-section__head {
   max-width: 800px;
   margin-bottom: 44px;
@@ -294,14 +304,15 @@
 
 .business-ai__grid article {
   padding: clamp(26px, 4vw, 42px);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #425a75;
   border-radius: 18px;
-  background: var(--color-surface);
+  background: #101b2e;
+  color: #fffefa;
 }
 
 .business-ai__grid article.is-human {
   border-color: rgba(255, 122, 26, 0.48);
-  background: linear-gradient(145deg, rgba(255, 122, 26, 0.1), rgba(15, 23, 42, 0.9));
+  background: linear-gradient(145deg, #40577e, #172438);
 }
 
 .business-ai__label {
@@ -325,6 +336,10 @@
   color: var(--color-text-secondary);
 }
 
+.business-ai__grid li {
+  color: #d7e0ea;
+}
+
 .business-ai__grid li::before,
 .plan-card li::before {
   content: "✓";
@@ -336,6 +351,14 @@
 
 .business-section-link {
   margin-top: 28px;
+}
+
+.business-ai .business-text-link {
+  color: #303531 !important;
+}
+
+.business-ai .business-text-link:hover {
+  color: var(--business-accent) !important;
 }
 
 .business-case-grid {
@@ -388,7 +411,7 @@
 }
 
 .business-case span {
-  color: var(--color-text-secondary);
+  color: #d7e0ea;
   font-weight: 650;
 }
 
@@ -452,10 +475,14 @@
   max-width: 920px;
 }
 
+.business-final-cta h2 {
+  color: #fffefa;
+}
+
 .business-final-cta > div > p:not(.business-eyebrow) {
   max-width: 700px;
   margin-top: 18px;
-  color: var(--color-text-secondary);
+  color: #cbd5e1;
   font-size: 18px;
 }
 
@@ -481,9 +508,10 @@
 .plan-card {
   position: relative;
   padding: 32px;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid #425a75;
   border-radius: 18px;
-  background: var(--color-surface);
+  background: #101b2e;
+  color: #fffefa;
 }
 
 .plan-card--featured {
@@ -512,13 +540,14 @@
 
 .plan-card h2 {
   margin: 8px 0 12px;
+  color: #fffefa;
   font-size: 32px;
 }
 
 .plan-card__description,
 .plan-card__timeline,
 .plan-card__limit {
-  color: var(--color-text-secondary);
+  color: #d7e0ea;
 }
 
 .plan-card__price {
@@ -528,14 +557,19 @@
 }
 
 .plan-card__price span {
-  color: var(--color-text-muted);
+  color: #b8c7d9;
   font-size: 12px;
   text-transform: uppercase;
 }
 
 .plan-card__price strong {
+  color: #fffefa;
   font-size: 38px;
   letter-spacing: -0.04em;
+}
+
+.plan-card li {
+  color: #d7e0ea;
 }
 
 .plan-card .button-link {
@@ -547,7 +581,7 @@
 .plan-card__limit {
   margin-top: 28px;
   padding-top: 20px;
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(184, 199, 217, 0.32);
   font-size: 14px;
 }
 
@@ -580,7 +614,7 @@
 .plans-disclaimer {
   max-width: 820px;
   margin-top: 28px;
-  color: var(--color-text-muted);
+  color: #b8c7d9;
   font-size: 14px;
 }
 

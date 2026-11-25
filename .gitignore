@@ -13,6 +13,8 @@ __pycache__/
 credentials/
 *.sqlite3
 analytics/raw/
+analytics/weekly/
+imports/
 
 # Logs and operating-system files
 *.log

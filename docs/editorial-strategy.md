@@ -13,7 +13,9 @@ No se insertan llamados comerciales repetitivos dentro de los artículos. La con
 
 ## Estado operativo
 
-La automatización diaria `Pi Daily Editorial` está pausada desde el 23 de octubre de 2026. No debe reactivarse hasta completar el piloto, revisar sus resultados y aprobar un nuevo flujo.
+El piloto medido comienza el 29 de noviembre de 2026 con una revisión de datos semanal los domingos y producción los lunes, miércoles y viernes. `Pi Daily Editorial` deja de ser un publicador diario y pasa a usar la evidencia semanal como una señal más dentro del puntaje editorial.
+
+El domingo no publica: importa GA4 y Search Console, compara 7 y 28 días y prepara tres hipótesis. Cada ejecución de producción puede publicar como máximo una pieza y debe omitir el día si ninguna propuesta alcanza el umbral, las fuentes o la calidad visual exigida.
 
 El rediseño visual de la publicación queda pendiente de las capturas de referencia. Hasta entonces se puede trabajar en estrategia, contenido, medición, arquitectura e indexación sin fijar una dirección estética definitiva.
 
@@ -159,6 +161,7 @@ El archivo `content/editorial/experiment.json` contiene 24 espacios: cuatro por 
 Revisión semanal:
 
 - Comparar cada pieza durante sus primeros siete días.
+- Revisar también las señales tempranas a las 48 horas y la estabilidad a los 28 días.
 - No declarar ganadores con una sola visita.
 - Registrar distribución realizada y anomalías.
 
@@ -171,7 +174,7 @@ Revisión final:
 
 - Comparar crecimiento, lectura, retorno y capacidad de repetición.
 - Elegir dos o tres territorios principales y uno o dos secundarios.
-- Definir si se reactiva una automatización, siempre con revisión humana y sin publicación automática obligatoria.
+- Definir qué territorios, formatos y canales merecen continuar; la automatización puede mantener la cadencia, reducirla o volver a revisión previa según la evidencia.
 
 ## Responsabilidades
 

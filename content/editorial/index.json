@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_on": "2026-11-14",
+  "generated_on": "2026-11-25",
   "instructions": "Use recent_articles to prevent duplicate coverage and internal_links to avoid scanning the project.",
   "recent_articles": [
     {

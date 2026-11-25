@@ -37,16 +37,19 @@ function browser({ origin = 'https://pidevelopment.web.app', query = '', stored 
 }
 const eventCalls = env => env.calls().filter(call => call[0] === 'event');
 
-test('new production visitor starts advanced consent mode without showing a banner', () => {
+test('new production visitor starts full analytics without showing a banner', () => {
   const env = browser();
   assert.equal(env.preferences.hidden, true);
-  assert.equal(env.api.isEnabled(), false);
+  assert.equal(env.api.isEnabled(), true);
   assert.equal(env.api.isMeasuring(), true);
   assert.equal(env.tagRequests.length, 1);
   assert.equal(eventCalls(env).filter(call => call[1] === 'page_view').length, 1);
   assert.equal(env.api.track('contact_start', { contact_method: 'email' }), true);
   assert.equal(env.calls()[0][1], 'default');
-  assert.equal(env.calls()[0][2].analytics_storage, 'denied');
+  assert.equal(env.calls()[0][2].analytics_storage, 'granted');
+  assert.equal(env.calls()[0][2].ad_storage, 'denied');
+  assert.equal(env.calls()[0][2].ad_user_data, 'denied');
+  assert.equal(env.calls()[0][2].ad_personalization, 'denied');
 });
 test('grant loads one tag and one page view, despite repeated grant', () => {
   const env = browser();
@@ -116,12 +119,12 @@ test('safe campaign attribution survives URL cleanup; unsafe fields do not', () 
   assert.equal(config.campaign_medium, 'social');
   assert.equal(config.campaign_name, undefined);
 });
-test('saved consent works, expired consent falls back to cookieless mode, blocked storage is supported', () => {
+test('saved consent works, expired consent falls back to full analytics, blocked storage is supported', () => {
   const saved = browser({ stored: { choice: 'granted', version: 1, savedAt: Date.now() } });
   assert.equal(saved.api.isEnabled(), true);
   assert.equal(saved.tagRequests.length, 1);
   const expired = browser({ stored: { choice: 'granted', version: 1, savedAt: Date.now() - 181 * 86400000 } });
-  assert.equal(expired.api.isEnabled(), false);
+  assert.equal(expired.api.isEnabled(), true);
   assert.equal(expired.api.isMeasuring(), true);
   assert.equal(expired.preferences.hidden, true);
   const blocked = browser({ storageFails: true });

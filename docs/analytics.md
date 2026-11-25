@@ -33,7 +33,7 @@ Un clic en WhatsApp **no confirma un lead ni una venta**. El sitio no inventa `g
 
 ## Consentimiento, privacidad y pruebas locales
 
-Se utiliza Consent Mode v2 en modo avanzado. No aparece un banner automáticamente: la etiqueta carga con `analytics_storage` denegado y envía señales sin cookies. Publicidad, personalización publicitaria y Google Signals permanecen desactivados. Desde **Analytics & privacy** en el footer se puede permitir almacenamiento analítico, mantener la medición sin cookies o apagar la medición por completo. La preferencia dura hasta 180 días. Al apagarla se bloquean eventos posteriores y se eliminan las cookies GA y la atribución editorial propias del navegador.
+La medición no muestra un banner automáticamente: la etiqueta carga con `analytics_storage` permitido para recuperar el conteo normal de usuarios y sesiones. Publicidad, personalización publicitaria y Google Signals permanecen desactivados. Desde **Analytics & privacy** en el footer se puede mantener el almacenamiento analítico, cambiar a medición sin cookies o apagar la medición por completo. La preferencia dura hasta 180 días. Al apagarla se bloquean eventos posteriores y se eliminan las cookies GA y la atribución editorial propias del navegador.
 
 Los eventos propios filtran parámetros no autorizados, emails, teléfonos y URLs completas. Las vistas eliminan query strings y fragmentos; la atribución UTM se conserva mediante campos de campaña filtrados. No se envían contenidos de formularios, mensajes, creatividades, URLs generadas en herramientas ni credenciales. El sitio guarda la atribución editorial durante 30 días sólo después de permitir almacenamiento analítico.
 
@@ -57,7 +57,7 @@ Las cuatro audiencias tienen una pertenencia de 30 días: **Business interest** 
 2. Revisar el embudo y las audiencias cuando lleguen eventos de la nueva versión. Una audiencia sin usuarios antes de publicar es esperable. Analizar adquisición por país, dispositivo, canal y campaña con las dimensiones nativas de GA4.
 3. Definir las IP reales de tráfico interno y comprobar primero los filtros en modo de prueba. No activar exclusiones hasta verificar qué visitas afectarían.
 
-La propiedad de Search Console `https://pidevelopment.web.app/` ya está asociada con la propiedad y el flujo de Pi Development en GA4. Las exportaciones a BigQuery siguen siendo opcionales. No se habilitaron Ads, Google Signals, vinculaciones publicitarias ni recursos facturables.
+La propiedad de Search Console `https://pidevelopment.web.app/` está asociada con GA4, pero la cuenta de servicio local no tiene actualmente acceso a sus datos: la API responde 403. La tarea semanal lo registra como `unavailable` y continúa solo con GA4 hasta que un propietario conceda lectura. Las exportaciones a BigQuery siguen siendo opcionales. No se habilitaron Ads, Google Signals, vinculaciones publicitarias ni recursos facturables.
 
 Las definiciones personalizadas no rellenan retroactivamente los informes y pueden tardar 24–48 horas en estar disponibles. CLS se expresa multiplicado por 1.000; los demás valores de rendimiento están en milisegundos. Para agregaciones de rendimiento usar el último valor por `metric_id`, no sumar los percentiles o promedios de todos los envíos.
 
@@ -75,7 +75,7 @@ Esta entrega se publicó el 24 de octubre de 2026 en `https://pidevelopment.web.
 
 ## Importar datos (acceso de sólo lectura)
 
-El importador existente usa Google Analytics Data API y Search Console API. La cuenta de servicio dedicada conserva permisos de lectura; no se modificaron ni ampliaron.
+El importador usa Google Analytics Data API y Search Console API. La cuenta de servicio conserva lectura de GA4; Search Console requiere que un propietario añada esa misma cuenta con acceso de lectura.
 
 ```powershell
 $env:GOOGLE_APPLICATION_CREDENTIALS = (Resolve-Path '.\credentials\analytics-reader.json').Path
@@ -85,6 +85,14 @@ $env:SEARCH_CONSOLE_SITE_URL = 'https://pidevelopment.web.app/'
 ```
 
 La salida queda en `analytics/raw/AAAA-MM-DD/`, fuera de Git y del sitio generado. No publicar credenciales ni access tokens.
+
+## Revisión editorial semanal
+
+La tarea del domingo ejecuta dos importaciones: siete días para comparar la semana y 28 días para evitar decisiones basadas en oscilaciones pequeñas. Conserva los datos y el brief resultante en `analytics/weekly/`, una ruta local ignorada por Git y excluida del sitio.
+
+El informe semanal sigue `content/templates/weekly-editorial-brief.template.md`. Resume rendimiento, revisiones a 48 horas/7 días/28 días y tres hipótesis para la semana siguiente. Los artículos de lunes, miércoles y viernes pueden usar esas señales, pero mantienen el umbral editorial, las fuentes y la posibilidad de no publicar.
+
+La importación separa GA4 de Search Console para que una falta de permisos en una fuente no destruya los datos válidos de la otra. `latest-data.json` registra `available`, `partial` o `unavailable`; el brief debe mostrar esa limitación y no inferir consultas, impresiones o CTR cuando Search Console no esté disponible.
 
 ## Referencias oficiales
 

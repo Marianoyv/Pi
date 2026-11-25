@@ -12,14 +12,14 @@
   <video
     data-preview-image="desktop"
     src="{% static item.image %}"
-    autoplay
     muted
-    loop
     playsinline
-    preload="metadata"
+    controls
+    preload="none"
     width="1200"
     height="675"
     {% if item.poster %}poster="{% static item.poster %}"{% endif %}
+    data-analytics-title="{{ item.name }}"
     aria-label="{{ media_label }}"
   ></video>
   <img data-preview-image="mobile" data-preview-image-src="{% static item.mobile_image %}" width="430" height="932" alt="{{ item.name }} mobile interface" loading="lazy" decoding="async">
@@ -28,14 +28,14 @@
 {% elif item.media_type == "video" %}
 <video
   class="{{ media_class|default:'portfolio-media' }}"
-  autoplay
   muted
-  loop
   playsinline
-  preload="metadata"
+  controls
+  preload="none"
   width="1200"
   height="675"
   {% if item.poster %}poster="{% static item.poster %}"{% endif %}
+  data-analytics-title="{{ item.name }}"
   aria-label="{{ media_label }}"
 >
   <source src="{% static item.image %}" type="video/mp4">

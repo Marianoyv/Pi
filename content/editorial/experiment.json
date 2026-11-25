@@ -1,6 +1,9 @@
 {
   "version": 1,
-  "status": "planning",
+  "status": "active",
+  "starts_on": "2026-11-29",
+  "publication_days": ["monday", "wednesday", "friday"],
+  "weekly_review_day": "sunday",
   "duration_weeks": 8,
   "target_frequency_per_week": 3,
   "primary_goal": "Encontrar temas y formatos capaces de llevar la publicación desde la línea de base actual hacia 1.000 sesiones mensuales de calidad.",
