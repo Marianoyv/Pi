@@ -9,6 +9,16 @@
     "trailingSlash": true,
     "redirects": [
       {
+        "regex": "^/finance/calculadoras/?$",
+        "destination": "/finance/",
+        "type": 301
+      },
+      {
+        "source": "/indices-argentinos{,/**}",
+        "destination": "/finance/",
+        "type": 301
+      },
+      {
         "source": "/tools",
         "destination": "/products/",
         "type": 301

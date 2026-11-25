@@ -1,0 +1,9 @@
+{
+  "name": "pi-finance",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update:data": "node scripts/update-data.mjs",
+    "test": "node scripts/test-calculators.mjs"
+  }
+}

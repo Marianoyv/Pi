@@ -12,6 +12,7 @@ from pi_development.web.knowledge_pages import (
     get_public_knowledge_slugs,
     get_recent_news_articles,
 )
+from pi_development.web.finance_catalog import get_finance_routes
 from pi_development.web.seo_pages import get_public_seo_page_slugs
 from pi_development.web.tool_catalog import get_public_tool_slugs
 from pi_development.web.work_content import get_indexable_work_case_slugs
@@ -77,6 +78,17 @@ class WorkCaseSitemap(BaseContentSitemap):
 
     def location(self, item):
         return reverse("work_case", kwargs={"slug": item})
+
+
+class FinancePageSitemap(BaseContentSitemap):
+    priority = 0.9
+    changefreq = "weekly"
+
+    def items(self):
+        return get_finance_routes()
+
+    def location(self, item):
+        return item
 
 
 class SeoPageSitemap(BaseContentSitemap):

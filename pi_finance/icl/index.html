@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calculadora ICL Argentina – Ajustes de contratos y alquileres</title>
+  <meta name="description" content="Simulá ajustes por ICL del BCRA según frecuencia y duración del contrato. Compará con ICL continuo.">
+  <link rel="canonical" href="https://pidevelopment.web.app/finance/icl/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Pi Finance">
+  <meta property="og:title" content="Calculadora ICL Argentina"><meta property="og:description" content="Simulá ajustes de alquiler y contratos con el ICL diario del BCRA."><meta property="og:url" content="https://pidevelopment.web.app/finance/icl/">
+  <meta property="og:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png"><meta property="og:image:alt" content="Pi Finance — Calculadoras financieras e índices oficiales">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Calculadora ICL Argentina"><meta name="twitter:description" content="Simulá ajustes con el ICL diario del BCRA."><meta name="twitter:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Calculadora ICL Argentina","url":"https://pidevelopment.web.app/finance/icl/","description":"Calculadora de ajustes por ICL con datos oficiales del BCRA.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Calculadoras financieras","item":"https://pidevelopment.web.app/finance/"},{"@type":"ListItem","position":2,"name":"ICL","item":"https://pidevelopment.web.app/finance/icl/"}]}]}</script>
+  <link rel="stylesheet" href="/finance/shared/theme.css">
+  <link rel="stylesheet" href="/finance/shared/components/components.css">
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <link rel="icon" type="image/png" href="/finance/icons/favicon.png">
+</head>
+
+<body>
+  <div data-component="header"></div>
+
+  <main class="page icl">
+    <div class="container">
+      <div class="card">
+        <div class="badge">BCRA • ICL</div>
+        <h1>Calculadora ICL Argentina</h1>
+        <p>Simulá ajustes por contrato (frecuencia + duración) y compará con ICL continuo.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:14px">
+        <section aria-label="Formulario de cálculo" class="card">
+          <form id="icl-form">
+            <div class="grid">
+              <div>
+                <label class="label" for="amount">Monto inicial (ARS)</label>
+                <input class="input" id="amount" name="amount" inputmode="decimal" autocomplete="off" required />
+              </div>
+
+              <div class="grid grid-2">
+                <div>
+                  <label class="label" for="from">Fecha inicio</label>
+                  <input class="input" id="from" name="from" type="date" required />
+                </div>
+
+                <div>
+                  <label class="label" for="today">Fecha hoy</label>
+                  <input class="input" id="today" name="today" type="date" required />
+                </div>
+              </div>
+
+              <div class="grid grid-2">
+                <div>
+                  <label class="label" for="duration">Duración del contrato (meses)</label>
+                  <select class="select" id="duration" name="duration" required>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="label" for="frequency">Frecuencia de ajuste (meses)</label>
+                  <select class="select" id="frequency" name="frequency" required>
+                    <option value="12">12</option>
+                    <option value="6">6</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                  </select>
+                </div>
+              </div>
+
+              <button id="calc-btn" class="btn" type="submit">Calcular</button>
+
+              <p id="error" class="error" hidden></p>
+            </div>
+          </form>
+        </section>
+
+        <section aria-label="Resultado" class="card">
+          <p id="notice" class="small" style="margin:0 0 10px;color:var(--muted)" hidden></p>
+          <div id="result" hidden>
+            <h2>Resultado</h2>
+
+            <div class="kv">
+              <div>
+                <div class="k">Monto vigente hoy (por ajustes)</div>
+                <div id="current-amount" class="v strong"></div>
+              </div>
+              <div>
+              <div class="k">Próximo ajuste</div>
+              <div id="next-adjust-date" class="v"></div>
+            </div>
+
+            <div>
+              <div class="k">Monto estimado en próximo ajuste</div>
+              <div id="next-adjust-amount" class="v"></div>
+            </div>
+            
+              <div>
+                <div class="k">Monto ICL a hoy (continuo)</div>
+                <div id="updated-amount" class="v"></div>
+              </div>
+
+              <div>
+                <div class="k">Ajuste acumulado (ICL continuo)</div>
+                <div id="accumulated" class="v"></div>
+              </div>
+
+              <div>
+                <div class="k">Rango ICL disponible</div>
+                <div id="range" class="v"></div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="table-wrap">
+              <h3 style="margin-bottom:10px">Tabla de ajustes</h3>
+              <table class="table" id="schedule-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Desde</th>
+                    <th>Hasta</th>
+                    <th>ICL desde</th>
+                    <th>ICL hasta</th>
+                    <th>% período</th>
+                    <th>Monto anterior</th>
+                    <th>Monto</th>
+                  </tr>
+                </thead>
+                <tbody id="schedule-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <p class="small" id="result-empty" style="margin:0;color:var(--muted)">
+            Completá el formulario y calculá para ver el resultado y la tabla.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+    <div data-component="footer"></div>
+  <script type="module" src="./assets/js/app.js"></script>
+  <script src="/finance/shared/components/components.js" defer></script>
+  <script src="/finance/shared/main.js" defer></script>
+</body>
+</html>

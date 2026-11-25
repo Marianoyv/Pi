@@ -1,0 +1,207 @@
+{
+  "source": "BCRA - Régimen de Transparencia",
+  "lastUpdate": "2026-08-21",
+  "methodology": "Mejor TEA mínima informada por cada entidad para depósitos tradicionales con plazo mínimo de 30 días.",
+  "banks": [
+    {
+      "bank": "Mutual Federada 25 de junio SPR",
+      "bankCode": "55227",
+      "product": "AT TRADICIONAL ASOCIADOS",
+      "channel": "Ventanilla de sucursal",
+      "minimumAmount": 5000,
+      "minimumDays": 30,
+      "tea": 25.31,
+      "date": "2026-08-18"
+    },
+    {
+      "bank": "BANCO COLUMBIA S.A.",
+      "bankCode": "389",
+      "product": "PLAZO FIJO TRADICIONAL EN PESOS",
+      "channel": "Cajero automático",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 24.36,
+      "date": "2026-07-28"
+    },
+    {
+      "bank": "BANCO HIPOTECARIO S.A.",
+      "bankCode": "44",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Electrónico",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 24.36,
+      "date": "2026-08-21"
+    },
+    {
+      "bank": "BIBANK S.A.",
+      "bankCode": "147",
+      "product": "PLAZO FIJO TRADICIONAL EN PESOS",
+      "channel": "Ventanilla de sucursal",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 23.75,
+      "date": "2026-08-19"
+    },
+    {
+      "bank": "UALA BANK S.A.U.",
+      "bankCode": "384",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 23.15,
+      "date": "2026-08-19"
+    },
+    {
+      "bank": "BANCO DE LA PROVINCIA DE CORDOBA S.A.",
+      "bankCode": "20",
+      "product": "PLAZO FIJO INTRANSFERIBLE TRADICIONAL PESOS ATM Y HB",
+      "channel": "Cajero automático",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 22.84,
+      "date": "2026-06-22"
+    },
+    {
+      "bank": "BANCO DE LA NACION ARGENTINA",
+      "bankCode": "11",
+      "product": "PLAZO FIJO TRADICIONAL ELECTRONICO",
+      "channel": "Electrónico",
+      "minimumAmount": 500,
+      "minimumDays": 30,
+      "tea": 20.75,
+      "date": "2026-07-24"
+    },
+    {
+      "bank": "BANCO SUPERVIELLE S.A.",
+      "bankCode": "27",
+      "product": "PLAZO FIJO TRADICIONAL INTRANSFERIBLE",
+      "channel": "Home banking",
+      "minimumAmount": 100,
+      "minimumDays": 30,
+      "tea": 20.75,
+      "date": "2026-07-22"
+    },
+    {
+      "bank": "BANCO CREDICOOP COOPERATIVO LIMITADO",
+      "bankCode": "191",
+      "product": "PLAZO FIJO TRADICIONAL EN PESOS INTRANSFERIBLE P. HUMANA",
+      "channel": "Línea telefónica",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 20.15,
+      "date": "2026-08-21"
+    },
+    {
+      "bank": "INDUSTRIAL AND COMMERCIAL BANK OF CHINA (ARGENTINA) S.A.U.",
+      "bankCode": "15",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Todos los canales",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 19.68,
+      "date": "2026-08-18"
+    },
+    {
+      "bank": "BANCO COMAFI SOCIEDAD ANONIMA",
+      "bankCode": "299",
+      "product": "PLAZO FIJO TRADICIONAL PIZARRA PESOS",
+      "channel": "Ventanilla de sucursal",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 19.56,
+      "date": "2026-07-31"
+    },
+    {
+      "bank": "BANCO DE SANTA CRUZ S.A.",
+      "bankCode": "86",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 5000,
+      "minimumDays": 30,
+      "tea": 19.56,
+      "date": "2026-08-21"
+    },
+    {
+      "bank": "BANCO DE GALICIA Y BUENOS AIRES S.A.",
+      "bankCode": "7",
+      "product": "PLAZOFIJOTRADICIONAL",
+      "channel": "Ventanilla de sucursal",
+      "minimumAmount": 100,
+      "minimumDays": 30,
+      "tea": 18.98,
+      "date": "2026-08-14"
+    },
+    {
+      "bank": "BANCO DE SAN JUAN S.A.",
+      "bankCode": "45",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 5000,
+      "minimumDays": 30,
+      "tea": 18.98,
+      "date": "2026-07-31"
+    },
+    {
+      "bank": "NUEVO BANCO DE ENTRE RÍOS S.A.",
+      "bankCode": "386",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 5000,
+      "minimumDays": 30,
+      "tea": 18.98,
+      "date": "2026-07-30"
+    },
+    {
+      "bank": "NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA",
+      "bankCode": "330",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 5000,
+      "minimumDays": 30,
+      "tea": 18.98,
+      "date": "2026-07-30"
+    },
+    {
+      "bank": "BANCO MUNICIPAL DE ROSARIO",
+      "bankCode": "65",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Ventanilla de sucursal",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 18.39,
+      "date": "2026-07-30"
+    },
+    {
+      "bank": "BANCO PROVINCIA DEL NEUQUÉN SOCIEDAD ANÓNIMA",
+      "bankCode": "97",
+      "product": "PLAZO FIJO TRADICIONAL EN PESOS",
+      "channel": "Home banking",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 18.39,
+      "date": "2026-07-24"
+    },
+    {
+      "bank": "BANCO PATAGONIA S.A.",
+      "bankCode": "34",
+      "product": "PLAZO FIJO TRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 1000,
+      "minimumDays": 30,
+      "tea": 17.23,
+      "date": "2026-07-22"
+    },
+    {
+      "bank": "BANCO SANTANDER ARGENTINA S.A.",
+      "bankCode": "72",
+      "product": "PLAZOFIJOTRADICIONAL",
+      "channel": "Home banking",
+      "minimumAmount": 500,
+      "minimumDays": 30,
+      "tea": 17.23,
+      "date": "2026-07-31"
+    }
+  ]
+}

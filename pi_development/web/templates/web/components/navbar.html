@@ -16,6 +16,7 @@
       <a class="{% if request.path == '/solutions/' %}is-active{% endif %}" {% if request.path == '/solutions/' %}aria-current="page"{% endif %} href="{% url 'solutions' %}">Solutions</a>
       <a class="{% if request.path == '/adtech/' %}is-active{% endif %}" {% if request.path == '/adtech/' %}aria-current="page"{% endif %} href="{% url 'adtech' %}">AdTech</a>
       <a class="{% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'product_detail' %}is-active{% endif %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'product_detail' %}aria-current="page"{% endif %} href="{% url 'products' %}">Products</a>
+      <a href="/finance/">Pi Finance</a>
       <a class="{% if request.path == '/work/' %}is-active{% endif %}" {% if request.path == '/work/' %}aria-current="page"{% endif %} href="{% url 'work' %}">Work</a>
       <a class="{% if request.resolver_match.url_name == 'insights' or request.resolver_match.url_name == 'knowledge_page' or request.resolver_match.url_name == 'seo_page' %}is-active{% endif %}" {% if request.resolver_match.url_name == 'insights' or request.resolver_match.url_name == 'knowledge_page' or request.resolver_match.url_name == 'seo_page' %}aria-current="page"{% endif %} href="{% url 'insights' %}">Insights</a>
       <a class="{% if request.path == '/company/' %}is-active{% endif %}" {% if request.path == '/company/' %}aria-current="page"{% endif %} href="{% url 'company' %}">Company</a>

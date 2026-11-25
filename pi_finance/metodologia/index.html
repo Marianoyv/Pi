@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Metodología de cálculo – Pi Finance</title>
+  <meta name="description" content="Conocé las fórmulas, fuentes, supuestos y criterios usados por las calculadoras financieras, IPC e ICL de Pi Finance.">
+  <link rel="canonical" href="https://pidevelopment.web.app/finance/metodologia/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Pi Finance">
+  <meta property="og:title" content="Metodología de las calculadoras"><meta property="og:description" content="Fórmulas, fuentes y supuestos explicados con claridad."><meta property="og:url" content="https://pidevelopment.web.app/finance/metodologia/">
+  <meta property="og:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png">
+  <link rel="stylesheet" href="/finance/shared/theme.css">
+  <link rel="stylesheet" href="/finance/shared/components/components.css">
+  <link rel="icon" type="image/png" href="/finance/icons/favicon.png">
+</head>
+
+<body>
+  <div data-component="header"></div>
+
+<main class="page">
+  <div class="container">
+    <article class="card">
+      <h1 class="h1">Metodología de cálculo</h1>
+      <p class="p">
+        En <strong>Pi Finance</strong> cada calculadora utiliza una fórmula publicada y reproducible.
+        IPC e ICL se apoyan en índices oficiales; las herramientas de intereses, tasas, préstamos,
+        porcentajes, IVA y rentabilidad usan los valores ingresados por el usuario. UVA, tasas bancarias y monotributo incorporan datos oficiales y escenarios explícitos.
+      </p>
+
+      <p class="p">
+        El objetivo es que cualquier usuario pueda entender, verificar y replicar los resultados.
+      </p>
+
+      <hr>
+
+      <h2>Principios generales</h2>
+      <ul class="list small">
+        <li>IPC e ICL utilizan series oficiales públicas.</li>
+        <li>Las calculadoras financieras aplican fórmulas matemáticas explícitas.</li>
+        <li>Los cálculos son determinísticos (mismo input mismo resultado).</li>
+        <li>No se inventan tasas ni datos futuros: cualquier escenario depende de lo que ingrese el usuario.</li>
+        <li>No se incorporan coeficientes propios ni redondeos ocultos.</li>
+        <li>La metodología prioriza claridad y trazabilidad.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Calculadora IPC</h2>
+
+      <h3 >Fuente del índice</h3>
+      <p class="p">IPC Nacional — Instituto Nacional de Estadística y Censos (INDEC).</p>
+
+      <h3 >Unidad temporal</h3>
+      <p class="p">
+        Variación mensual (porcentaje). Cada valor corresponde a la variación del IPC nivel general
+        publicada para ese mes.
+      </p>
+
+      <h3 >Método de cálculo</h3>
+      <ol class="list small">
+        <li>Se toma el monto inicial ingresado.</li>
+        <li>Se identifican los meses “desde” y “hasta”.</li>
+        <li>Se calcula la variación acumulada del IPC aplicando las variaciones mensuales.</li>
+        <li>
+          El monto actualizado se obtiene aplicando el factor acumulado:
+          <br><br>
+          <code>Monto actualizado = Monto inicial × Π (1 + IPC_mes / 100)</code>
+          <br><br>
+          donde el producto se calcula desde el mes posterior al “desde” hasta el “hasta” (inclusive).
+        </li>
+      </ol>
+
+      <h3 >Consideraciones</h3>
+      <ul class="list small">
+        <li>El cálculo es puramente acumulativo.</li>
+        <li>No se interpolan valores diarios.</li>
+        <li>El resultado refleja la variación del poder adquisitivo.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Calculadora ICL</h2>
+
+      <h3 >Fuente del índice</h3>
+      <p class="p">
+        ICL (Índice para Contratos de Locación) — Banco Central de la República Argentina (BCRA).
+      </p>
+
+      <h3>Modalidades de cálculo</h3>
+
+      <h4>1. Ajuste por contrato (frecuencia definida)</h4>
+      <ul class="list small">
+        <li>Se simulan aumentos según duración del contrato y frecuencia de ajuste.</li>
+        <li>En cada período se aplica la variación del ICL correspondiente.</li>
+        <li>
+          El resultado representa el monto vigente hoy según los ajustes contractuales.
+        </li>
+      </ul>
+
+      <h4>2. ICL continuo</h4>
+      <ul class="list small">
+        <li>Se calcula la variación acumulada del ICL entre la fecha de inicio y la fecha actual.</li>
+        <li>No se consideran cortes ni escalones intermedios.</li>
+        <li>
+          El resultado representa el ajuste teórico continuo del índice.
+        </li>
+      </ul>
+
+      <p>
+        Esta doble visualización permite comparar el efecto real del contrato
+        frente al comportamiento completo del índice.
+      </p>
+
+      <hr>
+
+      <h2>Calculadoras financieras y de porcentajes</h2>
+      <p>Estas herramientas no consultan cotizaciones ni tasas externas. Procesan localmente los datos ingresados y muestran la fórmula aplicada en su propia página.</p>
+      <ul class="list small">
+        <li><strong>Interés simple y plazo fijo:</strong> prorratean una tasa anual según el plazo.</li>
+        <li><strong>Interés compuesto:</strong> incorpora cada rendimiento al capital de los períodos siguientes.</li>
+        <li><strong>Préstamo francés:</strong> calcula cuota fija, intereses y amortización mensual.</li>
+        <li><strong>TNA, TEA y TEM:</strong> convierte tasas según la frecuencia de capitalización.</li>
+        <li><strong>Aumentos, descuentos, variación e IVA:</strong> aplican relaciones porcentuales directas.</li>
+        <li><strong>Rentabilidad:</strong> compara el resultado final con la inversión y anualiza el retorno.</li>
+        <li><strong>Cuotas o contado:</strong> obtiene la tasa implícita igualando el precio de contado con el valor actual de las cuotas.</li>
+        <li><strong>Cancelación de deudas:</strong> simula mes a mes interés, amortización y pagos extra.</li>
+        <li><strong>Sueldo real:</strong> compara el salario actual con el salario inicial actualizado por IPC.</li>
+        <li><strong>Plazos fijos por banco:</strong> convierte la TEA mínima declarada al BCRA al plazo ingresado.</li>
+        <li><strong>Crédito UVA:</strong> proyecta cuotas y saldos con valor UVA oficial y escenarios editables de inflación e ingresos.</li>
+        <li><strong>Monotributo:</strong> compara la facturación anual con topes oficiales de ARCA; los demás parámetros deben verificarse aparte.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Fechas y rangos</h2>
+      <ul class="list small">
+        <li>Las fechas se interpretan en formato calendario.</li>
+        <li>
+          Si el índice no está disponible para una fecha solicitada,
+          se informa explícitamente el rango válido de datos.
+        </li>
+        <li>No se extrapolan valores fuera del rango oficial publicado.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Actualización de datos</h2>
+      <ul class="list small">
+        <li>Los índices, tasas y tablas se revisan automáticamente contra sus fuentes oficiales.</li>
+        <li>Se indica siempre la fecha de última actualización.</li>
+        <li>No se generan datos propios ni estimaciones.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Qué no hace la calculadora</h2>
+      <ul class="list small">
+        <li>No brinda asesoramiento legal.</li>
+        <li>No reemplaza lo establecido en un contrato.</li>
+        <li>No contempla excepciones particulares.</li>
+        <li>No predice tasas, inflación, rendimientos ni valores futuros.</li>
+        <li>No ajusta por acuerdos privados.</li>
+      </ul>
+
+      <p class="p">
+        Las herramientas son informativas y técnicas.
+      </p>
+
+      <hr>
+
+      <h2>Transparencia</h2>
+      <ul class="list small">
+        <li>Las fuentes utilizadas pueden consultarse en la sección Fuentes.</li>
+        <li>El comportamiento de las calculadoras es auditable.</li>
+        <li>Cualquier resultado puede verificarse manualmente.</li>
+      </ul>
+    </article>
+  </div>
+</main>
+    <div data-component="footer"></div>
+  <script src="/finance/shared/components/components.js" defer></script>
+  <script src="/finance/shared/main.js" defer></script>
+</body>
+</html>

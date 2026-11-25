@@ -166,10 +166,9 @@ HOME_PAGE = {
             },
             {
                 "slug": "indices-argentinos",
-                "title": "Argentine Indices",
+                "title": "Pi Finance",
                 "text": (
-                    "A financial data interface designed to make economic indicators easier to scan, compare "
-                    "and understand."
+                    "Eighteen financial tools for everyday decisions, transparent formulas and official Argentine data."
                 ),
             },
         ],
@@ -294,7 +293,7 @@ SOLUTIONS_PAGE = {
     "evidence": [
         {"label": "Catalog and discovery platform", "title": "Arcade World", "href": "/work/#arcade-world"},
         {"label": "Editorial system", "title": "Emotional Int Blog", "href": "/work/#blog-int-emocional"},
-        {"label": "Financial data interface", "title": "Argentine Indices", "href": "/work/#indices-argentinos"},
+        {"label": "Financial product suite", "title": "Pi Finance", "href": "/work/#indices-argentinos"},
     ],
     "technology_title": "Technology follows the system",
     "technology_text": (

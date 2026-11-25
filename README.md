@@ -10,6 +10,7 @@ Producción: https://pidevelopment.web.app/ — plan Spark sin facturación vinc
 - `export_static` renderiza las páginas comerciales, casos, productos y artículos públicos, además de sitemap, robots, 404 y redirecciones de respaldo dentro de `dist/`.
 - Firebase Hosting sirve directamente `dist/` desde su CDN; ya no reenvía cada visita a Cloud Run.
 - UTM Builder, Creative QA Checklist y Creative Preview Lab se ejecutan en el navegador y no envían sus datos a un servidor.
+- Pi Finance vive en `/finance/` y reúne 18 calculadoras financieras, datos oficiales de IPC, ICL, UVA, tasas bancarias y monotributo dentro del diseño de Pi.
 - El contacto público usa email y WhatsApp. El envío SMTP permanece desactivado en la versión estática.
 - El antiguo rebuild, Cloud Run, Docker, admin, base de datos, SMTP y herramientas remotas se eliminaron del proyecto.
 
@@ -61,6 +62,7 @@ La versión estática local queda en `http://127.0.0.1:5000/`.
 .\.venv\Scripts\python.exe manage.py check
 .\.venv\Scripts\python.exe manage.py test pi_development.web.test_static_export
 node --check static\web\js\browser-tools.js
+node pi_finance\scripts\test-calculators.mjs
 ```
 
 ## Analytics

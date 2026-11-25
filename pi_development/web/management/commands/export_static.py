@@ -18,9 +18,11 @@ from pi_development.web.work_content import get_indexable_work_case_slugs
 
 
 STATIC_REFERENCE_PATTERN = re.compile(rb"/static/([A-Za-z0-9_./-]+)")
-SITEMAP_SECTIONS = ("pages", "tools", "work", "seo", "content")
+SITEMAP_SECTIONS = ("pages", "finance", "tools", "work", "seo", "content")
 STATIC_REDIRECTS = {
     "/tools/": "/products/",
+    "/finance/calculadoras/": "/finance/",
+    "/indices-argentinos/": "/finance/",
     "/labs/": "/products/",
     "/systems/": "/solutions/",
     "/case-studies/": "/work/",
@@ -139,13 +141,14 @@ class Command(BaseCommand):
             # This dependency is imported dynamically, so the HTML scan cannot discover it.
             static_references.update({b"web/js/vendor/web-vitals.js", b"web/js/vendor/web-vitals-LICENSE.txt", b"web/js/vendor/web-vitals-NOTICE.txt"})
         copied_assets = self._copy_static_assets(base_dir, output_dir, static_references)
+        finance_files = self._copy_finance_site(base_dir, output_dir)
         shutil.copy2(base_dir / "static" / "web" / "img" / "pi.ico", output_dir / "favicon.ico")
 
         self.stdout.write(
             self.style.SUCCESS(
                 f"Static export ready: {len(rendered_routes)} HTML pages, "
                 f"{len(STATIC_REDIRECTS)} redirect fallbacks, {len(SITEMAP_SECTIONS) + 2} sitemap files "
-                f"and {copied_assets} static assets in {output_dir}."
+                f"{copied_assets} static assets and {finance_files} Pi Finance files in {output_dir}."
             )
         )
 
@@ -183,3 +186,14 @@ class Command(BaseCommand):
             shutil.copy2(source, destination)
             copied += 1
         return copied
+
+    @staticmethod
+    def _copy_finance_site(base_dir, output_dir):
+        source = (base_dir / "pi_finance").resolve()
+        if not source.is_dir():
+            raise CommandError("Pi Finance source directory is missing.")
+
+        destination = output_dir / "finance"
+        ignored = shutil.ignore_patterns("package.json", "README.md", "scripts", "*.py", "*.ps1")
+        shutil.copytree(source, destination, dirs_exist_ok=True, ignore=ignored)
+        return sum(1 for path in destination.rglob("*") if path.is_file())

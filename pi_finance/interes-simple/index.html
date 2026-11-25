@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <title>Calculadora de interés simple online | Pi Finance</title>
+  <meta name="description" content="Calculá interés simple, monto ganado y total final según capital, tasa anual y plazo en días, meses o años. Gratis y con fórmula explicada.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://pidevelopment.web.app/finance/interes-simple/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Pi Finance">
+  <meta property="og:title" content="Calculadora de interés simple online"><meta property="og:description" content="Ingresá capital, tasa y plazo para conocer el interés y el monto final."><meta property="og:url" content="https://pidevelopment.web.app/finance/interes-simple/">
+  <meta property="og:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png"><meta property="og:image:alt" content="Pi Finance — Calculadoras financieras e índices oficiales">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Calculadora de interés simple"><meta name="twitter:description" content="Calculá interés y monto final en segundos.">
+  <meta name="twitter:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png">
+  <link rel="stylesheet" href="/finance/shared/theme.css"><link rel="stylesheet" href="/finance/shared/components/components.css"><link rel="stylesheet" href="/finance/calculadoras/assets/styles.css"><link rel="icon" type="image/png" href="/finance/icons/favicon.png">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Calculadora de interés simple","url":"https://pidevelopment.web.app/finance/interes-simple/","description":"Calculadora online de interés simple para obtener interés y monto final.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Calculadoras financieras","item":"https://pidevelopment.web.app/finance/"},{"@type":"ListItem","position":2,"name":"Interés simple","item":"https://pidevelopment.web.app/finance/interes-simple/"}]}]}
+  </script>
+</head>
+<body data-calculator="interes-simple">
+  <div data-component="header"></div>
+  <main class="page calculator-page"><div class="container">
+    <nav class="breadcrumbs" aria-label="Migas de pan"><a href="/finance/">Inicio</a><span aria-hidden="true">›</span><a href="/finance/#calculadoras">Calculadoras</a><span aria-hidden="true">›</span><span>Interés simple</span></nav>
+    <section class="card hero"><span class="badge">Intereses</span><h1>Calculadora de interés simple</h1><p class="lead">Calculá cuánto interés genera un capital cuando la ganancia no se suma al capital inicial. Podés expresar el plazo en días, meses o años.</p></section>
+    <div class="calculator-layout">
+      <section class="card"><h2>Ingresá los datos</h2>
+        <form id="calculator-form" class="calculator-form">
+          <div class="field"><label for="capital">Capital inicial</label><input id="capital" name="capital" type="number" value="100000" min="0.01" step="0.01" inputmode="decimal" required><small>Importe sobre el que se calcula el interés.</small></div>
+          <div class="form-grid">
+            <div class="field"><label for="annualRate">Tasa anual (%)</label><input id="annualRate" name="annualRate" type="number" value="40" min="0" step="0.01" inputmode="decimal" required></div>
+            <div class="field"><label for="term">Plazo</label><input id="term" name="term" type="number" value="90" min="0.01" step="0.01" inputmode="decimal" required></div>
+          </div>
+          <div class="field"><label for="unit">Unidad del plazo</label><select id="unit" name="unit"><option value="days" selected>Días</option><option value="months">Meses</option><option value="years">Años</option></select></div>
+          <button class="calculate-button" type="submit">Calcular interés simple</button>
+        </form>
+        <p id="calculator-error" class="calculator-error" role="alert" aria-live="polite" hidden></p>
+      </section>
+      <aside id="calculator-result" class="card calculator-result" aria-live="polite"><h2>Resultado</h2><dl class="result-list">
+        <div class="result-row primary"><dt>Monto final</dt><dd data-result="total"></dd></div>
+        <div class="result-row"><dt>Interés ganado</dt><dd data-result="interest"></dd></div>
+        <div class="result-row"><dt>Capital inicial</dt><dd data-result="principal"></dd></div>
+        <div class="result-row"><dt>Tasa del período</dt><dd data-result="effectiveRate" data-format="percent"></dd></div>
+      </dl><p class="small">El cálculo supone un año de 365 días y no contempla comisiones ni impuestos.</p></aside>
+    </div>
+    <section class="card content-section"><h2>¿Cómo se calcula el interés simple?</h2><p>El interés simple se calcula siempre sobre el capital original. A diferencia del interés compuesto, las ganancias de cada período no generan nuevos intereses.</p><div class="formula">Interés = Capital × Tasa anual × Tiempo en años</div><ol class="steps"><li>Convertí la tasa porcentual a decimal.</li><li>Expresá el plazo como parte de un año.</li><li>Multiplicá capital, tasa y tiempo; luego sumá el interés al capital.</li></ol></section>
+    <section class="card content-section"><h2>Preguntas frecuentes</h2><div class="faq-list">
+      <details><summary>¿Cuándo se usa el interés simple?</summary><p>Se usa en operaciones donde el rendimiento se calcula solo sobre el capital inicial, como ciertos préstamos cortos, recargos o inversiones sin reinversión.</p></details>
+      <details><summary>¿Qué diferencia hay con el interés compuesto?</summary><p>En el compuesto, los intereses se incorporan al capital y también producen rendimiento. Por eso el crecimiento se acelera con el tiempo.</p></details>
+      <details><summary>¿La tasa debe ser anual?</summary><p>Sí. Esta calculadora recibe una tasa anual y adapta el resultado al plazo indicado.</p></details>
+    </div></section>
+    <section class="card content-section"><h2>Calculadoras relacionadas</h2><div class="related-grid"><a class="related-link" href="/finance/interes-compuesto/">Interés compuesto</a><a class="related-link" href="/finance/plazo-fijo/">Plazo fijo</a><a class="related-link" href="/finance/tna-tea/">Convertir TNA y TEA</a></div></section>
+  </div></main>
+  <div data-component="footer"></div><script type="module" src="/finance/calculadoras/assets/app.js"></script><script src="/finance/shared/components/components.js" defer></script><script src="/finance/shared/main.js" defer></script>
+</body>
+</html>

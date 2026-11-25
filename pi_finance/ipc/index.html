@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Calculadora IPC Argentina – Actualizá montos por inflación</title>
+  <meta name="description" content="Calculá el ajuste por IPC oficial del INDEC entre dos meses. Herramienta simple, precisa y transparente."/>
+  <link rel="canonical" href="https://pidevelopment.web.app/finance/ipc/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Pi Finance">
+  <meta property="og:title" content="Calculadora IPC Argentina"><meta property="og:description" content="Actualizá un monto por la inflación acumulada entre dos meses con datos del INDEC."><meta property="og:url" content="https://pidevelopment.web.app/finance/ipc/">
+  <meta property="og:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png"><meta property="og:image:alt" content="Pi Finance — Calculadoras financieras e índices oficiales">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Calculadora IPC Argentina"><meta name="twitter:description" content="Actualizá montos por IPC con datos oficiales del INDEC."><meta name="twitter:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Calculadora IPC Argentina","url":"https://pidevelopment.web.app/finance/ipc/","description":"Calculadora de actualización por IPC con datos oficiales del INDEC.","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Calculadoras financieras","item":"https://pidevelopment.web.app/finance/"},{"@type":"ListItem","position":2,"name":"IPC","item":"https://pidevelopment.web.app/finance/ipc/"}]}]}</script>
+
+  <link rel="stylesheet" href="/finance/shared/theme.css">
+  <link rel="stylesheet" href="/finance/shared/components/components.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="icon" type="image/png" href="/finance/icons/favicon.png">
+</head>
+
+
+<body>
+  <div data-component="header"></div>
+
+<main class="page ipc">
+  <div class="container">
+    <div class="card">
+      <div class="badge">INDEC • IPC Nacional</div>
+      <h1>Calculadora IPC Argentina</h1>
+      <p>Actualizá un monto según IPC (INDEC) entre dos meses.</p>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:14px">
+      <section aria-label="Formulario de cálculo" class="card">
+        <form id="ipc-form" novalidate>
+          <div class="grid">
+            <div>
+              <label class="label" for="amount">Monto inicial</label>
+              <input
+                class="input"
+                id="amount"
+                name="amount"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="Ej: 100.000,50"
+                required
+              />
+            </div>
+
+            <div class="grid grid-2">
+              <div>
+                <label class="label" for="from">Desde (mes)</label>
+                <input class="input" id="from" name="from" type="month" required />
+              </div>
+
+              <div>
+                <label class="label" for="to">Hasta (mes)</label>
+                <input class="input" id="to" name="to" type="month" required />
+              </div>
+            </div>
+
+            <button class="btn" type="submit" id="calc-btn">Calcular</button>
+            <p id="error" class="error" role="alert" hidden></p>
+          </div>
+        </form>
+      </section>
+
+      <section aria-label="Resultado" class="card">
+        <h2>Resultado</h2>
+
+        <p id="notice" class="small" style="margin:0 0 10px;color:var(--muted)" hidden></p>
+
+        <div id="result" class="result" hidden>
+          <div class="kv">
+            <div>
+              <div class="k">Monto actualizado</div>
+              <div id="updated-amount" class="v strong">—</div>
+            </div>
+            <div>
+              <div class="k">Variación acumulada</div>
+              <div id="accumulated" class="v">—</div>
+            </div>
+            <div>
+              <div class="k">Período</div>
+              <div id="period" class="v">—</div>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin-top:14px">
+            <h3 style="margin-bottom:10px">Detalle mes a mes</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Mes</th>
+                  <th>IPC %</th>
+                  <th>Factor</th>
+                  <th>Monto anterior</th>
+                  <th>Monto nuevo</th>
+                </tr>
+              </thead>
+              <tbody id="schedule-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <p class="small" id="result-empty" style="margin:0;color:var(--muted)">
+          Completá el formulario y calculá para ver el resultado y la tabla.
+        </p>
+
+        <hr>
+
+        <details>
+          <summary class="small">Fuente de datos</summary>
+          <p class="small">
+            IPC oficial: INDEC. Los datos se cargan desde un JSON público actualizado (si está disponible)
+            y, como respaldo, desde <code>/ipc/data/ipc.json</code>.
+          </p>
+          <p class="small">
+            <strong>Última actualización:</strong>
+            <span id="last-update">—</span>
+          </p>
+        </details>
+      </section>
+    </div>
+
+    <p class="small" style="margin-top:14px">
+      Hecho con HTML + CSS + JS. Sin frameworks.
+    </p>
+  </div>
+</main>
+
+    <div data-component="footer"></div>
+  <script type="module" src="./assets/js/app.js"></script>
+  <script src="/finance/shared/components/components.js" defer></script>
+  <script src="/finance/shared/main.js" defer></script>
+</body>
+</html>

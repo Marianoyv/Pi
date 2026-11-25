@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/ipc/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/icl/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url><loc>https://pidevelopment.web.app/finance/interes-simple/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/interes-compuesto/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/plazo-fijo/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/prestamo-sistema-frances/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/tna-tea/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/porcentaje-aumento/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/porcentaje-descuento/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/variacion-porcentual/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/iva/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/rentabilidad-inversion/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/cuotas-o-contado/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/cancelar-deudas/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/sueldo-real/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/comparador-plazos-fijos/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/credito-uva/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pidevelopment.web.app/finance/monotributo/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/metodologia/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/fuentes/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://pidevelopment.web.app/finance/aviso-legal/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

@@ -303,7 +303,7 @@ WORK_REGISTRY = [
     },
     {
         "slug": "indices-argentinos",
-        "name": "Índices Argentinos",
+        "name": "Pi Finance",
         "public_visibility": True,
         "featured": True,
         "indexable": True,
@@ -315,15 +315,15 @@ WORK_REGISTRY = [
         "permission_status": "Owner-approved public case",
         "current_status": "Live public product",
         "home_status": "Live",
-        "timeline_label": "LIVE / 2026",
+        "timeline_label": "PI FINANCE / 2026",
         "category": "Financial calculators, public data and browser-side tools",
         "summary": (
-            "A fast public suite of financial calculators and Argentine index tools built with transparent formulas."
+            "Pi's financial product suite for everyday decisions in Argentina, built with transparent formulas and official data."
         ),
         "home_summary": (
-            "Twelve browser-based calculators plus IPC and ICL tools that turn public financial data into clear, repeatable answers."
+            "Eighteen browser-based tools for inflation, financing, debts, savings, taxes and rates."
         ),
-        "launch_date": "Public implementation reviewed August 2026",
+        "launch_date": "Reintroduced as Pi Finance in November 2026",
         "date_published": "2026-08",
         "context": (
             "People regularly need to resolve interest, loan, rate, percentage, tax and index-adjustment questions "
@@ -342,11 +342,11 @@ WORK_REGISTRY = [
             "responsive interface and deployment architecture."
         ),
         "what_built": (
-            "A suite of 12 financial calculators covering interest, loans, rates, percentages, VAT and returns, "
-            "plus dedicated IPC and ICL adjustment experiences."
+            "A suite of 18 financial tools covering interest, loans, rates, percentages, VAT, returns, debts, "
+            "purchasing power, fixed-term deposits, UVA credit, monotributo, IPC and ICL."
         ),
         "seo_analytics": (
-            "The interface explains its methodology and data sources, uses official public IPC and ICL references, "
+            "The interface explains its methodology and data sources, uses public IPC, ICL, UVA, banking-rate and ARCA references, "
             "and keeps deterministic calculations inside the browser."
         ),
         "delivery_approach": (
@@ -354,34 +354,34 @@ WORK_REGISTRY = [
             "new tools can be added without compromising speed or clarity."
         ),
         "result": (
-            "A live, mobile-ready product where users can access 12 financial calculators, official-index adjustment "
-            "tools, methodology and source information from one coherent system."
+            "A live, mobile-ready Pi product where users can access 18 financial tools, official-data experiences, "
+            "methodology and source information from one coherent system."
         ),
         "metrics": [
-            {"value": "12", "label": "financial calculators"},
-            {"value": "2", "label": "official index tools"},
+            {"value": "18", "label": "financial tools"},
+            {"value": "5", "label": "official data sources"},
             {"value": "100%", "label": "browser-side calculations"},
             {"value": "0", "label": "frontend frameworks"},
         ],
-        "evidence_period": "Public implementation reviewed on 22 August 2026",
+        "evidence_period": "Pi Finance integration reviewed in November 2026",
         "context_heading": "Useful financial answers without the friction.",
         "build_heading": "A reusable calculator system",
         "supporting_work_label": "Methodology and data",
         "supporting_work_title": "Transparent by design",
-        "result_heading": "Fourteen focused public tools in one system",
+        "result_heading": "Eighteen focused public tools in one Pi product",
         "evidence_eyebrow": "Verifiable product scope",
         "evidence_title": "Capabilities visible in the live implementation.",
         "evidence_boundaries": [
             "The figures describe product scope, not traffic, adoption or commercial outcomes.",
             "Financial results are deterministic estimates and do not replace professional advice or contractual terms.",
-            "IPC and ICL coverage depends on the public source ranges documented by the product.",
+            "Official-data coverage depends on the public source ranges documented by the product.",
             "No claim is made about user volume, conversion or revenue impact.",
         ],
-        "technologies": ["HTML", "CSS", "JavaScript", "Public index data", "Firebase Hosting"],
+        "technologies": ["HTML", "CSS", "JavaScript", "INDEC", "BCRA", "ARCA", "Firebase Hosting"],
         "image": "web/img/indices-desktop.webp",
         "media_type": "responsive_image",
         "poster": "web/img/indices-desktop.webp",
-        "external_url": "https://indices-argentinos.web.app/",
+        "external_url": "/finance/",
     },
     {
         "slug": "taitet",

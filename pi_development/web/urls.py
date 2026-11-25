@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 from .sitemaps import (
     CorePageSitemap,
+    FinancePageSitemap,
     KnowledgePageSitemap,
     SeoPageSitemap,
     ToolPageSitemap,
@@ -15,6 +16,7 @@ from .sitemaps import (
 
 sitemaps = {
     "pages": CorePageSitemap,
+    "finance": FinancePageSitemap,
     "tools": ToolPageSitemap,
     "work": WorkCaseSitemap,
     "seo": SeoPageSitemap,

@@ -16,6 +16,12 @@ try {
         node --check $script.FullName
         if ($LASTEXITCODE -ne 0) { throw "JavaScript invalido: $($script.Name)" }
     }
+    foreach ($script in Get-ChildItem -LiteralPath (Join-Path $projectRoot "pi_finance") -Filter "*.js" -File -Recurse) {
+        node --check $script.FullName
+        if ($LASTEXITCODE -ne 0) { throw "JavaScript invalido en Pi Finance: $($script.FullName)" }
+    }
+    node pi_finance/scripts/test-calculators.mjs
+    if ($LASTEXITCODE -ne 0) { throw "Las pruebas de Pi Finance fallaron." }
     node --test tests/*.test.cjs
     if ($LASTEXITCODE -ne 0) { throw "Las pruebas de JavaScript fallaron." }
     & $pythonPath manage.py test pi_development.web.test_static_export --settings=pi_development.settings.static_export

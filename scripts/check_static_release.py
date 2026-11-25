@@ -26,6 +26,18 @@ for page in pages:
         if 'googletagmanager.com/gtag/js' in html:errors.append('Google tag must be loaded by the consent-mode runtime: '+str(page.relative_to(DIST)))
         for choice in ('granted','denied','disabled'):
             if 'data-analytics-consent="'+choice+'"' not in html:errors.append('Missing consent choice: '+choice)
+finance_root=DIST/'finance'
+finance_pages=list(finance_root.rglob('*.html')) if finance_root.is_dir() else []
+if len(finance_pages)<22:errors.append('Pi Finance export is incomplete.')
+for page in finance_pages:
+    html=page.read_text(encoding='utf-8')
+    if 'indices-argentinos.web.app' in html or 'Índices Argentinos' in html:
+        errors.append('Legacy finance brand or domain remains: '+str(page.relative_to(DIST)))
+    for match in re.findall(r'(?:href|src)="(/finance/[^"?#]*)',html):
+        target=DIST/match.lstrip('/')
+        if match.endswith('/'):
+            target=target/'index.html'
+        if not target.is_file():errors.append('Missing Pi Finance dependency: '+match)
 if not (DIST/'index.html').is_file() or 'data-analytics-preferences' not in (DIST/'index.html').read_text(encoding='utf-8'):
     errors.append('Homepage analytics integration is missing.')
 for required in ('analytics.js','vendor/web-vitals.js','vendor/web-vitals-LICENSE.txt','vendor/web-vitals-NOTICE.txt'):

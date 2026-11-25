@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fuentes de datos – Pi Finance</title>
+  <meta name="description" content="Consultá las fuentes oficiales de IPC, ICL, UVA, tasas de plazo fijo y monotributo utilizadas por las calculadoras de Pi Finance.">
+  <link rel="canonical" href="https://pidevelopment.web.app/finance/fuentes/">
+  <meta property="og:type" content="website"><meta property="og:locale" content="es_AR"><meta property="og:site_name" content="Pi Finance">
+  <meta property="og:title" content="Fuentes de datos de Pi Finance"><meta property="og:description" content="Origen y alcance de los datos utilizados por cada calculadora."><meta property="og:url" content="https://pidevelopment.web.app/finance/fuentes/">
+  <meta property="og:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://pidevelopment.web.app/finance/icons/social-preview-pi-finance.png">
+  <link rel="stylesheet" href="/finance/shared/theme.css">
+  <link rel="stylesheet" href="/finance/shared/components/components.css">
+  <link rel="icon" type="image/png" href="/finance/icons/favicon.png">
+</head>
+<body>
+  <div data-component="header"></div>
+  <main class="page">
+    <div class="container">
+      <div class="card">
+        <h1 class="h1">Fuentes</h1>
+        <p class="p">IPC, ICL, UVA, tasas bancarias y categorías de monotributo se actualizan con fuentes públicas oficiales. Las demás calculadoras usan fórmulas y los datos que ingresa el usuario.</p>
+      </div>
+
+      <div class="grid" style="margin-top:14px">
+        <div class="card">
+          <div class="badge">IPC</div>
+          <h2>INDEC — IPC Nacional</h2>
+          <p class="p">Índice de Precios al Consumidor (IPC) para Argentina.</p>
+          <p class="small">
+            Sitio oficial:
+            <a href="https://www.indec.gob.ar/indec/web/Institucional-Indec-calculadora_variaciones_IPC" target="_blank" rel="noopener">Calculadora y documentación del INDEC</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="badge">ICL</div>
+          <h2>BCRA — ICL</h2>
+          <p class="p">Índice para contratos de locación (ICL).</p>
+          <p class="small">
+            Sitio oficial:
+            <a href="https://www.bcra.gob.ar/principales-variables/" target="_blank" rel="noopener">Serie ICL del BCRA</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="badge">Fórmulas</div>
+          <h2>Intereses, tasas, préstamos, porcentajes, IVA y ROI</h2>
+          <p class="p">No requieren bases de datos externas ni tasas predeterminadas. El usuario ingresa capital, tasa, plazo o porcentajes y el cálculo se realiza en el navegador.</p>
+          <p class="small"><a href="/finance/metodologia/">Ver fórmulas y supuestos de cálculo</a></p>
+        </div>
+        <div class="card"><div class="badge">UVA</div><h2>BCRA — Unidad de Valor Adquisitivo</h2><p class="p">Valor diario oficial usado como punto de partida del simulador de crédito UVA.</p><p class="small"><a href="https://www.bcra.gob.ar/principales-variables/" target="_blank" rel="noopener">Principales variables del BCRA</a></p></div>
+        <div class="card"><div class="badge">Plazos fijos</div><h2>BCRA — Régimen de Transparencia</h2><p class="p">Tasas y condiciones declaradas por las entidades para comparar depósitos tradicionales.</p><p class="small"><a href="https://www.bcra.gob.ar/regimen-de-transparencia/" target="_blank" rel="noopener">Transparencia del sistema financiero</a></p></div>
+        <div class="card"><div class="badge">Monotributo</div><h2>ARCA — Categorías vigentes</h2><p class="p">Topes de ingresos y cuotas integradas oficiales para servicios y venta de bienes.</p><p class="small"><a href="https://www.arca.gob.ar/monotributo/categorias.asp" target="_blank" rel="noopener">Categorías de monotributo</a></p></div>
+      </div>
+
+      <p class="small" style="margin-top:14px">
+        Nota: cada contrato puede tener particularidades (fechas de corte, redondeos, etc.).
+      </p>
+    </div>
+  </main>
+    <div data-component="footer"></div>
+  <script src="/finance/shared/components/components.js" defer></script>
+  <script src="/finance/shared/main.js" defer></script>
+</body>
+</html>

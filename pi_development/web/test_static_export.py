@@ -16,6 +16,7 @@ from pi_development.web.knowledge_pages import (
     get_public_knowledge_slugs,
     get_recent_news_articles,
 )
+from pi_development.web.finance_catalog import get_finance_routes
 
 
 class StaticExportConfigurationTests(SimpleTestCase):
@@ -33,6 +34,20 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertIn("/work/taitet/", routes)
         self.assertNotIn("/rebuild/", routes)
         self.assertNotIn("/design-lab/", routes)
+
+    def test_pi_finance_inventory_absorbs_the_complete_financial_suite(self):
+        routes = get_finance_routes()
+
+        self.assertEqual(len(routes), 22)
+        self.assertEqual(len(routes), len(set(routes)))
+        self.assertIn("/finance/", routes)
+        self.assertIn("/finance/ipc/", routes)
+        self.assertIn("/finance/icl/", routes)
+        self.assertIn("/finance/cuotas-o-contado/", routes)
+        self.assertIn("/finance/cancelar-deudas/", routes)
+        self.assertIn("/finance/comparador-plazos-fijos/", routes)
+        self.assertIn("/finance/credito-uva/", routes)
+        self.assertIn("/finance/monotributo/", routes)
 
     def test_business_solutions_page_is_english_and_has_a_clear_offer(self):
         response = self.client.get("/soluciones-para-negocios/")
@@ -179,6 +194,8 @@ class StaticExportConfigurationTests(SimpleTestCase):
         )
 
     def test_static_redirect_fallbacks_preserve_legacy_entry_points(self):
+        self.assertEqual(STATIC_REDIRECTS["/indices-argentinos/"], "/finance/")
+        self.assertEqual(STATIC_REDIRECTS["/finance/calculadoras/"], "/finance/")
         self.assertEqual(STATIC_REDIRECTS["/systems/"], "/solutions/")
         self.assertEqual(STATIC_REDIRECTS["/approach/"], "/solutions/#process")
         self.assertEqual(STATIC_REDIRECTS["/blog/"], "/insights/")
@@ -191,6 +208,10 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertEqual(hosting["public"], "dist")
         self.assertNotIn("rewrites", hosting)
         self.assertTrue(hosting["redirects"])
+        finance_redirect = next(
+            item for item in hosting["redirects"] if item.get("destination") == "/finance/" and "regex" in item
+        )
+        self.assertEqual(finance_redirect["regex"], "^/finance/calculadoras/?$")
 
     def test_firebase_headers_keep_html_fresh_and_protect_every_response(self):
         config = json.loads((Path(settings.BASE_DIR) / "firebase.json").read_text(encoding="utf-8"))
@@ -243,7 +264,7 @@ class StaticExportConfigurationTests(SimpleTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "PI / CAPABILITY ENGINE")
-        self.assertContains(response, "Índices Argentinos")
+        self.assertContains(response, "Pi Finance")
         self.assertContains(response, "web/img/indices-desktop.webp")
         self.assertContains(response, "web/img/indices-mobile.webp")
         self.assertContains(response, 'data-metric-board')
@@ -335,7 +356,7 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertContains(response, 'data-project-name=', count=5)
         self.assertContains(response, 'data-preview-size-button="mobile"', count=5)
         self.assertContains(response, 'data-preview-src="https://junometales.com/"')
-        self.assertContains(response, 'data-preview-src="https://indices-argentinos.web.app/"')
+        self.assertContains(response, 'data-preview-src="/finance/"')
         self.assertContains(response, 'data-preview-src="https://arcade-world.web.app/"')
         self.assertContains(response, 'data-preview-src="https://recetasdelsapi.web.app/"')
         self.assertContains(response, 'data-preview-src="https://taitet.com/"')
