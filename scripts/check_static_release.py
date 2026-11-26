@@ -40,6 +40,9 @@ for page in finance_pages:
         if not target.is_file():errors.append('Missing Pi Finance dependency: '+match)
 if not (DIST/'index.html').is_file() or 'data-analytics-preferences' not in (DIST/'index.html').read_text(encoding='utf-8'):
     errors.append('Homepage analytics integration is missing.')
+verification_file=DIST/'googlef48877e82a31eaf4.html'
+if not verification_file.is_file() or verification_file.read_text(encoding='utf-8').strip()!='google-site-verification: googlef48877e82a31eaf4.html':
+    errors.append('Google Search Console verification file is missing or invalid.')
 for required in ('analytics.js','vendor/web-vitals.js','vendor/web-vitals-LICENSE.txt','vendor/web-vitals-NOTICE.txt'):
     if not (DIST/'static/web/js'/required).is_file():errors.append('Missing analytics dependency: '+required)
 analytics_runtime=(DIST/'static/web/js/analytics.js')

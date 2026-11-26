@@ -19,6 +19,7 @@ from pi_development.web.work_content import get_indexable_work_case_slugs
 
 STATIC_REFERENCE_PATTERN = re.compile(rb"/static/([A-Za-z0-9_./-]+)")
 SITEMAP_SECTIONS = ("pages", "finance", "tools", "work", "seo", "content")
+GOOGLE_SITE_VERIFICATION_FILE = "googlef48877e82a31eaf4.html"
 STATIC_REDIRECTS = {
     "/tools/": "/products/",
     "/finance/calculadoras/": "/finance/",
@@ -143,6 +144,10 @@ class Command(BaseCommand):
         copied_assets = self._copy_static_assets(base_dir, output_dir, static_references)
         finance_files = self._copy_finance_site(base_dir, output_dir)
         shutil.copy2(base_dir / "static" / "web" / "img" / "pi.ico", output_dir / "favicon.ico")
+        verification_source = base_dir / GOOGLE_SITE_VERIFICATION_FILE
+        if not verification_source.is_file():
+            raise CommandError("Google Search Console verification file is missing.")
+        shutil.copy2(verification_source, output_dir / GOOGLE_SITE_VERIFICATION_FILE)
 
         self.stdout.write(
             self.style.SUCCESS(

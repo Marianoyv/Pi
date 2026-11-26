@@ -6,6 +6,7 @@ from django.conf import settings
 from django.test import SimpleTestCase, override_settings
 
 from pi_development.web.management.commands.export_static import (
+    GOOGLE_SITE_VERIFICATION_FILE,
     STATIC_REDIRECTS,
     get_public_html_routes,
 )
@@ -20,6 +21,14 @@ from pi_development.web.finance_catalog import get_finance_routes
 
 
 class StaticExportConfigurationTests(SimpleTestCase):
+    def test_google_search_console_verification_file_is_pinned(self):
+        verification_file = Path(settings.BASE_DIR) / GOOGLE_SITE_VERIFICATION_FILE
+
+        self.assertEqual(
+            verification_file.read_text(encoding="utf-8").strip(),
+            f"google-site-verification: {GOOGLE_SITE_VERIFICATION_FILE}",
+        )
+
     def test_public_route_inventory_is_unique_and_excludes_preview_routes(self):
         routes = get_public_html_routes()
 
