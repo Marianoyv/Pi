@@ -15,6 +15,48 @@
   "human_question": "Pregunta, tensión o preocupación humana que abre la pieza.",
   "editorial_hypothesis": "Si publicamos esta historia para esta persona, esperamos que entre por esta pregunta y permanezca por esta consecuencia o utilidad.",
   "distribution_hypothesis": "Canales, audiencia y formulación inicial que se probarán durante los primeros siete días.",
+  "trend_evidence": {
+    "query": "Tema o consulta cuya aceleración justifica evaluar la noticia.",
+    "captured_at": "AAAA-MM-DDTHH:MM:SS-03:00",
+    "rechecked_at": "AAAA-MM-DDTHH:MM:SS-03:00",
+    "window_hours": 72,
+    "market": "AR + internacional",
+    "status": "rising|active|steady",
+    "saturation": "low|medium|high",
+    "editorial_opportunity": "Pregunta relevante que la cobertura existente todavía no responde bien.",
+    "signals": [
+      {
+        "signal_type": "google-trends|news-cluster|social-conversation|first-party-demand",
+        "source": "Fuente pública donde se observó el interés",
+        "url": "https://fuente-de-la-senal.example/tema",
+        "observed_at": "AAAA-MM-DDTHH:MM:SS-03:00",
+        "evidence": "Descripción verificable de la señal sin inventar volúmenes ni porcentajes."
+      },
+      {
+        "signal_type": "news-cluster",
+        "source": "Segunda señal independiente",
+        "url": "https://segunda-senal.example/tema",
+        "observed_at": "AAAA-MM-DDTHH:MM:SS-03:00",
+        "evidence": "Qué demuestra esta segunda señal sobre actualidad o interés."
+      }
+    ]
+  },
+  "news_layers": {
+    "official_announcement": [
+      "Hechos confirmados por la fuente primaria: quién anunció qué, cuándo entra en vigor y a quién afecta."
+    ],
+    "independent_verification": [
+      "Qué confirmó una fuente independiente, qué cifras difieren y qué información sigue sin respuesta."
+    ],
+    "pi_editorial": [
+      "Interpretación de Pi claramente identificada como análisis, con una consecuencia humana concreta."
+    ],
+    "quality_evidence": [
+      "Fuente primaria comprobada y enlazada.",
+      "Contraste independiente comprobado y enlazado.",
+      "Tendencia revalidada dentro de las 72 horas previas a publicar."
+    ]
+  },
   "target_audience": [
     "Audiencia principal",
     "Audiencia secundaria"
@@ -44,15 +86,15 @@
   ],
   "sections": [
     {
-      "title": "Qué cambió",
+      "title": "Por qué importa ahora",
       "paragraphs": [
-        "Explicación precisa basada en la fuente primaria."
+        "Consecuencia concreta de la noticia para una persona, equipo o negocio."
       ]
     },
     {
-      "title": "Qué significa para equipos y publishers",
+      "title": "A quién afecta y de qué manera",
       "paragraphs": [
-        "Interpretación editorial de Pi, identificada como análisis y no como hecho anunciado."
+        "Alcance real del cambio sin generalizaciones no respaldadas."
       ]
     },
     {
@@ -67,9 +109,9 @@
       ]
     },
     {
-      "title": "Lectura de Pi",
+      "title": "Qué todavía no sabemos",
       "paragraphs": [
-        "Conclusión propia, prudente y útil."
+        "Límites, incertidumbres y preguntas que la evidencia disponible no permite cerrar."
       ]
     }
   ],

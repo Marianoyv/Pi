@@ -15,31 +15,36 @@ Cada nota vive en `content/articles/` y su portada en `static/web/img/insights/`
 1. Ejecutar `scripts/collect-weekly-analytics.ps1` para importar GA4 y Search Console con acceso de solo lectura para los últimos 7 días y el contexto de 28 días.
 2. Comparar la semana con el período anterior sin mezclar tráfico propio, despliegues o errores de medición con interés editorial. Si Search Console no tiene acceso, continuar con GA4 y declarar la limitación en vez de inventar demanda de búsqueda.
 3. Revisar piezas a las 48 horas, 7 días y 28 días cuando exista muestra suficiente.
-4. Escribir `analytics/weekly/latest.md` con el formato de `content/templates/weekly-editorial-brief.template.md`.
-5. Proponer una hipótesis distinta para lunes, miércoles y viernes. El brief no autoriza una publicación por sí solo.
+4. Consultar las fuentes de descubrimiento de `content/editorial/trend-sources.json`: Google Trends, agrupaciones de noticias, fuentes oficiales, medios y conversación pública. Las señales sociales descubren interés; nunca prueban hechos.
+5. Guardar para cada candidato hora, mercado, dos señales distintas, saturación, vida útil y la pregunta que la cobertura todavía no responde.
+6. Escribir `analytics/weekly/latest.md` con el formato de `content/templates/weekly-editorial-brief.template.md`.
+7. Proponer una hipótesis distinta para lunes, miércoles y viernes. El brief no autoriza una publicación por sí solo.
 
 `analytics/weekly/` es local, está fuera de Git y nunca se publica en Firebase.
 
 ### Lunes, miércoles y viernes: investigación y publicación
 
 1. Leer `content/editorial/brief.json`, `content/editorial/sources.json`, `content/editorial/index.json`, `content/templates/article.template.json` y el brief semanal si tiene menos de ocho días.
-2. Investigar temas recientes y piezas durables dentro de los seis territorios editoriales.
-3. Puntuar cada candidato. Solo producir el mejor si supera 75/100 y no activa un rechazo obligatorio.
-4. Mantener el artículo como borrador lógico durante investigación, redacción, verificación factual y producción visual.
-5. Ejecutar validación editorial, pruebas, build y deploy. Si cualquier control falla, no publicar.
-6. Comprobar por HTTP la URL, el título, la imagen y la declaración visual.
+2. Comprobar el uso disponible. Con menos de 35% en la ventana de cinco horas o menos de 25% en la semanal, conservar capacidad y no producir una pieza completa.
+3. Revalidar dentro de las 72 horas previas las tendencias candidatas. Una señal caída, aislada o sin encaje descarta el tema.
+4. Investigar temas recientes y piezas durables dentro de los seis territorios editoriales.
+5. Puntuar cada candidato. Solo producir el mejor si supera 75/100 y no activa un rechazo obligatorio.
+6. Mantener el artículo como borrador lógico durante investigación, redacción, verificación factual y producción visual. No generar la portada antes de aprobar tema y fuentes.
+7. Ejecutar validación editorial, pruebas, build y deploy. Si cualquier control falla, no publicar.
+8. Comprobar por HTTP la URL, el título, la imagen, las capas de verificación y la declaración visual.
 
 Si no existe una historia sólida, el espacio queda vacío y la ejecución informa por qué.
 
 ## Contrato de noticia
 
-La fórmula adoptada del sistema de Arcade World se expresa así para Pi:
+La fórmula adoptada del sistema de Arcade World se expresa así para Pi. En noticias nuevas, las cuatro primeras capas aparecen separadas y visibles:
 
-1. **Qué pasó:** dato principal, responsable, fecha y alcance confirmado.
-2. **Por qué importa:** consecuencia concreta para una persona, equipo o negocio.
-3. **Lectura de Pi:** contexto o conclusión original, claramente separada de los hechos.
-4. **Qué conviene hacer:** prueba, decisión o señal que el lector puede revisar.
-5. **Qué sigue abierto:** límites, desacuerdos y próximos hitos.
+1. **Qué se anunció:** dato principal, responsable, fecha y alcance confirmado por la fuente primaria.
+2. **Qué pudimos verificar:** contraste independiente, diferencias entre cifras y preguntas abiertas.
+3. **Lectura editorial de Pi:** contexto o conclusión original, claramente separada de los hechos.
+4. **Cómo verificamos esta noticia:** fuentes, señales de tendencia y controles superados.
+5. **Qué conviene hacer:** prueba, decisión o señal que el lector puede revisar.
+6. **Qué sigue abierto:** límites, desacuerdos y próximos hitos.
 
 `summary` funciona como lectura rápida; `description` explica la consecuencia; `key_takeaways` debe incluir al menos una acción. Las noticias y los análisis nuevos requieren una fuente primaria y otra fuente independiente. Para afirmaciones sensibles se añaden tantas confirmaciones como sean necesarias.
 
@@ -75,6 +80,8 @@ El domingo puede leer los archivos de `analytics/weekly/` y los datasets recién
 - Título factual, específico y sin clickbait.
 - Hipótesis editorial y de distribución antes de producir.
 - Hechos, declaraciones, inferencias y análisis separados.
+- Evidencia de tendencia formada por dos señales públicas distintas y revalidada dentro de las 72 horas previas para toda noticia nueva.
+- Comunicado oficial, contraste independiente, lectura editorial y pruebas de calidad presentados como capas visibles distintas.
 - Fecha, zona horaria, autoría, fuentes y correcciones visibles.
 - Entre 500 y 1.800 palabras; al menos tres conclusiones y dos preguntas frecuentes.
 - Enlaces internos únicamente cuando sean pertinentes.
@@ -87,6 +94,7 @@ El domingo puede leer los archivos de `analytics/weekly/` y los datasets recién
 - Revisión semanal: domingo 20:00, hora de Buenos Aires.
 - Producción: lunes, miércoles y viernes a las 08:00, hora de Buenos Aires.
 - Volumen máximo: una pieza por ejecución.
+- Presupuesto: conservar al menos 35% de la ventana de cinco horas y 25% de la semanal; una sola pieza completa y una sola generación de portada por día.
 - Publicación: Firebase Hosting mediante `deploy-static.ps1`.
 - Entorno: computadora encendida, Codex abierto, Firebase CLI autenticado, `.venv` y credencial de analítica disponibles.
 - Supervisión: toda ejecución deja un resumen; una falla de datos, validación o despliegue bloquea la publicación.

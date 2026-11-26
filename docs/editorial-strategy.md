@@ -15,7 +15,7 @@ No se insertan llamados comerciales repetitivos dentro de los artículos. La con
 
 El piloto medido comienza el 29 de noviembre de 2026 con una revisión de datos semanal los domingos y producción los lunes, miércoles y viernes. `Pi Daily Editorial` deja de ser un publicador diario y pasa a usar la evidencia semanal como una señal más dentro del puntaje editorial.
 
-El domingo no publica: importa GA4 y Search Console, compara 7 y 28 días y prepara tres hipótesis. Cada ejecución de producción puede publicar como máximo una pieza y debe omitir el día si ninguna propuesta alcanza el umbral, las fuentes o la calidad visual exigida.
+El domingo no publica: importa GA4 y Search Console, compara 7 y 28 días, construye un radar externo de tendencias y prepara tres hipótesis. Cada ejecución de producción puede publicar como máximo una pieza y debe omitir el día si ninguna propuesta alcanza el umbral, las fuentes, la actualidad o la calidad visual exigida.
 
 El rediseño visual de la publicación queda pendiente de las capturas de referencia. Hasta entonces se puede trabajar en estrategia, contenido, medición, arquitectura e indexación sin fijar una dirección estética definitiva.
 
@@ -113,6 +113,21 @@ El umbral de producción es 75. Además, se rechaza una idea cuando:
 - Su relación con Pi o con la audiencia es artificial.
 - El título necesita jerga para parecer importante.
 
+### Tendencias sin perder identidad
+
+Pi cubre tendencias de tecnología y vida digital, no cualquier tema con volumen. El domingo observa Google Trends, agrupaciones de noticias, fuentes oficiales, medios y conversación pública. Antes de publicar vuelve a comprobar la señal dentro de una ventana máxima de 72 horas.
+
+Una noticia requiere al menos dos señales distintas de interés y debe registrar mercado, hora de observación, saturación y la pregunta todavía abierta. Esas señales solo justifican investigar: los hechos se confirman por separado con una fuente primaria y una independiente.
+
+La selección busca la intersección entre:
+
+1. Interés actual verificable.
+2. Consecuencia humana o decisión útil.
+3. Evidencia factual suficiente.
+4. Un enfoque que Pi pueda aportar sin repetir la cobertura existente.
+
+No se publican tendencias caídas, conversaciones aisladas, temas sin relación con tecnología o piezas elegidas únicamente para atraer búsquedas.
+
 ## Contrato de cada artículo
 
 Antes de investigar debe existir una hipótesis editorial de una frase:
@@ -129,6 +144,8 @@ La pieza final debe incluir:
 6. Una conclusión que recompense la lectura.
 7. Fuentes completas.
 8. Una imagen original que diga algo verdadero del tema.
+
+Las noticias muestran además cuatro bloques explícitos: **Qué se anunció**, **Qué pudimos verificar**, **Lectura editorial de Pi** y **Cómo verificamos esta noticia**. El comunicado de una empresa nunca se presenta como verificación independiente.
 
 Los títulos se escriben primero para personas. La intención de búsqueda sirve para aclarar, no para deformar el lenguaje.
 

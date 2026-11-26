@@ -45,13 +45,35 @@ Contexto: últimos 28 días
 - Temas saturados, débiles o sin evidencia suficiente:
 - Hipótesis que todavía no pueden evaluarse por falta de muestra:
 
+## Radar de tendencias
+
+Capturado: AAAA-MM-DD HH:MM ART
+Mercados observados: Argentina + internacional
+Fuentes de descubrimiento consultadas: Google Trends, Google News, fuentes oficiales, medios, Hacker News, Reddit, YouTube y señales propias disponibles.
+
+| Tema o consulta | Estado | Mercado | Primera señal | Segunda señal | Saturación | Vida útil estimada | Pregunta todavía abierta |
+|---|---|---|---|---|---|---|---|
+| | rising/active/steady | | URL + hora | URL + hora | baja/media/alta | | |
+
+### Temas descartados
+
+- Tema:
+- Motivo: tendencia caída, relación artificial con Pi, evidencia débil, saturación sin ángulo propio o imposibilidad de verificar.
+
+## Capacidad editorial
+
+- Ventana de 5 horas disponible al preparar este brief:
+- Ventana semanal disponible:
+- Decisión de capacidad: normal / conservar / solo una historia prioritaria.
+- Regla: no generar una portada ni desplegar si la ventana de 5 horas tiene menos de 35% disponible o la semanal menos de 25%.
+
 ## Prioridades para la próxima semana
 
-| Día | Territorio | Formato | Pregunta humana | Evidencia o señal | Fuente primaria candidata | Ángulo visual veraz |
-|---|---|---|---|---|---|---|
-| Lunes | | | | | | |
-| Miércoles | | | | | | |
-| Viernes | | | | | | |
+| Día | Territorio | Formato | Pregunta humana | Evidencia de tendencia | Fuente primaria candidata | Contraste independiente | Ángulo visual veraz |
+|---|---|---|---|---|---|---|---|
+| Lunes | | | | | | | |
+| Miércoles | | | | | | | |
+| Viernes | | | | | | | |
 
 ## Reglas para interpretar
 
@@ -60,3 +82,5 @@ Contexto: últimos 28 días
 - No repetir un tema porque una única pieza haya rendido mejor.
 - Una prioridad semanal es una hipótesis, no una orden de publicación.
 - Si no existe evidencia o una noticia sólida, el espacio puede quedar vacío.
+- Las señales sociales descubren interés; nunca sustituyen fuentes factuales.
+- Toda tendencia se vuelve a comprobar dentro de las 72 horas previas a publicar.

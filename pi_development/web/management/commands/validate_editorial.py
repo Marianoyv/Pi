@@ -43,12 +43,21 @@ ALLOWED_CLUSTERS = {
 }
 ALLOWED_ARTICLE_TYPES = {"analysis", "case-study", "essay", "guide", "interview", "news"}
 AUTOMATED_QUALITY_CUTOFF = date(2026, 11, 24)
+TREND_NEWS_CUTOFF = date(2026, 11, 25)
 ALLOWED_IMAGE_METHODS = {
     "photography",
     "photo-composite",
     "diagram",
     "verified-screenshot",
     "ai-assisted-editorial-illustration",
+}
+ALLOWED_TREND_STATUSES = {"rising", "active", "steady"}
+ALLOWED_TREND_SATURATION = {"low", "medium", "high"}
+ALLOWED_TREND_SIGNAL_TYPES = {
+    "google-trends",
+    "news-cluster",
+    "social-conversation",
+    "first-party-demand",
 }
 
 
@@ -140,6 +149,10 @@ class Command(BaseCommand):
                 errors.append(f"{field} must use YYYY-MM-DD")
 
         quality_contract_applies = parsed_dates.get("published_at", date.min) >= AUTOMATED_QUALITY_CUTOFF
+        trend_news_contract_applies = (
+            parsed_dates.get("published_at", date.min) >= TREND_NEWS_CUTOFF
+            and article.get("article_type") == "news"
+        )
         if quality_contract_applies:
             for field in ("human_question", "editorial_hypothesis", "distribution_hypothesis"):
                 if not isinstance(article.get(field), str) or not article[field].strip():
@@ -262,6 +275,98 @@ class Command(BaseCommand):
                 if not any(source.get("source_type") == "independent" for source in sources if isinstance(source, dict)):
                     errors.append("news and analysis require at least one independent source")
 
+        if trend_news_contract_applies:
+            news_layers = article.get("news_layers")
+            if not isinstance(news_layers, dict):
+                errors.append("news articles require separate official, verification, editorial and quality layers")
+            else:
+                layer_requirements = {
+                    "official_announcement": 1,
+                    "independent_verification": 1,
+                    "pi_editorial": 1,
+                    "quality_evidence": 3,
+                }
+                for field, minimum in layer_requirements.items():
+                    if not Command._valid_text_list(news_layers.get(field), minimum=minimum):
+                        errors.append(f"news_layers {field} must contain at least {minimum} non-empty item(s)")
+
+            trend_evidence = article.get("trend_evidence")
+            if not isinstance(trend_evidence, dict):
+                errors.append("news articles require current trend_evidence")
+            else:
+                for field in ("query", "market", "editorial_opportunity"):
+                    if not isinstance(trend_evidence.get(field), str) or not trend_evidence[field].strip():
+                        errors.append(f"trend_evidence requires {field}")
+
+                if trend_evidence.get("status") not in ALLOWED_TREND_STATUSES:
+                    errors.append(
+                        f"trend_evidence status must be one of: {', '.join(sorted(ALLOWED_TREND_STATUSES))}"
+                    )
+                if trend_evidence.get("saturation") not in ALLOWED_TREND_SATURATION:
+                    errors.append(
+                        "trend_evidence saturation must be one of: "
+                        f"{', '.join(sorted(ALLOWED_TREND_SATURATION))}"
+                    )
+
+                window_hours = trend_evidence.get("window_hours")
+                if not isinstance(window_hours, int) or not 1 <= window_hours <= 72:
+                    errors.append("trend_evidence window_hours must be an integer between 1 and 72")
+
+                trend_datetimes = {}
+                for field in ("captured_at", "rechecked_at"):
+                    value = trend_evidence.get(field, "")
+                    try:
+                        parsed = datetime.fromisoformat(value)
+                        if parsed.tzinfo is None:
+                            errors.append(f"trend_evidence {field} must include a UTC offset")
+                        trend_datetimes[field] = parsed
+                    except (TypeError, ValueError):
+                        errors.append(f"trend_evidence {field} must use ISO 8601 with a UTC offset")
+
+                if all(field in trend_datetimes for field in ("captured_at", "rechecked_at")):
+                    captured_at = trend_datetimes["captured_at"]
+                    rechecked_at = trend_datetimes["rechecked_at"]
+                    if captured_at.tzinfo and rechecked_at.tzinfo and rechecked_at < captured_at:
+                        errors.append("trend_evidence rechecked_at cannot be earlier than captured_at")
+                    published_datetime = parsed_datetimes.get("published_datetime")
+                    if published_datetime and published_datetime.tzinfo and rechecked_at.tzinfo:
+                        age_hours = (published_datetime - rechecked_at).total_seconds() / 3600
+                        if age_hours < 0:
+                            errors.append("trend_evidence rechecked_at cannot be later than publication")
+                        elif age_hours > 72:
+                            errors.append("trend evidence must be rechecked within 72 hours before publication")
+
+                signals = trend_evidence.get("signals")
+                signal_urls = set()
+                if not isinstance(signals, list) or len(signals) < 2:
+                    errors.append("trend_evidence signals must contain at least two distinct signals")
+                else:
+                    for index, signal in enumerate(signals, start=1):
+                        if not isinstance(signal, dict):
+                            errors.append(f"trend signal {index} must be an object")
+                            continue
+                        for field in ("source", "url", "observed_at", "evidence"):
+                            if not isinstance(signal.get(field), str) or not signal[field].strip():
+                                errors.append(f"trend signal {index} requires {field}")
+                        if signal.get("signal_type") not in ALLOWED_TREND_SIGNAL_TYPES:
+                            errors.append(
+                                f"trend signal {index} signal_type must be one of: "
+                                f"{', '.join(sorted(ALLOWED_TREND_SIGNAL_TYPES))}"
+                            )
+                        parsed_url = urlparse(signal.get("url", ""))
+                        if parsed_url.scheme != "https" or not parsed_url.netloc:
+                            errors.append(f"trend signal {index} must use a valid HTTPS URL")
+                        else:
+                            signal_urls.add(signal["url"])
+                        try:
+                            observed_at = datetime.fromisoformat(signal.get("observed_at", ""))
+                            if observed_at.tzinfo is None:
+                                errors.append(f"trend signal {index} observed_at must include a UTC offset")
+                        except (TypeError, ValueError):
+                            errors.append(f"trend signal {index} observed_at must use ISO 8601 with a UTC offset")
+                    if len(signal_urls) < 2:
+                        errors.append("trend_evidence must use at least two distinct signal URLs")
+
         faqs = article.get("faqs")
         if not isinstance(faqs, list) or len(faqs) < 2:
             errors.append("faqs must contain at least two useful questions")
@@ -287,6 +392,15 @@ class Command(BaseCommand):
         text_parts = []
         text_parts.extend(article.get("intro_paragraphs", []))
         text_parts.extend(article.get("key_takeaways", []))
+        news_layers = article.get("news_layers", {})
+        if isinstance(news_layers, dict):
+            for field in (
+                "official_announcement",
+                "independent_verification",
+                "pi_editorial",
+                "quality_evidence",
+            ):
+                text_parts.extend(news_layers.get(field, []))
         for section in article.get("sections", []):
             if isinstance(section, dict):
                 text_parts.extend(section.get("paragraphs", []))

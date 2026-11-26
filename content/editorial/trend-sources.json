@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "purpose": "Fuentes de descubrimiento para detectar tendencias. No prueban por sí solas los hechos de una noticia.",
+  "markets": [
+    "Argentina",
+    "Internacional en español",
+    "Internacional en inglés cuando la señal pueda explicarse para la audiencia de Pi"
+  ],
+  "sources": [
+    {
+      "name": "Google Trends",
+      "url": "https://trends.google.com/trending",
+      "signal_type": "google-trends",
+      "role": "Detectar aceleración de consultas y temas relacionados."
+    },
+    {
+      "name": "Google News",
+      "url": "https://news.google.com/",
+      "signal_type": "news-cluster",
+      "role": "Observar repetición de cobertura, mercados y hora de aparición."
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://news.ycombinator.com/",
+      "signal_type": "social-conversation",
+      "role": "Detectar conversación técnica temprana; nunca usar comentarios como prueba factual."
+    },
+    {
+      "name": "Reddit",
+      "url": "https://www.reddit.com/",
+      "signal_type": "social-conversation",
+      "role": "Detectar preguntas humanas, fricción y vocabulario; verificar todo fuera de la plataforma."
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/",
+      "signal_type": "social-conversation",
+      "role": "Observar temas que cruzan hacia audiencias amplias sin tomar visualizaciones aisladas como demanda concluyente."
+    },
+    {
+      "name": "GA4 y Search Console de Pi",
+      "url": "https://analytics.google.com/",
+      "signal_type": "first-party-demand",
+      "role": "Contrastar el interés externo con el comportamiento propio cuando los datos estén disponibles."
+    }
+  ],
+  "news_requirements": {
+    "minimum_distinct_signals": 2,
+    "maximum_age_hours_at_publication": 72,
+    "required_recheck": true,
+    "allowed_statuses": ["rising", "active", "steady"],
+    "allowed_saturation": ["low", "medium", "high"],
+    "discovery_is_not_fact_checking": true
+  },
+  "hard_rejections": [
+    "La única señal es un comentario, una publicación social o un titular aislado.",
+    "El tema perdió actualidad antes de redactar.",
+    "No existe una pregunta humana que Pi pueda responder mejor que la cobertura disponible.",
+    "La tendencia no puede respaldarse con una fuente primaria y una fuente independiente.",
+    "El tema solo se elige por volumen potencial y no encaja con tecnología o vida digital."
+  ]
+}

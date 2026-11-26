@@ -71,6 +71,43 @@
         </div>
         {% endif %}
 
+        {% if knowledge_page.article_type == "news" and knowledge_page.news_layers %}
+        <div class="content-page__section" data-news-layer="official-announcement">
+          <h2>Qué se anunció</h2>
+          <div class="content-page__copy">
+            {% for paragraph in knowledge_page.news_layers.official_announcement %}<p>{{ paragraph }}</p>{% endfor %}
+          </div>
+        </div>
+        <div class="content-page__section" data-news-layer="independent-verification">
+          <h2>Qué pudimos verificar</h2>
+          <div class="content-page__copy">
+            {% for paragraph in knowledge_page.news_layers.independent_verification %}<p>{{ paragraph }}</p>{% endfor %}
+          </div>
+        </div>
+        <div class="content-page__section" data-news-layer="pi-editorial">
+          <h2>Lectura editorial de Pi</h2>
+          <div class="content-page__copy">
+            {% for paragraph in knowledge_page.news_layers.pi_editorial %}<p>{{ paragraph }}</p>{% endfor %}
+          </div>
+        </div>
+        <div class="content-page__section article-quality-evidence" data-news-layer="quality-evidence">
+          <h2>Cómo verificamos esta noticia</h2>
+          {% if knowledge_page.trend_evidence %}
+          <p><strong>Tendencia observada:</strong> {{ knowledge_page.trend_evidence.query }} · revalidada {{ knowledge_page.trend_evidence.rechecked_at }} · mercado {{ knowledge_page.trend_evidence.market }}.</p>
+          {% if knowledge_page.trend_evidence.signals %}
+          <ul class="content-page__list">
+            {% for signal in knowledge_page.trend_evidence.signals %}
+            <li><a href="{{ signal.url }}" target="_blank" rel="noopener noreferrer">{{ signal.source }}</a>: {{ signal.evidence }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endif %}
+          <ul class="content-page__list">
+            {% for item in knowledge_page.news_layers.quality_evidence %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
         {% for section in knowledge_page.sections %}
         <div class="content-page__section">
           <h2>{{ section.title }}</h2>
@@ -92,7 +129,7 @@
         {% if knowledge_page.sources %}
         <div class="content-page__section article-sources">
           <h2>{% if knowledge_page.language == "en" %}Sources{% else %}Fuentes{% endif %}</h2>
-          <p>{% if knowledge_page.language == "en" %}The factual information in this article was checked against the following sources.{% else %}The factual information in this note was verified in the following primary sources.{% endif %}</p>
+          <p>{% if knowledge_page.language == "en" %}The factual information in this article was checked against the following sources.{% else %}La información factual de esta nota fue contrastada con fuentes primarias e independientes.{% endif %}</p>
           <ol>
             {% for source in knowledge_page.sources %}
             <li>

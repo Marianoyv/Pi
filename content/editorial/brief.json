@@ -19,6 +19,22 @@
     "Carrera y cultura tecnológica",
     "AdTech y operaciones digitales"
   ],
+  "trend_policy": {
+    "purpose": "Usar tendencias actuales para descubrir preguntas con demanda sin convertir Pi en un agregador generalista.",
+    "weekly_discovery": "Domingo",
+    "publication_recheck_hours": 72,
+    "minimum_distinct_signals_for_news": 2,
+    "discovery_sources": "content/editorial/trend-sources.json",
+    "rule": "Google Trends, noticias y conversación social detectan interés; los hechos se prueban con una fuente primaria y una independiente."
+  },
+  "usage_budget": {
+    "five_hour_minimum_remaining_percent": 35,
+    "weekly_minimum_remaining_percent": 25,
+    "maximum_full_articles_per_day": 1,
+    "image_attempts": 1,
+    "image_retry_only_on_failure": true,
+    "rule": "Si no puede comprobarse el uso disponible o falta margen, conservar capacidad y omitir la publicación."
+  },
   "selection_score": {
     "publish_threshold": 75,
     "weights": {
@@ -84,6 +100,7 @@
     "coverage_index": "content/editorial/index.json",
     "weekly_signal": "analytics/weekly/latest.md",
     "weekly_brief_template": "content/templates/weekly-editorial-brief.template.md",
+    "trend_sources": "content/editorial/trend-sources.json",
     "article_directory": "content/articles",
     "image_directory": "static/web/img/insights"
   },

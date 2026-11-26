@@ -170,6 +170,87 @@ class StaticExportConfigurationTests(SimpleTestCase):
         self.assertIn("knowledge_page.image_record.disclosure", template)
         self.assertIn("<figcaption>", template)
 
+    def test_trend_driven_news_requires_current_signals_and_separate_layers(self):
+        article_path = Path(settings.BASE_DIR) / "content" / "articles" / "2026-10-23-google-flexibiliza-video-sticky.json"
+        article = json.loads(article_path.read_text(encoding="utf-8"))
+        article.update(
+            {
+                "published_at": "2026-11-25",
+                "updated_at": "2026-11-25",
+                "published_datetime": "2026-11-25T08:00:00-03:00",
+                "updated_datetime": "2026-11-25T08:00:00-03:00",
+                "human_question": "¿Qué cambia para una persona cuando una tendencia tecnológica llega a un producto cotidiano?",
+                "editorial_hypothesis": "La explicación de una consecuencia concreta será más útil que repetir el anuncio.",
+                "distribution_hypothesis": "La pieza se probará en canales propios y búsqueda durante siete días.",
+                "image_record": {
+                    "creator": "Pi Editorial",
+                    "created_at": "2026-11-25",
+                    "method": "ai-assisted-editorial-illustration",
+                    "source_files": [],
+                    "disclosure": "Ilustración editorial generada con IA. No es una fotografía documental del hecho.",
+                },
+                "trend_evidence": {
+                    "query": "cambio tecnológico de interés actual",
+                    "captured_at": "2026-11-23T20:00:00-03:00",
+                    "rechecked_at": "2026-11-25T07:30:00-03:00",
+                    "window_hours": 72,
+                    "market": "AR + internacional",
+                    "status": "rising",
+                    "saturation": "medium",
+                    "editorial_opportunity": "La cobertura no explica todavía la consecuencia para usuarios.",
+                    "signals": [
+                        {
+                            "signal_type": "google-trends",
+                            "source": "Google Trends",
+                            "url": "https://trends.google.com/trending",
+                            "observed_at": "2026-11-25T07:20:00-03:00",
+                            "evidence": "La consulta aparece entre los temas tecnológicos en crecimiento.",
+                        },
+                        {
+                            "signal_type": "news-cluster",
+                            "source": "Google News",
+                            "url": "https://news.google.com/",
+                            "observed_at": "2026-11-25T07:25:00-03:00",
+                            "evidence": "Varios medios independientes publicaron cobertura reciente.",
+                        },
+                    ],
+                },
+                "news_layers": {
+                    "official_announcement": ["La fuente primaria confirmó el cambio y su fecha de aplicación."],
+                    "independent_verification": ["Una fuente independiente confirmó el alcance y señaló límites."],
+                    "pi_editorial": ["Pi interpreta la consecuencia sin presentarla como un hecho anunciado."],
+                    "quality_evidence": [
+                        "Fuente primaria comprobada.",
+                        "Contraste independiente comprobado.",
+                        "Tendencia revalidada antes de publicar.",
+                    ],
+                },
+            }
+        )
+        article["sources"][1]["source_type"] = "independent"
+
+        self.assertEqual(EditorialValidationCommand._validate_article(article), [])
+
+        article["trend_evidence"]["rechecked_at"] = "2026-11-21T07:30:00-03:00"
+        errors = EditorialValidationCommand._validate_article(article)
+        self.assertIn("trend evidence must be rechecked within 72 hours before publication", errors)
+
+        article["trend_evidence"]["rechecked_at"] = "2026-11-25T07:30:00-03:00"
+        article.pop("news_layers")
+        errors = EditorialValidationCommand._validate_article(article)
+        self.assertIn("news articles require separate official, verification, editorial and quality layers", errors)
+
+    def test_news_template_separates_facts_verification_editorial_and_quality(self):
+        template = (
+            Path(settings.BASE_DIR) / "pi_development" / "web" / "templates" / "web" / "knowledge_article_page.html"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("Qué se anunció", template)
+        self.assertIn("Qué pudimos verificar", template)
+        self.assertIn("Lectura editorial de Pi", template)
+        self.assertIn("Cómo verificamos esta noticia", template)
+        self.assertIn("knowledge_page.trend_evidence.signals", template)
+
     def test_editorial_index_is_compact_and_uses_real_internal_routes(self):
         from django.core.management import call_command
 
